@@ -1,0 +1,10 @@
+ 初始化一个仓库  
+	git init 
+
+ 配置name和email   
+	git config --global user.name “you Account”
+	git config --global user.email “you email@163.com”
+ 添加远程源
+	git remote add <name> origin <xxx.git>
+ 删除远程源
+	git remote rm <name>

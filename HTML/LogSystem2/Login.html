@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        home, body{
+            width: 100%;
+        }
+        #LogBox{  
+            position: absolute;  
+            /* border: 1px solid #000; */
+            background-color: transparent; 
+            top: 50%;
+            left:50%;
+            margin: -200px 0 0 -200px;   
+            width: 350px;   
+        }
+        #LogBox h1{   
+            color: rgb(10, 243, 204);   
+            text-shadow:0 0 10px;   /* 有发光效果 */
+            letter-spacing: 1px;   /* 字间距 */
+            text-align: center;   
+        }
+        h1{   
+            font-size: 40px;   
+            margin: 20px 0;   
+        }
+        .InputBox{
+            padding-left: 10px;
+            width: 95%;
+            height: 50px;   
+            margin-bottom: 15px;   
+            font-size: 14px;   
+            letter-spacing: 1px;  
+            color: #0051e9;  
+            border: 1px solid #7FFFD4;   
+            border-radius: 4px;   
+            background-color:transparent;   
+        }
+        #status{
+            padding-left: 10px;
+            width: 98%;
+            height: 40px;   
+            margin-bottom: 15px;   
+            font-size: 14px;   
+            letter-spacing: 1px;  
+            color: #0051e9;  
+            border: 1px solid #7FFFD4;   
+            border-radius: 4px;   
+            background-color:transparent;   
+        }
+        .bt{   
+            float: left;
+            
+            width: 98%;
+            height: 40px;
+            display: block;   
+            background-color: transparent;   
+            border: 1px solid #36b6d6;  
+            color: #36b6d6;   
+            font-size: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 背景动画 -->
+    <canvas id="c_n9" width="1920" height="1000" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;"></canvas>
+    <script src="./js/canvas-nest.min.js"></script>
+    <script src="./js/Login.js"></script>
+
+    <div id="LogBox">  
+        <h1>Login</h1>
+        <form action="http://192.168.31.198/Login.php" method="post" name="myform" onsubmit="">
+            <input id="username" class="InputBox" name="name" type="text" placeholder=" 用户名" autocomplete="off" ></input>  
+            <input id="pwd" class="InputBox" name="pwd" type="password" placeholder=" 密码" autocomplete="off" ></input>  
+            <select name="status_code" id="status">
+                <option value ="1">教师</option>
+                <option value ="2">学生</option>
+            </select>
+            <button class="bt" type="submit" id="signin" >登录</button>
+        </form>
+    </div>
+
+    <!-- 错误提示 -->
+    <div id="ERROR_cue">
+
+    </div>
+</body>
+
+</html>

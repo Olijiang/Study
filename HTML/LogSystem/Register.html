@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        home, body{
+            width: 100%;
+            height: 100%;
+        }
+        #RegBox{  
+            display: block;
+            position: absolute;  
+            background-color: transparent; 
+            /* border: 1px solid coral; */
+            top: 5%;
+            left:50%;
+            margin: 100px 0 0 -200px;   
+            width: 350px;   
+            height: 600px;   
+        }
+        #RegBox h1{   
+            color: rgb(10, 243, 204);   
+            text-shadow:0 0 10px;   /* 有发光效果 */
+            letter-spacing: 1px;   /* 字间距 */
+            text-align: center;
+            padding-left: 80px;
+        }
+        h1{   
+            font-size: 40px;   
+            margin: 20px 0;   
+        }
+        .InputBox{
+            padding-left: 10px;
+            right: 10px;
+            width: 250px;
+            height: 50px;   
+            margin-bottom: 15px;   
+            font-size: 14px;   
+            letter-spacing: 1px;  
+            color: #0051e9;  
+            border: 1px solid #7FFFD4;   
+            border-radius: 5px;   
+            background-color:transparent;   
+        }
+        .cue{
+            text-align: center;
+            line-height: 50px;
+            float: left;
+            height: 40px;
+            width: 25%;
+            color: #0051e9; 
+        }
+        .bt{  
+            float: right;
+            margin: 0 auto;
+            letter-spacing: 10px;
+            width: 260px;
+            height: 40px;
+            display: block;   
+            background-color: transparent;   
+            border: 1px solid #36b6d6;  
+            color: #36b6d6;   
+            font-size: 20px;   
+            border-radius: 5px;  
+        }
+        #RegBox_ok{
+            display: none;
+            position: absolute;  
+            background-color: transparent; 
+            /* border: 1px solid coral; */
+            top: 15%;
+            left:50%;
+            margin: 200px 0 0 -200px;   
+            width: 350px;   
+            height: 600px;   
+        }
+        #RegBox_ok h1{
+            color: rgb(10, 243, 204);   
+            text-shadow:0 0 10px;   /* 有发光效果 */
+            letter-spacing: 1px;   /* 字间距 */
+            text-align: center;
+            padding-bottom: 20px;
+            padding-left: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景动画 -->
+    <canvas id="c_n9" width="1920" height="990" style="position: fixed; top: 0px; left: 0px; z-index: -1; opacity: 0.5;background-color: bisque;"></canvas>
+    <script src="./js/canvas-nest.min.js"></script>
+
+    <div id="RegBox">  
+        <h1>Register</h1>
+        <form action="" method="post" onsubmit="return false;">
+            <div class="cue" >账号</div> <input class="InputBox" type="text" name="name" autocomplete="off"></input><br>
+            <div class="cue" >密码</div> <input class="InputBox" type="password" name="pwd" autocomplete="off"></input><br>
+            <div class="cue" >确认密码</div><input class="InputBox" type="password" name="repwd" autocomplete="off"></input><br>
+            <div class="cue" >手机号</div><input class="InputBox" type="text" name="tel" autocomplete="off" onkeyup=CheckEnter()></input><br>
+            <button class="bt" id="regbt" type="submit">注册</button>
+        </form>
+    </div>
+    <div id="RegBox_ok">
+        <h1>注册成功</h1>
+        <button class="bt" id="regback" type="submit">返回</button>
+    </div>
+
+    <script src="./js/Register.js"></script>
+</body>
+</html>

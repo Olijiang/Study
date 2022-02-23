@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        ul li{
+            /* border: 1px solid #333; */
+            list-style: none;
+            float: left;
+            position: relative;
+            top: 10px;
+            left: 10px;
+            width: 100px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+        li.item:before{
+            content: "";
+            position: absolute;
+            top: 0px;
+            left: 10%;
+            width: 0px;
+            height: 100%;
+            border-bottom: 2px solid coral;
+        }
+        li.item:hover:before{   /* 伪类：hover 鼠标移上去变化 */
+            width: 80%;
+        }
+        /* 子选择器 */
+        div>a{
+            color: coral;
+        }
+        /* 后代选择器，可以越标签 */
+/*         div a{
+            color: coral;
+        } */
+        
+    </style>
+</head>
+<body>
+    <ul class="menu">
+        <li class="item">首页</li>
+        <li class="item">简介</li>
+        <li class="item">师资</li>
+        <li class="item">招生</li>
+    </ul>
+    <div>
+        <p><a href="#">下一个page</a></p>
+    </div>
+    <div><a href="#">下下个page</a></div>
+</body>
+</html>

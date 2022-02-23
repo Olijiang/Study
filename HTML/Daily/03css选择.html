@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- 权重，style > id选择器 > class选择器，同选择器看加载顺序 -->
+
+	<title>CSS import</title>
+	<!-- 嵌入css -->
+	<style type="text/css">
+		p:first-letter{
+			color: blue;
+		}
+		#p1:first-line{
+			color: red;
+		}
+	</style>
+	<!-- 外部引入css -->
+	<link rel="stylesheet" type="text/css" href="./static/css/03css.css">
+</head>
+<body>
+	<div class="a" id="a1" style="">
+
+		<p >锄禾日当午 <br> 
+		<span >汗滴</span>禾下土 
+		<p id="p1">谁知盘中餐</p> 
+		粒粒皆辛苦
+		</p>
+	</div>
+
+	<div>
+		<a id="a1" href="">img</a>
+		<img id="c1" src="./static/img/c1.png" alt="faild">
+
+		<a id="a2" href="">img</a>
+		<img id="c2" src="./static/img/c2.png" alt="faild">
+	</div>
+</body>
+</html>

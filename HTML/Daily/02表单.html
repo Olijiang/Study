@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>form表单</title>
+</head>
+<body>
+	<form action="#" method="post">
+
+		<p><label>Username: </label><input type="text" name="fname"></p>
+		<p><label>Password: </label><input type="text" name="lname"></p>
+
+		<!-- type=radio 定义单选框 -->
+
+		<p>
+			<label for="male">性别：</label>
+			<label><input type="radio" name="sex" value="1">男</label>
+			<label><input type="radio" name="sex" value="0">女</label>
+		</p>
+
+		<!-- textarea 定义多行文本框 -->
+
+
+		<!-- select 定义下拉选框 -->
+		<p>
+			<label>星座</label>
+			<select>
+				<option>金牛</option>
+				<option>白羊</option>
+				<option>魔蝎</option>
+			</select>
+		</p>
+		<!-- checkbox 定义多选框 -->
+		<p>
+			<label>爱好</label>
+			<label><input type="checkbox" name="" >吃饭</label>
+			<label><input type="checkbox" name="" >睡觉</label>
+		</p>
+
+		<p>
+			<label>说明：</label>
+			<textarea name="s"></textarea>
+		</p>
+
+		<p>
+			<input type="submit" name="Submit">
+			<input type="reset" name="Submit">
+			<input type="submit" name="" value="注册">
+			<button>提交</button>
+		</p>
+		
+	</form>
+</body>
+</html>

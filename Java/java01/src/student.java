@@ -5,7 +5,7 @@ public class student extends Person{
         super();    //执行父类的构造
     }
     public student(String name, int age, int id){
-        super(name,age); //必须在第一句
+        super(name, age); //必须在第一句
         setId(id);
     }
 

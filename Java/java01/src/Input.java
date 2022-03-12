@@ -10,6 +10,6 @@ public class Input {
         System.out.print("请输入年龄：");
         int age = sc.nextInt();
         System.out.print("你的姓名："+name+"; 你的年龄："+age);
-
+        sc.close();
     }
 }

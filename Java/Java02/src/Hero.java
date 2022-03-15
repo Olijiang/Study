@@ -34,6 +34,8 @@ public class Hero {
         this.armor = armor;
     }
 
+
+
     public void show(){
         System.out.println("name:"+name+" HP:"+HP+" speed:"+speed+" armor:"+armor);
     }

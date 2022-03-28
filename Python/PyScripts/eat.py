@@ -2,8 +2,6 @@ import time, random, threading
 
 Stime = time.perf_counter()
 
-
-
 first = 1
 rear = 1
 

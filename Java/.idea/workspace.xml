@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f43c0d68-89a2-4917-8592-c68d2860cbd2" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LeetCode/LeetCode.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LeetCode/src/Leet124.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LeetCode/src/Leet24.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LeetCode/src/Leet25.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LeetCode/src/ListNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LeetCode/src/TreeNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mooc/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mooc/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mooc/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mooc/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mooc/mooc.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mooc/week_1/src/CalNumber.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mooc/week_1/src/HelloWorld.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mooc/week_1/src/Solution.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mooc/week_1/src/Sum.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mooc/week_1/src/ToUpCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mooc/week_1/week_1.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../C" beforeDir="false" afterPath="$PROJECT_DIR$/../C" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Python/PyScripts/MySQL.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Python/PyScripts/MySQL.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Python/PyScripts/eat.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Python/PyScripts/eat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Python/PyScripts/selenium.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Python/PyScripts/selenium.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Python/PyScripts/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Python/PyScripts/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Python/PyScripts/倒计时.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Python/PyScripts/倒计时.ipynb" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="26rcAYvCEZu9CmLkDNrZplcplnA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="jdk.selected.JAVA_MODULE" value="9" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RunManager" selected="Application.Leet25">
+    <configuration name="Leet124" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Leet124" />
+      <module name="LeetCode" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Leet24" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Leet24" />
+      <module name="LeetCode" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Leet25" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Leet25" />
+      <module name="LeetCode" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestStudent" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestStudent" />
+      <module name="java01" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Leet25" />
+        <item itemvalue="Application.Leet24" />
+        <item itemvalue="Application.Leet124" />
+        <item itemvalue="Application.TestStudent" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f43c0d68-89a2-4917-8592-c68d2860cbd2" name="Changes" comment="" />
+      <created>1648185002951</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1648185002951</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

@@ -1,0 +1,20 @@
+{
+    "origin_image_dir": "./sample/origin/",
+    "new_image_dir": "./sample/new/",
+    "train_image_dir": "./sample/train/",
+    "test_image_dir": "./sample/test/",
+    "model_save_dir": "./model/",
+    "image_width": 58,
+    "image_height": 22,
+    "max_captcha": 4,
+    "image_suffix": "png",
+    "char_set": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ", 
+    "char_setmore":"abcdefghijklmnopqrstuvwxyz",
+    "cycle_stop": 2000,
+    "acc_stop": 0.9,
+    "cycle_save": 500,
+    "enable_gpu": 1,
+    "train_batch_size": 100,
+    "test_batch_size": 100
+    
+  }

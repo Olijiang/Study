@@ -9,7 +9,9 @@
             "type": "python",
             "request": "launch",
             "program": "${file}",
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "cwd": "${fileDirname}" //设置当前工作目录为执行文件目录，vs默认为工作区的根目录
+            // "cwd": "${workspaceFolder}" //
         }
     ]
 }

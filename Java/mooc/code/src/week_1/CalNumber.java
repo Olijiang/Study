@@ -1,3 +1,5 @@
+package week_1;
+
 import java.util.Scanner;
 
 public class CalNumber {
@@ -6,7 +8,7 @@ public class CalNumber {
         System.out.print("Input x and y:");
         int x = sc.nextInt();
         int y = sc.nextInt();
-        System.out.println("Sum=" + (x + y));
+        System.out.println("week_1.Sum=" + (x + y));
         System.out.println("Minus=" + (x - y));
         System.out.println("Multiply=" + (x * y));
         System.out.println("Divide=" + ((float)x / (float)y));

@@ -9,14 +9,16 @@ class StudentTest {
 
         //创建Map集合
 
+    /*
         //匿名重写Comparator
         Map<Student,String> map = new TreeMap<>(new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
-                return 0;
+                return o1.id-o2.id;
             }
         });
-
+    */
+        Map<Student,String> map = new TreeMap<>();
         map.put(new Student("清漪", 18, 1111), "96");
         map.put(new Student("千欣", 17, 2222), "97");
         map.put(new Student("月婵", 19, 3333), "98");

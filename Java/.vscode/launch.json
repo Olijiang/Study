@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Solution",
+            "request": "launch",
+            "mainClass": "Solution",
+            "projectName": "Java_c6e87621"
+        },
+        {
+            "type": "java",
             "name": "Launch LD10",
             "request": "launch",
             "mainClass": "LD10",

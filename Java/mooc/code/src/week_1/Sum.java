@@ -1,3 +1,5 @@
+package week_1;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -15,13 +17,11 @@ public class Sum {
                 System.out.println("Invalid Input!");
                 sc.next();
             }
-            sc.close();
         }
         while (n!=0){
             sum += n%10;
             n /= 10;
         }
-        System.out.println("Sum is "+sum);
-        
+        System.out.println("week_1.Sum is "+sum);
     }
 }

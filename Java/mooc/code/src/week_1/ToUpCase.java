@@ -7,5 +7,6 @@ public class ToUpCase {
         System.out.print("Input:");
         String str = sc.next();
         System.out.println(str.toUpperCase(Locale.ROOT));
+        sc.close();
     }
 }

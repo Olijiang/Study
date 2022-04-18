@@ -11,5 +11,6 @@ public class CalNumber {
         System.out.println("Multiply=" + (x * y));
         System.out.println("Divide=" + ((float)x / (float)y));
         System.out.println("Remainder=" + (x % y));
+        sc.close();
     }
 }

@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "name": "MinGW",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "D:\\Develop\\MinGW\\bin\\gcc.exe",    //！！！*******自行修改  gcc位置
+            "includePath": [
+                "${workspaceFolder}"
+            ],
+            "cStandard": "c11"
+        }
+    ],
+    "version": 4
+}
+
+// D:\SOFTWARE\MinGW\bin\gcc.exe gcc -fsanitize=address -g D:\Study\C\LeetCode\46.c -o D:\Study\C\exe\46
+// gcc -fsanitize=address -fno-omit-frame-pointer -O1 -g D:\Study\C\LeetCode\46.c -o D:\Study\C\LeetCode\46.txt -L D:\SOFTWARE\MinGW\lib

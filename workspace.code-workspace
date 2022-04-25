@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "C"
+		},
+		{
+			"path": "Python"
+		}
+	],
+	"settings": {
+		"files.defaultLanguage": "c",
+		"files.associations": {
+			"*.C": "c",
+			"stdio.h": "c",
+			"stdlib.h": "c"
+		}
+	}
+}

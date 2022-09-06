@@ -1,0 +1,76 @@
+package com.snion.jdbc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+public class JdbcTest {
+	//1. 加载驱动
+	//2. 创建连接
+	//3. 设置SQL语句
+	//4. 创建一个Statement对象
+	//5. 设置参数
+	//6. 执行查询，得到一个ResultSet对象
+	//7. 遍历结果集，输出结果
+	//8. 释放资源
+	public static void main(String[] args) {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			//1. 加载驱动
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			//2. 创建连接
+			connection = DriverManager.getConnection("jdbc:mysql:///school ?serverTimezone=UTC", "root", "666666");
+			//3. 设置SQL语句
+			String sql = "select * from students";
+			//4. 创建一个Statement对象, 获取预处理statement
+			preparedStatement = connection.prepareStatement(sql);
+			//5. 设置参数,第一个参数为sql语句中参数的序号（从1开始），第二个参数为设置的参数值
+			//preparedStatement.setString(1, "王五");
+			// 执行查询，得到一个ResultSet对象
+			resultSet = preparedStatement.executeQuery();
+			//7. 遍历结果集，输出结果
+			while (resultSet.next()) {
+				System.out.println(resultSet.getString("id") + "  " + resultSet.getString("username"));
+			}
+		
+		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally// 释放资源
+		if (resultSet != null) {
+			try {
+				resultSet.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if (preparedStatement != null) {
+			try {
+				preparedStatement.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if (connection != null) {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+————————————————
+版权声明：本文为CSDN博主「李阿昀」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/yerenyuan_pku/article/details/71699343
+		
+	}
+	
+}

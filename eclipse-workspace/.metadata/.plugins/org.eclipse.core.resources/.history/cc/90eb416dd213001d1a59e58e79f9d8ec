@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.snion.entity.StudentMapper">
+	<!-- 
+		Mapper.xml文件中的namespace与Mapper接口的类路径相同，即namespace必须是接口的全限定名；
+		Mapper接口的方法名和Mapper.xml文件中定义的每个Statement的id相同；
+		Mapper接口方法的输入参数类型和Mapper.xml文件中定义的每个SQL的parameterType的类型相同；
+		Mapper接口方法的输出参数类型和Mapper.xml文件中定义的每个SQL的resultType的类型相同。
+	 -->
+		<select id="getStudentById" parameterType="int" resultType="com.snion.entity.Student" >
+			select 
+				id, name, sex, age, tch_id
+			from
+				students
+			where id = #{value}
+			<!-- where id > #{value} -->
+		</select>
+		
+		<select id="getStudentByName" parameterType="String" resultType="com.snion.entity.Student" >
+			select 
+				id, name, sex, age, tch_id
+			from
+				students
+			where name = #{value}
+		</select>
+		
+		<insert id="insertStudent" parameterType="com.snion.entity.Student" >
+			insert into students(
+				id, name, sex, age, tch_id)
+			value(
+				#{id}, #{name}, #{sex}, #{age}, #{tch_id})
+		</insert>
+		
+		<delete id="deletetStudentById" parameterType="int">
+			delete from students where id = #{value}
+		</delete>
+		
+		<delete id="deletetStudentsById" parameterType="int">
+			delete from students where id in (
+			<!-- open前缀  close后缀 -->
+			<foreach collection="list" item="item" separator="," open="" close=")">
+				#{item}
+			</foreach>
+		</delete>
+		<!-- 如果查询结果返回的是List集合，那么resultType属性的值只需要设置为List集合中的一个元素的数据类型即可 -->
+		<select id="getAllStudent" resultType="com.snion.entity.Student" >
+			select * from students
+		</select>
+		
+		<select id="getMyClass" resultType="com.snion.entity.MyClass" resultMap="class_map">
+			select 
+				s.id, s.name, s.sex, s.age, t.id as tch_id, t.name as tch_name
+			from students s left join teaches t on s.tchid=s.id
+		</select>
+		
+		<!-- 定义resultMap -->
+		<resultMap type="com.snion.entity.MyClass" id="class_map">
+			<id property="tch_id" column="tch_id" />
+			<result property="tch_name" column="tch_name" />
+
+			<!-- 
+				<collection>用于配置一对多关联关系 
+					property：对象中的集合
+					ofType：集合元素的类型
+			-->
+			<collection property="classmate" ofType="com.snion.entity.Student">
+				<!-- <id>用于映射主键 -->
+				<id property="id" column="id" />
+				<result property="name" column="name" />
+				<result property="sex" column="sex" />
+				<result property="age" column="age" />
+
+			</collection>
+		</resultMap>
+	</mapper>
+
+	<mapper namespace="com.snion.entity.MyClassMapper">
+	
+	
+	</mapper>

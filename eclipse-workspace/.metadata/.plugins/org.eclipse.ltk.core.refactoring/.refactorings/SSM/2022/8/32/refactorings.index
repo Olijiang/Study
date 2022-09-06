@@ -1,0 +1,21 @@
+1659688691232	Move 7 resources to 'lib'
+1659688711691	Move 'log4j.properties' to 'WEB-INF'
+1659689960035	Rename resource 'MyClass.xml'
+1659690012041	Rename package 'entiey'
+1659690016542	Rename package 'com.snionentiey'
+1659690026357	Rename package 'mapper'
+1659690033236	Rename package 'controller'
+1659690064848	Copy file
+1659690508919	Delete element
+1659690554818	Delete element
+1659690969797	Copy file
+1659690977914	Copy file
+1659691357620	Rename resource 'sjp'
+1659692392319	Delete element
+1659692461474	Rename resource 'ListItem.jsp'
+1659693079010	Rename resource 'demo.jsp'
+1659695652893	Rename resource 'StudentMapper.xml'
+1659695661693	Rename resource 'MyClassMpper.xml'
+1659695665147	Rename resource 'MyClassMapper1.xml'
+1659695751111	Delete element
+1659696237806	Move 5 resources to 'config'

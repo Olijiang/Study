@@ -1,0 +1,15 @@
+package com.snion.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class ItemController {
+
+	@RequestMapping("itemlist")
+	private void itemList() {
+		// TODO Auto-generated method stub
+
+	}
+		
+}

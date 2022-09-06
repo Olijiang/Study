@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-9">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/Develop/package/mysql-connector-java-8.0.16/mysql-connector-java-8.0.16.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/mybatis-3.5.10/mybatis-3.5.10.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/spring-framework-4.2.4.RELEASE/libs/spring-beans-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/spring-framework-4.2.4.RELEASE/libs/spring-context-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/spring-framework-4.2.4.RELEASE/libs/spring-core-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/spring-framework-4.2.4.RELEASE/libs/spring-expression-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v9.0"/>
+	<classpathentry kind="lib" path="D:/Develop/package/spring-framework-4.2.4.RELEASE/libs/spring-aop-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/spring-framework-4.2.4.RELEASE/libs/spring-tx-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="D:/Develop/package/jar/commons-dbcp2-2.9.0.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/jar/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/jar/commons-pool2-2.11.0.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/jar/mybatis-spring-2.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/spring-framework-4.2.4.RELEASE/libs/spring-aspects-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/spring-framework-4.2.4.RELEASE/libs/spring-jdbc-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/spring-framework-4.2.4.RELEASE/libs/spring-jms-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/spring-framework-4.2.4.RELEASE/libs/spring-test-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/spring-framework-4.2.4.RELEASE/libs/spring-web-4.2.4.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/Develop/package/jar/mybatis-generator-core-1.4.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

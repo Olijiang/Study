@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "Python"
+		},
+		{
+			"path": "Java"
+		},
+		{
+			"path": "HTML"
 		}
 	],
 	"settings": {

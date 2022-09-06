@@ -1,0 +1,8 @@
+package com.snion.test;
+
+public class Snippet {
+	public static void main(String[] args) {
+		getUser
+	}
+}
+

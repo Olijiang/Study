@@ -1,0 +1,12 @@
+package com.snion.entity;
+
+import java.util.Date;
+
+public class Item {
+	private Integer id;
+	private String name;
+	private String detail;
+	private Date creattime;
+	private String name;
+	
+}

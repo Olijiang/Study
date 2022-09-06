@@ -1,0 +1,16 @@
+package com.snion.entity;
+
+import java.util.List;
+import java.util.Set;
+
+public class DemoClass2 {
+	
+	private String class_name;
+	private Set<String> stu_member;
+	
+	
+	
+	
+
+
+}

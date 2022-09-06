@@ -1,0 +1,16 @@
+package com.snion.jdbc;
+
+public class JdbcTest {
+	//1. 加载驱动
+	//2. 创建连接
+	//3. 设置SQL语句
+	//4. 创建一个Statement对象
+	//5. 设置参数
+	//6. 执行查询，得到一个ResultSet对象
+	//7. 遍历结果集，输出结果
+	//8. 释放资源
+	public static void main(String[] args) {
+		
+	}
+	
+}

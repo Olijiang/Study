@@ -1,0 +1,27 @@
+package com.snion.test;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.snion.entity.Student;
+
+import om.snion.mapper.StudentMapper;
+
+public class StudentDemo {
+	
+	private ApplicationContext applicationContext;
+	
+	@Before
+	public void init() {
+		applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+	}
+	
+	@Test
+	public void testGetUserById() {
+		StudentMapper mapper = applicationContext.getBean(StudentMapper.class);
+		Student student = mapper.getStudentById(1001)
+		System.out.println(user);
+	}
+}

@@ -1,0 +1,10 @@
+package mapper;
+
+import java.util.List;
+
+import com.snion.entiey.MyClass;
+
+
+public interface MyClassMapper {
+	public List<MyClass> getMyClass();
+}

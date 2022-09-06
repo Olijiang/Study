@@ -1,0 +1,11 @@
+package com.snion.entity;
+
+public class Item {
+	private Integer ;
+	private String name;
+	private String detail;
+	private String name;
+	private String name;
+	private String name;
+	
+}

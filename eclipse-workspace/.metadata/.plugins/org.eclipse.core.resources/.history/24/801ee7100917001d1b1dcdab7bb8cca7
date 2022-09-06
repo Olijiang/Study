@@ -1,0 +1,163 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Student Manager System Login</title>
+	
+	<style>
+		body{			
+			width: 99%;
+			height: 99%;
+		}
+		.box{
+			margin: auto;
+			margin-top: 10%;
+			width: 350px;
+			height: 300px;
+		}
+
+		h1{
+			font-size: 60px;
+			color: aquamarine;
+			margin-left: 50px;
+		}
+		.iput{
+			height: 40px;
+			width: 230px;
+			margin: 10px;
+			border-radius: 5px;
+			border: solid 1px aquamarine;
+			font-size: 20px;
+			padding-left: 8px;
+		}
+		input::placeholder{
+			color: pink;
+			font-size: 15px;
+		}
+		.iput:focus{
+			border-style:solid;
+			border-color: #03a9f4;
+			box-shadow: 0 0 10px #03a9f4;
+			outline-color: transparent;
+		}
+		.but:active{
+			transform: translateY(2px);
+		}
+		.but:focus{
+			box-shadow: 0 0 10px #03a9f4;
+			outline-color: transparent;
+		}
+
+		.but{
+			background-color: aquamarine;
+			height: 40px;
+			width: 100px;
+			margin: 10px;
+			border-radius: 10px;
+			border: transparent;
+			font-size: 25px;
+			margin-left: 90px;
+		}
+		.tink{
+			float:left;
+			background-color: #03a9f4;
+			width: 350px;
+			height: 300px;
+		}
+		.tips{
+			margin-left: 12px;
+			position: relative;
+			font-size: 10px;
+			color: red;
+			word-break:keep-all;      /* 不换行 */
+            white-space:nowrap;       /* 不换行 */
+		}
+		a{
+			font-size: 15px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box">
+		<div class="title">
+			<h1>Login</h1>
+		
+			<form id="myform"  method="post" >
+
+				<input class="iput" type="text" name="id" placeholder="ID / Eamil / Phone" autocomplete="off"><br>
+				<span id="tip1"></span> <br>
+
+				<input class="iput" type="password" name="pwd" placeholder="PASSWORD"><a href="http://localhost:8080/SSM/jsp/reset.jsp">忘记密码</a> <br>
+				<span id="tip2"></span> <br>
+				
+				<input  class="but" type="button" id="login" value="Sign In" onclick="return check()">
+				
+			</form>
+		</div>
+	</div>
+	
+	
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
+	
+	<script type="text/javascript" >
+		window.history.replaceState(null, null, window.location.href);
+		
+		function check(){
+			let passwordRegExp=/[a-zA-Z0-9_]{4,18}/
+			let id = document.getElementsByName('id')[0]
+			let pwd = document.getElementsByName('pwd')[0]
+			let tips = document.getElementsByClassName("tips")[0]
+			if(id.value=="" || null){ 
+				tips.innerHTML = "请输入账号" 
+				return false
+			}else if(pwd.value=="" || null){
+				tips.innerHTML = "请输入密码 " 
+				return false
+			}
+
+
+			if(!passwordRegExp.test(id.value)){ 
+				tips.innerHTML = "请输入正确的账号" 
+				return false
+			}else if(!passwordRegExp.test(pwd.value)){
+				tips.innerHTML = "账号或密码错误" 
+				pwd.value=""
+				return false
+			}
+			
+			tips.innerHTML = "" 
+			login()
+		}
+	
+	function login() {
+		$.ajax({
+            type: "POST",   //提交的方法
+            url:"http://localhost:8080/SSM/login", //提交的地址  
+            data:$('#myform').serialize(),// 序列化表单值  
+            async: false, 	//同步 
+            error: function(request) {  //失败的话
+                 alert("服务器链接中断");  
+            },  
+            success: function(data) {  //成功
+            	if(data=="F"){
+            		let tips = document.getElementsByClassName("tips")[0]
+            		tips.innerHTML = "账号或密码错误"
+            		document.getElementsByName('pwd')[0].value=""
+            	}
+            	else{
+            		let tips = document.getElementsByClassName("tips")[0]
+            		tips.innerHTML = ""
+            		window.location.href = data;
+            	}
+            }
+		}); 
+    };
+	    
+	</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+<classpath>
+  <container id="Hibernate!org.eclipse.jst.j2ee.internal.web.container">
+    <entry id="C:/Users/LiuLei/eclipse-workspace/Hibernate/WebContent/WEB-INF/lib/hibernate-core-5.4.2.Final.jar">
+      <source-attachment-path>/Hibernate/WebContent/WEB-INF/lib/hibernate-core-5.4.2.Final.jar</source-attachment-path>
+    </entry>
+  </container>
+</classpath>

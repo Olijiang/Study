@@ -1,0 +1,5 @@
+package com.snion.entity;
+
+public class User {
+
+}

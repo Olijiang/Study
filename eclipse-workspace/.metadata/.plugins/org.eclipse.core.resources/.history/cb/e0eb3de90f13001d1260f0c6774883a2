@@ -1,0 +1,33 @@
+package com.snion.util;
+
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.lang.Nullable;
+
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+————————————————
+版权声明：本文为CSDN博主「一介百姓」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/u012475786/article/details/89501318
+
+public class DefineCharSet implements BeanPostProcessor {
+
+	@Override
+	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+
+	@Override
+	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+        if(bean instanceof StringHttpMessageConverter){
+            MediaType mediaType = new MediaType("text", "html", Charset.forNa me("UTF-8"));
+            List<MediaType> types = new ArrayList<MediaType>();
+            types.add(mediaType);
+            ((StringHttpMessageConverter) bean).setSupportedMediaTypes(types);
+        }
+        return bean;
+    }
+}

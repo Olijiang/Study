@@ -1,0 +1,35 @@
+.规划包：
+	servlet:	--控制层  负责请求接受与相应
+	service:	--业务层  处理所有业务逻辑
+	dao:		--持久层  负责数据库交互
+	filters:	--过滤器
+	listeners:	--监听器
+	utils:		--工具类  简化开发
+
+
+数据库：
+	school 数据库
+	
+	classes表：
+		class int;
+		grade int;
+		population int;
+		
+	students表:
+		sid int;
+		name string;
+		birth data;
+		age int;
+		english int;
+		math int;
+		chinese int;
+		class int;
+		grade int;
+
+ 		
+		
+		
+	
+	
+	
+	

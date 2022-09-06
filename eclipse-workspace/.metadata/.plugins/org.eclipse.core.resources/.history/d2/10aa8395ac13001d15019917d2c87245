@@ -1,0 +1,11 @@
+package com.snion.entity;
+
+public interface StudentMapper {
+	
+	public Student getStudentById(int id);
+	
+	public Student getStudentByName(String name);
+	
+	public List<Student> getStudents(int id);
+
+}

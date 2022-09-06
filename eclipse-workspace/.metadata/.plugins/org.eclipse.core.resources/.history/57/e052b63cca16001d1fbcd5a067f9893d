@@ -1,0 +1,12 @@
+package com.snion.mapper;
+
+import java.util.List;
+
+import com.snion.entity.User;
+
+public class UserMapper {
+
+	public User loginById(int id);
+	
+	
+}

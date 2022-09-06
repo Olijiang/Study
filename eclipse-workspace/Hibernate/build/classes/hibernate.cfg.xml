@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+	
+<hibernate-configuration>
+	<session-factory>
+		<!-- 下面是三个必须要有的配置 -->
+		<!-- 配置连接MySQL数据库的基本参数 -->
+		<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql:///school ?serverTimezone=UTC</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">666666</property>
+		
+		<!-- 配置Hibernate的方言 -->
+		<!-- MySQL版本5.0之前：MySQLDialect -->
+		<!-- MySQL版本5.0之后：MySQL5Dialect -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+		<!-- 事务的默认配置， 不自动提交 -->
+		<property name="hibernate.connection.autocommit">false</property>
+		<!-- 下面两个是可选的配置哟！ -->
+		<!-- 打印sql语句 -->
+		<property name="hibernate.show_sql">true</property>
+		<!-- 格式化sql语句 -->
+		<property name="hibernate.format_sql">true</property>
+		<!-- 自动创建表 -->
+		<!-- none：不使用Hibernate帮我们自动建表 -->
+		<!-- create:每次都会创建一个新的表，但不删除 -->
+		<!-- create-drop：如果数据库中已经有表，则删除原有表，再新建一个新表，然后执行操作，执行操作完毕之后再删除这个表 -->
+		<!-- update：如果数据库中有表，则不创建，使用原有表；如果没有表则创建新表，并且如果映射不匹配，会自动更新表结构 -->
+		<!-- validate：如果没有表，不会创建表，只会使用数据库中原有的表 --> 
+		<property name="hibernate.hbm2ddl.auto">validate</property>
+		
+		
+		<!-- 告诉Hibernate的核心配置文件加载哪个映射文件 -->
+		<mapping resource="com/snion/entity/Student.hbm.xml"/>
+		<mapping resource="com/snion/entity/Teacher.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>

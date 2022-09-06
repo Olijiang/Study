@@ -1,0 +1,33 @@
+package om.snion.test;
+
+import org.junit.Test;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.snion.entity.DemoClass;
+import com.snion.entity.Student;
+import com.snion.entity.User;
+
+public class UserTest {
+	@Test
+	public void demo1() {
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+		DemoClass _class = (DemoClass) applicationContext.getBean("_class");
+		System.out.println(sClass);
+		
+		applicationContext.close();
+	}
+	
+	
+	//@Test
+	public void demo2() {
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+		User user = (User) applicationContext.getBean("User");
+		System.out.println(user);
+		Student stu = (Student) applicationContext.getBean("Stu");
+		System.out.println(stu);
+		applicationContext.close();
+		//((ConfigurableApplicationContext) applicationContext).close();
+		
+		
+	}
+}

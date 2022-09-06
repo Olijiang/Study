@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+body {
+    /* color:; */
+
+ 	background: url(https://images.cnblogs.com/cnblogs_com/blogs/666444/galleries/2082171/o_211220101338_QQ%E5%9B%BE%E7%89%8720200423080426.jpg) fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+table{
+ 	border:solid;
+ 	border-collapse: collapse; /* 合并内外边框 */
+    margin: 10px auto;
+}
+
+
+td {
+	height: 25px;
+	line-height: 25px;
+	text-align: center;
+	border-bottom: 1px solid #ccc;
+	padding: 5px 20px;
+}
+
+.classinfo td{
+    background-color:aqua;
+}
+.tablehead td{
+    background-color: aquamarine;
+}
+
+
+.Result{
+    position: absolute;
+    margin-top: 5px;
+    min-width: 800px;
+    width: 70%;
+    left: 15%;
+    margin: auto;
+}
+
+h1{
+	text-align: center;
+	color:blue;
+    font-size: 20px;
+}

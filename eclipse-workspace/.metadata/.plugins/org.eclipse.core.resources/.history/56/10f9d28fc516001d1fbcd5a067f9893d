@@ -1,0 +1,19 @@
+	
+表结构设计
+
+	students{
+		id int not null 
+		name varchar
+		sex varchar
+		age int
+		tch_id int
+	}
+		
+	
+	teachers
+	
+	
+	users{
+	
+	
+	}

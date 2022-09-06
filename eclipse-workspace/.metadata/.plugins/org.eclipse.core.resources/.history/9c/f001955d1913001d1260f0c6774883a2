@@ -1,0 +1,5 @@
+package com.snion.jdbc;
+
+public class JdbcTest {
+
+}

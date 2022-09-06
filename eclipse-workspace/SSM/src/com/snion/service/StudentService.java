@@ -1,0 +1,23 @@
+package com.snion.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.snion.entity.Student;
+import com.snion.mapper.StudentMapper;
+
+//service层是用来调用mapper的，mapper是用来操作数据库的，所以在service层中，
+//我们首先要获取mapper接口的代理对象，只不过在这里我们是通过Spring注入进来的，
+//然后通过这个代理对象去操作数据库。
+
+@Service
+public class StudentService {
+	
+	@Autowired
+	private StudentMapper mapper;
+	
+	
+	public Student getStudentById(int id){
+		return mapper.getStudentById(id);
+	}
+}

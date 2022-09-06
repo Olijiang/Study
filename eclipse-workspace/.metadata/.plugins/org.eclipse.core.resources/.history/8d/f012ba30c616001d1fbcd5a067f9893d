@@ -1,0 +1,28 @@
+	
+表结构设计
+
+	students:存储学生信息
+	students{
+		id int not null 
+		name varchar
+		sex varchar
+		age int
+		tch_id int
+	}
+		
+	teachers:存储教师信息
+	teachers{
+		id int 
+		name varchar
+	
+	}
+	
+	
+	users：存放登录信息
+	users{
+		id int 
+		u_id int //用户id
+		identity_type	//登录类型
+		credential 
+	
+	}

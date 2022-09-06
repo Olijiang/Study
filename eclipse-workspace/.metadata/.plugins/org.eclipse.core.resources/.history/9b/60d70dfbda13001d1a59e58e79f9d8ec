@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Mapper代理形式dao的配置 -->
+<!-- 动态代理配置的第一种方式 -->
+<bean id="baseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" abstract="true" lazy-init="true">
+	<!-- 由于MapperFactoryBean这个类继承自SqlSessionDaoSupport类，所以要注入sqlSessionFactory这个属性 -->
+	<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+</bean>
+<!-- 设置代理的Mapper接口，即为哪一个接口创建代理对象 -->
+<bean parent="baseMapper">
+	<property name="mapperInterface" value="com.meimeixia.mybatis.mapper.UserMapper" />
+</bean>

@@ -1,0 +1,7 @@
+package com.snion.entity;
+
+public interface MyClassMapper {
+	public void get() {
+		
+	}
+}

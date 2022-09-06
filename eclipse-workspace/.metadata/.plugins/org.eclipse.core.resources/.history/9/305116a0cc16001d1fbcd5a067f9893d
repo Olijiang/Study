@@ -1,0 +1,46 @@
+package com.snion.util;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+/**
+ * SqlSessionFactory工具类
+ * @author liayun
+ *
+ */
+public class SqlSessionFactoryUtils {
+	
+	private static SqlSessionFactory sqlSessionFactory;
+	
+	static {
+		try {
+			//创建SqlSessionFactoryBuilder对象
+			SqlSessionFactoryBuilder ssfb = new SqlSessionFactoryBuilder();
+			//创建核心配置文件的输入流
+			InputStream inputStream = Resources.getResourceAsStream("SqlMapConfig.xml");
+			//通过核心配置文件的输入流创建SqlSessionFactory对象
+			sqlSessionFactory = ssfb.build(inputStream);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+	/**
+	 * 获取SqlSession对象
+	 * @return
+	 */
+	public static SqlSession getSqlSession() {
+		return sqlSessionFactory.openSession();
+	}
+	public static SqlSessionFactory getSqlSessionFactory() {
+		return sqlSessionFactory;
+	}
+	
+}

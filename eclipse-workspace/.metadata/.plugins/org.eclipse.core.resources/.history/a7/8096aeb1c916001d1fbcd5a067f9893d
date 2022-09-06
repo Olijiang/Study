@@ -1,0 +1,15 @@
+package com.snion.entity;
+
+public class User {
+	
+	private 
+	
+	
+	id int 
+	u_id int //用户id
+	identity_type enum	//登录类型 ipone， userid， username， email
+	identity varchar	//对应唯一识别码
+	credential varchar	//密码
+	status_code enum	//登录身份  0管理员  1教师  2学生  3访客 
+
+}

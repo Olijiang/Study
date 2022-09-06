@@ -1,0 +1,13 @@
+package com.snion.entity;
+
+public class User {
+	
+	private int id;
+	private int u_id;
+	private String identity_type;
+	private String identity;
+	private String credential;
+	private int status_code;
+
+
+}

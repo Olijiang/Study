@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
+
+   <!-- 加载配置文件 -->
+   <!-- <context:property-placeholder location="classpath:jdbc.properties" /> -->
+
+	<!-- 数据库连接池 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql:///school ?serverTimezone=UTC" />
+		<property name="username" value="root" />
+		<property name="password" value="666666" />
+		<!-- 连接池的最大数据库连接数 -->
+		<property name="maxActive" value="10" />
+		<!-- 最大空闲数（没有人用的时候，保证有5个连接以供别人使用） -->
+		<property name="maxIdle" value="5" />
+	</bean>
+	
+	<!-- 配置SqlSessionFactoryBean -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 配置数据库连接池 -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- configLocation属性是加载Mybatis框架的核心配置文件的。该核心配置文件里面的别名可以通过这里来配置。 -->
+		<property name="configLocation" value="classpath:SqlMapConfig.xml"></property>
+		<!-- 配置别名包扫描 -->
+		<property name="typeAliasesPackage" value="com.meimeixia.mybatis.pojo"></property>
+	</bean>
+	
+	<!-- Mapper代理形式dao的配置 -->
+	<!--  动态代理配置的第一种方式
+	<bean id="baseMapper" class="org.mybatis.spring.mapper.MapperFactoryBean" abstract="true" lazy-init="true">
+		由于MapperFactoryBean这个类继承自SqlSessionDaoSupport类，所以要注入sqlSessionFactory这个属性
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	设置代理的Mapper接口，即为哪一个接口创建代理对象
+	<bean parent="baseMapper">
+		<property name="mapperInterface" value="com.meimeixia.mybatis.mapper.UserMapper" />
+	</bean> 
+	-->
+	<!-- 动态代理配置的第二种方式：配置包扫描器（推荐使用这种开发方式） -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- basePackage属性配置要扫描的包，多个包之间可用","进行分隔 -->
+		<property name="basePackage" value="com.meimeixia.mybatis.mapper" />
+	</bean>
+
+</beans>
+
+

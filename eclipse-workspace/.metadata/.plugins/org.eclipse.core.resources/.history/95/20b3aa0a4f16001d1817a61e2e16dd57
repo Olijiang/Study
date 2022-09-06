@@ -1,0 +1,44 @@
+package com.snion.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.snion.entity.Student;
+import com.snion.service.StudentService;
+
+@Controller
+public class StudentController {
+
+	@Autowired
+	private StudentService stuService;
+
+	//DefaultAnnotationHandlerMapping这个处理器映射器就是专门用于绑定咱们的url请求，该url请求到底由哪个控制器来处理？
+	@RequestMapping(value = "/getstudent", method = RequestMethod.POST) //该注解用于绑定用户的请求地址，例如getstudent.action
+	@ResponseBody
+	public ModelAndView getStudent(Integer id ) {
+		System.out.println("id:" + id);
+		ModelAndView mav = new ModelAndView();
+		Student student = stuService.getStudentById(id);
+		mav.addObject("student", student);
+//		mav.setViewName("/WEB-INF/jsp/itemList.jsp");
+		mav.setViewName("stuquery");
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST) //该注解用于绑定用户的请求地址，例如getstudent.action
+	@ResponseBody
+	public ModelAndView login(String id, String pwd) {
+		System.out.println("id:" + id + "pwd:" + id);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("student", student);
+		return mv;
+
+	}
+	
+	
+}

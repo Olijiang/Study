@@ -1,0 +1,221 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+
+    <style>
+		body{			
+			width: 99%;
+			height: 99%;
+		}
+		.box{
+			margin: auto;
+			margin-top: 50px;
+			width: 350px;
+			height: 300px;
+		}
+		.iput{
+			height: 40px;
+			width: 230px;
+			margin: 10px;
+			border-radius: 5px;
+			border: solid 1px aquamarine;
+			font-size: 20px;
+			padding-left: 8px;
+		}
+		input::placeholder{
+			color: pink;
+			font-size: 15px;
+		}
+		.iput:focus{
+			border-style:solid;
+			border-color: #03a9f4;
+			box-shadow: 0 0 10px #03a9f4;
+			outline-color: transparent;
+		}
+		.but:active{
+			transform: translateY(2px);
+		}
+		.but:focus{
+			box-shadow: 0 0 10px #03a9f4;
+			outline-color: transparent;
+		}
+
+		.but{
+			background-color: aquamarine;
+			height: 40px;
+			width: 100px;
+			margin: 10px;
+			border-radius: 10px;
+			border: transparent;
+			font-size: 25px;
+			margin-left: 80px;
+		}
+        #cbut{
+            height: 30px;
+            border-radius: 10px;
+            background-color: aquamarine;
+			border-radius: 10px;
+			border: transparent;
+			font-size: 12px;
+        }
+        #cbut:active{
+			transform: translateY(2px);
+		}
+        #cbut:focus{
+			box-shadow: 0 0 10px #03a9f4;
+			outline-color: transparent;
+		}
+		.tink{
+			float:left;
+			background-color: #03a9f4;
+			width: 350px;
+			height: 300px;
+		}
+		.tips{
+			margin: 12px;
+			position: relative;
+			font-size: 10px;
+			color: red;
+			word-break:keep-all;      /* 不换行 */
+            white-space:nowrap;       /* 不换行 */
+		}
+        .title{
+            margin: auto;
+            margin-top: 10%;
+        }
+
+        h1{
+			font-size: 50px;
+			color: aquamarine;
+            text-align: center;
+		}
+		a{
+            word-break:keep-all;      /* 不换行 */
+            white-space:nowrap;       /* 不换行 */
+            padding: 2px;
+			font-size: 12px;
+		}
+	</style>
+</head>
+
+<body>
+    <div class="title">
+        <h1>Reset Password</h1>
+    </div>
+	<div class="box">
+        <form id="myform" action="" method="post" >
+
+            <input class="iput" type="text" id="id" name="id" placeholder="ID" autocomplete="off"><br>
+
+            <input class="iput" type="text" id="ep" name="ep" placeholder="Email / Phone" autocomplete="off"><br>
+            <span id="EPtip" class="tips"></span> <br>
+
+
+            <input  class="but" type="button" value="OK" onclick="return next()">
+            
+        </form>
+	</div>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"> </script>
+	
+	<script type="text/javascript" >
+		window.history.replaceState(null, null, window.location.href);
+		var mcode=""
+
+		function check(){
+			let idRegExp=/[a-zA-Z0-9_]{4,18}/
+            let epRegExp=/^1\d{10}|[a-zA-Z0-9_]{4,16}@.{2,5}(.com)$/
+			let id = document.getElementById("id")
+			let ep = document.getElementById("ep")
+			let IDtip = document.getElementById("IDtip")
+            let EPtip = document.getElementById("EPtip")
+            IDtip.innerHTML = "" 
+            EPtip.innerHTML = "" 
+            Codetip.innerHTML = "" 
+
+			if(id.value==""){ 
+				IDtip.innerHTML = "请输入账号" 
+				return false
+			}else if(!idRegExp.test(id.value)){ 
+				IDtip.innerHTML = "请输入正确的账号" 
+				return false
+			}
+            
+            if(ep.value==""){
+				EPtip.innerHTML = "请输入邮箱或手机号 " 
+				return false
+			}else if(!epRegExp.test(ep.value)){
+				EPtip.innerHTML = "请输入正确的邮箱或手机号" 
+				return false
+			}
+            return true
+        }
+
+        function getcode(){
+            if (!check()){
+                return false
+            }
+            $.ajax({
+                type: "POST",   //提交的方法
+                url:"http://localhost:8080/SSM/getcode", //提交的地址  
+                data:$('#myform').serialize(),// 序列化表单值  
+                async: false, 	//同步 
+                error: function(request) {  //失败的话
+                    alert("服务器链接中断");  
+                },  
+                success: function(data) {  //成功
+                    console.log(data)
+                }
+            });
+            
+        }
+
+
+        function next(){
+            if (!check()){
+                return false
+            }
+            let code = document.getElementById("code")
+            let Codetip = document.getElementById("Codetip")
+            if(code.value==""){
+				Codetip.innerHTML = "请输入验证码 " 
+				return false
+			}else if(code.value.length!=4){
+				Code.innerHTML = "验证码错误" 
+				return false
+			}
+			IDtip.innerHTML = "" 
+            EPtip.innerHTML = "" 
+            Codetip.innerHTML = "" 
+
+            $.ajax({
+                type: "POST",   //提交的方法
+                url:"http://localhost:8080/SSM/resetpwd", //提交的地址  
+                data:$('#myform').serialize(),// 序列化表单值  
+                async: false, 	//同步 
+                error: function(request) {  //失败的话
+                    alert("服务器链接中断");  
+                },  
+                success: function(data) {  //成功
+                    if(data=="F"){
+                        Codetip.innerHTML = "验证错误"
+                    }
+                    else{
+                        Codetip.innerHTML = ""
+                        window.location.href = data;
+                    }
+                }
+            });
+        }
+
+	    
+	</script>
+
+</body>
+</html>

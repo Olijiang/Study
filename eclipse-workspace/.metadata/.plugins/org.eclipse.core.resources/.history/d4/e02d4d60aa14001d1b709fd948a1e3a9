@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.snion.entity.MyClassMapper">
+
+		<select id="getMyClass" resultType="com.snion.entity.MyClass" resultMap="class_map">
+			select 
+				s.id, s.name, s.sex, s.age, t.id as tch_id, t.name as tch_name
+			from students s left join teachers t on s.tch_id=t.id
+		</select>
+		
+		<!-- 定义resultMap -->
+		<resultMap type="com.snion.entity.MyClass" id="class_map">
+			<id property="tch_id" column="tch_id" />
+			<result property="tch_name" column="tch_name" />
+
+			<!-- 
+				<collection>用于配置一对多关联关系 
+					property：对象中的集合
+					ofType：集合元素的类型
+			-->
+			<collection property="classmate" ofType="com.snion.entity.Student">
+				<!-- 用于映射主键 -->
+				<id property="id" column="id" />
+				<result property="name" column="name" />
+				<result property="sex" column="sex" />
+				<result property="age" column="age" />
+				<result property="tch_id" column="tch_id" />
+			</collection>
+		</resultMap>
+	</mapper>

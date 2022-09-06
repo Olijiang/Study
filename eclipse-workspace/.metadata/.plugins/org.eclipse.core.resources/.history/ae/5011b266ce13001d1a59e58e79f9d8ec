@@ -1,0 +1,10 @@
+package com.snion.entity;
+
+import java.util.List;
+
+public class MyClass {
+	private Integer tch_id;
+	private String tch_name;
+	private List<Student> classmate;
+
+}

@@ -1,0 +1,8 @@
+package com.snion.controller;
+
+
+
+@Controller
+public class Controller {
+
+}

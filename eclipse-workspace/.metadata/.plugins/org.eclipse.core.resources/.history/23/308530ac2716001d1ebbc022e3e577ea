@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div>
+		<div>
+			<h1>Login</h1>
+		</div>
+		<div>
+			<form action="">
+				<input name="id" type="text"><tr/>
+				<input name="id" type="text"><tr></tr>
+				<input type="submit" value="Login"><tr></tr>
+			</form>
+		</div>
+
+	</div>
+</body>
+</html>

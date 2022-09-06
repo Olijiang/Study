@@ -8,3 +8,10 @@
 	git remote add <name> origin <xxx.git>
  删除远程源
 	git remote rm <name>
+
+Pathspec 'C/BookPractice' is in submodule 'C'
+	先删除在添加
+	git rm -rf --cached 目录
+	git add 目录
+	git commit -m "注释信息"
+	git push

@@ -1,0 +1,11 @@
+package com.snion.entity;
+
+import java.util.Map;
+import java.util.Set;
+
+public class DemoClass3 {
+	private String class_name;
+	private Map<Integer, String> stu_member;
+	
+	
+}

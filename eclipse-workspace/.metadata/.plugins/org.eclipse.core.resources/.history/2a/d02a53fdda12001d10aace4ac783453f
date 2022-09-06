@@ -1,0 +1,17 @@
+package om.snion.test;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.snion.entity.DemoClass2;
+
+//×¢½â²âÊÔ
+public class Userdemo2 {
+
+	public void demo1() {
+		ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+		DemoClass2 class2 = (DemoClass2) applicationContext.getBean("class2");
+		System.out.println(class2);
+		
+		applicationContext.close();
+	}
+}

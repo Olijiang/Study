@@ -1,0 +1,12 @@
+package com.snion.mapper;
+
+import com.snion.entity.User;
+
+public interface UserMapper {
+
+	public User getUser(String identifier);
+	
+	public int update(@Param("u_id") int u_id, String credential);
+	List<Role> getRolesByParam(@Param("key_id") int id, @Param("key_name") String name);
+
+}

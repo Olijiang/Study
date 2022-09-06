@@ -1,714 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f43c0d68-89a2-4917-8592-c68d2860cbd2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java02/src/Re.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java02/src/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java02/src/StudentTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java02/src/TestCollection.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java02/src/testCalender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Java02/src/testData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mooc/code/src/week_2/isRunYear.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mooc/code/src/week_2/ispPalindromeNumber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Python/MachineLearn/AI/.idea/AI.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Python/MachineLearn/AI/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Python/MachineLearn/AI/model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Python/MachineLearn/AI/p1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Python/MachineLearn/AI/test.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Python/MachineLearn/AI/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../C" beforeDir="false" afterPath="$PROJECT_DIR$/../C" afterDir="false" />
+    <list default="true" id="397cdc00-1fb7-4f20-8be0-ba5fedb24d6a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Java.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java02/src/Reflact/BeanToBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java02/src/Reflact/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java02/src/Reflact/Teacher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java02/src/threadDemo/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java02/src/threadDemo/AccountTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java02/src/threadDemo/RunnableDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java02/src/threadDemo/TestExecutors.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java02/src/threadDemo/TestThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java02/src/threadDemo/ThreadDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Java02/src/threadDemo/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/web.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Java02/Java02.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Java02/Java02.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mooc/mooc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/mooc/mooc.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mooc/week_1/src/CalNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/mooc/code/src/week_1/CalNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mooc/week_1/src/HelloWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/mooc/code/src/week_1/HelloWorld.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mooc/week_1/src/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/mooc/code/src/week_1/Solution.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mooc/week_1/src/Sum.java" beforeDir="false" afterPath="$PROJECT_DIR$/mooc/code/src/week_1/Sum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mooc/week_1/src/ToUpCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/mooc/code/src/week_1/ToUpCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mooc/week_1/week_1.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/ImgDeal.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/../Python/MachineLearn/ImgDeal.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/107_FR08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/120_082T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/124_J8PB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/151_PL08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/15_NJVH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/198_VL4H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/218_0LJ2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/259_8RF0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/340_80N4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/358_82RL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/366_RZZH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/373_6X06.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/383_806T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/406_NJL0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/413_HN82.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/447_84Z0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/464_ZVHT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/473_R48H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/482_8P00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/502_2NNZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/503_6B8X.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/510_ZH0H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/516_TL06.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/518_44Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/535_8406.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/544_T4J2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/558_84DH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/589_N6DL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/597_04N4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/613_M6DL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/632_D4JZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/655_X8NX.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/test/98_D068.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/100_X4TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/101_6XT2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/102_FX8T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/103_VX26.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/104_D4JZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/105_X4TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/106_6XT2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/108_PFT8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/109_T8FW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/10_468P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/110_D068.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/111_H46J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/112_8X22.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/113_8N22.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/114_40TR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/115_64T6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/116_200N.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/117_V462.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/118_484D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/119_VL4H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/11_EF88.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/121_6B8X.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/122_NT2r.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/123_4Z42.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/125_L2Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/126_0H60.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/127_X4TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/128_4486.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/129_XVZ4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/12_4B60.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/130_0624.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/131_2N4V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/132_NVBF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/133_P6Zb.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/134_6N08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/135_VL4H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/136_N2J2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/137_X4TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/138_6N08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/139_VDNL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/13_N2J2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/140_88Z4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/141_26T6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/142_R2RD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/143_484D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/144_J4H4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/145_P26F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/146_2LH0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/147_N66T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/148_PL08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/149_ZN64.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/14_2FV0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/150_468P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/152_0N40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/153_8X22.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/154_88Z4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/155_JD6L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/156_0PTV.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/157_6824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/158_R2RD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/159_0FZN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/160_88Z4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/161_L2Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/162_0624.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/163_2D0N.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/164_4Z42.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/165_P2F2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/166_TBBF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/167_88Z4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/168_FDD4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/169_XHFB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/16_04VT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/170_080Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/171_T8FW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/172_4Z42.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/173_Z6TB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/174_082T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/175_JD6L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/176_H22X.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/177_L2Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/178_4L24.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/179_4B60.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/17_X8NX.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/180_282P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/181_R2RD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/182_P2F2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/183_X808.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/184_P2F2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/185_P6ZJ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/186_L2Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/187_X808.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/188_4Z42.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/189_JP48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/18_LJLR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/190_BB6J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/191_BB6J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/192_FX8T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/193_6B8X.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/194_T8FW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/195_6Z8H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/196_88Z4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/197_R2RD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/199_282P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/19_N2dH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/1_6824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/200_88Z4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/201_BB6J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/202_0N40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/203_80ZT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/204_R2RD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/205_6TFZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/206_0FZM.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/207_282P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/208_484D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/209_88Z4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/20_RV0V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/210_88Z4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/211_XR46.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/212_J8PB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/213_88Z4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/214_Z8XV.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/215_6N08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/216_88Z4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/217_082T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/219_88Z4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/21_2248.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/220_8RF0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/221_0N40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/222_RT6N.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/223_ZX0V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/224_BB6J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/225_282P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/226_Z8XV.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/227_LDFZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/228_X808.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/229_J6RB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/22_NJVH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/230_X808.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/231_082T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/232_JP48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/233_0N40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/234_282P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/235_JD6L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/236_282P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/237_8RF0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/238_282P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/239_6824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/23_4860.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/240_484D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/241_4Z42.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/242_F4XF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/243_Z8XV.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/244_6N08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/245_8RF0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/246_221B.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/247_0N40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/248_0VFF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/249_20T8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/24_RV2R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/250_Z8XV.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/251_080Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/252_8RF0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/253_204J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/254_LDFZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/255_040J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/256_0N40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/257_6XT2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/258_080Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/25_D068.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/260_8RF0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/261_B62F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/262_6824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/263_R48H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/264_0VFF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/265_46N8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/266_0N40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/267_PH66.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/268_2N4V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/269_0BZ2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/26_2FV0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/270_8RF0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/271_8P00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/272_26T6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/273_8ZZ6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/274_080Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/275_2N4V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/276_RT8P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/277_040R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/278_080Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/279_680R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/27_DX8D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/280_8DBP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/281_N24H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/282_PL08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/283_6XT2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/284_NT2T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/285_6824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/286_X4TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/287_T46J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/288_B4X0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/289_H2P2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/28_04VT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/290_6XT2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/291_J6JZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/292_FDD4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/293_RB04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/294_L24F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/295_6086.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/296_PFT8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/297_028R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/298_080Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/299_624Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/29_PTN4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/2_L2Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/300_L8NR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/301_0H60.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/302_8V64.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/303_P4B2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/304_6824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/305_FR08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/306_4B2F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/307_JPXP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/308_DN44.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/309_D2HV.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/30_DX8D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/310_66VT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/311_BF66.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/312_2NNZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/313_VL4H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/314_JLPL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/315_6846.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/316_082T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/317_8P00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/318_LP2Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/319_L884.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/31_L48X.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/320_2468.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/321_4TPP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/322_6B8V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/323_V8PL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/324_L8F6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/325_266F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/326_DL88.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/327_D04R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/328_04F6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/329_ZN64.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/32_2FV0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/330_080Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/331_8008.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/332_040R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/333_N24H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/334_64T6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/335_624Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/336_P20F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/337_PL08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/338_86P6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/339_26V6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/33_PTN4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/341_NPX6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/342_40BT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/343_24F6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/344_0842.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/345_8LR6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/346_68D4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/347_6N86.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/348_6PNH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/349_080Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/34_4B60.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/350_LR4B.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/351_8P00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/352_2680.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/353_BR24.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/354_468P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/355_B288.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/356_DZ6V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/357_4Z42.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/359_ZJ6H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/35_F4B0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/360_0PT8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/361_464V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/362_082T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/363_RJN4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/364_D4JZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/365_XBV0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/367_4Z42.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/368_624Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/369_ZBL6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/36_PTN4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/370_R848.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/371_6R40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/372_0N40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/374_8P00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/375_6R40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/376_86PH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/377_PVBR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/378_J2F0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/379_4TPP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/37_2FV0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/380_T4JN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/381_B026.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/382_02DF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/384_B682.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/385_6H40.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/386_F4P4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/387_D0T0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/388_080Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/389_PFT8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/38_XZ02.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/390_J8PB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/391_4LP4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/392_DP2N.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/393_2P66.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/394_B62F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/395_BJ20.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/396_8P00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/397_JL68.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/398_80V8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/399_4NB6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/39_2FV0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/3_X8NX.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/400_2N4P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/401_D4JZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/402_484D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/403_XFZ2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/404_6V04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/405_P2F2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/407_0664.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/408_HD88.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/409_4Z42.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/40_6824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/410_0LZV.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/411_TF2B.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/412_e682.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/414_2RFL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/415_080Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/416_86T8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/417_44Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/418_44Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/419_44JL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/41_46LL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/420_0RPB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/421_XHFB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/422_6TF2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/423_T8FN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/424_FD8L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/425_L68L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/426_8P00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/427_28P4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/428_B008.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/429_L8F6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/42_4860.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/430_8P00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/431_J0L4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/432_080Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/433_66P0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/434_484D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/435_FD8L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/436_2NNZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/437_6B8X.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/438_862F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/439_F4B0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/43_642F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/440_248Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/441_8N22.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/442_8P00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/443_T46J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/444_44Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/445_VVJe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/446_P20F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/448_FD8L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/449_TL06.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/44_6824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/450_44Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/451_44Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/452_2LH0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/453_V2Z4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/454_FD8L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/455_8P00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/456_JD6L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/457_4LP4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/458_LJLR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/459_6824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/45_NT48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/460_8DBP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/461_F4B0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/462_4LP4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/463_T46J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/465_04D6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/466_8406.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/467_T4L2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/468_VVJD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/469_2P2X.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/46_VX26.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/470_44Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/471_F4B0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/472_NT48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/474_D40B.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/475_D068.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/476_04D6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/477_8406.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/478_6TF2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/479_4LP4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/47_4860.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/480_8BPV.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/481_82V6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/483_44Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/484_B008.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/485_6TF2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/486_H222.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/487_FD8L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/488_HT86.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/489_0DL4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/48_642F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/490_680R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/491_8P00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/492_0H60.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/493_8P00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/494_080Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/495_R4H2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/496_4480.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/497_66P0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/498_2FBV.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/499_FD8L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/49_6824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/4_FLF0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/500_28P4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/501_642F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/504_F4B0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/505_44Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/506_80JZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/507_44Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/508_L2Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/509_44Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/50_H46J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/511_44Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/512_HD88.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/513_T006.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/514_D6J2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/515_FD8L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/517_X448.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/519_B8JR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/51_4B60.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/520_0PTV.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/521_44Z8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/522_4RP0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/523_28P4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/524_FD8L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/525_LJLR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/526_VJ04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/527_6824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/528_8DBP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/529_P26F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/52_XVZ4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/530_ZVHT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/531_04D6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/532_642F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/533_66BP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/534_6HLH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/536_6824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/537_T4J2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/538_04D6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/539_D4JZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/53_H46J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/540_R2RD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/541_T4J2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/542_46LL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/543_8406.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/545_4LP4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/546_ZX0V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/547_NT48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/548_R60V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/549_48BL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/54_N2J2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/550_J4H4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/551_P20F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/552_2NNZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/553_46MN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/554_466F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/555_84DH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/556_VVJe.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/557_FR08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/559_8F00.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/55_DX8D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/560_4HZ6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/561_LJLR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/562_NT48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/563_VJD4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/564_0TJ6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/565_40F4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/566_6B8X.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/567_8040.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/568_4LP4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/569_6B8X.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/56_X4TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/570_P2F2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/571_6B8X.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/572_VJ04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/573_N6DL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/574_0LJ2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/575_X4VH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/576_46NL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/577_8DBP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/578_FR08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/579_LXB6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/57_N2J2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/580_LP2Z.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/581_8008.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/582_V022.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/583_8008.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/584_T8FW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/585_46TD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/586_468N.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/587_8008.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/588_28P4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/58_042B.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/590_6XNF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/591_80JZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/592_ZB48.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/593_66J6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/594_4JJ6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/595_P2F2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/596_VJ04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/598_2D0N.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/599_642F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/59_04VT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/5_RV0V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/600_66BP.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/601_6824.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/602_2286.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/603_466F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/604_TL06.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/605_R6TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/606_VJ04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/607_0H60.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/608_VJ04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/609_P20F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/60_64T6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/610_66J6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/611_M6DL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/612_0V26.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/614_X8NX.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/615_Z848.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/616_66J6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/617_T6JD.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/618_66J6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/619_6H86.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/61_H46J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/620_X8NX.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/621_TL06.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/622_42R8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/623_64T6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/624_6XT2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/625_F4B0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/626_NH68.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/627_T8FW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/628_PFT8.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/629_T0PL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/62_V462.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/630_84DH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/631_X484.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/633_T8FW.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/634_484D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/635_X8NX.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/636_6XT2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/637_FLF0.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/638_FX8T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/639_j8PB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/63_XVZ4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/640_0624.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/641_4860.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/642_82D6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/643_j8PB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/644_NJVH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/645_4L80.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/646_680R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/647_642F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/648_6XT2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/649_468P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/64_4LP4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/650_V8PL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/651_j8PB.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/652_NJVH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/653_2248.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/654_680R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/656_2264.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/657_642F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/658_FR08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/659_46LL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/65_XVZ4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/660_680R.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/661_200N.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/662_N24H.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/663_B20L.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/66_H46J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/67_V462.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/68_NH68.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/69_206P.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/6_0624.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/70_D4JZ.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/71_FR08.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/72_DX8D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/73_H46J.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/74_64T6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/75_XVZ4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/76_B62F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/77_V462.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/78_04VT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/79_8N22.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/7_NJVH.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/80_X4TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/81_4486.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/82_64T6.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/83_4486.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/84_V462.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/85_2N4V.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/86_XVZ4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/87_40PT.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/88_NVBF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/89_V462.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/8_40TR.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/90_T8FN.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/91_X4TF.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/92_0084.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/93_00B4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/94_40F4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/95_484D.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/96_642F.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/97_46LL.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/99_FX8T.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Python/MachineLearn/sample/train/9_NJVH.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LeetCode/LeetCode.iml" beforeDir="false" afterPath="$PROJECT_DIR$/LeetCode/LeetCode.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/apiguardian-api-1.1.2.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-5.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-api-5.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-engine-5.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-jupiter-params-5.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-platform-commons-1.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/junit-platform-engine-1.8.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/opentest4j-1.2.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java02/Hero.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java02/Re.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java02/Student.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java02/StudentTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java02/TestCollection$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java02/TestCollection.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java02/TestString.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java02/testCalender.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Java02/testData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LeetCode/Leet124.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LeetCode/Leet124.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LeetCode/Leet24.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LeetCode/Leet24.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LeetCode/Leet25.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LeetCode/Leet25.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LeetCode/ListNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LeetCode/ListNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LeetCode/TreeNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LeetCode/TreeNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java01/HelloWorld.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java01/Input.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java01/LD10.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java01/Person.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java01/TestStringBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java01/TestStudent.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java01/student.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mooc/week_1/CalNumber.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mooc/week_1/HelloWorld.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mooc/week_1/Solution.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mooc/week_1/Sum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mooc/week_1/ToUpCase.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mooc/week_1/week_1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mooc/week_2/isRunYear.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/mooc/week_2/ispPalindromeNumber.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../bash.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../bash.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="JUnit5 Test Class" />
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -716,105 +69,43 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="26rcAYvCEZu9CmLkDNrZplcplnA" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="28QUl3sJABU0ULxG6FH2KpK39vz" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="Downloaded.Files.Path.Enabled" value="true" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
-    <property name="create.test.in.the.same.root" value="true" />
-    <property name="jdk.selected.JAVA_MODULE" value="9" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Study\Java\mooc\code\src\week_1" />
-    </key>
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.TestCollection">
-    <configuration name="StudentTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="StudentTest" />
-      <module name="Java02" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestCollection" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="TestCollection" />
-      <module name="Java02" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ispPalindromeNumber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="week_2.ispPalindromeNumber" />
-      <module name="mooc" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="week_2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="testCalender" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="testCalender" />
-      <module name="Java02" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="testData" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="testData" />
-      <module name="Java02" />
+  <component name="RunManager">
+    <configuration name="Leet24" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Leet24" />
+      <module name="LeetCode" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.TestCollection" />
-        <item itemvalue="Application.StudentTest" />
-        <item itemvalue="Application.testCalender" />
-        <item itemvalue="Application.testData" />
-        <item itemvalue="Application.ispPalindromeNumber" />
+        <item itemvalue="Application.Leet24" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f43c0d68-89a2-4917-8592-c68d2860cbd2" name="Changes" comment="" />
-      <created>1648185002951</created>
+      <changelist id="397cdc00-1fb7-4f20-8be0-ba5fedb24d6a" name="Changes" comment="" />
+      <created>1651148454158</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1648185002951</updated>
+      <updated>1651148454158</updated>
     </task>
     <servers />
   </component>
@@ -828,8 +119,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

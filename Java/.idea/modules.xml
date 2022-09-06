@@ -7,7 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/LeetCode/LeetCode.iml" filepath="$PROJECT_DIR$/LeetCode/LeetCode.iml" />
       <module fileurl="file://$PROJECT_DIR$/java01/java01.iml" filepath="$PROJECT_DIR$/java01/java01.iml" />
       <module fileurl="file://$PROJECT_DIR$/mooc/mooc.iml" filepath="$PROJECT_DIR$/mooc/mooc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mooc/week_2.iml" filepath="$PROJECT_DIR$/mooc/week_2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/web.iml" filepath="$PROJECT_DIR$/web/web.iml" />
     </modules>
   </component>
 </project>

@@ -1,12 +1,42 @@
 package p1;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 
 public class solution {
-    public void duplicateZeros(int[] arr) {
-
+	public String mostCommonWord(String paragraph, String[] banned) {
+        HashMap<String, Integer> map = new HashMap();
+        //students.forEach(System.out::println);
+        for( String word:banned){
+            map.put(word, -1);
+        }
+        map.put("", -1);
+        paragraph = paragraph.toLowerCase();
+        // System.out.println(paragraph);
+        paragraph=paragraph.replace('!',' ').replace('?',' ').replace('\'',' ').replace(',',' ').replace(';',' ').replace('.',' ').trim();
+        System.out.println(paragraph);
+        String[] words = paragraph.split(" ");
+        String resultWord = "";
+        int max=0;
+        for( String word:words){
+            if(!map.containsKey(word)){
+                map.put(word,1);
+                if(max<1){
+                    resultWord = word;
+                    max = 1;
+                }
+            }else if(map.get(word)!=-1){
+                int cur = map.get(word)+1;
+                map.replace(word,cur);
+                if(cur>max){
+                    resultWord = word;
+                    max = cur;
+                }
+            }
+            
+        }
+         System.out.println(map);
+        return resultWord;
     }
 
     

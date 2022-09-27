@@ -9,7 +9,7 @@ public class sclass {
 	
 	public static void loadClass(int sclass, int grade) {
 		JDBCUtil jdbc = new JDBCUtil();
-		String sql = ""  
+		String sql = "" ;
 		
 		
 	}

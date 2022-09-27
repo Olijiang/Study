@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript" src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    	<link href="./css/bootstrap.min.css" rel="stylesheet">
+		<style type="text/css">
+
+			.modal{
+				display: block;
+				position: absolute;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				top: 0;
+				background-color: rgba(0,0,0,.3);
+			}
+			.modal-content{
+				width: 400px;
+				height: 500px;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%,-50%);
+				border-radius: 20px;
+				overflow: hidden;
+			}
+			.modal-head{
+				position: relative;
+				height: 44PX;
+				line-height: 44PX;
+				text-align: center;
+				background-color: #f0f0f0;
+			}
+			.modal-head .close{
+				position: absolute;
+				right: 0;
+				top: 0;
+				height: 44px;
+				line-height: 44px;
+				text-align: center;
+				width: 44px;
+				color: orange;
+				cursor: pointer;
+			}
+			.modal-body{
+				padding:10px;
+				height: 216px;
+				background-color:#FFFFFF ;
+			}
+
+			.modal-body span{
+				display: block;
+				margin-left: 50px;
+				margin-top: 10px;
+				margin-top: 20px;
+			}
+			.modal-body input{
+				width: 200px;
+				height: 30px;
+				border-radius: 5px;
+				border: solid 1px #b4b9bd;
+				font-size: 14px;
+				padding-left: 8px;
+			}
+			.modal-body input::placeholder{
+				color: pink;
+				font-size: 10px;
+				}
+			.modal-body input:focus{
+				border: 2px solid #03a9f4;
+				outline: #03a9f4;
+			}
+			.modal-body button{
+				height: 30px;
+				margin-top: 30px;
+				margin-left: 80px;
+				width: 60px;
+				border-radius: 5px;
+				border: transparent;
+				font-size: 14px;
+			}
+			.modal-body button:hover{
+				border: 2px solid #90d8fa;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<h1>表格修改</h1>
+			<!-- <table border="1" cellspacing="0" cellpadding="0">
+				<tr>
+					<th>序号</th>
+					<th>标题</th>
+					<th>发布人</th>
+					<th>发布时间</th>
+					<th>操作</th>
+				</tr>
+				<tr v-for="(item,index) in list" :key="item.title" >
+					<td>{{index+1}}</td>
+					<td>{{item.title}}</td>
+					<td>{{item.user}}</td>
+					<td>{{item.time}}</td>
+					<td>
+						<span >删除</span>
+						<span @click.prevent="editItem(item,index)">编辑</span>
+					</td>
+				</tr>
+			</table> -->
+			
+			<table id="stutable" class="table table-striped">
+				<thead>
+					<tr>
+						<th style="width: 80px;">序号</th>
+						<th style="width: 120px;">学号</th>
+						<th style="width: 100px;">姓名</th>
+						<th style="width: 100px;">年龄</th>
+						<th style="width: 100px;">年级</th>
+						<th style="width: 100px;">班级</th>
+						<th style="width: 200px;">电话</th>
+						<th style="width: 200px;">邮箱</th>
+						<th style="width: 100px;">管理</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(obj,index) in list" :key="obj.index">
+						<td style="width: 80px;"> {{index+1}}</td>
+						<td style="width: 120px;"> {{obj.sid}}</td>
+						<td style="width: 108px;"> {{obj.sname}}</td>
+						<td style="width: 100px;"> {{obj.age}}</td>
+						<td style="width: 95px;"> {{obj.grade}}</td>
+						<td style="width: 95px;"> {{obj.cname}}</td>
+						<td style="width: 200px;"> {{obj.telephone}}</td>
+						<td style="width: 205px;"> {{obj.email}}</td>
+						<td style="width: 90px;">
+							<span >删除</span> <span @click.prevent="editItem(obj)">编辑</span>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="modal" v-if="visible">
+				<div class="modal-content">
+					<div class="modal-head">
+						<p>编辑信息</p>
+						<span class="close" @click="visible=false">x</span>
+					</div>
+					<div class="modal-body">
+						<span> 学号 <input type="text" v-model="current.sid"><br></span>
+						<span> 姓名 <input type="text" v-model="current.sname"><br></span>	
+						<span> 年龄 <input type="text" v-model="current.age"><br></span>	
+						<span> 年级 <input type="text" v-model="current.grade"><br></span>	
+						<span> 班级 <input type="text" v-model="current.cname"><br></span>	
+						<span> 电话 <input type="text" v-model="current.telephone"><br></span>	
+						<span> 邮箱 <input type="text" v-model="current.email"><br></span>	
+						<button @click="sureHd()">确定</button><button @click="visible=false">取消</button>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<script type="text/javascript">
+            
+			const vm = new Vue({
+				el:"#app",
+				data:{
+					visible:true,
+					current:{},
+					"list": [{"age":22,"cname":"202","email":"20200001@qq.com","grade":2,"id":1,"sid":"20200001","sname":"梦洁","telephone":"20200001000"},
+							{"age":21,"cname":"201","email":"20200002@qq.com","grade":2,"id":2,"sid":"20200002","sname":"雅静","telephone":"20200002000"}
+					],
+					
+				},
+				methods:{
+					editItem(obj){
+						this.current = obj
+						this.visible = true;
+						
+					},
+					sureHd(){
+						this.list[this.editIndex] = {...this.current};
+						this.showModal = false;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
+
+

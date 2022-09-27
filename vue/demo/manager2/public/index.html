@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+
+    <style>
+      .el-popper.is-dark{
+          /* 类名中的空格用 . 代替 */
+          /* 取消侧边栏鼠标移上去显示提示 */
+          display: none !important;
+      }
+      
+      aside .el-sub-menu .el-menu-item{
+        /* 取消二级菜单出现横向滑动条 */
+        min-width: 180px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+   
+  </body>
+
+</html>
+
+

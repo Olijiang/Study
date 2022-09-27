@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<!-- 
+    注册过滤器：
+        全局：Vue.filter(过滤器名称，过滤器处理数据的函数)
+        局部：new Vue{filters:{过滤器1名称(参数){处理过程}，过滤器2...}}
+    使用过滤器：
+        插值语句：{{要处理的数据 | 过滤器名称}}
+        单向绑定：v-bind:属性 = "要处理的数据 | 过滤器名称"
+
+ -->
+ <body>
+    <div id="root">
+        <!-- 过滤器函数不使用参数 -->
+        <h3>现在是：{{msg | Formater1}}</h3>
+        <!-- 过滤器函数传参 -->
+        <h3>现在是：{{msg | Formater2('一路向北')}}</h3>
+    </div>
+
+    <div id="root2">
+        <h2>{{msg | mySlice}}</h2>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+    //全局过滤器，多个容器都可以使用
+    Vue.filter('mySlice',function(value){
+        return value.slice(0,4)
+    })
+
+    new Vue({
+        el:'#root',
+        data:{
+            msg:'Jay111'
+        },
+        //局部过滤器，仅供div标签为root的容器使用
+        filters:{
+            // 不传递实参默认value获取的是要处理的数据
+            Formater1(value){
+                return value.slice(0,3)
+            },
+            // 第一个参数永远是要处理的数据，第二个参数为传递的参数
+            Formater2(value, str){
+                return value + str
+            }
+        }
+    })
+
+    new Vue({
+        el:'#root2',
+        data:{
+            msg:'1111Hello'
+        }
+    })
+</script>
+
+</html>

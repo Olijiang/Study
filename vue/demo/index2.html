@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教学信息自助管理系统</title>
+    <script type="text/javascript" src="./js/vue2.js"></script>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/admin.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <div id="sidebar">
+        <ul class="menu">
+            <li class="menuitem" v-for="(item, index) in navigator" :key="index">
+                <a href="javascript:;" @click="changeContent(item,index+1)">
+                    {{item}}
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="right-content">
+        <div id="navbar" v-cloak>
+            <div class="nav-icon">
+                <svg viewbox="0 0 1000 1000" width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+                    <!-- <path d="M1.585 12.087c0 6.616 3.974 11.98 8.877 11.98 4.902 0 8.877-5.364 8.877-11.98 0-6.616-3.975-11.98-8.877-11.98-4.903 0-8.877 5.364-8.877 11.98zM125.86.107H35.613c-1.268 0-2.114 1.426-2.114 2.852v18.255c0 1.712 1.057 2.853 2.114 2.853h90.247c1.268 0 2.114-1.426 2.114-2.853V2.96c0-1.711-1.057-2.852-2.114-2.852zM.106 62.86c0 6.615 3.974 11.979 8.876 11.979 4.903 0 8.877-5.364 8.877-11.98 0-6.616-3.974-11.98-8.877-11.98-4.902 0-8.876 5.364-8.876 11.98zM124.17 50.88H33.921c-1.268 0-2.114 1.425-2.114 2.851v18.256c0 1.711 1.057 2.852 2.114 2.852h90.247c1.268 0 2.114-1.426 2.114-2.852V53.73c0-1.426-.846-2.852-2.114-2.852zM.106 115.913c0 6.616 3.974 11.98 8.876 11.98 4.903 0 8.877-5.364 8.877-11.98 0-6.616-3.974-11.98-8.877-11.98-4.902 0-8.876 5.364-8.876 11.98zm124.064-11.98H33.921c-1.268 0-2.114 1.426-2.114 2.853v18.255c0 1.711 1.057 2.852 2.114 2.852h90.247c1.268 0 2.114-1.426 2.114-2.852v-18.255c0-1.427-.846-2.853-2.114-2.853z"/> -->
+                    <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM142.4 642.1L298.7 519a8.84 8.84 0 0 0 0-13.9L142.4 381.9c-5.8-4.6-14.4-.5-14.4 6.9v246.3a8.9 8.9 0 0 0 14.4 7z"></path>
+                </svg>
+            
+            </div>
+            <div :class="navtitle?'nav-title':'nav-title1'">
+                <p> {{ltitle}} </p>
+            </div>
+
+            <div class="user-icon" id="user-icon">
+
+                <button @click="showInfo" >
+                    <svg class="user-icon1" viewbox="0 0 128 128" width="25" height="25" xmlns="http://www.w3.org/2000/svg">
+                        <path class="user-icon1" d="M63.444 64.996c20.633 0 37.359-14.308 37.359-31.953 0-17.649-16.726-31.952-37.359-31.952-20.631 0-37.36 14.303-37.358 31.952 0 17.645 16.727 31.953 37.359 31.953zM80.57 75.65H49.434c-26.652 0-48.26 18.477-48.26 41.27v2.664c0 9.316 21.608 9.325 48.26 9.325H80.57c26.649 0 48.256-.344 48.256-9.325v-2.663c0-22.794-21.605-41.271-48.256-41.271z" stroke="#979797"/>
+                        
+                    </svg>
+                </button>
+                <div :class="userInfoShow?'hidden_div':'hidden_div1'"  >
+                        <ul class="useroption">
+                            <li> <a>个人设置</a></li>
+                            <li> <a>账户中心</a></li>
+                            <li> <a>退出登录</a></li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 等待页面 -->
+        <div id="content" :class="showlist[0]?'content':'content1'" v-cloak>
+            <span style="margin: 50px;">waiting...</span>
+        </div>
+        <!-- 学生模块 -->
+        <div id="content" :class="showlist[1]?'content':'content1'" v-cloak>
+            <div id="qinput">
+                <input type="number" placeholder="按学号查找" v-model="QbyID"> <button type="button" @clikc="">查找</button>
+                <input type="text" placeholder="按姓名查找" v-model="QbyName"> <button type="button" @clikc="">查找</button>
+                <input type="number" placeholder="按班级查找" v-model="QbyClass"> <button type="button" @clikc="">查找</button>
+            </div>
+            <div id="table" >
+                <table id="stutable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 80px;">序号</th>
+                            <th style="width: 120px;">学号</th>
+                            <th style="width: 100px;">姓名</th>
+                            <th style="width: 100px;">年龄</th>
+                            <th style="width: 100px;">年级</th>
+                            <th style="width: 100px;">班级</th>
+                            <th style="width: 200px;">电话</th>
+                            <th style="width: 200px;">邮箱</th>
+                            <th style="width: 100px;">管理</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(obj,index) in showStudent" :key="obj.index">
+                            <td style="width: 80px;"> {{index+1}}</td>
+                            <td style="width: 120px;"> {{obj.sid}}</td>
+                            <td style="width: 108px;"> {{obj.sname}}</td>
+                            <td style="width: 100px;"> {{obj.age}}</td>
+                            <td style="width: 95px;"> {{obj.grade}}</td>
+                            <td style="width: 95px;"> {{obj.cname}}</td>
+                            <td style="width: 180px;"> {{obj.telephone}}</td>
+                            <td style="width: 205px;"> {{obj.email}}</td>
+                            <td style="width: 110px;">
+                                <span @click.prevent="deleteItem(obj)">删除 | </span> 
+                                <span @click.prevent="editItem(obj)">编辑</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- 教师模块 -->
+        <div id="content" :class="showlist[2]?'content':'content1'" v-cloak>
+            <div id="qinput">
+                <input type="number" placeholder="按学号查找" v-model="QbyID"> <button type="button" @clikc="">查找</button>
+                <input type="text" placeholder="按姓名查找" v-model="QbyName"> <button type="button" @clikc="">查找</button>
+                <input type="number" placeholder="按班级查找" v-model="QbyClass"> <button type="button" @clikc="">查找</button>
+            </div>
+            <div id="table" >
+                <table id="stutable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 80px;">序号</th>
+                            <th style="width: 120px;">编号</th>
+                            <th style="width: 100px;">姓名</th>
+                            <th style="width: 100px;">年龄</th>
+                            <th style="width: 100px;">班级</th>
+                            <th style="width: 200px;">电话</th>
+                            <th style="width: 200px;">邮箱</th>
+                            <th style="width: 100px;">管理</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(obj,index) in showTeacher" :key="obj.index">
+                            <td style="width: 80px;"> {{index+1}}</td>
+                            <td style="width: 120px;"> {{obj.tid}}</td>
+                            <td style="width: 100px;"> {{obj.tname}}</td>
+                            <td style="width: 100px;"> {{obj.age}}</td>
+                            <td style="width: 100px;"> {{obj.cname}}</td>
+                            <td style="width: 200px;"> {{obj.telephone}}</td>
+                            <td style="width: 190px;"> {{obj.email}}</td>
+                            <td style="width: 110px;">
+                                <span @click.prevent="deleteItem(obj)">删除 | </span> 
+                                <span @click.prevent="editItem(obj)">编辑</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- 用户模块 -->
+        <div id="content" :class="showlist[3]?'content':'content1'" v-cloak>
+            <div id="qinput">
+                <input type="text" placeholder="按学号查找" v-model="QbyID"> <button type="button" @clikc="">查找</button>
+                <input type="text" placeholder="按姓名查找" v-model="QbyName"> <button type="button" @clikc="">查找</button>
+                <input type="text" placeholder="按班级查找" v-model="QbyClass"> <button type="button" @clikc="">查找</button>
+            </div>
+            <div id="table" >
+                <table id="stutable" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th style="width: 80px;">序号</th>
+                            <th style="width: 120px;">学号</th>
+                            <th style="width: 100px;">姓名</th>
+                            <th style="width: 100px;">年龄</th>
+                            <th style="width: 100px;">年级</th>
+                            <th style="width: 100px;">班级</th>
+                            <th style="width: 200px;">电话</th>
+                            <th style="width: 200px;">邮箱</th>
+                            <th style="width: 100px;">管理</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(obj,index) in showTeacher" :key="obj.index">
+                            <td style="width: 80px;"> {{index+1}}</td>
+                            <td style="width: 120px;"> {{obj.tid}}</td>
+                            <td style="width: 108px;"> {{obj.tname}}</td>
+                            <td style="width: 100px;"> {{obj.age}}</td>
+                            <td style="width: 95px;"> {{obj.cname}}</td>
+                            <td style="width: 180px;"> {{obj.telephone}}</td>
+                            <td style="width: 205px;"> {{obj.email}}</td>
+                            <td style="width: 110px;">
+                                <span @click.prevent="deleteItem(obj)">删除 | </span> 
+                                <span @click.prevent="editItem(obj)">编辑</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+            <!-- 底部信息 -->
+        <div class="bottomInfo">
+            <p>@Copyright Reserved</p>
+        </div>
+
+    </div>
+
+    <!-- 编辑学生弹窗 -->
+    <div class="edit" v-if="editStudent">
+        <div class="edit-content">
+            <div class="edit-head">
+                <p>编辑信息</p>
+                <span class="close" @click="editStudent=false">x</span>
+            </div>
+            <div class="edit-body">
+                <span> 学号 <input type="text" v-model="current.sid"><br></span>
+                <span> 姓名 <input type="text" v-model="current.sname"><br></span>	
+                <span> 年龄 <input type="text" v-model="current.age"><br></span>	
+                <span> 年级 <input type="text" v-model="current.grade"><br></span>	
+                <span> 班级 <input type="text" v-model="current.cname"><br></span>	
+                <span> 电话 <input type="text" v-model="current.telephone"><br></span>	
+                <span> 邮箱 <input type="text" v-model="current.email"><br></span>
+                <button @click="sureHd()">确定</button><button @click="editStudent=false">取消</button>
+            </div>
+        </div>
+    </div>
+
+     <!-- 编辑教师弹窗 -->
+     <div class="edit" v-if="editTeacher">
+        <div class="edit-content">
+            <div class="edit-head">
+                <p>编辑信息</p>
+                <span class="close" @click="editTeacher=false">x</span>
+            </div>
+            <div class="edit-body">
+                <span> 编号 <input type="text" v-model="current.tid"><br></span>
+                <span> 姓名 <input type="text" v-model="current.tname"><br></span>	
+                <span> 年龄 <input type="text" v-model="current.age"><br></span>	
+                <span> 班级 <input type="text" v-model="current.cname"><br></span>	
+                <span> 电话 <input type="text" v-model="current.telephone"><br></span>	
+                <span> 邮箱 <input type="text" v-model="current.email"><br></span>
+                <button @click="sureHd()">确定</button><button @click="editTeacher=false">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 删除学生确认弹窗 -->
+    <div class="delete" v-if="deleteStudent">
+        <div class="delete-content">
+            <div class="delete-head">
+                <p>确认窗口</p>
+                <span class="close" @click="deleteStudent=false">x</span>
+            </div>
+            <div class="delete-body">
+                <span><p>学号:{{originObj.sid}} &emsp;&emsp;&emsp;  姓名:{{originObj.sname}}</p> </span>
+                <span>是否确认删除？</span><br>
+                <button @click="sureDelete()">确认</button>
+                <button @click="deleteStudent=false">取消</button>
+            </div>
+        </div>
+    </div>
+    <!-- 删除教师确认弹窗 -->
+    <div class="delete" v-if="deleteTeacher">
+        <div class="delete-content">
+            <div class="delete-head">
+                <p>确认窗口</p>
+                <span class="close" @click="deleteTeacher=false">x</span>
+            </div>
+            <div class="delete-body">
+                <span><p>教师编号:{{originObj.tid}} &emsp;&emsp;&emsp;  姓名:{{originObj.tname}}</p> </span>
+                <span>是否确认删除？</span><br>
+                <button @click="sureDelete()">确认</button>
+                <button @click="deleteTeacher=false">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+
+<script type="text/javascript">
+    const vm = new Vue({
+        el:"#app",
+        data:{
+            deleteTeacher:false,//删除教师弹窗
+            editTeacher:false,  //修改教师弹窗
+            deleteStudent:false,//删除学生弹窗
+            editStudent:false,  //修改学生弹窗
+            originObj:{},  //记录修改的对象, 内部变量，不渲染显示
+            current:{},    //复制originobj， 绑定弹窗数据
+            navtitle:true,  // 小标题样式绑定 navtitle正常， navtitle1隐藏 做切换动画
+            students:[],
+            teachers:[],
+            users:[],
+            showlist:[],    //0:waiting   1:学生列表  2:教师列表  3:用户列表, 控制显示模块
+            navigator:['学生列表', '教师列表','用户列表','2','3','4'],
+            ltitle:"title",
+            userInfoShow:false,
+            QbyID:'',   //按id筛选
+            QbyName:'',
+            QbyClass:'',
+        },
+        computed:{
+            showStudent(){
+                // this.persons = this.persons.filter((obj)=>{
+                // return obj.name.indexOf(this.keyWord) !== -1 //筛选条件
+                // 先清空
+                // 清空
+                // while(0<this.showStudent.length){
+                //     this.showStudent.pop()
+                // }
+                // 过滤三次
+                const arr = this.students.filter((p)=>{
+                    //从头开始匹配
+                    let pat = "/^"+this.QbyID+"/"
+                    return p.sid.match(eval(pat)) !== null
+                })  
+                const arr1 = arr.filter((p)=>{
+                    //包含关键字即可
+                    return p.sname.indexOf(this.QbyName) !== -1
+                })
+                const arr2= arr1.filter((p)=>{
+                    //从头开始匹配
+                    let pat = "/^"+this.QbyClass+"/"
+                    return p.cname.match(eval(pat)) !== null
+                })
+                return  arr2
+                // 后排序，排序在过滤的基础上
+                // if(this.sortType){
+                //     arr.sort((p1,p2)=>{
+                //         return this.sortType === 1 ? p2.age-p1.age : p1.age-p2.age
+                //     })
+                // }
+                // 过滤并排序后的结果作为filPerons此时的值
+            },
+            showTeacher(){
+                const arr = this.teachers.filter((p)=>{
+                    //从头开始匹配
+                    let pat = "/^"+this.QbyID+"/"
+                    return p.tid.match(eval(pat)) !== null
+                })  
+                const arr1 = arr.filter((p)=>{
+                    //包含关键字即可
+                    return p.tname.indexOf(this.QbyName) !== -1
+                })
+                const arr2= arr1.filter((p)=>{
+                    //从头开始匹配
+                    let pat = "/^"+this.QbyClass+"/"
+                    return p.cname.match(eval(pat)) !== null
+                })
+                return  arr2
+            }
+        },
+        methods:{
+            changeContent(value, index){
+                // 清空
+                // while(0<this.showStudent.length){
+                //     this.showStudent.pop()
+                // }
+                for(let i=0;i<this.showlist.length;i++){
+                    this.showlist[i] = false
+                }
+                 
+                this.showlist[0] = true
+                // this.$options.methods.getData(this);
+                switch(index){
+                    case 1:
+                        this.$options.methods.getStudents(this);
+                        this.showlist[0] = false
+                        break
+                    case 2:
+                        this.$options.methods.getTeachers(this);
+                        this.showlist[0] = false
+                        break
+                    case 3:
+                        this.showlist[0] = false
+                        break
+                    default:
+                    this.showlist[0] = true
+                }
+                
+                this.showlist[index] = true
+                this.navtitle=false
+                this.ltitle=value
+                this.navtitle=true
+                //选项高亮
+                var arr = document.getElementsByClassName("menuitem")
+                for(let i=0;i<arr.length;i++){
+                    arr[i].style.color='#f1eded';
+                    if(i==index-1){
+                        arr[i].style.color='aqua';
+                    }
+                }
+            },
+            //获取学生列表
+            // url: 'http://127.0.0.1:8080/getStudents',
+            getStudents(e){
+                let res = '[{"age":22,"cname":"202","email":"20200001@qq.com","grade":2,"id":1,"sid":"20200001","sname":"梦洁","telephone":"20200001000"},{"age":21,"cname":"201","email":"20200002@qq.com","grade":2,"id":2,"sid":"20200002","sname":"雅静","telephone":"20200002000"},{"age":21,"cname":"101","email":"20200003@qq.com","grade":1,"id":3,"sid":"20200003","sname":"韵寒","telephone":"20200003000"},{"age":22,"cname":"201","email":"20200004@qq.com","grade":2,"id":4,"sid":"20200004","sname":"莉姿","telephone":"20200004000"},{"age":20,"cname":"201","email":"20200005@qq.com","grade":2,"id":5,"sid":"20200005","sname":"沛玲","telephone":"20200005000"},{"age":20,"cname":"101","email":"20200006@qq.com","grade":1,"id":6,"sid":"20200006","sname":"欣妍","telephone":"20200006000"},{"age":22,"cname":"102","email":"20200007@qq.com","grade":1,"id":7,"sid":"20200007","sname":"歆瑶","telephone":"20200007000"},{"age":20,"cname":"202","email":"20200008@qq.com","grade":2,"id":8,"sid":"20200008","sname":"凌菲","telephone":"20200008000"},{"age":21,"cname":"102","email":"20200009@qq.com","grade":1,"id":9,"sid":"20200009","sname":"靖瑶","telephone":"20200009000"},{"age":19,"cname":"102","email":"20200010@qq.com","grade":1,"id":10,"sid":"20200010","sname":"瑾萱","telephone":"20200010000"},{"age":18,"cname":"202","email":"20200011@qq.com","grade":2,"id":11,"sid":"20200011","sname":"月琪","telephone":"20200011000"},{"age":22,"cname":"201","email":"20200012@qq.com","grade":2,"id":12,"sid":"20200012","sname":"瑾瑜","telephone":"20200012000"},{"age":22,"cname":"202","email":"20200013@qq.com","grade":2,"id":13,"sid":"20200013","sname":"瑜昕","telephone":"20200013000"},{"age":22,"cname":"101","email":"20200014@qq.com","grade":1,"id":14,"sid":"20200014","sname":"槿玥","telephone":"20200014000"},{"age":20,"cname":"102","email":"20200015@qq.com","grade":1,"id":15,"sid":"20200015","sname":"菡初","telephone":"20200015000"},{"age":19,"cname":"102","email":"20200016@qq.com","grade":1,"id":16,"sid":"20200016","sname":"妙桐","telephone":"20200016000"},{"age":22,"cname":"101","email":"20200017@qq.com","grade":1,"id":17,"sid":"20200017","sname":"莹然","telephone":"20200017000"},{"age":21,"cname":"102","email":"20200018@qq.com","grade":1,"id":18,"sid":"20200018","sname":"夕纯","telephone":"20200018000"},{"age":20,"cname":"202","email":"20200019@qq.com","grade":2,"id":19,"sid":"20200019","sname":"思羽","telephone":"17396914413"},{"age":18,"cname":"102","email":"20200020@qq.com","grade":1,"id":20,"sid":"20200020","sname":"溪瑶","telephone":"20200020000"},{"age":22,"cname":"202","email":"20200021@qq.com","grade":2,"id":21,"sid":"20200021","sname":"羽慕","telephone":"20200021000"},{"age":19,"cname":"201","email":"20200022@qq.com","grade":2,"id":22,"sid":"20200022","sname":"雨妍","telephone":"20200022000"},{"age":20,"cname":"101","email":"20200023@qq.com","grade":1,"id":23,"sid":"20200023","sname":"瑾语","telephone":"20200023000"},{"age":22,"cname":"201","email":"20200024@qq.com","grade":2,"id":24,"sid":"20200024","sname":"雅颍","telephone":"20200024000"},{"age":21,"cname":"101","email":"20200025@qq.com","grade":1,"id":25,"sid":"20200025","sname":"馨安","telephone":"20200025000"},{"age":19,"cname":"201","email":"20200026@qq.com","grade":2,"id":26,"sid":"20200026","sname":"锦汐","telephone":"20200026000"},{"age":22,"cname":"102","email":"20200027@qq.com","grade":1,"id":27,"sid":"20200027","sname":"言希","telephone":"20200027000"}]'
+                res = eval(res)
+                while(0<e.students.length){
+                    e.students.pop()
+                }
+                for(let i=0;i<res.length;i++){
+                    e.students.push(res[i])
+                }
+
+                
+                // axios.get("http://127.0.0.1:8080/getStudents", {
+                //     emulateJSON:true
+                // }).then(res => {
+                //     console.log(res.data)
+                // })
+            },
+            getTeachers(e){
+                let res = '[{"age":31,"cname":"101","email":"20201001@qq.com","id":1,"telephone":"20201001000","tid":"20201001","tname":"安老师"},{"age":31,"cname":"202","email":"20201002@qq.com","id":2,"telephone":"20201002000","tid":"20201002","tname":"徐老师"},{"age":30,"cname":"102","email":"20201003@qq.com","id":3,"telephone":"20201003000","tid":"20201003","tname":"王老师"},{"age":29,"cname":"201","email":"20201004@qq.com","id":4,"telephone":"20201004000","tid":"20201004","tname":"何老师"}]'
+                res = eval(res)
+                while(0<e.teachers.length){
+                    e.teachers.pop()
+                }
+                for(let i=0;i<res.length;i++){
+                    e.teachers.push(res[i])
+                }
+            },
+            getData(e){
+                let stuData = '[{"age":22,"cname":"202","email":"20200001@qq.com","grade":2,"id":1,"sid":"20200001","sname":"梦洁","telephone":"20200001000"},{"age":21,"cname":"201","email":"20200002@qq.com","grade":2,"id":2,"sid":"20200002","sname":"雅静","telephone":"20200002000"},{"age":21,"cname":"101","email":"20200003@qq.com","grade":1,"id":3,"sid":"20200003","sname":"韵寒","telephone":"20200003000"},{"age":22,"cname":"201","email":"20200004@qq.com","grade":2,"id":4,"sid":"20200004","sname":"莉姿","telephone":"20200004000"},{"age":20,"cname":"201","email":"20200005@qq.com","grade":2,"id":5,"sid":"20200005","sname":"沛玲","telephone":"20200005000"},{"age":20,"cname":"101","email":"20200006@qq.com","grade":1,"id":6,"sid":"20200006","sname":"欣妍","telephone":"20200006000"},{"age":22,"cname":"102","email":"20200007@qq.com","grade":1,"id":7,"sid":"20200007","sname":"歆瑶","telephone":"20200007000"},{"age":20,"cname":"202","email":"20200008@qq.com","grade":2,"id":8,"sid":"20200008","sname":"凌菲","telephone":"20200008000"},{"age":21,"cname":"102","email":"20200009@qq.com","grade":1,"id":9,"sid":"20200009","sname":"靖瑶","telephone":"20200009000"},{"age":19,"cname":"102","email":"20200010@qq.com","grade":1,"id":10,"sid":"20200010","sname":"瑾萱","telephone":"20200010000"},{"age":18,"cname":"202","email":"20200011@qq.com","grade":2,"id":11,"sid":"20200011","sname":"月琪","telephone":"20200011000"},{"age":22,"cname":"201","email":"20200012@qq.com","grade":2,"id":12,"sid":"20200012","sname":"瑾瑜","telephone":"20200012000"},{"age":22,"cname":"202","email":"20200013@qq.com","grade":2,"id":13,"sid":"20200013","sname":"瑜昕","telephone":"20200013000"},{"age":22,"cname":"101","email":"20200014@qq.com","grade":1,"id":14,"sid":"20200014","sname":"槿玥","telephone":"20200014000"},{"age":20,"cname":"102","email":"20200015@qq.com","grade":1,"id":15,"sid":"20200015","sname":"菡初","telephone":"20200015000"},{"age":19,"cname":"102","email":"20200016@qq.com","grade":1,"id":16,"sid":"20200016","sname":"妙桐","telephone":"20200016000"},{"age":22,"cname":"101","email":"20200017@qq.com","grade":1,"id":17,"sid":"20200017","sname":"莹然","telephone":"20200017000"},{"age":21,"cname":"102","email":"20200018@qq.com","grade":1,"id":18,"sid":"20200018","sname":"夕纯","telephone":"20200018000"},{"age":20,"cname":"202","email":"20200019@qq.com","grade":2,"id":19,"sid":"20200019","sname":"思羽","telephone":"17396914413"},{"age":18,"cname":"102","email":"20200020@qq.com","grade":1,"id":20,"sid":"20200020","sname":"溪瑶","telephone":"20200020000"},{"age":22,"cname":"202","email":"20200021@qq.com","grade":2,"id":21,"sid":"20200021","sname":"羽慕","telephone":"20200021000"},{"age":19,"cname":"201","email":"20200022@qq.com","grade":2,"id":22,"sid":"20200022","sname":"雨妍","telephone":"20200022000"},{"age":20,"cname":"101","email":"20200023@qq.com","grade":1,"id":23,"sid":"20200023","sname":"瑾语","telephone":"20200023000"},{"age":22,"cname":"201","email":"20200024@qq.com","grade":2,"id":24,"sid":"20200024","sname":"雅颍","telephone":"20200024000"},{"age":21,"cname":"101","email":"20200025@qq.com","grade":1,"id":25,"sid":"20200025","sname":"馨安","telephone":"20200025000"},{"age":19,"cname":"201","email":"20200026@qq.com","grade":2,"id":26,"sid":"20200026","sname":"锦汐","telephone":"20200026000"},{"age":22,"cname":"102","email":"20200027@qq.com","grade":1,"id":27,"sid":"20200027","sname":"言希","telephone":"20200027000"}]'
+                let teaData = '[{"age":31,"cname":"101","email":"20201001@qq.com","id":1,"telephone":"20201001000","tid":"20201001","tname":"安老师"},{"age":31,"cname":"202","email":"20201002@qq.com","id":2,"telephone":"20201002000","tid":"20201002","tname":"徐老师"},{"age":30,"cname":"102","email":"20201003@qq.com","id":3,"telephone":"20201003000","tid":"20201003","tname":"王老师"},{"age":29,"cname":"201","email":"20201004@qq.com","id":4,"telephone":"20201004000","tid":"20201004","tname":"何老师"}]'
+                let userData = '[{"credential":"12345","id":1,"identifier":"20200001@qq.com","loginType":"email","statusCode":1,"uid":"20200001"},{"credential":"12345","id":2,"identifier":"20200001000","loginType":"telephone","statusCode":1,"uid":"20200001"},{"credential":"12345","id":3,"identifier":"20200001","loginType":"id","statusCode":1,"uid":"20200001"},{"credential":"12345","id":4,"identifier":"20200002@qq.com","loginType":"email","statusCode":1,"uid":"20200002"},{"credential":"12345","id":5,"identifier":"20200002000","loginType":"telephone","statusCode":1,"uid":"20200002"},{"credential":"12345","id":6,"identifier":"20200002","loginType":"id","statusCode":1,"uid":"20200002"},{"credential":"12345","id":7,"identifier":"20200019@qq.com","loginType":"email","statusCode":1,"uid":"20200019"},{"credential":"12345","id":8,"identifier":"17396914413","loginType":"telephone","statusCode":1,"uid":"20200019"},{"credential":"12345","id":9,"identifier":"20200019","loginType":"id","statusCode":1,"uid":"20200019"},{"credential":"1234","id":10,"identifier":"20201001@qq.com","loginType":"email","statusCode":2,"uid":"20201001"},{"credential":"1234","id":11,"identifier":"20201001000","loginType":"telephone","statusCode":2,"uid":"20201001"},{"credential":"1234","id":12,"identifier":"20201001","loginType":"id","statusCode":2,"uid":"20201001"},{"credential":"1234","id":13,"identifier":"20201002@qq.com","loginType":"email","statusCode":2,"uid":"20201002"},{"credential":"1234","id":14,"identifier":"20201002000","loginType":"telephone","statusCode":2,"uid":"20201002"},{"credential":"1234","id":15,"identifier":"20201002","loginType":"id","statusCode":2,"uid":"20201002"},{"credential":"1234","id":16,"identifier":"20201003@qq.com","loginType":"email","statusCode":2,"uid":"20201003"},{"credential":"1234","id":17,"identifier":"20201003000","loginType":"telephone","statusCode":2,"uid":"20201003"},{"credential":"1234","id":18,"identifier":"20201003","loginType":"id","statusCode":2,"uid":"20201003"},{"credential":"8888","id":19,"identifier":"66668888","loginType":"id","statusCode":0,"uid":"66668888"},{"credential":"1111","id":20,"identifier":"20200010@qq.com","loginType":"email","statusCode":1,"uid":"20200010"},{"credential":"1111","id":21,"identifier":"20200010000","loginType":"telephone","statusCode":1,"uid":"20200010"},{"credential":"1111","id":22,"identifier":"20200010","loginType":"id","statusCode":1,"uid":"20200010"}]'
+                let i = 0;
+                while(!this.showlist[i]) i++;    //留在true
+                switch(i){
+                    case 1: //获取学生数据
+                        let res = eval(stuData)
+                        while(0<e.students.length){
+                            e.students.pop()
+                        }
+                        for(let i=0;i<res.length;i++){
+                            e.students.push(res[i])
+                        }
+                        break;
+                    case 2: //获取老师数据
+                        res = eval(teaData)
+                        while(0<e.teachers.length){
+                            e.teachers.pop()
+                        }
+                        for(let i=0;i<res.length;i++){
+                            e.teachers.push(res[i])
+                        }
+                        break;
+                    case 3: //获取用户数据
+                        res = eval(userData)
+                        while(0<e.users.length){
+                            e.users.pop()
+                        }
+                        for(let i=0;i<res.length;i++){
+                            e.users.push(res[i])
+                        }
+                        break;
+                }
+            
+            },
+            //点击头像弹窗菜单
+            showInfo() {
+                //设置bool值， 
+                this.userInfoShow = !this.userInfoShow;
+                //要特别注意这里，只有菜单显示的时候才会监听全局点击事件
+                //并且，要设置为：vue的方法，不能扔到export代码段外面去。
+                //要切记`this`这个变量对应的实例是谁
+                if (this.userInfoShow) {
+                    document.addEventListener("click", this.onGlobalClick);
+                }
+            },
+            //全局监听点击事件
+            onGlobalClick(e) {
+            //判断全局被点中的控件的className，不同就是菜单外点击
+                if (e.target.getAttribute("class") != "user-icon1") {
+                    this.userInfoShow = false;
+                    //这里要注意啊!!!!一定要记得移除监听事件！！！！！
+                    document.removeEventListener("click", this.onGlobalClick);
+                }
+            },
+            editItem(obj){
+                this.originObj = obj
+                this.current = JSON.parse(JSON.stringify(obj))
+                //判断显示哪一个编辑页面
+                let i = 0;
+                while(!this.showlist[i]) i++;    //留在true
+                switch(i){
+                    case 1: //显示编辑学生模块
+                        this.editStudent = true;
+                        break
+                    case 2: //显示编辑学生模块
+                        this.editTeacher = true;
+                        break
+                    case 3: //显示编辑学生模块
+                        this.editUser = true;
+                        break
+                }
+                
+			},
+            sureHd(){   //参数校验，提交修改
+                //修改
+                for (let key in this.current) {
+                    // console.log(key)
+                    this.originObj[key] = this.current[key];
+                }
+                this.editStudent = false;
+                this.editTeacher = false;
+                this.editUser = false;
+            },
+            deleteItem(obj){
+                this.originObj = obj    //记录要删除的对象
+                let i = 0;
+                while(!this.showlist[i]) i++;    //留在true
+                switch(i){
+                    case 1: //显示编辑学生模块
+                        this.deleteStudent = true;
+                        break
+                    case 2: //显示编辑学生模块
+                        this.deleteTeacher = true;
+                        break
+                    case 3: //显示编辑学生模块
+                        this.deleteUser = true;
+                        break
+                }
+            },
+            sureDelete(){
+                //确认当前在哪一个表页面
+                //1:学生列表  2:教师列表  3:用户列表
+                if(this.showlist[1]){
+                    //移除学生
+                    for(let i=0;i<this.students.length;i++){
+                        if(this.students[i].sid == this.originObj.sid){
+                            this.students.splice(i,1)
+                            this.deleteStudent = false
+                        }
+                    return
+                }
+                } 
+                if(this.showlist[2]){
+                    //移除教师
+                    for(let i=0;i<this.teachers.length;i++){
+                        if(this.teachers[i].tid == this.originObj.tid){
+                            this.teachers.splice(i,1)
+                            this.deleteTeacher = false
+                        }
+                    }
+                    return
+                } 
+                if(this.showlist[3]){
+                    return
+                }
+            }
+        }
+    })
+
+</script>
+
+</html>

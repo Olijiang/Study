@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>监视属性watch</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <p>监视属性watch</p>
+        <!-- 获取计算属性的值 -->
+        <h2>今天天气很{{info}}</h2>
+        <!-- 点击事件 -->
+        <button @click="changeWeather">切换天气</button>
+        <p>--------------------------</p>
+        <p>a={{numbers.a}}, b={{numbers.b}}, e={{numbers.c.d.e}}</p>
+        <input type="text" v-model="numbers.c.d.e" >
+    </div>
+</body>
+
+<script type="text/javascript">
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            isHot:true,
+            numbers:{
+                a:1,
+                b:1,
+                c:{
+                    d:{
+                        e:100
+                    }
+                }
+            },
+        },
+        computed:{
+            info(){
+                return this.isHot ? '炎热' : '凉爽'
+            }
+        },
+        // 监视data中的isHot属性
+        watch:{
+            // isHot:{
+            //     // 初始化时就执行回调函数一次
+            //     immediate:false, 
+            //     // 回调函数
+            //     // 参数1表示监视属性的新值，参数2表示旧值，参数名称可以自定义
+            //     // 如果只有一个参数，则表示新值
+            //     handler(newValue, oldValue){
+            //         console.log('isHot被修改了', newValue, oldValue)
+            //     }
+            // },
+            //简写1，就是写成函数形式
+            //直接当成handler来使用
+            isHot(newValue,oldValue){
+                console.log('isHot被修改了',newValue,oldValue)
+            },
+            // 监视numbers属性
+            numbers:{
+                // 开启深度监视，numbers中的任意（深层）属性发生变化，都会调用回调函数
+                deep:false,
+
+                handler(){
+                    console.log('numbers改变了')
+                }
+            },
+            
+            // 不开启深度监视，但监视某一深层属性
+            'numbers.c.d': {
+                handler(){
+                    console.log('numbers改变了')
+                }
+       		}
+        },
+        methods: {
+            changeWeather(){
+                // 修改被监视的属性值
+                this.isHot = !this.isHot
+            }
+        },
+    })
+
+    // 另一种写法
+    // isHot必须加引号，其他方式的key也应该加引号，不加引号采用的都是对象的简写方式，此处不是对象
+    // 参数1表示监视哪个属性，参数2表示监视配置
+    // vm.$watch('isHot',{
+    //     immediate:true,
+    //     handler(newValue,oldValue){
+    //         console.log('isHot被修改了',newValue,oldValue)
+    //     }
+    // })
+</script>
+
+</html>

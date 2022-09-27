@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>样式绑定</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <!-- 定义多个css样式 -->
+    <style>
+        .basic{
+            width: 400px;
+            height: 100px;
+            border: 1px solid black;
+        }
+        .happy{
+            border: 4px solid red;;
+            background-color: rgba(255, 255, 0, 0.644);
+            background: linear-gradient(30deg,yellow,pink,orange,yellow);
+        }
+        .sad{
+            border: 4px dashed rgb(2, 197, 2);
+            background-color: gray;
+        }
+        .normal{
+            background-color: skyblue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="root">
+        <!-- 不使用任何样式 -->
+        <div>{{name}}</div> <br/><br/>
+        
+        <!-- 使用基础的样式，绑定的是样式名 -->
+        <div class="basic">{{name}}</div> <br/><br/>
+        
+        <!-- 使用可变化的样式以及基础的样式，点击后调用方法修改样式 -->
+        <!-- 绑定的是变量名而不是样式名，后期修改变量值，就可以修改样式 -->
+        <div class="basic" :class="mood">{{name}}</div>
+        <button type="text" @click="changeMood">切换心情</button>
+
+        <div class="basic" :class="classObj">{{name}}</div>
+        <button type="text" @click="tohappy">happy</button><button type="text" @click="tosad">sad</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+    new Vue({
+        el:'#root',
+        data:{
+            name:'jack',
+            mood:'normal',
+            classObj:{
+				happy:false,
+				sad:false
+			}
+        },
+        methods:{
+            changeMood(){
+                const arr = ['basic', 'happy', 'sad', 'normal'];
+                const index =  Math.floor(Math.random()*4);
+                this.mood = arr[index];
+            },
+            tohappy(){
+                this.classObj.happy=true
+                this.classObj.sad=false
+            },
+            tosad(){
+                this.classObj.sad=true
+                this.classObj.happy=false
+            }
+        }
+
+    })
+</script>
+    
+</html>

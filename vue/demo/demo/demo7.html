@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<!-- 表单数据收集 -->
+
+<!-- 
+    若为 <input type="text"/> 等文本输入框类型，由于用户的输入默认赋值的就是 value 属性，故 v-model 收集的是用户直接输入的数据。
+    若为 <input type="radio"/> 单选框，则需要手动给该标签添加 value 属性，v-model 收集的是该标签的 value 属性值。
+    若为 <input type="checkbox"/> 多选框：
+    没有配置 value 属性，那么 v-model 收集的是布尔类型的 checked 属性（是否被选中）。
+    已经配置 value 属性：
+    v-model 绑定的 data 属性的初始类型非数组，那么 v-model 收集的是布尔类型的 checked 属性（是否被选中）。
+    v-model 绑定的 data 属性的初始类型为数组，那么 v-model 收集的是所有多选框的 value 属性值所组成的数组。
+
+    lazy：输入框失去焦点后再收集数据，并非实时收集数据
+    number：输入的字符串转为有效的数字
+    trim：输入的数据首尾空格过滤
+ -->
+
+
+
+<body>
+    <div id="root">
+        <!-- 给表单绑定一个提交事件，并且阻止默认的跳转页面行为去执行demo函数 -->
+        <form @submit.prevent="demo">
+            账号：<input type="text" v-model="userInfo.account"> <br/><br/>
+            年龄：<input type="number" v-model="userInfo.age"> <br/><br/>
+
+            性别：
+            男<input type="radio" name="sex" v-model.lazy="userInfo.sex" value="male">
+            女<input type="radio" name="sex" v-model="userInfo.sex" value="female"> <br/><br/>
+
+            爱好---data初始非数组：
+            <!-- data初始非数组 -->
+            学习1<input type="checkbox" v-model="userInfo.hobby2" value="study1">
+            学习2<input type="checkbox" v-model="userInfo.hobby2" value="study2">
+            <br/><br/>
+
+            爱好---data初始为数组：
+            <!-- data初始为数组 -->
+            学习<input type="checkbox" v-model="userInfo.hobby1" value="study">
+            打游戏<input type="checkbox" v-model="userInfo.hobby1" value="game">
+            吃饭<input type="checkbox" v-model="userInfo.hobby1" value="eat">
+            <br/><br/>
+
+            所属校区
+            <!-- select下拉框默认v-model获取的是value属性值 -->
+            <select v-model="userInfo.city">
+                <option value="">请选择校区</option>
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="shenzhen">深圳</option>
+                <option value="wuhan">武汉</option>
+            </select>
+            <br/><br/>
+
+            其他信息：
+            <textarea v-model="userInfo.other"></textarea> <br/><br/>
+
+            <!-- 不需要获取value值，只需要判断布尔值即可 -->
+            <input type="checkbox" v-model="userInfo.agree">阅读并接受<a href="http://www.baidu.com">《用户协议》</a>
+
+            <!-- 表单中的按钮会自动触发提交事件 -->
+            <button>提交</button>
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript">
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            userInfo:{
+                account:'',
+                age:18,  //默认填入18
+                sex:'female', //默认取值为女
+                hobby1:[], //初始化为数组
+                hobby2:'',
+                city:'beijing', //默认选中北京
+                other:'',
+                agree:''
+            }
+        },
+        methods: {
+            demo(){
+                alert(JSON.stringify(this.userInfo))
+            }
+        }
+    })
+</script>
+
+</html>

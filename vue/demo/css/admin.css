@@ -1,0 +1,413 @@
+
+body, html{
+    box-sizing:inherit;
+    width: 99%;
+    height: 99%;
+}
+/* sidebar ----- begin*/
+#sidebar{
+    transition: width 0.28s;
+    width: 200px !important;
+    background-color: #304156;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+a, a:focus, a:hover{
+    cursor:pointer;
+    color:inherit;
+    text-decoration:none;
+}
+#sidebar a{
+    display:inline-block;
+    width: 100%;
+    overflow:hidden;
+    text-decoration:none;
+    background-color: transparent;
+}
+.menuitem{
+    color: #f1eded;
+    height: 56px;   
+    line-height: 56px; 
+    font-size: 18px;
+    padding: 0 20px;
+    position: relative;
+    /* transition-property:background-color;
+    transition-duration: 0.5s;
+    transition-delay: 0s; */
+    transition: all 0.5s ease-in-out;
+}
+.menuitem:hover{ 
+    border-radius: 20px;
+    background-color: rgb(34, 45, 59);
+    /* color:aqua; */
+}
+.menu{
+    list-style: none;
+    position: relative;
+    margin: 0;
+    padding-left: 0;
+}
+/* sidebar ---- end */
+#right-content{
+    top: 0px;
+    position: fixed;
+    left: 200px;
+    width: calc(100% - 200px);
+    height: 100%;
+}
+#navbar{
+    height: 50px;
+    box-shadow: 0 1px 4px rgb(0 21 41 / 8%);
+    line-height: 50px;
+}
+.nav-icon{
+    float: left;
+    cursor: pointer;
+    padding: 0 10px;
+    margin: 5px;
+    height: 40px;
+    width: 40px;
+    transition-property:background-color,border-radius,box-shadow;
+    transition-duration: 0.5s;
+    transition-delay: 0s;
+}
+.nav-title{
+    float: left;
+    width: 100px;
+    height: 50px;
+    padding: 0 10px;
+    transition:0.5s;
+}
+.nav-title1{
+    opacity: 0;
+    float: left;
+    margin-left: 50px;
+    width: 100px;
+    height: 50px;
+    padding: 0 10px;
+    
+}
+.nav-icon:hover{
+    border-radius: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: #f1eded;
+}
+.user-icon{
+    width: 40px;
+    height: 40px;
+    margin-top: 5px;
+    float: right;
+    margin-right: 30px;
+    padding-left: 6px;
+    z-index: 1001;
+    transition-property:background-color,border-radius,box-shadow;
+    transition-duration: 0.5s;
+    transition-delay: 0s;
+}
+.user-icon:hover{
+    border-radius: 20px;
+    background-color: #f1eded;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+.user-icon button{
+    cursor: pointer;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    border: 1px solid transparent;  
+    outline: none;   
+}
+.hidden_div {
+    background-color: #f9f9f9;
+    width: 100px;
+    height: 150px;
+    line-height: 45px;
+    padding-top: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    transform-origin: center top;
+    position: absolute;
+    top: 45px;
+    left: 1270px;
+    transition: 0.5s;
+}
+.hidden_div1 {
+    transition: 0.5s;
+    opacity: 0;
+    background-color: #f9f9f9;
+    width: 100px;
+    height: 50px;
+    line-height: 10px;
+    padding-top: 10px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    transform-origin: center top;
+    position: absolute;
+    top: 45px;
+    left: 1270px;
+}
+.content{
+    /* min-height: calc(100% - 50px); */
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    transition:0.5s
+}
+.content1{
+    margin-left: 80px;
+    opacity: 0;
+    height: 0;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    transition:0.5s
+}
+.useroption{
+    list-style: none;  
+    font-size: 15px;
+    color: rgba(0,0,0,0.2);
+    padding: 0 20px;
+    position: relative;
+}
+/* table-----开始 */
+#table{
+    margin-top: 10px;
+    margin-left: 35px;
+    height: 750px;
+    overflow: hidden;
+}
+#table tr{
+    height: 42px;
+}
+#table tr:hover{
+    background-color: #e7ede1;
+}
+#table th{
+    border:none;
+    background-color: #e7ede1;
+}
+#table thead{
+    display:block;
+}
+#table tbody{
+    display:block;
+    max-height: 700px;
+    overflow-y: auto;
+}
+#stutable{
+    width: auto;
+}
+/* 滑动条 */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+    -webkit-box-shadow: inset 0 0 10px #e7ede1; /*滑轨*/
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}
+::-webkit-scrollbar {
+    width: 8px;     /*高宽分别对应横竖·滚动条的尺寸*/
+    height: 4px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+    -webkit-box-shadow: inset 0 0 10px #a4c682;/*滑块*/
+    background: rgba(0,0,0,0.2);
+}
+
+/* table-----结束 */
+#qinput{
+    margin: 5px;
+}
+#qinput input{
+    margin-left: 30px;
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    border: solid 1px #b4b9bd;
+    font-size: 14px;
+    padding-left: 8px;
+}
+#qinput input::placeholder{
+    color: pink;
+    font-size: 10px;
+}
+#qinput input:focus{
+    border-style:solid;
+    border: solid 1px #333536;
+
+}
+#qinput button{
+    display: none;
+    height: 25px;
+    width: 50px;
+    border-radius: 5px;
+    border: transparent;
+    font-size: 10px;
+}
+#qinput button:hover{
+    border-style:solid;
+    border: solid 1px #333536;
+}
+td span{
+    cursor: pointer;
+    padding: 2px;
+    border: 1px solid rgb(201, 201, 153);
+    border-radius: 5px;
+}
+[v-cloak]{
+    display: none;
+}
+/* 弹窗部分 开始 */
+.edit{
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 2;
+    background-color: rgba(0,0,0,.3);
+}
+.edit-content{
+    width: 400px;
+    height: auto;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 20px;
+    overflow: hidden;
+}
+.edit-head{
+    position: relative;
+    height: 44PX;
+    line-height: 44PX;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+.edit-head .close{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    width: 44px;
+    color: orange;
+    cursor: pointer;
+}
+.edit-body{
+    
+    padding:10px;
+    padding-bottom: 25px;
+    background-color:#FFFFFF ;
+}
+
+.edit-body span{
+    display: block;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+.edit-body input{
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    border: solid 1px #b4b9bd;
+    font-size: 14px;
+    padding-left: 8px;
+}
+.edit-body input::placeholder{
+    color: pink;
+    font-size: 10px;
+    }
+.edit-body input:focus{
+    border: 2px solid #03a9f4;
+    outline: #03a9f4;
+}
+.edit-body button{
+    height: 30px;
+    margin-top: 30px;
+    margin-left: 80px;
+    width: 60px;
+    border-radius: 5px;
+    border: transparent;
+    font-size: 14px;
+}
+.edit-body button:hover{
+    border: 2px solid #90d8fa;
+}
+/* 弹窗部分 结束 */
+/* 删除确认弹窗部分 开始 */
+.delete{
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 2;
+    background-color: rgba(0,0,0,.3);
+}
+.delete-content{
+    width: 400px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 20px;
+    overflow: hidden;
+}
+.delete-head{
+    position: relative;
+    height: 44PX;
+    line-height: 44PX;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+.delete-head .close{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    width: 44px;
+    color: orange;
+    cursor: pointer;
+}
+.delete-body{
+    padding:10px;
+    height: 216px;
+    background-color:#FFFFFF ;
+}
+.delete-body button{
+    height: 30px;
+    margin-left: 80px;
+    width: 60px;
+    border-radius: 5px;
+    border: transparent;
+    font-size: 14px;
+}
+.delete-body button:hover{
+    border: 2px solid #90d8fa;
+}
+.delete-body span{
+    display: block;
+    margin-left: 50px;
+    margin-top: 10px;
+}
+/* 弹窗部分 结束 */
+.bottomInfo{
+    position: absolute;
+    left: 600px;
+    top:860px;
+    font-size: 10px;
+    text-align: center;
+}

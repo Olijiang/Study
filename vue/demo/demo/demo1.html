@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- 事件处理 -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>欢迎来到{{name}}学习</h2>
+        <!-- 调用函数时没有传递任何参数 -->
+        <button @click="showInfo1">点我提示信息1</button>
+    </div>
+    <p>------------------------------------</p>
+    <div id="root1">
+        <!-- $event表示这个参数是事件对象而不是自定义的实参 -->
+        <button @click="showInfo1($event, 22)">点我提示信息1</button>
+    </div>
+
+    
+    <p>基本事件------------------------------------</p>
+    <div id="root2">
+        <!--  prevent事件 -->
+        <!-- a标签的默认行为是跳转到指定的页面，prevent阻止跳转，只执行函数 -->
+        <a href="http://www.baidu.com" @click="showInfo">点我跳转</a>
+        <p>.prevent事件, 只执行函数, 不跳转页面</p>
+        <a href="http://www.baidu.com" @click.prevent="showInfo">点我跳转</a>
+        <!-- 事件只会执行一次，之后再点击也不会触发事件了 -->
+        <p>.once事件, 以下按钮只会执行一次</p>
+        <button @click.once="showInfo"> 按钮 </button>
+        <p>------------------------------------</p>
+        <p>.stop事件, 阻止事件冒泡</p>
+        <!-- div标签是外层标签，拥有与内层标签一致的点击事件 -->
+        <div @click = "showInfo">
+            <!-- 默认点击按钮之后，内部标签的事件触发，外部标签的事件也会随之触发（事件冒泡） -->
+            <!-- 使用stop阻止了事件冒泡，不会触发外层标签的同一事件 -->
+            <button @click.stop = "showInfo"> 按钮 </button>
+        </div>
+        <!-- div标签是外层标签，拥有与内层标签一致的点击事件 -->
+        <!-- 使用了self事件，只有点击了外部事件才会触发，不监听事件冒泡 -->
+        <p>.self事件, 阻止事件冒泡</p>
+        <div @click.self = "showInfo">
+            <button @click= "showInfo"> 按钮 </button>
+        </div>  
+        <p>按键绑定</p>
+    </div>
+    
+    <div id="root3">
+        <!-- 只有按下并抬起回车键后才会执行对应的方法 -->
+        <input type="text" placeholder="请按下对应的按键" @keyup.enter="showInfo"></input>
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            name:'霍格沃茨',
+        },
+        
+        //定义的方法要写在methods对象中
+        methods:{
+            showInfo1(event, number){
+                
+                //event表示事件对象，target表示发生这个事件时的标签
+                //event可以更改成其他的任何字母（都表示事件对象）
+                console.log(event.target)
+                
+                //innerText表示标签中的文本
+                console.log(event.target.innerText)
+            },
+        }
+    })
+</script>
+<script type="text/javascript">
+    const vm1 = new Vue({
+        el:'#root1',
+        data:{
+            name:'霍格沃茨',
+        },
+        methods: {
+            showInfo1(event, number) {
+                // event表示事件对象，number表示接收的实参
+                console.log(event.target)
+                console.log('参数数字是' + number)
+            },
+        }
+    })
+</script>
+
+<script type="text/javascript">
+    new Vue({
+        el:'#root2',
+        data:{
+            name:'霍格沃茨'
+        },
+        methods:{
+            showInfo(){
+                alert('同学你好！')
+            }
+        }
+    })
+</script>
+
+<script type="text/javascript">
+    new Vue({
+        el:'#root3',
+        methods:{
+            showInfo(event){
+                alert(event.target.value)
+                console.log(event.key)
+                //获取按键编码
+                console.log(event.keyCode)
+            }
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<!-- 计算属性 -->
+<body>
+    <div id="root">
+        姓：<input type="text" v-model="firstName"> <br/><br/>
+        名：<input type="text" v-model="lastName"> <br/><br/>
+        <!-- 调用两次计算属性 -->
+        全名：<span>{{fullName}}</span> <br/><br/>
+        全名：<span>{{fullName}}</span>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+    Vue.config.productionTip = false
+
+    const vm = new Vue({
+        el:'#root',
+        data:{
+            firstName:'张',
+            lastName:'三',
+        },
+        methods: {
+        },
+
+        // 定义计算属性必须使用computed对象
+        computed:{
+            // 一个新的属性fullName，需要通过已有的属性计算出来
+            fullName:{
+                // 读取计算属性的值
+                get(){
+                    console.log('计算属性被调用了')
+                    // this表示Vue实例，读取data中的属性
+                    // 计算属性fullName依赖已有的属性
+                    return this.firstName + '-' + this.lastName
+                },
+                // 修改计算属性的值
+                set(value){
+                    console.log('set',value)
+                    const arr = value.split('-')
+                    // 修改data中的属性（依赖的已有属性）
+                    this.firstName = arr[0]
+                    this.lastName = arr[1]
+                }
+            }
+        },
+        watch:{
+        firstName(val){
+            // <!-- 当firstName属性值发生变化的时候，等待1秒再执行打印操作 -->
+            setTimeout(()=>{
+                console.log(val)
+            },1000);
+        }
+    }
+    })
+    
+
+
+</script>
+
+
+
+
+
+</html>

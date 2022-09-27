@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <style>
+        /* 中括号表示所有使用v-cloak属性的标签 */
+        [v-cloak]{
+            display:none;
+        }
+    </style>
+</head>
+
+<!-- 指令 -->
+
+<body>
+    <!-- 准备好一个容器-->
+    <div id="root">
+        <!-- v-text : 
+            与插值表达式的区别：v-text 会替换标签中的所有内容，而插值表达式不会替换 
+            该指令仅将所有数据渲染为文本，不会解析标签。
+         -->
+        <div>没有被替换，{{name}}</div>
+        <div v-text="name">会被覆盖掉哦</div>
+        <div v-text="str"></div>
+         <p>------------------------------------</p>
+        <!-- v-html : 向其所在的标签渲染指定的文本内容，与 v-text 的不同是，会解析标签。-->
+        <div>没有被替换，{{name}}</div>
+        <div v-html="name">会被覆盖掉哦</div>
+        <div v-html="str"></div>
+
+        <p>------------------------------------</p>
+        <!-- 使用 v-cloak 指令配合 css 样式的 display:none 属性，可以避免页面出现未经解析的模板。 -->
+        <h2 v-cloak>{{name}}</h2>
+
+        <p>------------------------------------</p>
+        <!-- v-once 所在的标签在初次动态渲染之后，就视为静态内容，之后的数据不会再改变。 -->
+        <h2 v-once>once修饰的标签不会改变 {{name}}</h2>
+
+        <button type="text" @click="changeName" >button</button>
+
+        <p>------------------------------------</p>
+        <!-- v-pre 可以让其所在的标签跳过 Vue 的解析，如果使用在没有指令语法或插值表达式的标签中，可以加快编译过程。 -->
+        <h2 v-pre>跳过解析 {{name}}</h2>
+
+        <p>------------------------------------</p>
+        <!-- 自定义标签 -->
+        <h2>
+            <!-- 在需要使用的位置使用 v-函数名 即可完成big函数内的功能 -->
+            <span v-big="n"></span>
+        </h2>   
+        <input type="text" v-model="n">
+        <p>------------------------------------</p>
+         <!-- 使用自定义指令v-fbind -->
+         <input type="text" v-fbind:value="n">
+         <button @click="n++">点我n+1</button>
+        
+    </div>
+</body>
+
+<script type="text/javascript">
+    new Vue({
+        el:'#root',
+        data:{
+            n:5,
+            name:'jack',
+            str:'<h3>你好啊！</h3>'
+        },
+        methods:{
+            changeName(){
+                this.name = "luci"
+            }
+        },
+        // 自定义指令
+        // 函数需要定义两个参数，参数1表示使用自定义指令所在标签的所有信息，参数2表示指令与绑定数据的一些信息。
+        directives:{
+            big(element,binding){
+                // console.log(element,binding) 
+                element.innerText = binding.value * 10
+            },
+            // 对象模式
+            fbind:{
+                //指令与标签成功绑定时会自动调用
+                bind(element,binding){
+                    console.log("bind")
+                    element.value = binding.value
+                }, 
+                //指令所在的标签被插入页面时会自动调用
+                inserted(element,binding){
+                    //获取焦点
+                    console.log("inser")
+                    // element.focus()
+                },
+                //指令所在的模板被重新解析时会自动调用
+                update(element,binding){
+                    element.value = binding.value
+                    console.log("update")
+                    // element.focus()
+                }
+            }
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 插值表达式获取data中的属性值 -->
+        <h3>你好，{{name}}</h3>
+        <!-- 单向绑定data中的属性值赋值给href属性 -->
+        <a v-bind:href="school.url.toUpperCase()">点我去{{school.name}}学习</a>
+        <!-- 简写方式 -->
+        <a :href="school.url">点我去学习</a>
+        <p>-------------------------------------------------</p>
+
+        <!-- 简写 -->
+        双向数据绑定：<input type="text" v-model="name"><br/>
+        <div> data属性的值:{{name}} </div>
+
+    </div>
+    </body>
+    
+    <script type="text/javascript">
+        
+        //阻止vue在启动时生成生产提示
+        Vue.config.productionTip = false 
+    
+        new Vue({
+            el:'#root',
+            data:{
+                name:'Jack',
+                school:{
+                    name:'霍格沃茨',
+                    url:'http://www.baidu.com',
+                }
+            }
+        })
+    </script>
+
+    <!-- person 对象中有 age 这个属性，但是 age 属性的值并不是固定的，可以随时读取，随时修改。 -->
+    <script type="text/javascript" >
+
+        let number = 12
+        let person = {
+            name:'张三',
+            sex:'男',
+        }
+
+        Object.defineProperty(person,'age',{
+
+            //当有人读取person的age属性时，get函数（getter）就会被调用，且返回值就是age此时的值
+            get(){
+                console.log('有人读取age属性，get方法被调用')
+                return number //返回定义的number变量值
+            },
+
+            //当有人修改person的age属性时，set函数（setter）就会被调用，且参数是要赋予age属性的值
+            set(value){
+                console.log('有人修改age属性，set方法被调用，修改值为',value)
+
+                //age的值取决于number，修改number的值就可以修改age的值
+                //并没有直接修改age属性值
+                number = value 
+            }
+        })
+    </script>
+    <!-- 想要通过obj2获取、修改obj中的数据，而不是直接操作obj -->
+    <script type="text/javascript" >
+
+        let obj = {
+            x:100
+        }
+        let obj2 = {
+            y:200
+        }
+
+        Object.defineProperty(obj2,'x',{
+            get(){
+                return obj.x
+            },
+            set(value){
+                obj.x = value
+            }
+        })
+    </script>
+
+    
+    
+</body>
+</html>

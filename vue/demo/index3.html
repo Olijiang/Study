@@ -79,20 +79,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(obj,index) in showStudent" :key="obj.index">
-                            <td style="width: 80px;"> {{index+1}}</td>
-                            <td style="width: 120px;"> {{obj.sid}}</td>
-                            <td style="width: 108px;"> {{obj.sname}}</td>
-                            <td style="width: 100px;"> {{obj.age}}</td>
-                            <td style="width: 95px;"> {{obj.grade}}</td>
-                            <td style="width: 95px;"> {{obj.cname}}</td>
-                            <td style="width: 180px;"> {{obj.telephone}}</td>
-                            <td style="width: 205px;"> {{obj.email}}</td>
-                            <td style="width: 110px;">
-                                <span @click.prevent="deleteItem(obj)">删除 </span>| |
-                                <span @click.prevent="editItem(obj)"> 编辑</span>
-                            </td>
-                        </tr>
+                        <transition-group tag="tr" name="list">
+                            <tr v-for="(obj,index) in showStudent" :key="obj.index">
+                                <td style="width: 80px;"> {{index+1}}</td>
+                                <td style="width: 120px;"> {{obj.sid}}</td>
+                                <td style="width: 108px;"> {{obj.sname}}</td>
+                                <td style="width: 100px;"> {{obj.age}}</td>
+                                <td style="width: 95px;"> {{obj.grade}}</td>
+                                <td style="width: 95px;"> {{obj.cname}}</td>
+                                <td style="width: 180px;"> {{obj.telephone}}</td>
+                                <td style="width: 205px;"> {{obj.email}}</td>
+                                <td style="width: 110px;">
+                                    <span @click.prevent="deleteItem(obj)">删除 </span>| |
+                                    <span @click.prevent="editItem(obj)"> 编辑</span>
+                                </td>
+                            </tr>
+                        </transition-group>
                     </tbody>
                 </table>
             </div>

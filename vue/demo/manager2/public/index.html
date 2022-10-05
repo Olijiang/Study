@@ -8,16 +8,7 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
 
     <style>
-      .el-popper.is-dark{
-          /* 类名中的空格用 . 代替 */
-          /* 取消侧边栏鼠标移上去显示提示 */
-          display: none !important;
-      }
-      
-      aside .el-sub-menu .el-menu-item{
-        /* 取消二级菜单出现横向滑动条 */
-        min-width: 180px !important;
-      }
+
     </style>
   </head>
   <body>
@@ -27,4 +18,22 @@
 
 </html>
 
-
+<style>
+body {
+   padding: 0;
+   margin: 0;
+ }
+.el-popper.is-dark{
+  /* 类名中的空格用 . 代替 */
+  /* 取消侧边栏鼠标移上去显示提示 */
+  display: none !important;
+}
+      
+aside .el-sub-menu .el-menu-item{
+  /* 取消二级菜单出现横向滑动条 */
+  min-width: 180px !important;
+}
+#app{
+  height: auto;
+}
+</style>

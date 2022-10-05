@@ -48,13 +48,14 @@ aside .el-menu-item-group__title {
 
 <script>
 
-import ComAPI from '@/api/ComAPI'
 
 export default {
     name: 'Aside',
+    props: {
+        sideData: Array
+    },
     data() {
         return {
-            sideData: [],
         }
     },
     methods: {
@@ -90,22 +91,21 @@ export default {
             return this.sideData.filter((p) => {
                 return p.children == null
             })
+
         },
         hasChild() {
             return this.sideData.filter((p) => {
                 return p.children != null
             })
+
         },
     },
-    created() {
-        let type = this.$store.state.token.type
-        ComAPI.post('/getAside', type)
-            .then(res => {
-                this.sideData = res.data
-                // console.log(res.data);
-            }).catch(err => {
-                console.log(err);
-            })
+    watch: {
+        // activeIndex: function () {
+        //     this.$router.push({
+        //         name: this.$store.state.currentTag.path
+        //     })
+        // }
     }
 }
 </script>

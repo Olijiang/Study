@@ -33,23 +33,18 @@ export default {
     },
     computed: {
         username() {
-            return this.$store.state.token.username
+            return this.$store.state.userInfo.userName
         },
         usertype() {
-            return this.$store.state.token.type
+            return this.$store.state.userInfo.userType
         }
     }
 }
 </script>
 
 <style scoped>
-
-</style>
-
-
-<style>
-.el-card__body {
-    padding: 10px;
+.el-card {
+    border-radius: 20px !important;
 }
 
 .user-info {
@@ -71,6 +66,7 @@ export default {
 }
 
 .box-card {
+    position: absolute;
     width: 480px;
 }
 </style>

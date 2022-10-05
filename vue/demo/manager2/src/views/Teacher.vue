@@ -1,28 +1,37 @@
 <template>
-    <Mytable :tableData=data></Mytable>
+    <Mytable v-if="dataOK" :tableData=data></Mytable>
 </template>
 
 <script>
-import ComAPI from '@/api/ComAPI'
 import Mytable from '../components/Mytable.vue'
+import ComAPI from '@/utils/ComAPI';
 export default {
     name: 'Teacher',
     data() {
         return {
-            data: {}
+            data: {},
+            dataOK: false
         }
     },
     components: {
         Mytable
     },
+    computed: {
+        requested() {
+            return this.$store.state.requested
+        }
+    },
     mounted() {
-        ComAPI.get('/getTeachers')
-            .then(res => {
+        console.log("请求teacher配置");
+        let data = { type: "教师" }
+        ComAPI.get('/tableConfig/get', data).then(res => {
+            if (res.code == 200) {
                 this.data = res
-                // console.log(res.data);
-            }).catch(err => {
-                console.log(err);
-            })
-    }
+                this.data.config = JSON.parse(this.data.config)
+                this.dataOK = true
+            }
+        })
+    },
+
 }
 </script>

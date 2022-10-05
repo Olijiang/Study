@@ -51,6 +51,7 @@
 </template>
 
 <script>
+
 import { ElMessage } from 'element-plus'
 export default {
     name: 'Header',
@@ -71,7 +72,7 @@ export default {
         handleCommand(command) {
             if (command === '退出账户') {
                 this.$store.commit('clear')
-                this.$router.push({ name: 'Login' });
+                this.$router.replace({ name: 'Login' });
                 ElMessage({
                     showClose: true,
                     message: '退出成功',
@@ -96,6 +97,7 @@ export default {
             // 提交store关闭当前tag，路由跳转过去
             this.$store.commit('removeTag', tag)
             this.$router.push({ name: this.currentTag.path })
+            // console.log(this.$parent.$parent);
         }
     },
     computed: {

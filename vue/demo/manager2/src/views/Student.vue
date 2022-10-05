@@ -1,28 +1,56 @@
 <template>
-    <Mytable :tableData=data></Mytable>
+
+    <Mytable v-if="dataOK" :tableData=data></Mytable>
+
 </template>
 
 <script>
-import ComAPI from '@/api/ComAPI'
 import Mytable from '../components/Mytable.vue'
+import ComAPI from '@/utils/ComAPI';
 export default {
     name: 'Student',
     data() {
         return {
-            data: {}
+            data: {
+                config: {}
+            },
+            dataOK: false,
         }
     },
     components: {
         Mytable
     },
+    computed: {
+        requested() {
+            return this.$store.state.requested
+        }
+    },
     mounted() {
-        ComAPI.get('/getStudents')
-            .then(res => {
+        console.log("请求student配置");
+        let data = { type: "学生" }
+        ComAPI.get('/tableConfig/get', data).then(res => {
+            if (res.code == 200) {
                 this.data = res
+                this.data.config = JSON.parse(this.data.config)
+                this.dataOK = true
                 // console.log(res);
-            }).catch(err => {
-                console.log(err);
-            })
-    }
+            }
+        })
+    },
+    // activated() {
+    //     // requested在每次添加tag是变为true
+    //     if (this.requested) {
+    //         console.log("请求student配置2");
+    //         ComAPI.get('/studentMenu/get').then(res => {
+    //             if (res.code == 200) {
+    //                 this.data = res
+    //                 this.data.config = JSON.parse(this.data.config)
+    //                 this.dataOK = true
+    //                 // console.log(res);
+    //             }
+    //         })
+    //     }
+    // }
+
 }
 </script>

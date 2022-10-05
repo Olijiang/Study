@@ -4,11 +4,16 @@ import { createStore } from "vuex";
 const store = createStore({
   state() {
     return {
-      token:{
-        type:'未登录'
+      requested: false,   // 新增 tab 的改为true， 页面数据重新请求 
+      userInfo: {
+        uid: "",
+        userName: "",
+        userType: "",
+        token: "",
+        routers: [], // 接收的动态路由
+        routersX: ["Home", "Main", "Error", "Login", "404"] // 已经添加的路由
       },
       isCollapse: false,
-      activeIndex: "",
       currentTag: {
         index: "1",
         path: "Home",
@@ -18,34 +23,73 @@ const store = createStore({
     };
   },
   mutations: {
-    clear(state){
-      state.token.type='未登录',
-      state.isCollapse= false,
-      state.activeIndex= "",
-      state.tags= [],
-      state.currentTag= {
+    clear(state) {
+      state.requested = false;
+      state.isCollapse = false;
+      state.tags = [];
+      state.userInfo = {
+        uid: "",
+        userName: "",
+        userType: "",
+        token: "",
+        routers: [],
+        routersX: ["Home", "Main", "Error", "Login"]
+      };
+      state.currentTag = {
         index: "1",
         path: "Home",
         itemName: "首页",
-      }
+      };
     },
-    addToken(state, token){
-      state.token = token
+
+    setRouters(state, routerData) {
+      // 设置路由信息
+      routerData.forEach(element => {
+        if (element.children) {
+          element.children.forEach(child => { //二级路由
+            if (!state.userInfo.routersX.includes(child.path)) {
+              let e = {
+                path: child.path,
+                name: child.path,
+                index: child.index,
+                label: child.itemName
+              }
+              state.userInfo.routersX.push(child.path)
+              state.userInfo.routers.push(e)
+            }
+          })
+        } else {
+          if (!state.userInfo.routersX.includes(element.path)) {
+            let e = {
+              path: element.path,
+              name: element.path,
+              index: element.index,
+              label: element.itemName
+            }
+            state.userInfo.routersX.push(e.path)
+            state.userInfo.routers.push(e)
+          }
+        }
+      })
+      // // console.log(state.userInfo.routers);
     },
-    removeToken(state){
-      state.token = ''
+    addToken(state, res) {
+      state.userInfo.uid = res.uid;
+      state.userInfo.userName = res.userName;
+      state.userInfo.userType = res.userType;
+      state.userInfo.token = res.token;
     },
     foldMenu(state) {
       state.isCollapse = !state.isCollapse;
     },
-    changeTag(state, tag){
+    changeTag(state, tag) {
       // 改变当前激活对象，将 tag标签 设置 高亮
-      state.currentTag = tag
-      for(let i=0; i<state.tags.length; i++) {
-        if(state.tags[i].index === state.currentTag.index){
-          state.tags[i].type = 'success'
-        }else{
-          state.tags[i].type = ''
+      state.currentTag = tag;
+      for (let i = 0; i < state.tags.length; i++) {
+        if (state.tags[i].index === state.currentTag.index) {
+          state.tags[i].type = "success";
+        } else {
+          state.tags[i].type = "";
         }
       }
     },
@@ -58,8 +102,10 @@ const store = createStore({
       // 找不到再添加
       if (index === -1) {
         state.tags.push(state.currentTag);
+        // 数据重新请求
+        state.requested = true
       }
-      this.commit('changeTag', state.currentTag)
+      this.commit("changeTag", state.currentTag);
     },
     removeTag(state, Deletetag) {
       let index = this.state.tags.findIndex((tag) => {
@@ -67,23 +113,23 @@ const store = createStore({
       });
       //找到该元素，使用splice方法删除元素
       // console.log("index", index);
-      let tempTag = state.tags[index]
+      let tempTag = state.tags[index];
       this.state.tags.splice(index, 1);
       //if删除的激活标签, 激活切换下一个标签
-      if(tempTag.index === state.currentTag.index){
-        if(state.tags.length>0){
-          if(index>0){
-            state.currentTag = state.tags[index-1]
-          }else{
-            state.currentTag = state.tags[0]
+      if (tempTag.index === state.currentTag.index) {
+        if (state.tags.length > 0) {
+          if (index > 0) {
+            state.currentTag = state.tags[index - 1];
+          } else {
+            state.currentTag = state.tags[0];
           }
-          this.commit('changeTag',state.currentTag)
-        }else{
+          this.commit("changeTag", state.currentTag);
+        } else {
           state.currentTag = {
             index: "1",
             path: "Home",
             itemName: "首页",
-          }
+          };
         }
       }
     },

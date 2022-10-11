@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-
+import router from "@/router";
 // 创建一个新的 store 实例
 const store = createStore({
   state() {
@@ -10,14 +10,13 @@ const store = createStore({
         userName: "",
         userType: "",
         token: "",
-        routers: [], // 接收的动态路由
-        routersX: ["Home", "Main", "Error", "Login", "404"] // 已经添加的路由
       },
+      routers: [], // 接收的动态路由
       isCollapse: false,
       currentTag: {
-        index: "1",
-        path: "Home",
-        itemName: "首页",
+        path: "/Home",
+        label: "首页",
+        name: "Home"
       },
       tags: [],
     };
@@ -32,47 +31,35 @@ const store = createStore({
         userName: "",
         userType: "",
         token: "",
-        routers: [],
-        routersX: ["Home", "Main", "Error", "Login"]
       };
+      state.routers = [];
       state.currentTag = {
-        index: "1",
-        path: "Home",
-        itemName: "首页",
+        path: "/Home",
+        label: "首页",
+        name: "Home"
       };
+    },
+    saveRouters(state, routers) {
+      state.routers = routers
+    },
+    // 注册路由
+    addRouters(state) {
+      const routers = state.routers
+      this.commit('addRouter', routers)
+    },
+    addRouter(state, routers) {
+      // console.log(routers);
+      routers.forEach((p) => {
+        let route = {
+          name: p.name,
+          path: p.path,
+          component: () => import('@/views/' + p.name + '.vue')
+        }
+        router.addRoute('Main', route)
+        if (p.children) this.commit('addRouter', p.children)
+      })
     },
 
-    setRouters(state, routerData) {
-      // 设置路由信息
-      routerData.forEach(element => {
-        if (element.children) {
-          element.children.forEach(child => { //二级路由
-            if (!state.userInfo.routersX.includes(child.path)) {
-              let e = {
-                path: child.path,
-                name: child.path,
-                index: child.index,
-                label: child.itemName
-              }
-              state.userInfo.routersX.push(child.path)
-              state.userInfo.routers.push(e)
-            }
-          })
-        } else {
-          if (!state.userInfo.routersX.includes(element.path)) {
-            let e = {
-              path: element.path,
-              name: element.path,
-              index: element.index,
-              label: element.itemName
-            }
-            state.userInfo.routersX.push(e.path)
-            state.userInfo.routers.push(e)
-          }
-        }
-      })
-      // // console.log(state.userInfo.routers);
-    },
     addToken(state, res) {
       state.userInfo.uid = res.uid;
       state.userInfo.userName = res.userName;
@@ -86,7 +73,7 @@ const store = createStore({
       // 改变当前激活对象，将 tag标签 设置 高亮
       state.currentTag = tag;
       for (let i = 0; i < state.tags.length; i++) {
-        if (state.tags[i].index === state.currentTag.index) {
+        if (state.tags[i].name === state.currentTag.name) {
           state.tags[i].type = "success";
         } else {
           state.tags[i].type = "";
@@ -96,7 +83,7 @@ const store = createStore({
     addTag(state) {
       //let一个index来接收findIndex的结果，这里arrText为要查找的数组
       let index = this.state.tags.findIndex((tag) => {
-        return tag.index === state.currentTag.index;
+        return tag.name === state.currentTag.name;
       });
       // console.log("index", index);
       // 找不到再添加
@@ -109,14 +96,14 @@ const store = createStore({
     },
     removeTag(state, Deletetag) {
       let index = this.state.tags.findIndex((tag) => {
-        return tag.index === Deletetag.index;
+        return tag.name === Deletetag.name;
       });
       //找到该元素，使用splice方法删除元素
       // console.log("index", index);
       let tempTag = state.tags[index];
       this.state.tags.splice(index, 1);
       //if删除的激活标签, 激活切换下一个标签
-      if (tempTag.index === state.currentTag.index) {
+      if (tempTag.name === state.currentTag.name) {
         if (state.tags.length > 0) {
           if (index > 0) {
             state.currentTag = state.tags[index - 1];
@@ -126,9 +113,9 @@ const store = createStore({
           this.commit("changeTag", state.currentTag);
         } else {
           state.currentTag = {
-            index: "1",
-            path: "Home",
-            itemName: "首页",
+            name: "Home",
+            path: "/Home",
+            label: "首页",
           };
         }
       }

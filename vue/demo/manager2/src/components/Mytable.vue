@@ -21,11 +21,12 @@
             </el-col>
             <el-col :span="5"> </el-col>
             <el-col :span="1">
-                <el-button type="primary" plain @click="addMenber" style="width: 80px;">添加{{dialogData.userType}}
+                <el-button type="primary" size="small" plain @click="addMenber" style="width: 80px;">
+                    添加{{dialogData.userType}}
                 </el-button>
             </el-col>
         </el-row>
-
+        <!-- dialog -->
         <el-dialog v-model="dialogFormVisible" :close-on-click-modal=false :title="dialogData.title" width="400px"
             @close='cancelDialog' style=" border-radius: 30px; opacity: 0.9;background-color: aliceblue;"
             @keyup.enter='confirm'>
@@ -42,7 +43,6 @@
                         :disabled="cacldisable(item.attr, dialogData.oprate)" style="margin-right: 50px;" />
                 </el-form-item>
             </el-form>
-
             <template #footer>
                 <span class="dialog-footer">
                     <el-button @click="dialogFormVisible=false">取消</el-button>
@@ -51,6 +51,7 @@
             </template>
         </el-dialog>
 
+        <!-- table主体 -->
         <el-table v-loading="pageLoading" id="mytable" :data="dataList" stripe height="674"
             style="width: fit-content;margin-top: 10px;" @selection-change="handleSelectionChange" border
             @filter-change="filterChange">
@@ -85,10 +86,12 @@ import ComAPI from '@/utils/ComAPI';
 export default {
     data() {
         return {
+            // 分页参数
             total: 10,
             pageLoading: false,
             currentPage: 1,
             pageSize: 15,
+            // dialog参数
             dialogFormVisible: false,
             dialogData: {
                 userType: '',
@@ -116,6 +119,7 @@ export default {
                 status: { required: true, message: '请选择用户身份', trigger: 'blur' },
             },
 
+            // 查询参数
             queryConfig: {
                 query1: '', //查询关键字绑定变量
                 query2: '',
@@ -138,7 +142,7 @@ export default {
             multipleSelection: [],
 
             // 存放查询筛选的条件
-            filterSet: {}
+            filterSet: {}   // 属性:[值]
         }
     },
     props: {
@@ -150,8 +154,6 @@ export default {
             immediate: true,
             deep: true,
             handler() {
-                // console.log("tableData", this.tableData);
-                // this.dataList = this.tableData.data   //列表数据
                 this.headerList = this.tableData.config.tableHeader   //表头数据
                 this.queryConfig = this.tableData.config.queryConfig
                 this.dialogData = this.tableData.config.dialog
@@ -192,9 +194,11 @@ export default {
             let data = {
                 current: this.currentPage,
                 pageSize: this.pageSize,
-                filter: []  //{ attr = "", values = [] }
+                filter: [],  //{ attr = "", values = [] }
+                type: this.dialogData.userType
             };
             let n = 0
+            // console.log(this.filterSet);
             for (let attr in this.filterSet) {
                 if (this.filterSet[attr].length > 0) {
                     data.filter.push({ "attr": attr, "values": [] })
@@ -325,41 +329,31 @@ export default {
             })
         },
         queryOne() {
-            this.dataList = this.tableData.data.filter((p) => {
-                // 从头开始匹配
-                // let pat = "/^" + this.queryConfig.query1 + "/"
-                // for (let key in p) {
-                //     if (key === this.queryConfig.attr1) {
-                //         let value = p[key]
-                //         return value.match(eval(pat)) !== null
-                //     }
-                // }
-                // 包含内容即可
-                for (let key in p) {
-                    if (key === this.queryConfig.attr1) {
-                        let value = p[key]
-                        return value.indexOf(this.queryConfig.query1) !== -1
-                    }
-                }
-            })
+            // 将查询条件构造到filterSet中  属性:[值]
+            this.filterSet[this.queryConfig.attr1] = []
+            this.filterSet[this.queryConfig.attr1].push(this.queryConfig.query1)
+            this.getTableData();
         },
         queryTwo() {
-            this.dataList = this.tableData.data.filter((p) => {
-                // let pat = "/^" + this.queryConfig.query2 + "/"
-                // for (let key in p) {
-                //     if (key === this.queryConfig.attr2) {
-                //         let value = p[key]
-                //         return value.match(eval(pat)) !== null
-                //     }
-                // }
-                // 包含内容即可
-                for (let key in p) {
-                    if (key === this.queryConfig.attr2) {
-                        let value = p[key]
-                        return value.indexOf(this.queryConfig.query2) !== -1
-                    }
-                }
-            })
+            this.filterSet[this.queryConfig.attr2] = []
+            this.filterSet[this.queryConfig.attr2].push(this.queryConfig.query2)
+            this.getTableData();
+            // this.dataList = this.tableData.data.filter((p) => {
+            // let pat = "/^" + this.queryConfig.query2 + "/"
+            // for (let key in p) {
+            //     if (key === this.queryConfig.attr2) {
+            //         let value = p[key]
+            //         return value.match(eval(pat)) !== null
+            //     }
+            // }
+            // 包含内容即可
+            //     for (let key in p) {
+            //         if (key === this.queryConfig.attr2) {
+            //             let value = p[key]
+            //             return value.indexOf(this.queryConfig.query2) !== -1
+            //         }
+            //     }
+            // })
             // 排序
         },
         handleEdit(index, row) {

@@ -5,8 +5,7 @@ import router from "./router";
 import "element-plus/dist/index.css";
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 import store from "./store";
-import "./utils/mock.js";
-import zhCn from 'element-plus/es/locale/lang/zh-cn'
+// import "./utils/mock.js";
 
 const app = createApp(App).use(router).use(store);
 
@@ -14,6 +13,9 @@ const app = createApp(App).use(router).use(store);
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component);
 }
+
+
+
 
 
 // //在页面加载时读取sessionStorage里的状态信息

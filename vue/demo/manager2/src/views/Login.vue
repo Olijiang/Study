@@ -91,7 +91,7 @@ export default {
                     this.loginForm.password = md5(this.loginForm.password + salt)   //加时间戳加密
                     // console.log("login ", this.loginForm);
                     ComAPI.post('/login', this.loginForm).then((res) => {
-                        // console.log(res);
+                        console.log(res);
                         if (res.code === 200) {
                             this.$store.commit('addToken', res)
                             this.$router.push({ name: 'Main' })

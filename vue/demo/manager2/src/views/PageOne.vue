@@ -3,17 +3,7 @@
   <el-drawer ref="drawerRef" v-model="dialog" title="I have a nested form inside!" :before-close="handleClose"
     direction="rtl" custom-class="demo-drawer">
     <div class="demo-drawer__content">
-      <el-form :model="form">
-        <el-form-item label="Name" :label-width="formLabelWidth">
-          <el-input v-model="form.name" autocomplete="off" />
-        </el-form-item>
-        <el-form-item label="Area" :label-width="formLabelWidth">
-          <el-select v-model="form.region" placeholder="Please select activity area">
-            <el-option label="Area1" value="shanghai" />
-            <el-option label="Area2" value="beijing" />
-          </el-select>
-        </el-form-item>
-      </el-form>
+
       <div class="demo-drawer__footer">
         <el-button @click="cancelForm">Cancel</el-button>
         <el-button type="primary" :loading="loading" @click="onClick">{{
@@ -22,6 +12,7 @@
       </div>
     </div>
   </el-drawer>
+
   <el-dropdown trigger="click">
     <span class="el-dropdown-link">
       Dropdown List<el-icon class="el-icon--right">

@@ -13,7 +13,6 @@ const routes = [
     redirect: Home,
     children: [
       {
-        index: '1',
         lable: '首页',
         path: 'Home',
         name: 'Home',
@@ -40,20 +39,20 @@ const routes = [
       //   name: 'User',
       //   component: () => import('../views/User.vue'),
       // },
-      {
-        index: '5-1',
-        lable: '页面1',
-        path: 'PageOne',
-        name: 'PageOne',
-        component: () => import('../views/PageOne.vue'),
-      },
-      {
-        index: '5-2',
-        lable: '页面2',
-        path: 'PageTwo',
-        name: 'PageTwo',
-        component: () => import('../views/PageTwo.vue'),
-      },
+      // {
+      //   index: '5-1',
+      //   lable: '页面1',
+      //   path: 'PageOne',
+      //   name: 'PageOne',
+      //   component: () => import('../views/PageOne.vue'),
+      // },
+      // {
+      //   index: '5-2',
+      //   lable: '页面2',
+      //   path: 'PageTwo',
+      //   name: 'PageTwo',
+      //   component: () => import('../views/PageTwo.vue'),
+      // },
       {
         path: 'Error',
         name: 'Error',
@@ -92,9 +91,6 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 
   const token = store.state.userInfo.token;
-  const routersX = store.state.userInfo.routersX
-  // console.log("token : ", token);
-
   if (token === "" && to.name !== "Login") {
     //未登录不能访问其他页面
     ElMessage({
@@ -115,44 +111,37 @@ router.beforeEach((to, from, next) => {
     return next({ name: "Main" });
   }
 
-  // 添加路由
-  const routers = store.state.userInfo.routers
-  if (routers != null) {
-    routers.forEach(e => {
-      const route = {
-        path: e.path,
-        component: () => import('@/views/' + e.name + '.vue'),
-        name: e.name,
-        index: e.index,
-        lable: e.label
-      }
-      router.addRoute('Main', route)
-    })
+  // 注册路由
+  store.commit('addRouters')
 
-    // 刷新后 to.name 为空, 无法跳转页面, 做特殊处理
-    if (!to.name) {
-      // 获取路由name
-      let toname = to.path.split('/').pop()
-      //判断 这个name存不存在
-      if (routersX.includes(toname)) {
-        // 存在, 重定向到这个页面, to.name 变为之前页面路由的 toname
-        return next({ name: toname });
-      } else {
-        // 不存在, 定位到错误页面
-        next({ name: "Error" });
-      }
-
-    }
-    console.log(from.name, "跳转->", to.name);
-
-    if (router.hasRoute(to.name)) {
-      next();
+  console.log(from.name, "跳转->", to.name);
+  // 刷新后 to.name 为空, 无法跳转页面, 做特殊处理
+  if (!to.name) {
+    // 获取路由name
+    let toname = to.path.split('/').pop()
+    //判断 这个name存不存在
+    if (router.hasRoute(toname)) {
+      // 存在, 重定向到这个页面, to.name 变为之前页面路由的 toname
+      return next({ name: toname });
     } else {
-      next({ name: "404" });
+      // 不存在, 定位到错误页面
+      next({ name: "Error" });
     }
-
-
   }
+  else {
+    next();
+  }
+
+
+
+  // if (router.hasRoute(to.name)) {
+  //   next();
+  // } else {
+  //   next({ name: "404" });
+  // }
+
+
+
 });
 
 

@@ -34,6 +34,7 @@ export default {
         return {
             AideData: [],
             AideDataOK: false,
+            userInfo: []    // 个人信息的config
         };
     },
     components: {
@@ -44,11 +45,32 @@ export default {
 
     },
     created() {
-        console.log("请求menuData");
         ComAPI.get('/menu/get').then(res => {
             if (res.code == 200) {
-                this.AideData = JSON.parse(res.menuData)
-                this.$store.commit("setRouters", this.AideData) //路由信息包含着menuData中
+                let parents = res.menuData.filter((c) => c.pid == 0),  //1
+                    childrens = res.menuData.filter((c1) => c1.pid != 0);  //3
+                function tree(parents, childrens) {
+                    parents.forEach((v) => {
+                        childrens.forEach((c, i) => {
+                            if (v.id === c.pid) {
+                                //对象拷贝
+                                let _c = JSON.parse(JSON.stringify(childrens));
+                                _c.splice(i, 1);
+                                // childrens.splice(i, 1);
+                                if (v.children) {
+                                    v.children.push(c);
+                                } else {
+                                    v.children = [c];
+                                }
+                                tree([c], _c);
+                            }
+                        });
+                    });
+                }
+                tree(parents, childrens);
+                this.$store.commit("saveRouters", parents) //路由信息包含着menuData中
+                this.AideData = parents
+                // console.log(parents);
                 this.AideDataOK = true
             }
         })
@@ -61,23 +83,7 @@ export default {
         AideData: {
             immediate: true,
             handler() {
-                //添加动态路由  数据拿过来就要加载一次
-                const routers = this.$store.state.userInfo.routers
-                // console.log("routers", routers);
-                if (routers != null) {
-                    // console.log("routers", routers);
-                    routers.forEach(e => {
-                        const route = {
-                            path: e.path,
-                            component: () => import('@/views/' + e.name + '.vue'),
-                            name: e.name,
-                            index: e.index,
-                            lable: e.label
-                        }
-                        // console.log("router", route);
-                        this.$router.addRoute('Main', route)
-                    })
-                }
+                this.$store.commit('addRouters')
             }
         }
     }

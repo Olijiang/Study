@@ -11,13 +11,13 @@
 
 
     <p style="float: left;margin: 0;width: 80px;text-align: left;padding-left: 10px;}">
-        {{ currentTag.itemName }}
+        {{ currentTag.label }}
     </p>
 
     <div class="tags" v-for="tag in tags" :key="tag.index">
 
-        <el-tag @close="handleClose(tag)" @click="handleClick(tag)" class="mx-1" closable :type=tag.type>
-            {{ tag.itemName }}
+        <el-tag @close="handleTagClose(tag)" @click="handleTagClick(tag)" class="mx-1" closable :type=tag.type>
+            {{ tag.label }}
         </el-tag>
 
     </div>
@@ -46,22 +46,140 @@
         </template>
     </el-dropdown>
 
+    <!-- 右侧抽屉 -->
+    <el-drawer ref="drawerRef" v-model="dialogVisible" title="个人信息维护" :before-close="handleClose" direction="rtl"
+        custom-class="demo-drawer" size="550">
+        <img src="../images/img.png"
+            style="width:150px;height:150px; border-radius:50%; margin-top: -20px;margin-bottom: 10px;" alt="头像" />
+        <div class="demo-drawer__content">
+            <el-form :model="dialog.data" :rules="rules" ref="dialogRef" style="width: 360px;">
+                <el-form-item v-for="(item, index) in dialog.config" :key="index" :label="item.label" label-width="80px"
+                    :prop="item.attr">
+                    <!-- 部分选择框 -->
+                    <el-select v-if="item.children" v-model="dialog.data[item.attr]"
+                        :placeholder="item.children.placeholder" style="width: 230px;"
+                        :disabled="cacldisable(item.attr)">
+                        <el-option v-for="option in item.children.data" :label="option" :value="option" />
+                    </el-select>
 
+                    <el-input v-else type="text" v-model="dialog.data[item.attr]" autocomplete="off" clearable
+                        :disabled="cacldisable(item.attr)" style="margin-right: 50px;" />
+                </el-form-item>
+            </el-form>
+            <div class="demo-drawer__footer">
+                <el-button @click="handleClose">取消</el-button>
+                <el-button type="primary" :loading="loading" @click="dialogSubmit">{{
+                loading ? '保存中 ...' : '保存'
+                }}</el-button>
+            </div>
+        </div>
+    </el-drawer>
 
 </template>
 
 <script>
 
 import { ElMessage } from 'element-plus'
+import ComAPI from '@/utils/ComAPI';
+
 export default {
     name: 'Header',
     data() {
         return {
+            // 抽屉参数
+            loading: false,
+            dialogVisible: false,
+            change: false,
+            rules: {    //dialog表单验证
+                id: [{ required: true, message: '请输入账号', trigger: 'blur' },
+                { min: 5, max: 10, message: '账号长度在5~10位', trigger: 'blur' }],
+                uid: [{ required: true, message: '请输入账号', trigger: 'blur' },
+                { min: 5, max: 10, message: '账号长度在5~10位', trigger: 'blur' }],
+                name: { required: true, message: '请输入姓名', trigger: 'blur' },
+                age: [{ required: true, message: '请输入年龄', trigger: 'blur' },
+                { pattern: /^\d{2}$/, message: '请输入合法的年龄', trigger: 'blur' }],
+                classId: { required: true, message: '请选择班级', trigger: 'blur' },
+                email: [{ required: true, message: '请输入邮箱', trigger: 'blur' },
+                { type: 'email', message: '请输入合法的邮箱', trigger: 'blur' }],
+                telephone: [{ required: true, message: '请输入手机号', trigger: 'blur' },
+                { pattern: /^\d{11}$/, message: '请输入合法的手机号', trigger: 'blur' }],
+                credential: { required: true, message: '请输入登录密码', trigger: 'blur' },
+                loginType: { required: true, message: '请选择登录类型', trigger: 'blur' },
+                status: { required: true, message: '请选择用户身份', trigger: 'blur' },
+            },
+
+            // 菜单收起icon变化
             icon1: true,
-            icon2: false
+            icon2: false,
+            dialog: {
+                config: [],
+                data: {}
+            }
         };
     },
     methods: {
+        dialogSubmit() {
+            this.$refs['dialogRef'].validate(valid => {
+                if (valid) {
+                    // 提交保存
+                    this.loading = true
+                    // 动画关闭需要一定的时间
+                    setTimeout(() => {
+                        // api 请求
+                        ComAPI.post()
+                        ElMessage({
+                            type: 'success',
+                            message: '保存成功',
+                        })
+                        this.dialogVisible = false
+                        this.change = false
+                        this.loading = false
+                    }, 400)
+                }
+            })
+        },
+        handleClose() {
+            if (this.change) {
+                ElMessageBox.confirm('是否保存?', {
+                    distinguishCancelAndClose: true,
+                    confirmButtonText: '保存',
+                    cancelButtonText: '不保存',
+                }).then(() => {
+                    // 验证表单
+                    this.$refs['dialogRef'].validate(valid => {
+                        if (valid) {
+                            this.loading = true
+                            // 动画关闭需要一定的时间
+                            setTimeout(() => {
+                                // api 请求
+                                ElMessage({
+                                    type: 'success',
+                                    message: '保存成功',
+                                })
+                                this.change = false
+                                this.dialogVisible = false
+                                this.loading = false
+                            }, 400)
+                        }
+                    })
+                }).catch((action) => {
+                    if (action == 'cancel') {
+                        // 点击关闭 关闭弹窗回到主页面
+                        this.dialogVisible = false
+                    } else {
+                        // 按ESC 啥也不干
+                    }
+                })
+            } else {
+                // 没有修改过直接关闭
+                this.dialogVisible = false
+            }
+            this.$refs['dialogRef'].clearValidate() //  重置表单验证结果
+        },
+        cacldisable(attr) {
+            // 计算属性是否可编辑
+            return false
+        },
         changeAside() {
             this.isCollapse = !this.isCollapse
             this.icon1 = !this.icon1
@@ -78,6 +196,18 @@ export default {
                     message: '退出成功',
                     type: 'success',
                 })
+            } else if (command === '个人信息') {
+                // 请求用户数据
+                ComAPI.get("/userInfo/get")
+                    .then(res => {
+                        this.dialog.data = res.user
+                        this.dialog.config = JSON.parse(res.userConfig)
+                        setTimeout(() => {
+                            this.change = false //修改标识符置零
+                        }, 100);
+
+                    })
+                this.dialogVisible = true
             } else {
                 ElMessage({
                     showClose: true,
@@ -87,16 +217,16 @@ export default {
             }
 
         },
-        handleClick(tag) {
+        handleTagClick(tag) {
             // 跳转 tag 页面， 更新 store 中的当前tag， 让 menu 高亮和 小title 同步更新
-            this.$router.push({ name: tag.path })
+            this.$router.push({ name: tag.name })
             this.$store.commit('changeTag', tag)
             // ElMessage(`clikc ${tag.itemName}`)
         },
-        handleClose(tag) {
+        handleTagClose(tag) {
             // 提交store关闭当前tag，路由跳转过去
             this.$store.commit('removeTag', tag)
-            this.$router.push({ name: this.currentTag.path })
+            this.$router.push({ name: this.currentTag.name })
             // console.log(this.$parent.$parent);
         }
     },
@@ -108,6 +238,18 @@ export default {
         currentTag() {
             return this.$store.state.currentTag
         }
+    },
+    watch: {
+        dialog: {
+            deep: true,
+            handler() {
+                this.change = true
+            }
+        }
+    },
+
+    mounted() {
+
     }
 }
 </script>

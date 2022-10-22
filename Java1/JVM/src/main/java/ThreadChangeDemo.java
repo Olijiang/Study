@@ -12,9 +12,7 @@ public class ThreadChangeDemo {
 
 	private static final int corePoolSize = 5;
 	private static final int minimumQueueCount = 10;
-
-
-
+	
 	public static void main(String[] args) throws InterruptedException {
 		ThreadPoolExecutor executor = new MyThreadPool(corePoolSize,corePoolSize,60,minimumQueueCount,"spring");
 		for (int i=0; i<100; i++){

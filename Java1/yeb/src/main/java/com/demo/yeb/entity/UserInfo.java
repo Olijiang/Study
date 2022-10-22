@@ -1,4 +1,4 @@
-package com.demo.yeb.controller;
+package com.demo.yeb.entity;
 
 import lombok.Data;
 
@@ -12,8 +12,9 @@ import lombok.Data;
 @Data
 public class UserInfo {
 
-	private String userId;
+	private int userId;
 	private String username;
+	private String password;
 	private String userType;
 
 }

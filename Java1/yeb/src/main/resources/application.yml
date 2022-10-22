@@ -1,1 +1,24 @@
+server:
+  port: 8888
+
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql:///yeb?serverTimezone=Asia/Shanghai
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: com.demo.entities
+  configuration:
+    map-underscore-to-camel-case: false
+
+
+logging:
+  level:
+    com.demo.yeb: debug
 

@@ -106,6 +106,9 @@ export default {
             this.$refs['loginRef'].resetFields()
         }
     },
+    mounted() {
+        ComAPI.get('/hello')
+    }
 }
 </script>
 

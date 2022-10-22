@@ -4,7 +4,7 @@ import router from "@/router";
 
 // 创建对象
 const instance = axios.create({
-  // baseURL: "http://localhost:8080",
+  // baseURL: "http://localhost:8888",
   timeout: 1000,
   // headers: {'X-Custom-Header': 'foobar'}
 });
@@ -32,7 +32,7 @@ instance.interceptors.response.use(
     if (response.data.code != 200) {
       switch (response.data.code) {
         case 401://token 过期
-          ElMessage({ 
+          ElMessage({
             showClose: true,
             message: response.data.message,
             type: 'warning',

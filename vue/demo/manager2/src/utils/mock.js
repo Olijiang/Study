@@ -1,6 +1,6 @@
 import Mock from "mockjs";
 
-const baseurl = "http://localhost:8888";
+const baseurl = "http://localhost:8080";
 
 function getAside(data) {
   // console.log(data.body);
@@ -834,6 +834,18 @@ Mock.mock(baseurl + "/user/update", (data) => {
     code: 200,
   };
 });
+
+
+Mock.mock(baseurl + "/hello", (data) => {
+  console.log("mock received:", data.body);
+  return {
+    code: 200,
+    data: "return data"
+  };
+});
+
+
+
 
 // Mock.mock(baseurl + "/login", (LoginData) => {
 //   console.log("mock received login:", LoginData);

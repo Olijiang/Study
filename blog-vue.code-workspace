@@ -1,0 +1,10 @@
+{
+    "folders": [
+        {
+            "path": "blog/blog-vue"
+        },
+        {
+            "path": "../Gtihub/blog/blog-vue"
+        }
+    ]
+}

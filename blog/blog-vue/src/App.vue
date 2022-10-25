@@ -1,16 +1,16 @@
 
 <template>
 
-  <header @mousemove="onMousemove(1,$event)" :style="{ backgroundColor: `hsl(${x%360}, 30%, 90%, 0.95)` }"
+  <header @mousemove="onMousemove(1, $event)" :style="{ backgroundColor: `hsl(${x%360}, 30%, 90%, 0.6)` }"
     :class="headerStyle">
     <navbar></navbar>
   </header>
 
-  <div class="main" @mousemove="onMousemove(2,$event)" :style=" { backgroundColor: `hsl(${y%360}, 30%, 90%, 0.3)` }">
-    <Main :headerState=headerState></Main>
+  <div class="main" @mousemove="onMousemove(2, $event)" :style="{ backgroundColor: `hsl(${y % 360}, 30%, 90%, 0.3)` }">
+    <Main></Main>
   </div>
 
-  <footer @mousemove="onMousemove(3,$event)" :style="{ backgroundColor: `hsl(${z%360}, 30%, 90%, 1)` }">@copyright
+  <footer @mousemove="onMousemove(3,$event)" :style="{ backgroundColor: `hsl(${z % 360}, 30%, 90%, 1)` }">@copyright
   </footer>
 
 </template>
@@ -41,19 +41,18 @@ function onMousemove(index, event) {
   }
 }
 
-// 控制header的出现和隐藏
+// 判断鼠标的上下滑动  1 up    0 down
 const headerStyle = ref("header-on")
-const headerState = ref(1)  // 用于给main中的部分组件控制状态
 let oldy = 0;
 onMounted(() => {
   window.addEventListener('scroll', () => {
-    const y = window.scrollY
-    if (y - oldy > 0 && y > 850) { // 向下滚动
+    var y = document.documentElement.scrollTop || document.body.scrollTop
+    if (y - oldy > 0) { // 向下滚动
       headerStyle.value = "header-off"
-      headerState.value = 0
+      // headerState.value = 0
     } else {
       headerStyle.value = "header-on"
-      headerState.value = 1
+      // headerState.value = 1
     }
     oldy = y;
   });
@@ -69,7 +68,6 @@ onMounted(() => {
 @transition: 0.3s all ease-in-out;
 
 .header-on {
-
   position: fixed;
   z-index: 99;
   width: 100%;
@@ -92,7 +90,7 @@ onMounted(() => {
 }
 
 .main {
-  margin-top: 50px;
+  position: relative;
   z-index: 0;
   flex: 1 0 auto;
   transition: @colortransition;

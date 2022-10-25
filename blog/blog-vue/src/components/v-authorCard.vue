@@ -24,8 +24,6 @@
             文章分类
         </div>
     </div>
-
-
 </template>
 
 
@@ -94,15 +92,14 @@ onMounted(() => {
         height: 150px;
         border-radius: 50%;
         object-fit: cover;
-    }
+        transition: all 0.8s ease;
 
-    &:hover {
-        img {
+        &:hover {
             transform: rotate(360deg);
-            transition: all 0.8s ease-in;
+            transition: all 0.8s ease;
+
         }
     }
-
 }
 
 .category {

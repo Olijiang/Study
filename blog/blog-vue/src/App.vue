@@ -10,8 +10,10 @@
     <Main></Main>
   </div>
 
-  <footer @mousemove="onMousemove(3,$event)" :style="{ backgroundColor: `hsl(${z % 360}, 30%, 90%, 1)` }">@copyright
+  <footer @mousemove="onMousemove(3, $event)" :style="{ backgroundColor: `hsl(${z % 360}, 30%, 90%, 1)` }">@copyright
   </footer>
+
+  <backToTopVue />
 
 </template>
 
@@ -19,7 +21,7 @@
 import { onMounted, ref } from 'vue';
 import navbar from '@/components/navbar.vue'
 import Main from '@/views/Main.vue'
-
+import backToTopVue from './components/backToTop.vue';
 // 控制背景颜色变化
 const x = ref(0)
 const y = ref(0)

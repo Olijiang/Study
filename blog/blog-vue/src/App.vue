@@ -3,11 +3,12 @@
 
   <vHeaderVue />
 
-  <div class="main" @mousemove="onMousemove(2, $event)" :style="{ backgroundColor: `hsl(${y % 360}, 30%, 90%, 0.3)` }">
+  <div class="main" @mousemove="onMousemove(1, $event)" :style="{ backgroundColor: `hsl(${y % 360}, 30%, 90%, 0.3)` }">
     <HomeVue></HomeVue>
   </div>
 
-  <footer @mousemove="onMousemove(3, $event)" :style="{ backgroundColor: `hsl(${z % 360}, 30%, 90%, 1)` }">@copyright
+  <footer @mousemove="onMousemove(2, $event)" :style="{ backgroundColor: `hsl(${x % 360}, 30%, 90%, 1)` }">
+    @copyright
   </footer>
 
   <backToTopVue />
@@ -15,13 +16,13 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import vHeaderVue from './components/v-header.vue';
 import HomeVue from './views/Home.vue';
 import backToTopVue from './components/backToTop.vue';
 // 控制背景颜色变化
+const x = ref(0)
 const y = ref(0)
-const z = ref(0)
 function onMousemove(index, event) {
   // console.log(event);
   switch (index) {
@@ -31,18 +32,12 @@ function onMousemove(index, event) {
     case 2:
       y.value = event.clientX
       break;
-    case 3:
-      z.value = event.clientX
-      break;
     default:
       break;
   }
 }
 
-
-
 </script>
-
 
 <style lang="less" scoped>
 @borderColor: #989898;

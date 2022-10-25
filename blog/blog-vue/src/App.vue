@@ -1,13 +1,10 @@
 
 <template>
 
-  <header @mousemove="onMousemove(1, $event)" :style="{ backgroundColor: `hsl(${x%360}, 30%, 90%, 0.6)` }"
-    :class="headerStyle">
-    <navbar></navbar>
-  </header>
+  <vHeaderVue />
 
   <div class="main" @mousemove="onMousemove(2, $event)" :style="{ backgroundColor: `hsl(${y % 360}, 30%, 90%, 0.3)` }">
-    <Main></Main>
+    <HomeVue></HomeVue>
   </div>
 
   <footer @mousemove="onMousemove(3, $event)" :style="{ backgroundColor: `hsl(${z % 360}, 30%, 90%, 1)` }">@copyright
@@ -19,11 +16,10 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import navbar from '@/components/navbar.vue'
-import Main from '@/views/Main.vue'
+import vHeaderVue from './components/v-header.vue';
+import HomeVue from './views/Home.vue';
 import backToTopVue from './components/backToTop.vue';
 // 控制背景颜色变化
-const x = ref(0)
 const y = ref(0)
 const z = ref(0)
 function onMousemove(index, event) {
@@ -43,22 +39,6 @@ function onMousemove(index, event) {
   }
 }
 
-// 判断鼠标的上下滑动  1 up    0 down
-const headerStyle = ref("header-on")
-let oldy = 0;
-onMounted(() => {
-  window.addEventListener('scroll', () => {
-    var y = document.documentElement.scrollTop || document.body.scrollTop
-    if (y - oldy > 0) { // 向下滚动
-      headerStyle.value = "header-off"
-      // headerState.value = 0
-    } else {
-      headerStyle.value = "header-on"
-      // headerState.value = 1
-    }
-    oldy = y;
-  });
-})
 
 
 </script>
@@ -69,27 +49,6 @@ onMounted(() => {
 @colortransition: 0.1s background-color ease-in-out;
 @transition: 0.3s all ease-in-out;
 
-.header-on {
-  position: fixed;
-  z-index: 99;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  box-shadow: 0px 0px 5px @borderColor;
-  transition: @colortransition, @transition;
-}
-
-.header-off {
-  opacity: 0.2;
-  transform: translate(0, -50px);
-  position: fixed;
-  z-index: 99;
-  width: 100%;
-  height: 50px;
-  line-height: 50px;
-  box-shadow: 0px 0px 5px @borderColor;
-  transition: @colortransition, @transition;
-}
 
 .main {
   position: relative;

@@ -13,7 +13,7 @@
 
 <script setup>
 
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const props = defineProps({
     time: Number,
@@ -35,9 +35,7 @@ function toTop() {
     let step    //步长
     let a   // 步长变化率, 匀速变化
     // 判断是否有指定 时间值
-    if (props.time < 0) {
-        throw "time cannot < 0"
-    }
+
     if (props.time == undefined) {
 
         if (y > 5000) {
@@ -48,6 +46,9 @@ function toTop() {
             a = (y - 50) / 1250
         }
     } else {
+        if (props.time < 0) {
+            throw "time cannot < 0"
+        }
         let stepN = props.time * 1000 / 10 //计算回到顶部所需要的步数
         a = 2 * (y - stepN) / (stepN * stepN)
         step = 1 + 2 * (y - step) / stepN
@@ -60,7 +61,7 @@ function toTop() {
             window.clearInterval(myTimer)
         }
         window.scrollTo(0, y) //这是值是指离开网页顶部的距离
-        initV -= a
+        step -= a
     }, 10);
 
     // document.documentElement.scrollTop = 0;

@@ -33,6 +33,8 @@ onMounted(() => {
 
 
 function toTop() {
+    // 检测用户滚动则打断回到顶部
+    window.addEventListener('mousewheel', () => { window.clearInterval(myTimer) })
     let y = document.documentElement.scrollTop || document.body.scrollTop
     // 步长按二次函数变化
     // 大致步数定位100步, 但实际中会少一些, 因为当前高度小于步长时会直接到顶部
@@ -48,6 +50,7 @@ function toTop() {
         window.scrollTo(0, y) //这是值是指离开网页顶部的距离
         step -= a
     }, 5);
+    window.removeEventListener('mousewheel')
 }
 
 </script>

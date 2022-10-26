@@ -2,7 +2,7 @@
     <div class=authorStyle>
         <!-- 作者信息 -->
         <div class="author">
-            <img src="../img/1.png" alt="">
+            <img :src=authorInfo.imgUrl alt="">
 
             <p class="author-name">{{ authorInfo.name }}
             </p>
@@ -30,23 +30,9 @@
 
 <script setup>
 
-import { onMounted } from 'vue';
+import { inject } from 'vue';
 
-
-const props = defineProps({
-    authorInfo: {
-        name: String,
-        desc: String,
-        articleN: Number,
-        categoryN: Number,
-        tagN: Number
-    }
-})
-
-onMounted(() => {
-    const authorInfo = props.authorInfo
-})
-
+const authorInfo = inject('authorInfo')
 
 </script>
 

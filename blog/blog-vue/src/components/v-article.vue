@@ -3,43 +3,45 @@
     <div class="timebar">
         <div class="time_node"></div>
         <div class="time_line"></div>
-        <div class="time_info">2020.12.12 || 时间趣闻</div>
+        <div class="time_info">{{ article.createTime }}</div>
     </div>
 
     <div v-if="article.index % 2 == 0" class="article_card">
         <div class="illustration-l">
-            <img :src=article.img alt="img">
+            <img :src=article.imgUrl alt="img">
         </div>
         <div class="content-r">
             <h3>{{ article.title }}</h3>
-            <span style="font-size: 80%;color: #858585"> 时间 || 分类 || 描述 </span>
+            <span style="font-size: 80%;color: #858585"> {{ article.category }} | {{ article.tag }}</span>
             <hr width="300px" align="left" />
-            <p>{{ article.abstract }}</p>
+            <p>{{ article.digest }}</p>
         </div>
     </div>
     <div v-else class="article_card">
         <div class="illustration-r">
-            <img :src=article.img alt="img">
+            <img :src=article.imgUrl alt="img">
         </div>
         <div class="content-l">
             <h3>{{ article.title }}</h3>
-            <span style="font-size: 80%;color: #858585"> 时间 || 分类 || 描述 </span>
+            <span style="font-size: 80%;color: #858585">{{ article.category }} | {{ article.tag }}</span>
             <hr width="300px" align="left" />
-            <p>{{ article.abstract }}</p>
+            <p>{{ article.digest }}</p>
         </div>
     </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
-
 
 defineProps({
     article: {
         index: Number,
         title: String,
-        abstract: String,
-        img: String,
+        createTime: String,
+        category: String, // 分类
+        tag: String,  // 标签
+        digest: String, //摘要
+        url: String, //正文地址
+        imgUrl: String, //插图地址
     },
 })
 
@@ -178,7 +180,6 @@ p {
     // font-size:%;
     margin: 10px 0 10px;
     text-indent: 2em; //首行缩进
-    line-height: 1.5;
-    font-family: "仿宋";
+    line-height: 1.6;
 }
 </style>

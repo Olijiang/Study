@@ -1,19 +1,18 @@
 <template>
 
     <div class="home-page">
-        <img src="../img/P1.jpg" alt="">
+        <img src="../img/P1.png" alt="">
     </div>
 
     <!-- 文章部分 -->
     <div class="article">
-        <template v-for="(aricle, index) in articles" :key=index>
+        <template v-for="(aricle, index) in articleList" :key=index>
             <vArticle :article=aricle />
         </template>
     </div>
     <div v-if="hasover" class="endmsg">已经到底了...</div>
 
-    <vAuthorCard :authorInfo=authorInfo />
-
+    <vAuthorCard />
 
 </template>
 
@@ -24,30 +23,11 @@
 import vArticle from '@/components/v-article.vue'
 import vAuthorCard from '@/components/v-authorCard.vue'
 import { ref } from 'vue';
+import { inject } from 'vue';
 
 const hasover = ref(false)
 
-const authorInfo = ref({
-    name: "神华里绫",
-    desc: "这是我的blog",
-    articleN: 99,
-    categoryN: 99,
-    tagN: 99
-})
-
-
-
-const articles = [
-    { index: 1, title: "段落标题段落标题段落标题段落标题段落标题", abstract: "段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要", img: "src/img/1.png" },
-    { index: 2, title: "段落标题", abstract: "段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要", img: "src/img/2.png" },
-    { index: 3, title: "段落标题", abstract: "段落摘要段落摘要", img: "src/img/3.png" },
-    { index: 4, title: "段落标题", abstract: "段落摘要段落摘要", img: "src/img/1.png" },
-    { index: 5, title: "段落标题", abstract: "段落摘要段落摘要", img: "src/img/2.png" },
-    { index: 6, title: "段落标题", abstract: "段落摘要段落摘要", img: "src/img/3.png" },
-    { index: 7, title: "段落标题", abstract: "段落摘要段落摘要", img: "src/img/1.png" },
-    { index: 8, title: "段落标题", abstract: "段落摘要段落摘要", img: "src/img/2.png" }
-]
-
+const articleList = inject('articleList')
 
 
 </script>
@@ -57,7 +37,6 @@ const articles = [
 .home-page {
     height: 900px;
     margin-bottom: 30px;
-    // box-shadow: 10px 10px 20px #d18888;
 
     img {
         opacity: 1;

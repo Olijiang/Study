@@ -1,9 +1,10 @@
 
 <template>
     <div :class="boxStyle">
-        <div class="box" @click="toTop">
+        <div class="box" @click="toTop" @mousemove="onMousemove"
+            :style="{ backgroundColor: `hsl(${(x % 40) * 99}, 30%, 90%, 0.5)` }">
             <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#989898"
+                <path fill="#efa228"
                     d="M572.235 205.282v600.365a30.118 30.118 0 1 1-60.235 0V205.282L292.382 438.633a28.913 28.913 0 0 1-42.646 0 33.43 33.43 0 0 1 0-45.236l271.058-288.045a28.913 28.913 0 0 1 42.647 0L834.5 393.397a33.43 33.43 0 0 1 0 45.176 28.913 28.913 0 0 1-42.647 0l-219.618-233.23z">
                 </path>
             </svg>
@@ -15,9 +16,11 @@
 
 import { onMounted, ref } from 'vue';
 
-const props = defineProps({
-    time: Number,
-})
+// 控制背景颜色
+const x = ref(0)
+function onMousemove(e) {
+    x.value = e.clientX
+}
 
 // 添加监听事件控制模块的显示
 const boxStyle = ref("noshow")
@@ -31,29 +34,11 @@ onMounted(() => {
 
 function toTop() {
     let y = document.documentElement.scrollTop || document.body.scrollTop
-    // 判断 高度小于5000px 在0.5s内完成, 大于5000px 在1s内完成
-    let step    //步长
-    let a   // 步长变化率, 匀速变化
-    // 判断是否有指定 时间值
-
-    if (props.time == undefined) {
-
-        if (y > 5000) {
-            step = 1 + (y - 100) / 50
-            a = (y - 100) / 5000
-        } else {
-            step = 1 + (y - 50) / 25
-            a = (y - 50) / 1250
-        }
-    } else {
-        if (props.time < 0) {
-            throw "time cannot < 0"
-        }
-        let stepN = props.time * 1000 / 10 //计算回到顶部所需要的步数
-        a = 2 * (y - stepN) / (stepN * stepN)
-        step = 1 + 2 * (y - step) / stepN
-    }
-
+    // 步长按二次函数变化
+    // 大致步数定位100步, 但实际中会少一些, 因为当前高度小于步长时会直接到顶部
+    let n = 100
+    let step = y / (n / 2)    //起始步长
+    let a = step / n        //步长变化率
     const myTimer = setInterval(() => {
         y -= step
         if (y <= 0) {
@@ -62,9 +47,7 @@ function toTop() {
         }
         window.scrollTo(0, y) //这是值是指离开网页顶部的距离
         step -= a
-    }, 10);
-
-    // document.documentElement.scrollTop = 0;
+    }, 5);
 }
 
 </script>
@@ -73,28 +56,33 @@ function toTop() {
 .show {
     width: 50px;
     position: fixed;
-    bottom: 200px;
+    bottom: 150px;
     right: 5px;
     transition: all 0.5s;
 
     .box {
-        box-shadow: 0px 0px 2px;
+        transition: all 0.5s;
+        box-shadow: 0px 0px 2px #efa228;
         padding: 10px;
         width: 30px;
         height: 30px;
         border-radius: 10px;
+
+        &:hover {
+            box-shadow: 0px 0px 8px #efa228;
+        }
     }
 }
 
 .noshow {
     width: 50px;
     position: fixed;
-    bottom: 200px;
+    bottom: 150px;
     right: -55px;
     transition: all 0.5s;
 
     .box {
-        box-shadow: 0px 0px 2px;
+        box-shadow: 0px 0px 5px #efa228;
         padding: 10px;
         width: 30px;
         height: 30px;

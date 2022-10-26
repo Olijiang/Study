@@ -3,11 +3,11 @@
 
   <vHeaderVue />
 
-  <div class="main" @mousemove="onMousemove(1, $event)" :style="{ backgroundColor: `hsl(${y % 360}, 30%, 90%, 0.3)` }">
+  <div class="main" @mousemove="onMousemove(1, $event)" :style="{ backgroundColor: `hsl(${x % 360}, 30%, 90%, 0.3)` }">
     <HomeVue></HomeVue>
   </div>
 
-  <footer @mousemove="onMousemove(2, $event)" :style="{ backgroundColor: `hsl(${x % 360}, 30%, 90%, 1)` }">
+  <footer @mousemove="onMousemove(2, $event)" :style="{ backgroundColor: `hsl(${y % 360}, 30%, 90%, 1)` }">
     @copyright
   </footer>
 

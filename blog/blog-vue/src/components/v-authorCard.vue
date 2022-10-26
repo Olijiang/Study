@@ -4,14 +4,14 @@
         <div class="author">
             <img src="../img/1.png" alt="">
 
-            <p style="line-height: 10px;color: #ff0000;margin: 20px 0 5px 0;font-size: 20px;">{{ authorInfo.name }}
+            <p class="author-name">{{ authorInfo.name }}
             </p>
             <p style="font-size: 90%;color: #858585;"> {{ authorInfo.desc }}</p>
 
             <div>
-                <span class="tag">文章</span>
-                <span class="tag">分类</span>
-                <span class="tag">标签</span>
+                <span class="tag1">文章</span>
+                <span class="tag1">分类</span>
+                <span class="tag1">标签</span>
             </div>
             <div>
                 <span class="tag" style="color: #6300ff;">{{ authorInfo.articleN }}</span>
@@ -58,7 +58,6 @@ onMounted(() => {
     top: 20px;
     width: 250px;
     transition: 0.2s all ease-in-out;
-
 }
 
 .card {
@@ -86,6 +85,18 @@ onMounted(() => {
         height: 30px;
     }
 
+    .tag1 {
+        cursor: pointer;
+        display: inline-block;
+        width: 30%;
+        height: 30px;
+        transition: 0.2s all ease-in-out;
+
+        &:hover {
+            color: #4b9797;
+        }
+    }
+
     img {
         margin-top: 20px;
         width: 150px;
@@ -99,6 +110,19 @@ onMounted(() => {
             transition: all 0.8s ease;
 
         }
+    }
+}
+
+.author-name {
+    line-height: 10px;
+    color: #ff0000;
+    margin: 20px 0 5px 0;
+    font-size: 20px;
+    transition: 0.3s all ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+        color: #40b5ad;
     }
 }
 

@@ -6,15 +6,15 @@
         <div class="time_info">2020.12.12 || 时间趣闻</div>
     </div>
 
-    <div v-if="article.index%2==0" class="article_card">
+    <div v-if="article.index % 2 == 0" class="article_card">
         <div class="illustration-l">
             <img :src=article.img alt="img">
         </div>
         <div class="content-r">
-            <h3>{{article.title}}</h3>
+            <h3>{{ article.title }}</h3>
             <span style="font-size: 80%;color: #858585"> 时间 || 分类 || 描述 </span>
             <hr width="300px" align="left" />
-            <p>{{article.abstract}}</p>
+            <p>{{ article.abstract }}</p>
         </div>
     </div>
     <div v-else class="article_card">
@@ -22,10 +22,10 @@
             <img :src=article.img alt="img">
         </div>
         <div class="content-l">
-            <h3>{{article.title}}</h3>
+            <h3>{{ article.title }}</h3>
             <span style="font-size: 80%;color: #858585"> 时间 || 分类 || 描述 </span>
             <hr width="300px" align="left" />
-            <p>{{article.abstract}}</p>
+            <p>{{ article.abstract }}</p>
         </div>
     </div>
 </template>

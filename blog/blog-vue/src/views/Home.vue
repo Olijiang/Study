@@ -57,6 +57,7 @@ const articles = [
 .home-page {
     height: 900px;
     margin-bottom: 30px;
+    // box-shadow: 10px 10px 20px #d18888;
 
     img {
         opacity: 1;
@@ -64,6 +65,7 @@ const articles = [
         height: 100%;
         object-fit: cover;
         transition: all 0.5s;
+        border-radius: 0px 0px 20px 20px;
     }
 }
 

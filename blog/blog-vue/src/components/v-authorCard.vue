@@ -28,19 +28,28 @@
 
 
 
-<script setup>
-
-import { inject } from 'vue';
-
-const authorInfo = inject('authorInfo')
-
+<script>
+// Object.keys(author).forEach(key => { this.authorInfo[key] = author[key] })
+export default {
+    data() {
+        return {
+            authorInfo: {
+                name: "神华里绫",
+                desc: "这是我的blog",
+                articleN: 99,
+                categoryN: 99,
+                tagN: 99,
+                imgUrl: "src/img/1.png"
+            }
+        }
+    }
+}
 </script>
 
 
 <style lang="less" scoped>
 .authorStyle {
     position: sticky;
-    margin: 0px 0 50px 1250px;
     top: 20px;
     width: 250px;
     transition: 0.2s all ease-in-out;

@@ -1,33 +1,44 @@
 <template>
     <!-- 时间进度条 -->
-    <div class="timebar">
-        <div class="time_node"></div>
-        <div class="time_line"></div>
-        <div class="time_info">{{ article.createTime }}</div>
-    </div>
+    <el-row>
+        <el-col :span="6">
+            <div class="timebar">
+                <div class="time_node"></div>
+                <div class="time_line"></div>
+                <div class="time_info">{{ article.createTime }}</div>
+            </div>
+        </el-col>
 
-    <div v-if="article.index % 2 == 0" class="article_card">
-        <div class="illustration-l">
-            <img :src=article.imgUrl alt="img">
-        </div>
-        <div class="content-r">
-            <h3>{{ article.title }}</h3>
-            <span style="font-size: 80%;color: #858585"> {{ article.category }} | {{ article.tag }}</span>
-            <hr width="300px" align="left" />
-            <p>{{ article.digest }}</p>
-        </div>
-    </div>
-    <div v-else class="article_card">
-        <div class="illustration-r">
-            <img :src=article.imgUrl alt="img">
-        </div>
-        <div class="content-l">
-            <h3>{{ article.title }}</h3>
-            <span style="font-size: 80%;color: #858585">{{ article.category }} | {{ article.tag }}</span>
-            <hr width="300px" align="left" />
-            <p>{{ article.digest }}</p>
-        </div>
-    </div>
+
+        <el-col :span="18">
+            <div v-if="article.index % 2 == 0" class="article_card">
+                <div class="illustration-l">
+                    <img :src=article.imgUrl alt="img">
+                </div>
+                <div class="content-r">
+                    <h3>{{ article.title }}</h3>
+                    <span style="font-size: 80%;color: #858585"> {{ article.category }} | {{ article.tag }}</span>
+                    <hr width="300px" align="left" />
+                    <p>{{ article.digest }}</p>
+                </div>
+            </div>
+            <div v-else class="article_card">
+                <div class="illustration-r">
+                    <img :src=article.imgUrl alt="img">
+                </div>
+                <div class="content-l">
+                    <h3>{{ article.title }}</h3>
+                    <span style="font-size: 80%;color: #858585">{{ article.category }} | {{ article.tag }}</span>
+                    <hr width="300px" align="left" />
+                    <p>{{ article.digest }}</p>
+                </div>
+            </div>
+
+        </el-col>
+    </el-row>
+
+
+
 </template>
 
 <script setup>
@@ -55,12 +66,7 @@ defineProps({
 
 <style lang="less" scoped>
 .timebar {
-    // border: 1px solid darkblue;
-    position: relative;
-    float: left;
-    width: 250px;
     height: 270px;
-    margin: 0 60px 0 80px;
 }
 
 .time_node {
@@ -85,17 +91,15 @@ defineProps({
 .time_info {
     float: left;
     margin-top: 90px;
-    margin-left: 10px;
+    margin-left: 5%;
     font-size: 80%;
     color: #858585;
-    width: 150px;
 }
 
 .article_card {
-    float: left;
+    width: 100%;
     background-color: rgba(255, 255, 255, 0.6);
     text-align: left;
-    width: 800px;
     height: 250px;
     border-radius: 20px;
     border: 1px solid rgba(235, 235, 235);
@@ -124,8 +128,8 @@ defineProps({
 }
 
 .illustration {
-    width: 380px;
     height: 100%;
+    width: 45%;
     overflow: hidden;
 }
 
@@ -143,15 +147,14 @@ defineProps({
 
 .content {
     padding-top: 10px;
-    width: 380px;
+    width: 50%;
     height: 210px;
-    margin: 0 20px 0;
+    margin: 0 2% 0;
     overflow: hidden;
 }
 
 .content-l {
     float: left;
-
     .content()
 }
 

@@ -41,15 +41,17 @@ function toTop() {
     let n = 100
     let step = y / (n / 2)    //起始步长
     let a = step / n        //步长变化率
+    let t = 0
     const myTimer = setInterval(() => {
+        console.log(t++);
         y -= step
+        step -= a
         if (y <= 0) {
             y = 0
             window.clearInterval(myTimer)
         }
         window.scrollTo(0, y) //这是值是指离开网页顶部的距离
-        step -= a
-    }, 5);
+    }, 1);
     if (y !== 0) window.removeEventListener('mousewheel', () => { window.clearInterval(myTimer) })
 }
 

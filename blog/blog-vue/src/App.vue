@@ -2,16 +2,16 @@
 <template>
   <header @mousemove="onMousemove(1, $event)" :style="{ backgroundColor: `hsl(${x%360}, 30%, 90%, 0.6)` }"
     :class="headerStyle">
-    <div style="float: left;margin-left: 20px;color:aliceblue">
+    <div style="float: left;margin-left: 20px;color:#0088ff;">
       {{ authorInfo.name }}
     </div>
     <div class="nav">
       <template v-if="isLogin">
-        <div v-for="(item, index) in navItems" :key="index" class="nav-item">
-          <span>{{ item }}</span>
+        <div v-for="(item, index) in navItems" :key="index" class="nav-item" @click="routerHandler(item.name)">
+          <span>{{ item.label }}</span>
           <div class="item-line"></div>
         </div>
-        <div class="nav-item1">
+        <div class="nav-item1" @click="routerHandler('Personal')">
           个人中心
           <div class="item-line"></div>
         </div>
@@ -29,8 +29,13 @@
   </header>
 
   <div class="main" @mousemove="onMousemove(2, $event)" :style="{ backgroundColor: `hsl(${y % 360}, 30%, 90%, 0.3)` }">
-    <HomeVue></HomeVue>
 
+    <!-- <router-view v-slot="{ Component }">
+      <Transition name="fade">
+        <component :is="Component" />
+      </Transition>
+    </router-view> -->
+    <router-view></router-view>
   </div>
 
   <footer @mousemove="onMousemove(3, $event)" :style="{ backgroundColor: `hsl(${z % 360}, 30%, 90%, 1)` }">
@@ -63,12 +68,12 @@
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import { ref, reactive, onMounted, provide } from 'vue';
-import HomeVue from './views/Home.vue';
 import backToTopVue from './components/backToTop.vue';
-import { FormInstance, FormRules, ElMessage, ElMessageBox } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { lock, unlock } from 'tua-body-scroll-lock'
+import { useRouter } from 'vue-router'
 
 
 // ------------------------->>>>>  公共部分控制模块   <<<<<-------------------------
@@ -76,7 +81,7 @@ import { lock, unlock } from 'tua-body-scroll-lock'
 const x = ref(0)
 const y = ref(0)
 const z = ref(0)
-function onMousemove(index: Number, event: any) {
+function onMousemove(index, event) {
   switch (index) {
     case 1:
       x.value = event.clientX
@@ -90,6 +95,13 @@ function onMousemove(index: Number, event: any) {
     default:
       break;
   }
+}
+// 路由跳转
+const router = useRouter()
+function routerHandler(value) {
+  console.log(value);
+  console.log(navItems);
+  router.push(value)
 }
 // ------------------------->>>>>  heaer 部分控制模块   <<<<<-------------------------
 // 判断鼠标的上下滑动  1 up    0 down
@@ -108,8 +120,24 @@ onMounted(() => {
   });
 })
 // 菜单
-const navItems = ref()
-navItems.value = ["首页", "分类", "文章"]
+const navItems = reactive([])
+let navItems2 = [
+  {
+    label: "首页",
+    name: "Home"
+  },
+  {
+    label: "相册",
+    name: "Album"
+  },
+  {
+    label: "文章",
+    name: "Article"
+  },
+]
+onMounted(() => {
+  navItems2.forEach((e) => { navItems.push(e) })
+})
 // 是否登录
 const isLogin = ref(false)
 // ------------>>>>  处理登录逻辑
@@ -121,26 +149,28 @@ function loginHandler() {
 }
 // ------------>>>>  处理登出逻辑
 function logoutHandler() {
-  ElMessageBox.confirm('是否确认退出?', '提示框', {
-    distinguishCancelAndClose: true,
-    confirmButtonText: '是',
-    cancelButtonText: '否',
-    type: 'warning',
-  }).then(() => {
-    isLogin.value = false
-    authorInit()
-    ElMessage({
-      type: 'success',
-      message: '退出成功',
-    })
-  }).catch((action) => {
-    if (action == 'cancel') {
-      // 点击关闭 关闭弹窗回到主页面
+  ElMessageBox.confirm('是否确认退出?', '提示框',
+    {
+      distinguishCancelAndClose: true,
+      confirmButtonText: '是',
+      cancelButtonText: '否',
+      type: 'warning',
+      customStyle: { top: "-30% !important", position: "relative" },
+    }).then(() => {
+      isLogin.value = false
+      authorInit()
+      ElMessage({
+        type: 'success',
+        message: '退出成功',
+      })
+    }).catch((action) => {
+      if (action == 'cancel') {
+        // 点击关闭 关闭弹窗回到主页面
 
-    } else {
-      // 按ESC 啥也不干
-    }
-  })
+      } else {
+        // 按ESC 啥也不干
+      }
+    })
 }
 // ------------------------->>>>>  登录数据初始化   <<<<<-------------------------
 const authorInfo = reactive({
@@ -151,17 +181,6 @@ const authorInfo = reactive({
   tagN: Number,
   imgUrl: String
 })
-type articleInfo = {
-  index: Number,
-  title: String,
-  createTime: String,
-  category: String, // 分类
-  tag: String,  // 标签
-  digest: String, //摘要
-  url: String, //正文地址
-  imgUrl: String, //插图地址
-}
-const articleList = reactive([] as articleInfo[])
 function authorInit() {
   let author = {
     name: "神华里绫",
@@ -172,18 +191,6 @@ function authorInit() {
     imgUrl: "src/img/1.png"
   }
   Object.keys(authorInfo).forEach(key => { authorInfo[key] = author[key] })
-
-  let articles = [
-    { index: 1, title: "段落标题段落标题段落标题段落标题段落标题", createTime: "2012-01-23", category: "Vue", tag: "vuex", digest: "段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要", url: "xxx", imgUrl: "src/img/1.png" },
-    { index: 2, title: "段落标题", createTime: "2014-02-21", category: "Java", tag: "多线程", digest: "段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要", url: "xxx", imgUrl: "src/img/2.png" },
-    { index: 3, title: "段落标题", createTime: "2015-01-27", category: "Vue", tag: "router", digest: "段落摘要段落摘要", url: "xxx", imgUrl: "src/img/3.png" },
-    { index: 4, title: "段落标题", createTime: "2016-02-15", category: "Redis", tag: "redis", digest: "段落摘要段落摘要", url: "xxx", imgUrl: "src/img/1.png" },
-    { index: 5, title: "段落标题", createTime: "2017-11-23", category: "Python", tag: "CNN", digest: "段落摘要段落摘要", url: "xxx", imgUrl: "src/img/2.png" },
-    { index: 6, title: "段落标题", createTime: "2018-05-29", category: "Vue", tag: "mock", digest: "段落摘要段落摘要", url: "xxx", imgUrl: "src/img/3.png" },
-    { index: 7, title: "段落标题", createTime: "2019-08-01", category: "Java", tag: "springboot", digest: "段落摘要段落摘要", url: "xxx", imgUrl: "src/img/1.png" },
-    { index: 8, title: "段落标题", createTime: "2021-04-29", category: "Vue", tag: "vuex", digest: "段落摘要段落摘要", url: "xxx", imgUrl: "src/img/2.png" }
-  ]
-  articles.forEach((e) => { articleList.push(e) })
 }
 onMounted(() => {
   // 请求初始数据
@@ -191,10 +198,8 @@ onMounted(() => {
 })
 // ---------------->>>> 数据透传
 provide('authorInfo', authorInfo)
-provide('articleList', articleList)
-
 // ------------------------->>>>>  登录部分控制模块   <<<<<-------------------------
-const validateUserName = (rule: any, value: any, callback: any) => {
+const validateUserName = (rule, value, callback) => {
   if (value === '') {
     callback('请输入用户名')
   } else {
@@ -206,24 +211,24 @@ const validateUserName = (rule: any, value: any, callback: any) => {
     }
   }
 }
-const validatePassword = (rule: any, value: any, callback: any) => {
+const validatePassword = (rule, value, callback) => {
   if (value === '') {
     callback('请输入密码')
   } else {
     callback()
   }
 }
-const loginRef = ref<FormInstance>()
+const loginRef = ref()
 const loginForm = reactive({
   username: '4050000',
   password: '123'
 })
-const rules = reactive<FormRules>({
+const rules = reactive({
   username: { validator: validateUserName, required: true, trigger: 'blur' },
   password: { validator: validatePassword, required: true, trigger: 'blur' }
 })
 // 登录后返回登录用户新数据
-const submitForm = (formEl: FormInstance | undefined) => {
+const submitForm = (formEl) => {
   if (!formEl) return
   formEl.validate((valid, fields) => {
     if (valid) {
@@ -243,7 +248,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
     }
   })
 }
-const resetForm = (formEl: FormInstance | undefined) => {
+const resetForm = (formEl) => {
   if (!formEl) return
   formEl.resetFields()
 }
@@ -253,6 +258,7 @@ const resetForm = (formEl: FormInstance | undefined) => {
 @borderColor: #989898;
 @colortransition: 0.1s background-color ease-in-out;
 @transition: 0.3s all ease-in-out;
+
 
 // ------------------------->>>>>  heaer css   <<<<<-------------------------
 .header-on {
@@ -397,5 +403,25 @@ footer {
   line-height: 80px;
   box-shadow: 0px 0px 1px @borderColor;
   transition: @colortransition;
+  font-family: sans-serif;
+}
+
+/* 过度动画 */
+.fade-enter-active {
+  transition: all 0.2s ease-in;
+}
+
+.fade-leave-active {
+  transition: all 0.1s;
+}
+
+.fade-enter-from {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+
+.fade-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>

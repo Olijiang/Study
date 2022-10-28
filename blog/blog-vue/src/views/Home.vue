@@ -76,10 +76,13 @@ export default {
 
 
 <style lang="less" scoped>
+
+
 .home-page {
     width: 100%;
     height: 900px;
     margin-bottom: 30px;
+    transition: all 0.3s ease;
 
     img {
         height: 100%;
@@ -88,6 +91,7 @@ export default {
         vertical-align: middle;
         transition: all 0.5s ease-in-out;
         border-radius: 0px 0px 20px 20px;
+        transition: all 0.3s ease;
     }
 }
 

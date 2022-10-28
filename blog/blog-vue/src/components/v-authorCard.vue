@@ -49,6 +49,7 @@ export default {
 
 <style lang="less" scoped>
 .authorStyle {
+    margin-bottom: 20px;
     position: sticky;
     top: 20px;
     width: 250px;

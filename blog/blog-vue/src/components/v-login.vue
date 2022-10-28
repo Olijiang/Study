@@ -1,38 +1,42 @@
 <template>
-    <div :class="LoginBoxStyle">
-        <div class="login-card">
-            <div class="card-header">
-                <h3>登&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;录</h3>
-            </div>
-            <div class="card-body">
-                <el-form ref="loginRef" :model="loginForm" status-icon :rules="rules" label-width="80px"
-                    class="demo-ruleForm">
-                    <el-form-item label="用户名" prop="username">
-                        <el-input v-model="loginForm.username" type="text" autocomplete="off" placeholder="请输入账户" />
-                    </el-form-item>
-                    <el-form-item label="密&#160;&#160;&#160;&#160;码" prop="password">
-                        <el-input v-model="loginForm.password" type="password" autocomplete="off" placeholder="请输入密码" />
-                    </el-form-item>
-                    <el-form-item>
-                        <el-button type="primary" @click="submitForm(loginRef)">登录</el-button>
-                        <el-button @click="resetForm(loginRef)">清空</el-button>
-                    </el-form-item>
-                </el-form>
+    <el-dialog v-model="loginFlag">
+        <div class="loginFlag">
+            <div class="login-card">
+                <div class="card-header">
+                    <h3>登&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;录</h3>
+                </div>
+                <div class="card-body">
+                    <el-form ref="loginRef" :model="loginForm" status-icon :rules="rules" label-width="80px"
+                        class="demo-ruleForm">
+                        <el-form-item label="用户名" prop="username">
+                            <el-input v-model="loginForm.username" type="text" autocomplete="off" placeholder="请输入账户" />
+                        </el-form-item>
+                        <el-form-item label="密&#160;&#160;&#160;&#160;码" prop="password">
+                            <el-input v-model="loginForm.password" type="password" autocomplete="off"
+                                placeholder="请输入密码" />
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="submitForm">登录</el-button>
+                            <el-button @click="resetForm">清空</el-button>
+                        </el-form-item>
+                    </el-form>
+                </div>
             </div>
         </div>
-    </div>
+    </el-dialog>
 </template>
 
 <script>
 
+
 export default {
-    name: name,
+
     components: {
 
     },
     props: {},
     data() {
-        validateUserName = (rule, value, callback) => {
+        function validateUserName(rule, value, callback) {
             if (value === '') {
                 callback('请输入用户名')
             } else {
@@ -44,7 +48,7 @@ export default {
                 }
             }
         }
-        validatePassword = (rule, value, callback) => {
+        function validatePassword(rule, value, callback) {
             if (value === '') {
                 callback('请输入密码')
             } else {
@@ -63,9 +67,8 @@ export default {
         }
     },
     methods: {
-        submitForm(formEl) {
-            if (!formEl) return
-            formEl.validate((valid, fields) => {
+        submitForm() {
+            this.$refs['loginRef'].validate((valid) => {
                 if (valid) {
                     let author = {
                         name: "高西维尔",
@@ -76,18 +79,24 @@ export default {
                         imgUrl: "src/img/2.png"
                     }
                     // 同步vuex
-                    isLogin.value = true
-                    unlock(null)  //解锁滚轮
+                    this.$store.commit("putAuthorInfo", author)
+                    this.$store.state.loginFlag = false
                 }
             })
         },
-        resetForm(formEl) {
-            if (!formEl) return
-            formEl.resetFields()
+        resetForm() {
+            this.$refs['loginRef'].resetFields()
         }
     },
     computed: {
-
+        loginFlag: {
+            set(value) {
+                this.$store.state.loginFlag = value;
+            },
+            get() {
+                return this.$store.state.loginFlag;
+            }
+        }
     },
     watch: {
 

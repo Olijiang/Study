@@ -1,8 +1,7 @@
 
 <template>
     <div :class="boxStyle">
-        <div class="box" @click="toTop" @mousemove="onMousemove"
-            :style="{ backgroundColor: `hsl(${(x % 40) * 10}, 30%, 90%, 0.5)` }">
+        <div class="box" @click="toTop">
             <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
                 <path fill="#efa228"
                     d="M572.235 205.282v600.365a30.118 30.118 0 1 1-60.235 0V205.282L292.382 438.633a28.913 28.913 0 0 1-42.646 0 33.43 33.43 0 0 1 0-45.236l271.058-288.045a28.913 28.913 0 0 1 42.647 0L834.5 393.397a33.43 33.43 0 0 1 0 45.176 28.913 28.913 0 0 1-42.647 0l-219.618-233.23z">
@@ -15,12 +14,6 @@
 <script setup>
 
 import { onMounted, ref } from 'vue';
-
-// 控制背景颜色
-const x = ref(0)
-function onMousemove(e) {
-    x.value = e.clientX
-}
 
 // 添加监听事件控制模块的显示
 const boxStyle = ref("noshow")
@@ -60,19 +53,34 @@ function toTop() {
 
 <style lang="less" scoped>
 .show {
-    width: 50px;
     position: fixed;
     bottom: 150px;
     right: 5px;
     transition: all 0.5s;
 
     .box {
-        transition: all 0.5s;
+        background: linear-gradient(45deg, rgba(246, 122, 46, 0.6), rgba(139, 246, 46, 0.6), rgba(46, 246, 229, 0.6), rgba(209, 46, 246, 0.6), );
+        animation: Gradient 20s ease infinite;
+        background-size: 300% 300%;
         box-shadow: 0px 0px 2px #efa228;
         padding: 10px;
         width: 30px;
         height: 30px;
         border-radius: 10px;
+
+        @keyframes Gradient {
+            0% {
+                background-position: 0 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0 50%;
+            }
+        }
 
         &:hover {
             box-shadow: 0px 0px 8px #efa228;
@@ -81,18 +89,7 @@ function toTop() {
 }
 
 .noshow {
-    width: 50px;
-    position: fixed;
-    bottom: 150px;
+    .show;
     right: -55px;
-    transition: all 0.5s;
-
-    .box {
-        box-shadow: 0px 0px 5px #efa228;
-        padding: 10px;
-        width: 30px;
-        height: 30px;
-        border-radius: 10px;
-    }
 }
 </style>

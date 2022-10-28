@@ -4,14 +4,16 @@ import { createStore } from "vuex";
 const store = createStore({
   state() {
     return {
-
+      authorInfo: {},
+      loginFlag: false
     }
+  },
+  mutations: {
+    putAuthorInfo(state, author) {
+      state.authorInfo = author
+    },
   }
 })
 
 export default store;
 
-// const app = createApp({ /* 根组件 */ })
-
-// // 将 store 实例作为插件安装
-// app.use(store)

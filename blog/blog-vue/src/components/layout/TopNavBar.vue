@@ -84,8 +84,7 @@ export default {
         },
         loginHandler() {
             //模态框动态显示需要先if条件为真, 初始为隐藏状态, 再改变class显现
-            this.LoginBoxStyle = "loginBoxOn"
-            lock(null)  //锁住滚轮
+            this.$store.state.loginFlag = true
         },
         routerHandler(value) {
             console.log(value);

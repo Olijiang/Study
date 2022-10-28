@@ -2,7 +2,7 @@
 <template>
   <TopNavBarVue></TopNavBarVue>
 
-  <div class="main" @mousemove="onMousemove()" :style="{ backgroundColor: `hsl(${x % 360}, 30%, 90%, 0.3)` }">
+  <div class="main" @mousemove="onMousemove" :style="{ backgroundColor: `hsl(${x % 360}, 30%, 90%, 0.3)` }">
 
     <!-- <router-view v-slot="{ Component }">
       <Transition name="fade">

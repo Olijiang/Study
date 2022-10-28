@@ -5,17 +5,18 @@
     </div>
 
     <el-row>
-        <el-col :span="18">
+        <el-col class="space"></el-col>
+        <el-col class="ArticleCard">
             <!-- 文章部分 -->
             <div v-for="(aricle, index) in articleList" :key=index>
                 <vArticleCard :article=aricle />
             </div>
-
         </el-col>
-        <el-col :span="1"></el-col>
-        <el-col :span="5">
+        <el-col class="space"></el-col>
+        <el-col class="AuthorCard">
             <vAuthorCard></vAuthorCard>
         </el-col>
+        <el-col class="space"></el-col>
     </el-row>
 
 
@@ -76,15 +77,16 @@ export default {
 
 <style lang="less" scoped>
 .home-page {
+    width: 100%;
     height: 900px;
     margin-bottom: 30px;
 
     img {
-        opacity: 1;
-        width: 100%;
         height: 100%;
+        width: 100%;
         object-fit: cover;
-        transition: all 0.5s;
+        vertical-align: middle;
+        transition: all 0.5s ease-in-out;
         border-radius: 0px 0px 20px 20px;
     }
 }
@@ -95,6 +97,44 @@ export default {
     width: 100%;
     font-size: 90%;
     color: #858585;
+}
+
+.ArticleCard {
+    max-width: 70%;
+    flex: 0 0 70%;
+    transition: all 0.5s ease;
+}
+
+.AuthorCard {
+    display: block;
+    transition: all 0.5s ease;
+    max-width: 16%;
+    flex: 0 0 16%;
+}
+
+.space {
+    max-width: 3%;
+    flex: 0 0 3%;
+}
+
+@media (max-width: 1000px) {
+    .ArticleCard {
+        max-width: 95%;
+        flex: 0 0 95%;
+        transition: all 0.5s ease;
+
+
+    }
+
+    .AuthorCard {
+        max-width: 0%;
+        // flex: 0 0 0%;
+        transition: all 0.5s ease;
+
+        * {
+            display: none;
+        }
+    }
 }
 </style>
 

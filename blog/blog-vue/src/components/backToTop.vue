@@ -42,11 +42,12 @@ function toTop() {
     let step = y / (n / 2)    //起始步长
     let a = step / n        //步长变化率
     let t = 0
+    step -= a / 2
     const myTimer = setInterval(() => {
-        console.log(t++);
+        // console.log(t++, "步长：", step);
         y -= step
         step -= a
-        if (y <= 0) {
+        if (y <= 0 || step < 0) {
             y = 0
             window.clearInterval(myTimer)
         }

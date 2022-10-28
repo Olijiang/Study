@@ -1,16 +1,18 @@
 <template>
     <!-- 时间进度条 -->
     <el-row>
-        <el-col :span="6">
+
+        <el-col class="timebarCol">
             <div class="timebar">
-                <div class="time_node"></div>
-                <div class="time_line"></div>
-                <div class="time_info">{{ article.createTime }}</div>
+                <div class="time_line">
+                    <div class="time_node"></div>
+                    <div class="time_info">{{ article.createTime }}</div>
+                </div>
             </div>
         </el-col>
+        <!-- <el-col :span="1"></el-col> -->
 
-
-        <el-col :span="18">
+        <el-col class="articleCol">
             <div v-if="article.index % 2 == 0" class="article_card">
                 <div class="illustration-l">
                     <img :src=article.imgUrl alt="img">
@@ -66,38 +68,41 @@ defineProps({
 
 <style lang="less" scoped>
 .timebar {
+    min-width: 150px;
     height: 270px;
 }
 
 .time_node {
+    position: absolute;
     background-color: rgba(186, 214, 215, 0.8);
     position: absolute;
-    left: 75px;
     top: 100px;
+    left: -6px;
     width: 11px;
     height: 11px;
     border-radius: 11px;
 }
 
 .time_line {
-    float: left;
-    margin-left: 80px;
+    position: relative;
+    display: inline-block;
     border-left: 1px solid #cfcbcb;
     height: 100%;
     text-align: center;
-    width: 2px;
+    width: 50%;
 }
 
 .time_info {
-    float: left;
-    margin-top: 90px;
+    margin-top: 100px;
     margin-left: 5%;
     font-size: 80%;
     color: #858585;
 }
 
 .article_card {
+
     width: 100%;
+    min-width: 600px;
     background-color: rgba(255, 255, 255, 0.6);
     text-align: left;
     height: 250px;
@@ -112,18 +117,17 @@ defineProps({
         object-fit: cover;
         vertical-align: middle;
         transition: all 0.5s ease-in-out;
+
+        &:hover {
+            transition: all 0.5s ease-in-out;
+            transform: scale(1.1, 1.1);
+        }
     }
 
     &:hover {
         border: 1px solid #5dfaff;
         box-shadow: 0 0 10px #5dfaff;
         transition: all 0.2s ease-in-out;
-
-        img {
-            transition: all 0.5s ease-in-out;
-            transform: scale(1.1, 1.1);
-        }
-
     }
 }
 
@@ -184,5 +188,72 @@ p {
     margin: 10px 0 10px;
     text-indent: 2em; //首行缩进
     line-height: 1.6;
+}
+
+.timebarCol {
+    max-width: 20%;
+    flex: 0 0 20%;
+    transition: all 0.5s ease;
+}
+
+.articleCol {
+    max-width: 80%;
+    flex: 0 0 80%;
+    transition: all 0.5s ease;
+}
+
+@media (max-width: 800px) {
+    .timebarCol {
+        max-width: 0%;
+        transition: all 0.5s ease;
+
+        * {
+            display: none;
+        }
+    }
+
+    .articleCol {
+        max-width: 100%;
+        flex: 0 0 100%;
+        transition: all 0.5s ease;
+    }
+}
+
+@media (max-width: 600px) {
+    .article_card {
+        min-width: 400px;
+        height: 380px;
+    }
+
+    .illustration {
+        height: 40%;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 10px 10px 10px 10px;
+    }
+
+    .illustration-l {
+        .illustration()
+    }
+
+    .illustration-r {
+        .illustration()
+    }
+
+    .content {
+        padding-top: 10px;
+        width: 90%;
+        height: 50%;
+        margin: 0 5% 0;
+        overflow: hidden;
+    }
+
+    .content-l {
+        .content()
+    }
+
+    .content-r {
+        .content()
+    }
 }
 </style>

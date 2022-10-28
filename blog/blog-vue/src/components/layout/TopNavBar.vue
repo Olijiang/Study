@@ -1,6 +1,5 @@
 <template>
-    <header @mousemove="onMousemove()" :style="{ backgroundColor: `hsl(${x%360}, 30%, 90%, 0.6)` }"
-        :class="headerStyle">
+    <header @mousemove="onMousemove" :style="{ backgroundColor: `hsl(${x%360}, 30%, 90%, 0.6)` }" :class="headerStyle">
         <div style="float: left;margin-left: 20px;color:#0088ff;">
             <!-- {{ authorInfo.name }} -->
             神华里绫
@@ -85,16 +84,15 @@ export default {
         },
         loginHandler() {
             //模态框动态显示需要先if条件为真, 初始为隐藏状态, 再改变class显现
-            LoginBoxStyle.value = "loginBoxOn"
+            this.LoginBoxStyle = "loginBoxOn"
             lock(null)  //锁住滚轮
         },
         routerHandler(value) {
             console.log(value);
-            console.log(navItems);
             router.push(value)
         },
         onMousemove(event) {
-            x.value = event.clientX
+            this.x = event.clientX
         }
     },
     computed: {

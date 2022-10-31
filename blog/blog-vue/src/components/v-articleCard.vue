@@ -1,7 +1,6 @@
 <template>
     <!-- 时间进度条 -->
     <el-row>
-
         <el-col class="timebarCol">
             <div class="timebar">
                 <div class="time_line">
@@ -13,24 +12,13 @@
         <!-- <el-col :span="1"></el-col> -->
 
         <el-col class="articleCol">
-            <div v-if="article.index % 2 == 0" class="article_card">
-                <div class="illustration-l">
+            <div class="article_card">
+                <div :class="{ illustration_l: (article.index % 2 == 0), illustration_r: (article.index % 2 != 0) }">
                     <img :src=article.imgUrl alt="img">
                 </div>
-                <div class="content-r">
+                <div :class="{ content_r: (article.index % 2 == 0), content_l: (article.index % 2 != 0) }">
                     <h3>{{ article.title }}</h3>
                     <span style="font-size: 80%;color: #858585"> {{ article.category }} | {{ article.tag }}</span>
-                    <hr width="300px" align="left" />
-                    <p>{{ article.digest }}</p>
-                </div>
-            </div>
-            <div v-else class="article_card">
-                <div class="illustration-r">
-                    <img :src=article.imgUrl alt="img">
-                </div>
-                <div class="content-l">
-                    <h3>{{ article.title }}</h3>
-                    <span style="font-size: 80%;color: #858585">{{ article.category }} | {{ article.tag }}</span>
                     <hr width="300px" align="left" />
                     <p>{{ article.digest }}</p>
                 </div>
@@ -135,15 +123,16 @@ defineProps({
     height: 100%;
     width: 45%;
     overflow: hidden;
+    transition: all 0.5s;
 }
 
-.illustration-l {
+.illustration_l {
     float: left;
     border-radius: 20px 10px 10px 20px;
     .illustration()
 }
 
-.illustration-r {
+.illustration_r {
     border-radius: 10px 20px 20px 10px;
     float: right;
     .illustration()
@@ -155,14 +144,15 @@ defineProps({
     height: 210px;
     margin: 0 2% 0;
     overflow: hidden;
+    transition: all 0.5s;
 }
 
-.content-l {
+.content_l {
     float: left;
     .content()
 }
 
-.content-r {
+.content_r {
     float: right;
     .content()
 }
@@ -232,11 +222,11 @@ p {
         border-radius: 10px 10px 10px 10px;
     }
 
-    .illustration-l {
+    .illustration_l {
         .illustration()
     }
 
-    .illustration-r {
+    .illustration_r {
         .illustration()
     }
 
@@ -248,11 +238,11 @@ p {
         overflow: hidden;
     }
 
-    .content-l {
+    .content_l {
         .content()
     }
 
-    .content-r {
+    .content_r {
         .content()
     }
 }

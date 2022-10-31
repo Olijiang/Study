@@ -43,7 +43,7 @@ footer {
     box-shadow: 0px 0px 1px #dadaad;
     background: linear-gradient(45deg, #ff5757, #ffc157, #fcff57, #57ff68, #57ffe3, #575fff, #db57ff);
     background-size: 500% 500%;
-    animation: Gradient 20s ease infinite;
+    animation: Gradient 15s ease infinite;
     font-family: sans-serif;
 
     @keyframes Gradient {

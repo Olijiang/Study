@@ -1,6 +1,7 @@
 <template>
     <header @mousemove="onMousemove" :style="{ backgroundColor: `hsl(${x%360}, 30%, 90%, 0.6)` }" :class="headerStyle">
-        <div style="float: left;margin-left: 20px;color:#0088ff;">
+
+        <div class="author">
             <!-- {{ authorInfo.name }} -->
             神华里绫
         </div>
@@ -53,8 +54,6 @@ export default {
                 },
             ],
             headerStyle: "header-on",
-            LoginBoxStyle: "loginBoxOff",
-            isLogin: false
         }
     },
     methods: {
@@ -65,10 +64,9 @@ export default {
                     confirmButtonText: '是',
                     cancelButtonText: '否',
                     type: 'warning',
-                    customStyle: { top: "-30% !important", position: "relative" },
+                    customStyle: { top: "-20% !important", position: "relative" },
                 }).then(() => {
-                    isLogin.value = false
-                    authorInit()
+                    this.$store.commit("logout")
                     ElMessage({
                         type: 'success',
                         message: '退出成功',
@@ -95,7 +93,9 @@ export default {
         }
     },
     computed: {
-
+        isLogin() {
+            return this.$store.state.isLogin;
+        }
     },
     watch: {
 
@@ -124,13 +124,18 @@ export default {
 
 .header-on {
     position: fixed;
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 18px;
     z-index: 3;
-    width: 100%;
+    width: 100vw; //包括滚动条的宽度在内
     height: 50px;
     line-height: 50px;
     box-shadow: 0px 0px 5px @borderColor;
     transition: @colortransition, @transition;
 }
+
 
 .header-off {
     .header-on;
@@ -138,14 +143,13 @@ export default {
     transform: translate(0, -50px);
 }
 
-header {
-    font-weight: bold;
-    font-size: 18px;
+.author {
+    margin-left: 20px;
+    color: #0088ff;
 }
 
 .nav {
     z-index: 3;
-    float: right;
     margin-right: 20px;
 }
 

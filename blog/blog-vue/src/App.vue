@@ -39,14 +39,7 @@ export default {
     }
   },
   mounted() {
-    let author = {
-      name: "神华里绫",
-      desc: "这是我的blog",
-      articleN: 99,
-      categoryN: 99,
-      tagN: 99,
-      imgUrl: "src/img/1.png"
-    }
+
   },
   created() {
     // 这行代码的意思是定义一个全局变量，等于该组件的实例

@@ -33,14 +33,11 @@
 export default {
     data() {
         return {
-            authorInfo: {
-                name: "神华里绫",
-                desc: "这是我的blog",
-                articleN: 99,
-                categoryN: 99,
-                tagN: 99,
-                imgUrl: "src/img/1.png"
-            }
+        }
+    },
+    computed: {
+        authorInfo() {
+            return this.$store.state.authorInfo
         }
     }
 }

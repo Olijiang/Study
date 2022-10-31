@@ -4,14 +4,30 @@ import { createStore } from "vuex";
 const store = createStore({
   state() {
     return {
-      authorInfo: {},
-      loginFlag: false
+      authorInfo: {
+        name: "",
+        desc: "",
+        articleN: 0,
+        categoryN: 0,
+        tagN: 0,
+        imgUrl: ""
+      },
+      loginFlag: false, //控制登录窗口
+      isLogin: false  //控制是否登录
     }
   },
   mutations: {
-    putAuthorInfo(state, author) {
-      state.authorInfo = author
+    login(state, author) {
+      // state.authorInfo = author
+      state.isLogin = true
     },
+    logout(state, author) {
+      // state.authorInfo = {}
+      state.isLogin = false
+    },
+    setAuthorInfo(state, author) {
+      state.authorInfo = author
+    }
   }
 })
 

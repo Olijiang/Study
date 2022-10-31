@@ -59,9 +59,9 @@ function toTop() {
     transition: all 0.5s;
 
     .box {
-        background: linear-gradient(45deg, rgba(246, 122, 46, 0.6), rgba(139, 246, 46, 0.6), rgba(46, 246, 229, 0.6), rgba(209, 46, 246, 0.6), );
-        animation: Gradient 20s ease infinite;
-        background-size: 300% 300%;
+        background: linear-gradient(45deg, rgba(251, 255, 0, 0.6), rgba(51, 255, 0, 0.6), rgba(0, 251, 255, 0.6), rgba(0, 60, 255, 0.6), rgba(230, 0, 255, 0.6));
+        animation: Gradient 5s ease infinite;
+        background-size: 400% 400%;
         box-shadow: 0px 0px 2px #efa228;
         padding: 10px;
         width: 30px;

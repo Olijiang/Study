@@ -6,15 +6,14 @@ import router from "@/router";
 const instance = axios.create({
   // baseURL: "http://localhost:8888",
   timeout: 1000,
-  // headers: {'X-Custom-Header': 'foobar'}
 });
 
 // 添加请求拦截器
 instance.interceptors.request.use(
   function (config) {
-    if (store.state.userInfo.token) {
-      config.headers['token'] = store.state.userInfo.token
-    }
+    // if (store.state.userInfo.token) {
+    //   config.headers['token'] = store.state.userInfo.token
+    // }
     return config;
   },
   function (error) {
@@ -26,7 +25,7 @@ instance.interceptors.request.use(
 // 添加响应拦截器
 instance.interceptors.response.use(
   function (response) {
-    // 2xx 范围内的状态码都会触发该函数。服务器正确返回, 包括返回错误信息
+    // response.status 在 2xx 范围内的状态码都会触发该函数。服务器正确返回, 包括返回错误信息
     // 对响应数据做点什么
     console.log('response', response.data.message, response);
     if (response.data.code != 200) {
@@ -37,15 +36,8 @@ instance.interceptors.response.use(
             message: response.data.message,
             type: 'warning',
           })
-          store.commit("clear")
-          router.replace({ name: "Login" })
-          break;
-        case 409://成员列表获取失败
-          ElMessage({
-            showClose: true,
-            message: response.data.message,
-            type: 'warning',
-          })
+          // store.commit("clear")
+          // router.replace({ name: "Login" })
           break;
         default:
           ElMessage({
@@ -53,7 +45,6 @@ instance.interceptors.response.use(
             message: response.data.message,
             type: 'warning',
           })
-          router.push({ name: "Error" })
           break;
       }
     }

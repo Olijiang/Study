@@ -5,26 +5,10 @@
 html, body {
   margin: 0;/*清除默认样式*/
   padding: 0;
-  width: 100%;
+  width: calc(100vw-8px);
   height: 100%;
   /* scroll-behavior: smooth; */
 }
-body{
-  overflow-y: scroll; 
-  animation: fadeInAnimation 0.5s linear;
-  animation-iteration-count: 1; 
-  animation-fill-mode: forwards; 
-}
-
-@keyframes fadeInAnimation { 
-  0% { 
-      opacity: 0.1; 
-  } 
-  100% { 
-      opacity: 1; 
-   } 
-}
-
 
 
 #app{

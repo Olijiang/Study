@@ -1,32 +1,31 @@
 <template>
-    <el-dialog v-model="loginFlag">
-        <div class="loginFlag">
-            <div class="login-card">
-                <div class="card-header">
-                    <h3>登&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;录</h3>
-                </div>
-                <div class="card-body">
-                    <el-form ref="loginRef" :model="loginForm" status-icon :rules="rules" label-width="80px"
-                        class="demo-ruleForm">
-                        <el-form-item label="用户名" prop="username">
-                            <el-input v-model="loginForm.username" type="text" autocomplete="off" placeholder="请输入账户" />
-                        </el-form-item>
-                        <el-form-item label="密&#160;&#160;&#160;&#160;码" prop="password">
-                            <el-input v-model="loginForm.password" type="password" autocomplete="off"
-                                placeholder="请输入密码" />
-                        </el-form-item>
-                        <el-form-item>
-                            <el-button type="primary" @click="submitForm">登录</el-button>
-                            <el-button @click="resetForm">清空</el-button>
-                        </el-form-item>
-                    </el-form>
-                </div>
-            </div>
+    <el-dialog v-model="loginFlag" width="400px" top="20vh" modal style=" border-radius: 20px;">
+        <template class=" card-header" #header>
+            <h3>登&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;录</h3>
+        </template>
+        <div class="card-body">
+            <el-form ref="loginRef" :model="loginForm" status-icon :rules="rules" label-width="80px"
+                class="demo-ruleForm">
+                <el-form-item label="用户名" prop="username">
+                    <el-input v-model="loginForm.username" type="text" autocomplete="off" placeholder="请输入账户" />
+                </el-form-item>
+                <el-form-item label="密&#160;&#160;码" prop="password">
+                    <el-input v-model="loginForm.password" type="password" autocomplete="off" placeholder="请输入密码" />
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="submitForm">登录</el-button>
+                    <el-button @click="resetForm">清空</el-button>
+                </el-form-item>
+            </el-form>
         </div>
+
+
     </el-dialog>
 </template>
 
 <script>
+
+import API from '../utils/API'
 
 
 export default {
@@ -70,17 +69,15 @@ export default {
         submitForm() {
             this.$refs['loginRef'].validate((valid) => {
                 if (valid) {
-                    let author = {
-                        name: "高西维尔",
-                        desc: "这是我的blog",
-                        articleN: 999,
-                        categoryN: 999,
-                        tagN: 999,
-                        imgUrl: "src/img/2.png"
-                    }
-                    // 同步vuex
-                    this.$store.commit("putAuthorInfo", author)
-                    this.$store.state.loginFlag = false
+
+                    API.post('/login', this.loginForm)
+                        .then(res => {
+                            if (res.code === 200) {
+                                // 同步vuex
+                                this.$store.commit("login", res.author)
+                                this.$store.state.loginFlag = false
+                            }
+                        })
                 }
             })
         },
@@ -109,46 +106,20 @@ export default {
 </script>
 
 <style lang='less' scoped>
-.loginBoxOn {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    z-index: 5;
-    background-color: rgba(250, 250, 250, 0.5);
-    transition: all 0.2s ease-in-out;
-    font-family: Arial, Helvetica, sans-serif;
-
-    .login-card {
-        border: 2px solid #f0eded;
-        border-radius: 20px;
-        background-color: #ffffff;
-        width: 350px;
-        height: 260px;
-        margin: auto;
-        margin-top: 25vh;
-        position: fixed;
-        left: 40%;
-        z-index: 20;
-    }
-
-    .card-body {
-        padding-right: 20px
-    }
-
-    .card-header {
-        font-size: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+el-dialog {
+    border-radius: 20px !important;
 }
 
-.loginBoxOff {
-    .loginBoxOn;
+.card-body {
+    width: 300px;
+    margin: auto;
+    z-index: 20;
+    padding-right: 5%
+}
 
-    opacity: 0;
-    z-index: -1;
+.card-header {
+    font-size: 20px;
+    font-family: "宋体";
+    align-items: center;
 }
 </style>

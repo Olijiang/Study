@@ -45,6 +45,7 @@ footer {
     background-size: 500% 500%;
     animation: Gradient 15s ease infinite;
     font-family: sans-serif;
+    transition: all 0.5s;
 
     @keyframes Gradient {
         0% {

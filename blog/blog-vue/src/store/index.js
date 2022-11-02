@@ -13,7 +13,8 @@ const store = createStore({
         imgUrl: ""
       },
       loginFlag: false, //控制登录窗口
-      isLogin: false  //控制是否登录
+      isLogin: false,  //控制是否登录
+      curArticle: ""
     }
   },
   mutations: {

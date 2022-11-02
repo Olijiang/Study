@@ -14,10 +14,10 @@
         <el-col class="articleCol">
             <div class="article_card">
                 <div :class="{ illustration_l: (article.index % 2 == 0), illustration_r: (article.index % 2 != 0) }">
-                    <img :src=article.imgUrl alt="img">
+                    <img :src=article.imgUrl alt="img" @click="articleDeail">
                 </div>
                 <div :class="{ content_r: (article.index % 2 == 0), content_l: (article.index % 2 != 0) }">
-                    <h3>{{ article.title }}</h3>
+                    <h3 @click="articleDeail">{{ article.title }}</h3>
                     <span style="font-size: 80%;color: #858585"> {{ article.category }} | {{ article.tag }}</span>
                     <hr width="300px" align="left" />
                     <p>{{ article.digest }}</p>
@@ -31,25 +31,46 @@
 
 </template>
 
-<script setup>
+<script>
 
-defineProps({
-    article: {
-        index: Number,
-        title: String,
-        createTime: String,
-        category: String, // 分类
-        tag: String,  // 标签
-        digest: String, //摘要
-        url: String, //正文地址
-        imgUrl: String, //插图地址
+export default {
+    components: {
+
     },
-})
+    props: {
+        article: {
+            index: Number,
+            title: String,
+            createTime: String,
+            category: String, // 分类
+            tag: String,  // 标签
+            digest: String, //摘要
+            url: String, //正文地址
+            imgUrl: String, //插图地址
+        },
+    },
+    data() {
+        return {
 
-// onMounted(() => {
-//     onMounted(console.log(article))
-// })
+        }
+    },
+    methods: {
+        articleDeail() {
+            this.$router.push({
+                name: "ArticleDetail"
+            })
+        }
+    },
+    computed: {
 
+    },
+    watch: {
+
+    },
+    mounted() {
+
+    },
+}
 
 </script>
 
@@ -100,6 +121,7 @@ defineProps({
     margin-bottom: 20px;
 
     img {
+        cursor: pointer;
         height: 100%;
         width: 100%;
         object-fit: cover;

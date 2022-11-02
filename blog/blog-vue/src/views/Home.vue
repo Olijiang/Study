@@ -1,32 +1,31 @@
 <template>
+    <div>
+        <div class="home-page">
+            <transition name="el-fade-in">
+                <img src="../img/P1.png" alt="">
+            </transition>
+        </div>
+
+        <el-row v-if="ok">
+            <el-col class="space"></el-col>
+            <el-col class="ArticleCard">
+                <!-- 文章部分 -->
+                <div v-for="(aricle, index) in articleList" :key=index>
+                    <transition appear>
+                        <vArticleCard :article=aricle />
+                    </transition>
+                </div>
+            </el-col>
+            <el-col class="space"></el-col>
+            <el-col class="AuthorCard">
+                <vAuthorCard></vAuthorCard>
+            </el-col>
+            <el-col class="space"></el-col>
+        </el-row>
 
 
-    <div class="home-page">
-        <transition name="el-fade-in">
-            <img src="../img/P1.png" alt="">
-        </transition>
+        <div v-if="hasover" class="endmsg">已经到底了...</div>
     </div>
-
-    <el-row v-if="ok">
-        <el-col class="space"></el-col>
-        <el-col class="ArticleCard">
-            <!-- 文章部分 -->
-            <div v-for="(aricle, index) in articleList" :key=index>
-                <transition name="el-zoom-in-top">
-                    <vArticleCard :article=aricle />
-                </transition>
-            </div>
-        </el-col>
-        <el-col class="space"></el-col>
-        <el-col class="AuthorCard">
-            <vAuthorCard></vAuthorCard>
-        </el-col>
-        <el-col class="space"></el-col>
-    </el-row>
-
-
-    <div v-if="hasover" class="endmsg">已经到底了...</div>
-
 </template>
 
 

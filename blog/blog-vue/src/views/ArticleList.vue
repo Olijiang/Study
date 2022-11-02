@@ -1,10 +1,13 @@
 <template>
-
+    <div>
+        文章部分
+    </div>
 </template>
 
 <script>
 
 export default {
+
     components: {
 
     },

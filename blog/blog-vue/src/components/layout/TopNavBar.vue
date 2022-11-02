@@ -7,23 +7,23 @@
         </div>
         <div class="nav">
             <template v-if="isLogin">
-                <div v-for="(item, index) in navItems" :key="index" class="nav-item" @click="routerHandler(item.name)">
+                <div v-for="(item, index) in navItems" :key="index" class="nav_item" @click="routerHandler(item.name)">
                     <span>{{ item.label }}</span>
-                    <div class="item-line"></div>
+                    <div class="item_line"></div>
                 </div>
-                <div class="nav-item1" @click="routerHandler('Personal')">
+                <div class="nav_item" @click="routerHandler('Personal')">
                     个人中心
-                    <div class="item-line"></div>
+                    <div class="item_line"></div>
                 </div>
-                <div class="nav-item1" @click="logoutHandler">
+                <div class="nav_item" @click="logoutHandler">
                     退出登录
-                    <div class="item-line"></div>
+                    <div class="item_line"></div>
                 </div>
             </template>
 
-            <div v-else class="nav-item" @click="loginHandler">
+            <div v-else class="nav_item" @click="loginHandler">
                 <span>登录</span>
-                <div class="item-line"></div>
+                <div class="item_line"></div>
             </div>
         </div>
     </header>
@@ -49,8 +49,8 @@ export default {
                     name: "Album"
                 },
                 {
-                    label: "文章",
-                    name: "Article"
+                    label: "文章列表",
+                    name: "ArticleList"
                 },
             ],
             headerStyle: "header-on",
@@ -85,8 +85,9 @@ export default {
             this.$store.state.loginFlag = true
         },
         routerHandler(value) {
-            console.log(value);
-            router.push(value)
+            this.$router.push({
+                name: value
+            })
         },
         onMousemove(event) {
             this.x = event.clientX
@@ -153,58 +154,31 @@ export default {
     margin-right: 20px;
 }
 
-.nav-item {
+.nav_item {
+    position: relative;
     display: inline-block;
     line-height: 20px;
-    margin: 0 5px;
-    width: 40px;
+    margin: 0 8px;
     cursor: pointer;
     transition: 0.3s all ease-in-out;
 
-    .item-line {
+    .item_line {
         position: absolute;
         width: 0;
         margin-top: 10px;
         height: 5px;
-        translate: 25px; // 移到居中
         border-radius: 2px;
         background-color: rgb(2, 159, 207);
         transition: 0.3s all ease-in-out;
-        transform: scale(0.1);
     }
 
     &:hover {
         color: rgb(2, 159, 207);
         transition: 0.3s all ease-in-out;
-
-        .item-line {
-            position: absolute;
-            transform: scale(1);
+        .item_line {
             translate: 0;
-            width: 40px;
-            height: 5px;
-            border-radius: 2px;
-            background-color: rgb(2, 159, 207);
-            transition: 0.3s all ease-in-out;
+            width: 100%;
         }
-    }
-}
-
-.nav-item1 {
-    .nav-item;
-    width: 75px;
-
-    .item-line {
-        translate: 40px; // 移到居中
-    }
-
-    &:hover {
-        .item-line {
-            width: 65px;
-            translate: 5px; // 移到居中
-        }
-
-
     }
 }
 </style>

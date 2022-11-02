@@ -56,3 +56,18 @@ function initiate() {
     }
 }
 Mock.mock("/init", initiate);
+
+
+function getArticle() {
+    return {
+        code: 200,
+        message: "文章细节",
+        data: `# AQS 简单介绍\n123123\n\n## bia`
+
+    }
+}
+
+Mock.mock(RegExp("/article/id=" + "\d*"), getArticle)
+
+
+

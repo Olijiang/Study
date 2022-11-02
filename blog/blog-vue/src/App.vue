@@ -2,8 +2,12 @@
 <template>
   <TopNavBarVue></TopNavBarVue>
 
-  <div class="main" @mousemove="onMousemove" :style="{ backgroundColor: `hsl(${x % 360}, 30%, 90%, 0.3)` }">
-    <router-view></router-view>
+  <div class="main" v-cloak @mousemove="onMousemove" :style="{ backgroundColor: `hsl(${x % 360}, 30%, 90%, 0.3)` }">
+    <router-view v-slot="{ Component }">
+      <transition name="slide-fade">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
 
   <FooterVue></FooterVue>
@@ -71,5 +75,24 @@ export default {
   z-index: 0;
   flex: 1 0 auto;
   transition: @colortransition;
+}
+
+/* 过度动画 */
+.slide-fade-enter-active {
+  transition: all 0.3s ease-in-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+
+.slide-fade-enter-from {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+.slide-fade-leave-to {
+  transform: translateY(10px);
+  opacity: 0;
 }
 </style>

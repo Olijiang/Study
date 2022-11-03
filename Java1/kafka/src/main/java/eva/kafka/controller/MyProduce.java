@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2022/11/2 14:04
  */
 @RestController
-public class KafkaController {
+public class MyProduce {
 	private final static String TOPIC_NAME = "myTopic";
 
-	@Autowired
+	@Autowired(required = false)
 	private KafkaTemplate<String, String> kafkaTemplate;
 
 	@RequestMapping("/send/{msg}")

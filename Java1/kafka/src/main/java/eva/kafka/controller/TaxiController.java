@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
  * @since 2022-11-02
  */
 @Controller
-@RequestMapping("/taxi-trans")
-public class TaxiTransController {
+@RequestMapping("/taxi")
+public class TaxiController {
 
 }

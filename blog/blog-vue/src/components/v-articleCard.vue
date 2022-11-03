@@ -23,7 +23,6 @@
                     <p>{{ article.digest }}</p>
                 </div>
             </div>
-
         </el-col>
     </el-row>
 
@@ -57,7 +56,7 @@ export default {
     methods: {
         articleDeail() {
             this.$router.push({
-                name: "ArticleDetail"
+                path: "ArticleDetail/" + this.article.index
             })
         }
     },

@@ -3,11 +3,11 @@
   <TopNavBarVue></TopNavBarVue>
 
   <div class="main" v-cloak @mousemove="onMousemove" :style="{ backgroundColor: `hsl(${x % 360}, 30%, 90%, 0.3)` }">
-    <router-view v-slot="{ Component }">
-      <transition name="slide-fade">
-        <component :is="Component" />
-      </transition>
-    </router-view>
+    <transition name="slide-fade">
+      <router-view></router-view>
+    </transition>
+
+
   </div>
 
   <FooterVue></FooterVue>

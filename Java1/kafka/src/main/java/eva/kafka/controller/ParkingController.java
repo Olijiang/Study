@@ -15,6 +15,6 @@ import org.springframework.stereotype.Controller;
  */
 @Controller
 @RequestMapping("/Parking")
-public class ParkingTranicController {
+public class ParkingController {
 
 }

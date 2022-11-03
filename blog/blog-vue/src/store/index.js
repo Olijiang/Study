@@ -13,6 +13,7 @@ const store = createStore({
         imgUrl: ""
       },
       loginFlag: false, //控制登录窗口
+      editFlag: false, //控制文章编辑窗口
       isLogin: false,  //控制是否登录
       curArticle: ""
     }

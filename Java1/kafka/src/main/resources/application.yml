@@ -6,46 +6,56 @@ server:
 spring:
   kafka:
     bootstrap-servers: 39.105.60.108:9092
-    producer: # \u751F\u4EA7\u8005
-      retries: 3 # \u8BBE\u7F6E\u5927\u4E8E0\u7684\u503C\uFF0C\u5219\u5BA2\u6237\u7AEF\u4F1A\u5C06\u53D1\u9001\u5931\u8D25\u7684\u8BB0\u5F55\u91CD\u65B0\u53D1\u9001
+    producer: # 生产者
+      retries: 3 # 设置大于0的值，则客户端会将发送失败的记录重新发送
       batch-size: 16384
       buffer-memory: 33554432
-#      acks=0 \u628A\u6D88\u606F\u53D1\u9001\u5230kafka\u5C31\u8BA4\u4E3A\u53D1\u9001\u6210\u529F
-#      acks=1 \u628A\u6D88\u606F\u53D1\u9001\u5230kafka leader\u5206\u533A\uFF0C\u5E76\u4E14\u5199\u5165\u78C1\u76D8\u5C31\u8BA4\u4E3A\u53D1\u9001\u6210\u529F
-#      acks=all \u628A\u6D88\u606F\u53D1\u9001\u5230kafka leader\u5206\u533A\uFF0C\u5E76\u4E14leader\u5206\u533A\u7684\u526F\u672Cfollower\u5BF9\u6D88\u606F\u8FDB\u884C\u4E86\u540C\u6B65\u5C31\u4EFB\u52A1\u53D1\u9001\u6210\u529F
+      #      acks=0 把消息发送到kafka就认为发送成功
+      #      acks=1 把消息发送到kafka leader分区，并且写入磁盘就认为发送成功
+      #      acks=all 把消息发送到kafka leader分区，并且leader分区的副本follower对消息进行了同步就任务发送成功
       acks: 1
-      # \u6307\u5B9A\u6D88\u606Fkey\u548C\u6D88\u606F\u4F53\u7684\u7F16\u89E3\u7801\u65B9\u5F0F
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # 指定消息key和消息体的编解码方式
+      key-serializer: org.apache.kafka.common.serialization.stringserializer
+      value-serializer: org.apache.kafka.common.serialization.stringserializer
     consumer:
-      group-id: myGroup
+      group-id: mygroup
       enable-auto-commit: false
       auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      key-deserializer: org.apache.kafka.common.serialization.stringdeserializer
+      value-deserializer: org.apache.kafka.common.serialization.stringdeserializer
     listener:
-      # \u5F53\u6BCF\u4E00\u6761\u8BB0\u5F55\u88AB\u6D88\u8D39\u8005\u76D1\u542C\u5668\uFF08ListenerConsumer\uFF09\u5904\u7406\u4E4B\u540E\u63D0\u4EA4
-      # RECORD
-      # \u5F53\u6BCF\u4E00\u6279poll()\u7684\u6570\u636E\u88AB\u6D88\u8D39\u8005\u76D1\u542C\u5668\uFF08ListenerConsumer\uFF09\u5904\u7406\u4E4B\u540E\u63D0\u4EA4
-      # BATCH
-      # \u5F53\u6BCF\u4E00\u6279poll()\u7684\u6570\u636E\u88AB\u6D88\u8D39\u8005\u76D1\u542C\u5668\uFF08ListenerConsumer\uFF09\u5904\u7406\u4E4B\u540E\uFF0C\u8DDD\u79BB\u4E0A\u6B21\u63D0\u4EA4\u65F6\u95F4\u5927\u4E8ETIME\u65F6\u63D0\u4EA4
-      # TIME
-      # \u5F53\u6BCF\u4E00\u6279poll()\u7684\u6570\u636E\u88AB\u6D88\u8D39\u8005\u76D1\u542C\u5668\uFF08ListenerConsumer\uFF09\u5904\u7406\u4E4B\u540E\uFF0C\u88AB\u5904\u7406record\u6570\u91CF\u5927\u4E8E\u7B49\u4E8ECOUNT\u65F6\u63D0\u4EA4
-      # COUNT
-      # TIME |\u3000COUNT\u3000\u6709\u4E00\u4E2A\u6761\u4EF6\u6EE1\u8DB3\u65F6\u63D0\u4EA4
-      # COUNT_TIME
-      # \u5F53\u6BCF\u4E00\u6279poll()\u7684\u6570\u636E\u88AB\u6D88\u8D39\u8005\u76D1\u542C\u5668\uFF08ListenerConsumer\uFF09\u5904\u7406\u4E4B\u540E, \u624B\u52A8\u8C03\u7528Acknowledgment.acknowledge()\u540E\u63D0\u4EA4
-      # MANUAL
-      # \u624B\u52A8\u8C03\u7528Acknowledgment.acknowledge()\u540E\u7ACB\u5373\u63D0\u4EA4\uFF0C\u4E00\u822C\u4F7F\u7528\u8FD9\u79CD
-      # MANUAL_IMMEDIATE
+      # 当每一条记录被消费者监听器（listenerconsumer）处理之后提交
+      # record
+      # 当每一批poll()的数据被消费者监听器（listenerconsumer）处理之后提交
+      # batch
+      # 当每一批poll()的数据被消费者监听器（listenerconsumer）处理之后，距离上次提交时间大于time时提交
+      # time
+      # 当每一批poll()的数据被消费者监听器（listenerconsumer）处理之后，被处理record数量大于等于count时提交
+      # count
+      # time |　count　有一个条件满足时提交
+      # count_time
+      # 当每一批poll()的数据被消费者监听器（listenerconsumer）处理之后, 手动调用acknowledgment.acknowledge()后提交
+      # manual
+      # 手动调用acknowledgment.acknowledge()后立即提交，一般使用这种
+      # manual_immediate
       ack-mode: manual_immediate
+      # 并行消费者数量
+      concurrency: 1
   datasource:
     username: root
     password: 123456
-    url: jdbc:mysql:///minhang?serverTimezone=Asia/Shanghai
+    url: jdbc:mysql:///minhang?servertimezone=asia/shanghai
+    hikari:
+      auto-commit: true
+      #空闲连接超时时长
+      idle-timeout: 60000
+      #连接超时时长
+      connection-timeout: 60000
+      #最大生命周期，0不过期
+      max-lifetime: 0
 
 mybatis-plus:
-  mapper-locations: classpath:/mapper/*Mapper.xml
+  mapper-locations: classpath:/mapper/*mapper.xml
   type-aliases-package: com.demo.entities
   configuration:
-    map-underscore-to-camel-case: false
+    map-underscore-to-camel-case: true

@@ -1,8 +1,9 @@
 package blog.entity;
 
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -16,20 +17,23 @@ import io.swagger.annotations.ApiModelProperty;
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    private Integer id;
-
+    @TableId
     private String username;
 
     private String password;
 
-    public Integer getId() {
-        return id;
-    }
+    private String blogName;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private String blogInfo;
+
+    private Integer articleNum;
+
+    private Integer categoryNum;
+
+    private Integer visitNum;
+
+    private String img;
+
     public String getUsername() {
         return username;
     }
@@ -44,13 +48,60 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+    public String getBlogName() {
+        return blogName;
+    }
+
+    public void setBlogName(String blogName) {
+        this.blogName = blogName;
+    }
+    public String getBlogInfo() {
+        return blogInfo;
+    }
+
+    public void setBlogInfo(String blogInfo) {
+        this.blogInfo = blogInfo;
+    }
+    public Integer getArticleNum() {
+        return articleNum;
+    }
+
+    public void setArticleNum(Integer articleNum) {
+        this.articleNum = articleNum;
+    }
+    public Integer getCategoryNum() {
+        return categoryNum;
+    }
+
+    public void setCategoryNum(Integer categoryNum) {
+        this.categoryNum = categoryNum;
+    }
+    public Integer getVisitNum() {
+        return visitNum;
+    }
+
+    public void setVisitNum(Integer visitNum) {
+        this.visitNum = visitNum;
+    }
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     @Override
     public String toString() {
         return "User{" +
-            "id=" + id +
-            ", username=" + username +
+            "username=" + username +
             ", password=" + password +
+            ", blogName=" + blogName +
+            ", blogInfo=" + blogInfo +
+            ", articleNum=" + articleNum +
+            ", categoryNum=" + categoryNum +
+            ", visitNum=" + visitNum +
+            ", img=" + img +
         "}";
     }
 }

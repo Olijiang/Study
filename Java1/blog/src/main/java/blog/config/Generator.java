@@ -1,4 +1,4 @@
-package eva.kafka.controller;
+package blog.config;
 
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
 import com.baomidou.mybatisplus.generator.config.OutputFile;
@@ -13,11 +13,11 @@ import java.util.Collections;
  * @date 2022/10/20 18:15
  */
 public class Generator {
-	private static final String URL = "jdbc:mysql:///minhang?serverTimezone=Asia/Shanghai";
+	private static final String URL = "jdbc:mysql:///blog?serverTimezone=Asia/Shanghai";
 	private static final String USERNAME = "root";
 	private static final String PASSWORD = "123456";
 
-	public static void main(String[] args) {
+	public static void generator(String[] args) {
 		String projectPath = System.getProperty("user.dir");
 		System.out.println(projectPath);
 		FastAutoGenerator.create(URL, USERNAME,PASSWORD )
@@ -30,18 +30,19 @@ public class Generator {
 							.commentDate("yyyy-MM-dd");
 				})
 				.packageConfig(builder -> {
-					builder.parent("eva.kafka") // 设置父包名
+					builder.parent("blog") // 设置父包名
 							.moduleName(null) // 设置父包模块名
 									.entity("entity")
-									.service("service")
-									.serviceImpl("service.impl")
+//									.service("service")
+//									.serviceImpl("service.impl")
+									.serviceImpl("service")
 									.mapper("mapper")
 									.xml("mapper.xml")
 									.controller("controller")
 									.pathInfo(Collections.singletonMap(OutputFile.mapperXml, projectPath+"/src/main/resources/mapper/")); // 设置mapperXml生成路径
 				})
 				.strategyConfig(builder -> {
-					builder.addInclude("parking_traffic","taxi_trans") // 设置需要生成的表名
+					builder.addInclude("user") // 设置需要生成的表名
 							.addTablePrefix("t_", "c_"); // 设置过滤表前缀
 				})
 				.templateEngine(new FreemarkerTemplateEngine()) // 使用Freemarker引擎模板，默认的是Velocity引擎模板

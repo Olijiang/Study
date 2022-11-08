@@ -5,12 +5,6 @@ const store = createStore({
   state() {
     return {
       authorInfo: {
-        name: "",
-        desc: "",
-        articleN: 0,
-        categoryN: 0,
-        tagN: 0,
-        imgUrl: ""
       },
       loginFlag: false, //控制登录窗口
       editFlag: false, //控制文章编辑窗口

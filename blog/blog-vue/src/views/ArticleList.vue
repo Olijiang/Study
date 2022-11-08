@@ -11,7 +11,7 @@
             </div>
 
             <div style="margin-left: 20px;">
-                <el-button color="#ffae19" @click="addHandler">新增文章</el-button>
+                <el-button color="#ffae19" @click="addHandler">写文章</el-button>
             </div>
         </div>
         <div>
@@ -19,9 +19,8 @@
                 <div v-for="(item, index) in computedList" :key="item.index" :data-index="index" class="item">
                     <div style="width: 85%;">
                         <div>
-                            <span style="margin-top: 5px;font-size: 20px; color:#ff0000;display: inline-block;">{{
-                                    item.title
-                            }}</span>
+                            <span class="title" @click="articleDeail(item.index)">{{ item.title }} </span>
+
                             <span style="margin: 0 20px; line-height: 20px;font-size: 80%;color: #4f8edd">
                                 {{ item.createTime }} || {{ item.tag }}</span>
                         </div>
@@ -35,8 +34,9 @@
                 </div>
             </TransitionGroup>
         </div>
+        <ArticleEditorVue></ArticleEditorVue>
     </div>
-    <!-- <ArticleEditorVue></ArticleEditorVue> -->
+
 </template>
 
 <script>
@@ -51,7 +51,6 @@ export default {
     props: {},
     data() {
         return {
-            editFlag: false,
             query: "",
             list: [
                 { index: 1, title: "段落标题段落标题段落标题段落标题段落标题", createTime: "2012-01-23", category: "Vue", tag: "vuex", digest: "段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要段落摘要", url: "xxx", imgUrl: "src/img/1.png" },
@@ -90,19 +89,33 @@ export default {
 
         },
         addHandler() {
-
+            this.editFlag = true
         },
         editHandler(aricleId) {
-            console.log(this.$store.state.editFlag);
-            this.$store.state.editFlag = true
+            this.editFlag = true
         },
         deleteHandler(aricleId) {
 
         },
+        articleDeail(value) {
+            this.$router.push({
+                path: "ArticleDetail/" + value
+            })
+        }
     },
     computed: {
         computedList() {
-            return (this.list.filter((item) => item.title.includes(this.query))).filter((item) => item.digest.includes(this.query))
+            return this.list.filter((item) => {
+                return item.title.indexOf(this.query) != -1 || item.digest.indexOf(this.query) != -1
+            })
+        },
+        editFlag: {
+            get() {
+                return this.$store.state.editFlag
+            },
+            set(value) {
+                this.$store.state.editFlag = value
+            }
         }
     },
     watch: {
@@ -131,5 +144,18 @@ export default {
     margin: 10px 0;
     padding: 0 10px;
     height: 55px;
+
+    .title {
+        margin-top: 5px;
+        font-size: 20px;
+        color: #ff0000;
+        display: inline-block;
+        cursor: pointer;
+        transition: all 0.2s;
+
+        &:hover {
+            color: #04d6a2;
+        }
+    }
 }
 </style>

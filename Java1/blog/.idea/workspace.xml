@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f20556cc-ae9e-4d85-982c-d6d124e32eb6" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../kafka/src/main/java/eva/kafka/config/KafkaUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/blog.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/blogApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/blogApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/config/ComResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/config/ComResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/config/Generator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/config/Generator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/config/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/config/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/config/KaptchaConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/config/KaptchaConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/config/LocalCatch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/config/LocalCatch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/config/TokenInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/config/TokenInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/controller/ArticleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/controller/ArticleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/controller/CategoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/controller/CategoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/controller/KaptchaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/controller/KaptchaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/entity/Article.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/entity/Article.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/entity/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/entity/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/entity/UserInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/entity/UserInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/service/ArticleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/service/ArticleServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/service/CategoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/service/CategoryServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/service/IUserService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/service/LoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/blog/service/impl/UserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka/src/main/java/eva/kafka/controller/MyConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kafka/src/main/java/eva/kafka/controller/MyConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka/src/main/java/eva/kafka/controller/MyProduce.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kafka/src/main/java/eva/kafka/controller/MyProduce.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kafka/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kafka/src/test/java/eva/kafka/KafkaApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../kafka/src/test/java/eva/kafka/KafkaApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/components/layout/TopNavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/components/layout/TopNavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/components/v-authorCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/components/v-authorCard.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/components/v-login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/components/v-login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/router/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/store/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/views/ArticleDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/views/ArticleDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/views/ArticleEditor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/views/ArticleEditor.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/views/ArticleList.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/views/ArticleList.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/vite.config.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\Develop\apache-maven-3.8.1\repository" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../Develop/apache-maven-3.8.1" />
+        <option name="userSettingsFile" value="D:\Develop\apache-maven-3.8.1\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2HA1JEP6vYiurOjMw7wIEjzTKN5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Program/民航项目/kafka-exb/kafka-esb" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="blog.config" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="blog.config" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Study\Java1\blog\src\main\java\blog\config" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.blogApplication">
+    <configuration name="Generator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="blog.config.Generator" />
+      <module name="blog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="blog.config.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="blogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="blog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="blog.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="blog.blogApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.blogApplication" />
+        <item itemvalue="Application.Generator" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f20556cc-ae9e-4d85-982c-d6d124e32eb6" name="Default Changelist" comment="" />
+      <created>1667712999140</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1667712999140</updated>
+      <workItem from="1667713015554" duration="1437000" />
+      <workItem from="1667715014954" duration="537000" />
+      <workItem from="1667715733913" duration="10212000" />
+      <workItem from="1667730338575" duration="3730000" />
+      <workItem from="1667734856179" duration="135000" />
+      <workItem from="1667735029463" duration="3537000" />
+      <workItem from="1667745344112" duration="2051000" />
+      <workItem from="1667783305264" duration="653000" />
+      <workItem from="1667811458109" duration="93000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="281" y="60" key="#Project_Structure" timestamp="1667714596083">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state x="281" y="60" key="#Project_Structure/0.0.1600.970@0.0.1600.970" timestamp="1667714596083" />
+    <state x="256" y="140" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1667733347140">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state x="256" y="140" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.970@0.0.1600.970" timestamp="1667733347140" />
+    <state x="550" y="401" width="442" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1667713160688">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state x="550" y="401" width="442" height="271" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1600.970@0.0.1600.970" timestamp="1667713160688" />
+    <state x="502" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1667737760784">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state x="502" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1600.970@0.0.1600.970" timestamp="1667737760784" />
+    <state x="531" y="232" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1667733386940">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state x="531" y="232" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1600.970@0.0.1600.970" timestamp="1667733386940" />
+    <state x="581" y="240" key="FileChooserDialogImpl" timestamp="1667783355806">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state x="581" y="240" key="FileChooserDialogImpl/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1667783355806" />
+    <state x="581" y="240" key="FileChooserDialogImpl/0.0.1600.970@0.0.1600.970" timestamp="1667746618311" />
+    <state width="1558" height="259" key="GridCell.Tab.0.bottom" timestamp="1667739115524">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state width="1558" height="259" key="GridCell.Tab.0.bottom/0.0.1600.970@0.0.1600.970" timestamp="1667739115524" />
+    <state width="1558" height="259" key="GridCell.Tab.0.center" timestamp="1667739115524">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state width="1558" height="259" key="GridCell.Tab.0.center/0.0.1600.970@0.0.1600.970" timestamp="1667739115524" />
+    <state width="1558" height="259" key="GridCell.Tab.0.left" timestamp="1667739115524">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state width="1558" height="259" key="GridCell.Tab.0.left/0.0.1600.970@0.0.1600.970" timestamp="1667739115524" />
+    <state width="1558" height="259" key="GridCell.Tab.0.right" timestamp="1667739115524">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state width="1558" height="259" key="GridCell.Tab.0.right/0.0.1600.970@0.0.1600.970" timestamp="1667739115524" />
+    <state width="1558" height="259" key="GridCell.Tab.1.bottom" timestamp="1667739115524">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state width="1558" height="259" key="GridCell.Tab.1.bottom/0.0.1600.970@0.0.1600.970" timestamp="1667739115524" />
+    <state width="1558" height="259" key="GridCell.Tab.1.center" timestamp="1667739115524">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state width="1558" height="259" key="GridCell.Tab.1.center/0.0.1600.970@0.0.1600.970" timestamp="1667739115524" />
+    <state width="1558" height="259" key="GridCell.Tab.1.left" timestamp="1667739115524">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state width="1558" height="259" key="GridCell.Tab.1.left/0.0.1600.970@0.0.1600.970" timestamp="1667739115524" />
+    <state width="1558" height="259" key="GridCell.Tab.1.right" timestamp="1667739115524">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state width="1558" height="259" key="GridCell.Tab.1.right/0.0.1600.970@0.0.1600.970" timestamp="1667739115524" />
+    <state x="381" y="220" key="IDE.errors.dialog" timestamp="1667731375396">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state x="381" y="220" key="IDE.errors.dialog/0.0.1600.970@0.0.1600.970" timestamp="1667731375396" />
+    <state x="331" y="140" key="Maven.ArtifactSearchDialog" timestamp="1667715908425">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state x="331" y="140" key="Maven.ArtifactSearchDialog/0.0.1600.970@0.0.1600.970" timestamp="1667715908425" />
+    <state x="459" y="225" key="run.anything.popup" timestamp="1667732840191">
+      <screen x="0" y="0" width="1600" height="970" />
+    </state>
+    <state x="459" y="225" key="run.anything.popup/0.0.1600.970@0.0.1600.970" timestamp="1667732840191" />
+  </component>
+</project>

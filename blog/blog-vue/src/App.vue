@@ -71,6 +71,7 @@ export default {
 
 
 .main {
+  min-height: 1000px;
   position: relative;
   z-index: 0;
   flex: 1 0 auto;

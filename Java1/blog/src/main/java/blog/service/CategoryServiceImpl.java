@@ -1,8 +1,7 @@
-package blog.service.impl;
+package blog.service;
 
 import blog.entity.Category;
 import blog.mapper.CategoryMapper;
-import blog.service.ICategoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +14,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-11-06
  */
 @Service
-public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements ICategoryService {
+public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category>{
 
 }

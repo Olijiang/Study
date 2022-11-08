@@ -17,7 +17,18 @@ html, body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  font-family: "Lucida Calligraphy", cursive, serif, sans-serif;
+  font-family: "Lucida Calligraphy", cursive, serif, sans-serif !important;
+}
+
+.el-input__inner::placeholder{
+  font-family: "Lucida Calligraphy", cursive, serif, sans-serif !important;
+}
+
+.title input {
+  font-family: "Lucida Calligraphy", cursive, serif, sans-serif !important;
+}
+.el-form-item{
+  align-items: center
 }
 
 /* 滑动条 */
@@ -36,5 +47,18 @@ html, body {
   background-image: -webkit-linear-gradient(45deg,rgba(17, 179, 170, 0.4) 20%,transparent 0,transparent 40%,rgba(29, 51, 252, 0.4) 0,rgba(29, 51, 252, 0.4) 60%,transparent 0,transparent 80%,rgba(60, 214, 46, 0.4) 0,rgba(60, 214, 46, 0.4) 100%);
 }
 
-
+.hljs::-webkit-scrollbar {
+  width: 5px;     /*高宽分别对应横竖·滚动条的尺寸*/
+  height: 5px;  
+}
+.hljs::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+  -webkit-box-shadow: inset 0 0 10px #ffffff; /*滑轨*/
+  border-radius: 0;
+  background: rgba(0,0,0,0.1);
+}
+.hljs::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-image: -webkit-linear-gradient(rgba(17, 179, 170, 0.4) 20%);
+}
 

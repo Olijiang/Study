@@ -2,21 +2,21 @@
     <div class=authorStyle>
         <!-- 作者信息 -->
         <div class="author">
-            <img :src=authorInfo.imgUrl alt="">
+            <img :src=authorInfo.img alt="">
 
-            <p class="author-name">{{ authorInfo.name }}
+            <p class="author-name">{{ authorInfo.blogName }}
             </p>
-            <p style="font-size: 90%;color: #858585;"> {{ authorInfo.desc }}</p>
+            <p style="font-size: 90%;color: #858585;"> {{ authorInfo.blogInfo }}</p>
 
             <div>
                 <span class="tag1">文章</span>
                 <span class="tag1">分类</span>
-                <span class="tag1">标签</span>
+                <span class="tag1">访问</span>
             </div>
             <div>
-                <span class="tag" style="color: #6300ff;">{{ authorInfo.articleN }}</span>
-                <span class="tag" style="color: #6300ff;">{{ authorInfo.categoryN }}</span>
-                <span class="tag" style="color: #6300ff;">{{ authorInfo.tagN }}</span>
+                <span class="tag" style="color: #6300ff;">{{ authorInfo.articleNum }}</span>
+                <span class="tag" style="color: #6300ff;">{{ authorInfo.categoryNum }}</span>
+                <span class="tag" style="color: #6300ff;">{{ authorInfo.visitNum }}</span>
             </div>
         </div>
         <!-- 文章分类 -->

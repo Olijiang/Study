@@ -5,7 +5,7 @@ server:
 
 spring:
   kafka:
-    bootstrap-servers: 39.105.60.108:9092
+    bootstrap-servers: 127.0.0.1:9092
     producer: # 生产者
       retries: 3 # 设置大于0的值，则客户端会将发送失败的记录重新发送
       batch-size: 16384
@@ -15,14 +15,14 @@ spring:
       #      acks=all 把消息发送到kafka leader分区，并且leader分区的副本follower对消息进行了同步就任务发送成功
       acks: 1
       # 指定消息key和消息体的编解码方式
-      key-serializer: org.apache.kafka.common.serialization.stringserializer
-      value-serializer: org.apache.kafka.common.serialization.stringserializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
     consumer:
       group-id: mygroup
       enable-auto-commit: false
       auto-offset-reset: earliest
-      key-deserializer: org.apache.kafka.common.serialization.stringdeserializer
-      value-deserializer: org.apache.kafka.common.serialization.stringdeserializer
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
     listener:
       # 当每一条记录被消费者监听器（listenerconsumer）处理之后提交
       # record

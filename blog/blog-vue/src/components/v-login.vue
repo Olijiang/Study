@@ -4,27 +4,35 @@
             <h3>登&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;录</h3>
         </template>
         <div class="card-body">
-            <el-form ref="loginRef" :model="loginForm" status-icon :rules="rules" label-width="80px"
-                class="demo-ruleForm">
+            <el-form ref="loginRef" :model="loginForm" :rules="rules" label-width="80px" class="demo-ruleForm">
                 <el-form-item label="用户名" prop="username">
                     <el-input v-model="loginForm.username" type="text" autocomplete="off" placeholder="请输入账户" />
                 </el-form-item>
                 <el-form-item label="密&#160;&#160;码" prop="password">
                     <el-input v-model="loginForm.password" type="password" autocomplete="off" placeholder="请输入密码" />
                 </el-form-item>
-                <el-form-item>
+                <el-form-item label="验证码" prop="code">
+                    <div style="width:108px">
+                        <el-input v-model="loginForm.code" type="text" autocomplete="off" placeholder="请输入验证码" />
+                    </div>
+                    <div style="cursor: pointer;margin-left:10px ; width: 100px;height: 50px;" @click="getCode">
+                        <img :src="src" alt="" id="code" />
+                    </div>
+
+                </el-form-item>
+                <el-form-item style="margin-top:30px">
                     <el-button type="primary" @click="submitForm">登录</el-button>
                     <el-button @click="resetForm">清空</el-button>
                 </el-form-item>
             </el-form>
         </div>
+
     </el-dialog>
 </template>
 
 <script>
 
 import API from '../utils/API'
-
 
 export default {
 
@@ -37,7 +45,7 @@ export default {
             if (value === '') {
                 callback('请输入用户名')
             } else {
-                let idReg = /^\d{5,10}$/
+                let idReg = /^\d{4,10}$/
                 if (idReg.test(value)) {
                     callback()
                 } else {
@@ -53,22 +61,28 @@ export default {
             }
         }
         return {
+            vscodeFlag: false,
+            src: "",
             rules: {
                 username: { validator: validateUserName, required: true, trigger: 'blur' },
-                password: { validator: validatePassword, required: true, trigger: 'blur' }
+                password: { validator: validatePassword, required: true, trigger: 'blur' },
+                code: { required: true, message: "请输入验证码", trigger: 'blur' }
             },
             loginForm: {
-                username: '4050000',
-                password: '123'
+                username: '2020',
+                password: '123',
+                code: ""
             }
         }
     },
     methods: {
+        getCode() {
+            this.src = "api/getCode?" + Math.random()
+        },
         submitForm() {
             this.$refs['loginRef'].validate((valid) => {
                 if (valid) {
-
-                    API.post('/login', this.loginForm)
+                    API.post('api/login', this.loginForm)
                         .then(res => {
                             if (res.code === 200) {
                                 // 同步vuex
@@ -76,6 +90,11 @@ export default {
                                 this.$store.state.loginFlag = false
                             }
                         })
+                    // 刷新验证码
+                    setTimeout(() => {
+                        this.src = "api/getCode?" + Math.random()
+                    }, 100);
+
                 }
             })
         },
@@ -94,10 +113,12 @@ export default {
         }
     },
     watch: {
-
+        loginFlag() {
+            this.getCode()
+        }
     },
     mounted() {
-
+        this.getCode()
     },
 }
 
@@ -106,6 +127,15 @@ export default {
 <style lang='less' scoped>
 el-dialog {
     border-radius: 20px !important;
+}
+
+el-input::placeholder {
+    /* placeholder颜色  */
+    color: #0068fa !important;
+    /* placeholder字体大小  */
+    font-size: 10px;
+    /* placeholder位置  */
+    text-align: right;
 }
 
 .card-body {

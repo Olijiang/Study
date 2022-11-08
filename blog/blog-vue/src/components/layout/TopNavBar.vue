@@ -1,5 +1,5 @@
 <template>
-    <header @mousemove="onMousemove" :style="{ backgroundColor: `hsl(${x%360}, 30%, 90%, 0.6)` }" :class="headerStyle">
+    <header @mousemove="onMousemove" :class="headerStyle">
 
         <div class="author">
             <!-- {{ authorInfo.name }} -->
@@ -135,6 +135,7 @@ export default {
     line-height: 50px;
     box-shadow: 0px 0px 5px @borderColor;
     transition: @colortransition, @transition;
+    color: #ffab37
 }
 
 
@@ -175,6 +176,7 @@ export default {
     &:hover {
         color: rgb(2, 159, 207);
         transition: 0.3s all ease-in-out;
+
         .item_line {
             translate: 0;
             width: 100%;

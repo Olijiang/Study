@@ -1,6 +1,6 @@
-package com.demo.yeb.config;
+package blog.config;
 
-import com.demo.yeb.entity.UserInfo;
+import blog.entity.UserInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;

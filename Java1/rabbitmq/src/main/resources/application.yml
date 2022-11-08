@@ -1,0 +1,32 @@
+
+spring:
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql:///minhang?serverTimezone=Asia/Shanghai
+
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*mapper.xml
+  type-aliases-package: eva.rabbitmq.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+# 登录信息
+logininfo:
+  #服务调用方账号
+  ESB_SDK_CLIENT_ENDPOINT: TCES
+  #服务调用方密码必须
+  ESB_SDK_CLIENT_PASSWORD: TCES
+  #总线服务地址 必须
+  ESB_SDK_SERVER_IP: 47.94.4.34
+  #总线服务端口号 必须
+  ESB_SDK_SERVER_PORT: 7484
+  #总线版本号
+  ESB_SDK_CLIENT_VERSION: 1.0
+  #服务调用方IP地址
+  CLIENT_IP:
+  #服务调用方MAC地址
+  CLIENT_MAC: 7C-B2-7D-72-FB-31
+  #需要获取的服务名 例子： pvam,sss,vsa,va
+  SERVICE_TYPE: ZHJT

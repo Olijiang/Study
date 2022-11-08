@@ -1,6 +1,7 @@
 package eva.kafka;
 
 import com.alibaba.fastjson.JSONObject;
+import eva.kafka.config.KafkaUtil;
 import eva.kafka.entity.ParkingTraffic;
 import eva.kafka.entity.TaxiTrans;
 import eva.kafka.mapper.ParkingTrafficMapper;
@@ -18,6 +19,7 @@ class KafkaApplicationTests {
 	private ParkingTrafficMapper parkingTrafficMapper;
 
 
+
 	@Test
 	void contextLoads() {
 		String jsonData = "{\"parking_traffic\":[{\"in_parking_num\":29,\"update_time\":\"2022-10-30 05:00:00\",\"busi_type\":\"gtc\",\"area_id\":\"T3-GTC\",\"out_parking_num\":34}],\"taxi_trans\":[{\"update_time\":\"2022-10-30 05:00:00\",\"perhalf_num\":23,\"area_id\":\"T3-TAXI\"}]}";
@@ -31,9 +33,13 @@ class KafkaApplicationTests {
 		System.out.println(taxiTrans);
 		taxiTransMapper.insert(taxiTrans);
 		parkingTrafficMapper.insert(parkingTraffic);
-
 	}
 
-
+	@Test
+	public void utilTest(){
+		KafkaUtil kafkaUtil = new KafkaUtil("127.0.0.1:9092");
+		System.out.println("开始创建----------------------------");
+		kafkaUtil.createTopic("putTopic",10,1);
+	}
 
 }

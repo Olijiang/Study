@@ -2,8 +2,7 @@ package blog.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Controller;
  * @author ZGB
  * @since 2022-11-06
  */
-@Controller
+@RestController
 @RequestMapping("/category")
 public class CategoryController {
 

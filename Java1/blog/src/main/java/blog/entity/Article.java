@@ -1,9 +1,10 @@
 package blog.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import io.swagger.annotations.ApiModel;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 
 /**
  * <p>
@@ -17,7 +18,7 @@ import io.swagger.annotations.ApiModelProperty;
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    @TableId
     private Integer id;
 
     private String title;

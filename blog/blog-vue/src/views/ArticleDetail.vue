@@ -34,7 +34,7 @@
 <script>
 import backToTop from '@/components/backToTop.vue'
 import API from '../utils/API';
-import { marked } from 'marked';
+import markdownToHtml from '@/utils/markdown'
 
 export default {
     components: {
@@ -62,7 +62,7 @@ export default {
         API.get("/article/id=1")
             .then(res => {
                 console.log(res);
-                this.articleBody = marked.parse(res.data)
+                this.articleBody = markdownToHtml(res.data)
             })
     },
 }

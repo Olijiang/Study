@@ -9,16 +9,16 @@ import org.junit.jupiter.api.Test;
 public class demo {
 
 	@Test
-	public void demo1(){
+	public void demo1() {
 		float y = 1000;
 		int n = 100;
-		float step = y/(n/2);
-		float a = step/n;
+		float step = y / (n / 2);
+		float a = step / n;
 		int t = 0;
-		step = step - a/2;
-		while (y>0 && step>0){
-			System.out.println(t++ +";步长："+step+"  y:"+y);
-			y = y-step;
+		step = step - a / 2;
+		while (y > 0 && step > 0) {
+			System.out.println(t++ + ";步长：" + step + "  y:" + y);
+			y = y - step;
 			step = step - a;
 
 		}

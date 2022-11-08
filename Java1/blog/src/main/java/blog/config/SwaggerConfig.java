@@ -1,4 +1,4 @@
-package com.demo.yeb.config;
+package blog.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +32,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(tokenInterceptor)
 				.addPathPatterns("/**")
-				.excludePathPatterns("/static/**","/","/login")
+				.excludePathPatterns("/static/**")
 				// swagger-ui
 				.excludePathPatterns("/swagger-resources/**", "/webjars/**",
 						"/v2/**", "/swagger-ui.html/**","/doc.html");
@@ -53,7 +53,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.apiInfo(apiInfo())
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.demo.yeb.controller"))
+				.apis(RequestHandlerSelectors.basePackage("blog.controller"))
 				.paths(PathSelectors.any())
 				.build();
 	}

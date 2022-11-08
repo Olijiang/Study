@@ -59,10 +59,13 @@ export default {
 
     },
     mounted() {
+        API.get('api/user/get?username=')
+            .then(res => {
+                this.$store.commit("setAuthorInfo", res.data)
+            })
         API.get('/init')
             .then(res => {
                 this.articleList = res.articles
-                this.$store.commit("setAuthorInfo", res.author)
                 this.ok = true
             })
     },

@@ -1,4 +1,4 @@
-package blog.config;
+package blog.utils;
 
 import blog.entity.LoginInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -75,5 +75,10 @@ public class JwtUtil {
 			log.warn("无效token");
 			return null;
 		}
+	}
+
+	public static void main(String[] args) {
+		String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyMDIwIiwiZXhwIjoxNjY4MjU5ODE0LCJpYXQiOjE2NjgyNTYyMTQsImp0aSI6ImJlM2Y0ZTRlLTU5YTktNDQxNi04NzYxLTA2OGMzZTcwOTM3YSIsInRva2VuIjp7InVzZXJuYW1lIjoiMjAyMCIsInBhc3N3b3JkIjoiKioqIiwiY29kZSI6InlkY24ifX0.k6itc33tPuLD-Ffb0JSFo_1uqAkmXb1mA4B4q29SwwA";
+		System.out.println(getUserFromToken(token));
 	}
 }

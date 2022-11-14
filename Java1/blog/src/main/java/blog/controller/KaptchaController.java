@@ -1,6 +1,8 @@
 package blog.controller;
 
 import com.google.code.kaptcha.impl.DefaultKaptcha;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,11 +19,13 @@ import java.io.ByteArrayOutputStream;
  * @description: TODO
  * @date 2022/11/6 15:26
  */
+@Api("验证码")
 @RestController
 public class KaptchaController {
 	@Autowired
 	private DefaultKaptcha captchaProducer;
 
+	@ApiOperation("获取验证码")
 	@GetMapping("/getCode")
 	public void defaultKaptcha(HttpSession session, HttpServletResponse httpServletResponse) throws Exception {
 		byte[] captchaOutputStream;

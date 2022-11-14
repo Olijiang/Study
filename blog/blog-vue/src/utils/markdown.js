@@ -20,13 +20,9 @@ export default function markdownToHtml(content) {
     highlight: function (str, lang) {
       if (lang && hljs.getLanguage(lang)) {
         try {
-          return '<pre class="hljs"><code>' +
-            hljs.highlight(lang, str, true).value +
-            '</code></pre>';
+          return '<pre class="hljs"><code>' + hljs.highlightAuto(str).value + '</code></pre>';
         } catch (__) { }
       }
-
-      return '<pre class="hljs"><textarea><code>' + md.utils.escapeHtml(str) + '</code></textarea></pre>';
     }
   })
     .use(markdownItSup)

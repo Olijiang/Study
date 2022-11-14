@@ -4,16 +4,17 @@ import router from "@/router";
 
 // 创建对象
 const instance = axios.create({
-  // baseURL: "http://localhost:8888",
-  timeout: 1000,
+  // 下面这个url加了会导致后端的seesion出现问题，获取不到验证码的值
+  // baseURL: "http://localhost:5173",
+  timeout: 3000,
 });
 
 // 添加请求拦截器
 instance.interceptors.request.use(
   function (config) {
-    // if (store.state.userInfo.token) {
-    //   config.headers['token'] = store.state.userInfo.token
-    // }
+    if (store.state.author != undefined && store.state.author.password != "") {
+      config.headers['token'] = store.state.author.password
+    }
     return config;
   },
   function (error) {
@@ -27,7 +28,7 @@ instance.interceptors.response.use(
   function (response) {
     // response.status 在 2xx 范围内的状态码都会触发该函数。服务器正确返回, 包括返回错误信息
     // 对响应数据做点什么
-    console.log('response', response.data.message, response);
+    console.log(response.data.message, response.data);
     if (response.data.code != 200) {
       switch (response.data.code) {
         case 401://token 过期
@@ -36,8 +37,8 @@ instance.interceptors.response.use(
             message: response.data.message,
             type: 'warning',
           })
-          // store.commit("clear")
-          // router.replace({ name: "Login" })
+          store.commit("logout")
+          router.replace({ name: "Home" })
           break;
         default:
           ElMessage({
@@ -58,14 +59,14 @@ instance.interceptors.response.use(
       case 500:
         ElMessage({
           showClose: true,
-          message: "服务器错误(500)",
+          message: "服务器未连接(500)",
           type: 'warning',
         })
         break
       case 404:
         ElMessage({
           showClose: true,
-          message: "请检查请求地址(404)",
+          message: "请求地址错误(404)",
           type: 'warning',
         })
         break

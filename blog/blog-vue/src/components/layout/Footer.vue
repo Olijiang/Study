@@ -41,7 +41,7 @@ footer {
     text-align: center;
     vertical-align: middle;
     box-shadow: 0px 0px 1px #dadaad;
-    background: linear-gradient(45deg, #ff5757, #ffc157, #fcff57, #57ff68, #57ffe3, #575fff, #db57ff);
+    background: linear-gradient(45deg, hsla(0, 30%, 85%, 0.5), hsla(60, 30%, 85%, 0.5), hsla(120, 30%, 85%, 0.5), hsla(180, 30%, 85%, 0.5), hsla(240, 30%, 85%, 0.5), hsla(300, 30%, 85%, 0.5), hsla(360, 30%, 85%, 0.5));
     background-size: 500% 500%;
     animation: Gradient 15s ease infinite;
     font-family: sans-serif;

@@ -1,10 +1,11 @@
 <template>
-    <el-dialog v-model="loginFlag" width="400px" top="20vh" modal style=" border-radius: 20px;">
+    <el-dialog v-model="loginDialog" width="400px" top="20vh" modal style=" border-radius: 20px;">
         <template class=" card-header" #header>
             <h3>登&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;录</h3>
         </template>
         <div class="card-body">
-            <el-form ref="loginRef" :model="loginForm" :rules="rules" label-width="80px" class="demo-ruleForm">
+            <el-form ref="loginRef" :model="loginForm" :rules="rules" label-width="80px" class="demo-ruleForm"
+                @keyup.enter="submitForm">
                 <el-form-item label="用户名" prop="username">
                     <el-input v-model="loginForm.username" type="text" autocomplete="off" placeholder="请输入账户" />
                 </el-form-item>
@@ -86,8 +87,8 @@ export default {
                         .then(res => {
                             if (res.code === 200) {
                                 // 同步vuex
-                                this.$store.commit("login", res.author)
-                                this.$store.state.loginFlag = false
+                                this.$store.commit("login", res.data)
+                                this.$store.state.loginDialog = false
                             }
                         })
                     // 刷新验证码
@@ -103,17 +104,17 @@ export default {
         }
     },
     computed: {
-        loginFlag: {
+        loginDialog: {
             set(value) {
-                this.$store.state.loginFlag = value;
+                this.$store.state.loginDialog = value;
             },
             get() {
-                return this.$store.state.loginFlag;
+                return this.$store.state.loginDialog;
             }
         }
     },
     watch: {
-        loginFlag() {
+        loginDialog() {
             this.getCode()
         }
     },

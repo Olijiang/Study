@@ -6,25 +6,23 @@
             </transition>
         </div>
 
-        <el-row v-if="ok">
+        <el-row v-if="ok > 1">
             <el-col class="space"></el-col>
             <el-col class="ArticleCard">
                 <!-- 文章部分 -->
-                <div v-for="(aricle, index) in articleList" :key=index>
-                    <transition appear>
-                        <vArticleCard :article=aricle />
-                    </transition>
+                <div v-for="(aricle, index) in articleList" :key=index style="transition:all 0.5s">
+                    <vArticleCard :article=aricle />
                 </div>
             </el-col>
             <el-col class="space"></el-col>
             <el-col class="AuthorCard">
-                <vAuthorCard></vAuthorCard>
+                <vAuthorCard v-if="ok > 1"></vAuthorCard>
             </el-col>
             <el-col class="space"></el-col>
         </el-row>
 
 
-        <div v-if="hasover" class="endmsg">已经到底了...</div>
+        <div class="endmsg">{{ endmsg }}</div>
     </div>
 </template>
 
@@ -45,28 +43,88 @@ export default {
     },
     data() {
         return {
+            endmsg: "下拉加载更多",
             hasover: false,
             articleList: [],
-            ok: false
+            ok: 0,
+            timeout: null,
+            queryData: {
+                authorId: "",
+                startPage: 0,
+                pageSize: 5
+            }
         }
     },
     methods: {
+        handleScroll() {
+            clearTimeout(this.timeout)
+            this.timeout = setTimeout(() => {
+                let scrollTop = document.documentElement.scrollTop;//滚动高度
+                let clientHeight = document.documentElement.clientHeight;//可视高度
+                let scrollHeight = document.documentElement.scrollHeight;//内容高度
+                if (clientHeight + scrollTop - scrollHeight > -10) {
+                    this.endmsg = "正在加载..."
+                    API.get('api/init/getArticleList', this.queryData)
+                        .then(res => {
+                            if (res.code == 200) {
+                                // console.log(res.data);
+                                res.data.forEach(element => {
+                                    this.articleList.push(element)
+                                });
+                                if (res.data.length < this.queryData.pageSize) {
+                                    this.endmsg = "没有更多了..."
+                                    window.removeEventListener('scroll', this.handleScroll)
+                                }
+                                this.queryData.startPage = this.queryData.startPage + 5
+                            }
+                        })
+                }
+            }, 100);
+
+        }
 
     },
     computed: {
+        isLogin: {
+            set(value) {
+                this.$store.state.isLogin = value;
+            },
+            get() {
+                return this.$store.state.isLogin;
+            }
+        },
+        authorId() {
+            if (this.$store.isLogin)
+                return this.$store.state.authorId
+            return this.$store.state.defaultAuthorId
+        }
     },
     watch: {
 
     },
     mounted() {
-        API.get('api/user/get?username=')
+        window.addEventListener('scroll', this.handleScroll)
+        this.queryData.authorId = this.authorId
+        API.get('api/init/author', { authorId: this.authorId })
             .then(res => {
-                this.$store.commit("setAuthorInfo", res.data)
+                if (res.code == 200) {
+                    this.$store.commit("setAuthorInfo", res.data)
+                    this.ok++
+                }
             })
-        API.get('/init')
+        API.get('api/init/getArticleList', this.queryData)
             .then(res => {
-                this.articleList = res.articles
-                this.ok = true
+                if (res.code == 200) {
+                    // console.log(res.data);
+                    res.data.forEach(element => {
+                        this.articleList.push(element)
+                    });
+                    if (res.data.length < this.queryData.pageSize) {
+                        this.hasover = true
+                    }
+                    this.ok++
+                    this.queryData.startPage = this.queryData.startPage + 5
+                }
             })
     },
 }
@@ -78,7 +136,7 @@ export default {
 <style lang="less" scoped>
 .home-page {
     width: 100%;
-    height: 900px;
+    height: 100vh;
     margin-bottom: 30px;
     transition: all 0.3s ease;
 
@@ -94,8 +152,8 @@ export default {
 }
 
 .endmsg {
-    position: absolute;
-    bottom: 15px;
+    position: relative;
+    margin: 0 0 10px;
     width: 100%;
     font-size: 90%;
     color: #858585;
@@ -105,6 +163,10 @@ export default {
     max-width: 70%;
     flex: 0 0 70%;
     transition: all 0.5s ease;
+
+    div {
+        transition: all 0.5s ease;
+    }
 }
 
 .AuthorCard {
@@ -124,8 +186,6 @@ export default {
         max-width: 95%;
         flex: 0 0 95%;
         transition: all 0.5s ease;
-
-
     }
 
     .AuthorCard {

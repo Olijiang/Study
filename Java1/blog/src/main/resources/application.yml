@@ -6,10 +6,20 @@ spring:
     username: root
     password: 123456
     url: jdbc:mysql:///blog?serverTimezone=Asia/Shanghai
+  mvc:
+    static-path-pattern: /static/**
+  web:
+    resources:
+      static-locations: D:/Study/Java1/blogData/
+
 
 
 mybatis-plus:
-  mapper-locations: classpath:/mapper/*mapper.xml
-  type-aliases-package: blog
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  type-aliases-package: blog.entity
   configuration:
     map-underscore-to-camel-case: true
+#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+
+

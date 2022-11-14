@@ -1,5 +1,6 @@
 package blog.entity;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 /**
@@ -9,7 +10,9 @@ import lombok.Data;
  * @date 2022/11/6 14:23
  */
 @Data
-public class UserInfo {
+@ApiModel
+public class LoginInfo {
+
 	private String username;
 	private String password;
 	private String code;

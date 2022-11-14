@@ -1,5 +1,6 @@
 package blog.entity;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 
 import java.io.Serializable;
@@ -17,30 +18,32 @@ public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer id;
+    @TableId
+    private String authorId;
 
-    private String name;
+    private String categories;
 
-    public Integer getId() {
-        return id;
+    public String getAuthorId() {
+        return authorId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getCategories() {
+        return categories;
+    }
+
+    public void setCategories(String categories) {
+        this.categories = categories;
     }
 
     @Override
     public String toString() {
         return "Category{" +
-            "id=" + id +
-            ", name=" + name +
+            "authorId=" + authorId +
+            ", name=" + categories +
         "}";
     }
 }

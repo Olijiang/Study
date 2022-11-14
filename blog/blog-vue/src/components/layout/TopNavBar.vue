@@ -1,16 +1,17 @@
 <template>
     <header @mousemove="onMousemove" :class="headerStyle">
 
-        <div class="author">
+        <div class="author" @click="routerHandler('Home')">
             <!-- {{ authorInfo.name }} -->
             神华里绫
         </div>
         <div class="nav">
+
+            <div v-for="(item, index) in navItems" :key="index" class="nav_item" @click="routerHandler(item.name)">
+                <span>{{ item.label }}</span>
+                <div class="item_line"></div>
+            </div>
             <template v-if="isLogin">
-                <div v-for="(item, index) in navItems" :key="index" class="nav_item" @click="routerHandler(item.name)">
-                    <span>{{ item.label }}</span>
-                    <div class="item_line"></div>
-                </div>
                 <div class="nav_item" @click="routerHandler('Personal')">
                     个人中心
                     <div class="item_line"></div>
@@ -21,10 +22,13 @@
                 </div>
             </template>
 
-            <div v-else class="nav_item" @click="loginHandler">
-                <span>登录</span>
-                <div class="item_line"></div>
-            </div>
+            <template v-else>
+                <div class="nav_item" @click="loginHandler">
+                    <span>登录</span>
+                    <div class="item_line"></div>
+                </div>
+            </template>
+
         </div>
     </header>
 </template>
@@ -49,8 +53,8 @@ export default {
                     name: "Album"
                 },
                 {
-                    label: "文章列表",
-                    name: "ArticleList"
+                    label: "文章",
+                    name: "Article"
                 },
             ],
             headerStyle: "header-on",
@@ -71,6 +75,9 @@ export default {
                         type: 'success',
                         message: '退出成功',
                     })
+                    this.$router.push({
+                        name: "Home"
+                    })
                 }).catch((action) => {
                     if (action == 'cancel') {
                         // 点击关闭 关闭弹窗回到主页面
@@ -82,9 +89,10 @@ export default {
         },
         loginHandler() {
             //模态框动态显示需要先if条件为真, 初始为隐藏状态, 再改变class显现
-            this.$store.state.loginFlag = true
+            this.$store.state.loginDialog = true
         },
         routerHandler(value) {
+            this.$store.state.editDialog = false
             this.$router.push({
                 name: value
             })
@@ -103,7 +111,7 @@ export default {
     },
     mounted() {
         let oldy = 0;
-        window.addEventListener('mousewheel', () => {
+        window.addEventListener('scroll', () => {
             let y = document.documentElement.scrollTop || document.body.scrollTop
             if (y - oldy > 0) { // 向下滚动
                 this.headerStyle = "header-off"
@@ -133,9 +141,8 @@ export default {
     width: 100vw; //包括滚动条的宽度在内
     height: 50px;
     line-height: 50px;
-    box-shadow: 0px 0px 5px @borderColor;
     transition: @colortransition, @transition;
-    color: #ffab37
+    color: #ffffff
 }
 
 
@@ -146,8 +153,9 @@ export default {
 }
 
 .author {
+    cursor: pointer;
     margin-left: 20px;
-    color: #0088ff;
+    color: #ff0000;
 }
 
 .nav {
@@ -162,6 +170,7 @@ export default {
     margin: 0 8px;
     cursor: pointer;
     transition: 0.3s all ease-in-out;
+    color: rgb(9, 214, 180);
 
     .item_line {
         position: absolute;
@@ -171,6 +180,7 @@ export default {
         border-radius: 2px;
         background-color: rgb(2, 159, 207);
         transition: 0.3s all ease-in-out;
+
     }
 
     &:hover {

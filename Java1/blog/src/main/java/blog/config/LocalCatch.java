@@ -22,10 +22,7 @@ public class LocalCatch {
 		map.put(key, value);
 	}
 
-	public static void get(String key){
-		map.get(key);
+	public static Object get(String key){
+	 	return map.get(key);
 	}
-
-
-
 }

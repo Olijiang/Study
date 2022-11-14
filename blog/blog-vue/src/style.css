@@ -1,17 +1,23 @@
-*{
+* {
   z-index: 0;
 }
 
-html, body {
-  margin: 0;/*清除默认样式*/
+html,
+body {
+  margin: 0;
+  /*清除默认样式*/
   padding: 0;
   width: 100%;
   height: 100%;
   /* scroll-behavior: smooth; */
 }
 
+::selection {
+  background: rgb(240, 247, 239);
+  color: rgb(255, 48, 158);
+}
 
-#app{
+#app {
   position: relative;
   text-align: center;
   min-height: 100%;
@@ -20,45 +26,77 @@ html, body {
   font-family: "Lucida Calligraphy", cursive, serif, sans-serif !important;
 }
 
-.el-input__inner::placeholder{
+.el-input__inner::placeholder {
   font-family: "Lucida Calligraphy", cursive, serif, sans-serif !important;
 }
 
 .title input {
   font-family: "Lucida Calligraphy", cursive, serif, sans-serif !important;
 }
-.el-form-item{
+
+.el-form-item {
   align-items: center
+}
+
+.markdown-body div>textarea {
+  height: 100% !important;
 }
 
 /* 滑动条 */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
-  -webkit-box-shadow: inset 0 0 10px #ffffff; /*滑轨*/
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 0 10px #ffffff;
+  /*滑轨*/
   border-radius: 0;
-  background: rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.1);
 }
+
 ::-webkit-scrollbar {
-  width: 8px;     /*高宽分别对应横竖·滚动条的尺寸*/
+  width: 8px;
+  /*高宽分别对应横竖·滚动条的尺寸*/
   height: 8px;
 }
+
 ::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background-image: -webkit-linear-gradient(45deg,rgba(17, 179, 170, 0.4) 20%,transparent 0,transparent 40%,rgba(29, 51, 252, 0.4) 0,rgba(29, 51, 252, 0.4) 60%,transparent 0,transparent 80%,rgba(60, 214, 46, 0.4) 0,rgba(60, 214, 46, 0.4) 100%);
+  background: rgba(17, 179, 170, 0.4);
 }
 
 .hljs::-webkit-scrollbar {
-  width: 5px;     /*高宽分别对应横竖·滚动条的尺寸*/
-  height: 5px;  
-}
-.hljs::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
-  -webkit-box-shadow: inset 0 0 10px #ffffff; /*滑轨*/
-  border-radius: 0;
-  background: rgba(0,0,0,0.1);
-}
-.hljs::-webkit-scrollbar-thumb {
-  border-radius: 5px;
-  background-image: -webkit-linear-gradient(rgba(17, 179, 170, 0.4) 20%);
+  width: 5px;
+  /*高宽分别对应横竖·滚动条的尺寸*/
+  height: 5px;
 }
 
+.hljs::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 0 10px #ffffff;
+  /*滑轨*/
+  border-radius: 0;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.hljs::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: rgba(17, 179, 170, 0.4);
+}
+
+/* 过度动画 */
+.slide-fade-enter-active {
+  transition: all 0.3s ease-in-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s ease-in-out;
+  display: none
+}
+
+.slide-fade-enter-from {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+.slide-fade-leave-to {
+  transform: translateY(10px);
+  opacity: 0;
+}

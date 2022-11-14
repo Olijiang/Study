@@ -1,5 +1,6 @@
 package blog.config;
 
+import blog.utils.myUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -13,6 +14,8 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.io.File;
 
 /**
  * @author ZGB
@@ -28,24 +31,28 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 
 	private final TokenInterceptor tokenInterceptor = new TokenInterceptor();
 
+	// 添加拦截器
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(tokenInterceptor)
 				.addPathPatterns("/**")
-				.excludePathPatterns("/static/**")
 				// swagger-ui
 				.excludePathPatterns("/swagger-resources/**", "/webjars/**",
 						"/v2/**", "/swagger-ui.html/**","/doc.html");
 		super.addInterceptors(registry);
 	}
-	// 必须添加
+	// 静态资源放行
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// 文档名字和地址,
+		String projectParentPath = myUtil.getProjectParentPath();
 		registry.addResourceHandler("/doc.html") // 访问路径
 				.addResourceLocations("classpath:/META-INF/resources/"); //映射后的真实路径,结尾必须加/
 		registry.addResourceHandler("/webjars/**")
 				.addResourceLocations("classpath:/META-INF/resources/webjars/");
+		registry.addResourceHandler("/static/**")
+				.addResourceLocations("file:"+projectParentPath + "blogData" + File.separator);
+		super.addResourceHandlers(registry);
 	}
 
 	@Bean
@@ -60,9 +67,9 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 
 	private ApiInfo apiInfo(){
 		return new ApiInfoBuilder()
-				.title("yeb接口文档")
+				.title("blog接口文档")
 				.description("API")
-				.contact(new Contact("ZGB","http://localhost:8080/API.html","xx@qq.com"))
+				.contact(new Contact("ZGB","xxx","xx@qq.com"))
 				.version("1.0")
 				.build();
 	}

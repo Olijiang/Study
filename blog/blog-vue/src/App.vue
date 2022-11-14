@@ -1,11 +1,14 @@
 
 <template>
   <TopNavBarVue></TopNavBarVue>
+  <!--  @mousemove="onMousemove" :style="{ backgroundColor: `hsl(${x % 360}, 30%, 90%, 0.3)` }" -->
+  <div class="main" v-cloak @click="changeColor" :style="{ backgroundColor: `hsla(${x+y}, 30%, 85%, 0.4)` }">
+    <router-view v-slot="{ Component, route }">
+      <transition name="slide-fade">
+        <component :is="Component" :key="route.path + Math.random()" />
+      </transition>
+    </router-view>
 
-  <div class="main" v-cloak @mousemove="onMousemove" :style="{ backgroundColor: `hsl(${x % 360}, 30%, 90%, 0.3)` }">
-    <transition name="slide-fade">
-      <router-view></router-view>
-    </transition>
 
 
   </div>
@@ -13,14 +16,12 @@
   <FooterVue></FooterVue>
   <backToTopVue />
   <vLoginVue></vLoginVue>
-  <!-- -------------------------  登录控制模块   ------------------------- -->
 
 </template>
 
 <script>
 
 import backToTopVue from './components/backToTop.vue';
-
 import FooterVue from './components/layout/Footer.vue';
 import TopNavBarVue from './components/layout/TopNavBar.vue';
 import vLoginVue from './components/v-login.vue';
@@ -34,12 +35,14 @@ export default {
   },
   data() {
     return {
-      x: 100
+      x: 100,
+      y: 100
     }
   },
   methods: {
-    onMousemove(event) {
-      this.x = event.clientX
+    changeColor(event) {
+      this.x = event.clientX + Math.random() * 100
+      this.y = event.clientY + Math.random() * 100
     }
   },
   mounted() {
@@ -66,34 +69,11 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@colortransition: 0.1s background-color ease-in-out;
-@transition: 0.3s all ease-in-out;
-
-
 .main {
-  min-height: 1000px;
+  min-height: 800px;
   position: relative;
   z-index: 0;
   flex: 1 0 auto;
-  transition: @colortransition;
-}
-
-/* 过度动画 */
-.slide-fade-enter-active {
-  transition: all 0.3s ease-in-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.3s ease-in-out;
-}
-
-.slide-fade-enter-from {
-  transform: translateY(-10px);
-  opacity: 0;
-}
-
-.slide-fade-leave-to {
-  transform: translateY(10px);
-  opacity: 0;
+  transition: 0.5s background-color ease-in-out;
 }
 </style>

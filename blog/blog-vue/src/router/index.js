@@ -1,5 +1,6 @@
-import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
+import store from '../store'
 const routes = [
     {
         path: '/',
@@ -12,9 +13,9 @@ const routes = [
                 component: () => import('../views/Home.vue'),
             },
             {
-                path: 'ArticleList',
-                name: 'ArticleList',
-                component: () => import('../views/ArticleList.vue'),
+                path: 'Article',
+                name: 'Article',
+                component: () => import('../views/Article.vue'),
             },
             {
                 path: 'ArticleDetail/:articleId',
@@ -46,11 +47,42 @@ const router = createRouter({
         // return 期望滚动到哪个的位置 { x: number, y: number } |  { selector: string } |
         return { top: 0 }
     }
-
 })
 
 // 守卫路由
 router.beforeEach((to, from, next) => {
+    // 处理token过期问题
+    if (store.state.isLogin == true)
+        if (store.state.author == undefined) {
+            ElMessage({
+                showClose: true,
+                message: "身份验证已失效, 请重新登录",
+                type: 'warning',
+            })
+            next({ name: "Home" })
+            store.commit("logout")
+        }
+
+    // let rou = ["Home", "/", "ArticleDetail"]
+    // if (!store.state.isLogin) {
+    //     //未登录状态
+    //     console.log("未登录");
+    //     console.log(to.name);
+    //     console.log(rou.includes(to.name));
+    //     if (!rou.includes(to.name)) {
+    //         ElMessage({
+    //             showClose: true,
+    //             message: "请先登录！",
+    //             type: 'warning',
+    //         })
+    //         next({ name: "Home" })
+    //     } else {
+    //         next()
+    //     }
+
+    // } else {
+    //     next()
+    // }
     next()
 });
 

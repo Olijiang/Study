@@ -2,11 +2,11 @@
     <div class=authorStyle>
         <!-- 作者信息 -->
         <div class="author">
-            <img :src=authorInfo.img alt="">
+            <img :src=author.img alt="">
 
-            <p class="author-name">{{ authorInfo.blogName }}
+            <p class="author-name">{{ author.blogName }}
             </p>
-            <p style="font-size: 90%;color: #858585;"> {{ authorInfo.blogInfo }}</p>
+            <p style="font-size: 90%;color: #858585;"> {{ author.blogInfo }}</p>
 
             <div>
                 <span class="tag1">文章</span>
@@ -14,9 +14,9 @@
                 <span class="tag1">访问</span>
             </div>
             <div>
-                <span class="tag" style="color: #6300ff;">{{ authorInfo.articleNum }}</span>
-                <span class="tag" style="color: #6300ff;">{{ authorInfo.categoryNum }}</span>
-                <span class="tag" style="color: #6300ff;">{{ authorInfo.visitNum }}</span>
+                <span class="tag" style="color: #6300ff;">{{ author.articleNum }}</span>
+                <span class="tag" style="color: #6300ff;">{{ author.categoryNum }}</span>
+                <span class="tag" style="color: #6300ff;">{{ author.visitNum }}</span>
             </div>
         </div>
         <!-- 文章分类 -->
@@ -29,15 +29,15 @@
 
 
 <script>
-// Object.keys(author).forEach(key => { this.authorInfo[key] = author[key] })
+// Object.keys(author).forEach(key => { this.author[key] = author[key] })
 export default {
     data() {
         return {
         }
     },
     computed: {
-        authorInfo() {
-            return this.$store.state.authorInfo
+        author() {
+            return this.$store.state.author
         }
     }
 }

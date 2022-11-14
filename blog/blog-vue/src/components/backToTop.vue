@@ -19,15 +19,20 @@ import { onMounted, ref } from 'vue';
 const boxStyle = ref("noshow")
 onMounted(() => {
     window.addEventListener('scroll', () => {
-        var y = document.documentElement.scrollTop || document.body.scrollTop
+        var y = document.body.scrollTop || document.documentElement.scrollTop
         boxStyle.value = (y > 800) ? "show" : "noshow"
     });
 })
 
+const myTimer = ref()
+function interrupt() {
+    window.clearInterval(myTimer.value)
+    window.removeEventListener('mousewheel', interrupt)
+}
 
 function toTop() {
     // 检测用户滚动则打断回到顶部
-    window.addEventListener('mousewheel', () => { window.clearInterval(myTimer) })
+    window.addEventListener('mousewheel', interrupt)
     let y = document.documentElement.scrollTop || document.body.scrollTop
     // 步长按二次函数变化
     // 大致步数定位100步, 但实际中会少一些, 因为当前高度小于步长时会直接到顶部
@@ -36,7 +41,7 @@ function toTop() {
     let a = step / n        //步长变化率
     let t = 0
     step -= a / 2
-    const myTimer = setInterval(() => {
+    myTimer.value = setInterval(() => {
         // console.log(t++, "步长：", step);
         y -= step
         step -= a
@@ -46,7 +51,6 @@ function toTop() {
         }
         window.scrollTo(0, y) //这是值是指离开网页顶部的距离
     }, 1);
-    if (y !== 0) window.removeEventListener('mousewheel', () => { window.clearInterval(myTimer) })
 }
 
 </script>
@@ -54,8 +58,9 @@ function toTop() {
 <style lang="less" scoped>
 .show {
     position: fixed;
-    bottom: 150px;
+    bottom: 100px;
     right: 5px;
+    z-index: 5;
     transition: all 0.5s;
 
     .box {

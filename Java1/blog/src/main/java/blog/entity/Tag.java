@@ -1,8 +1,9 @@
 package blog.entity;
 
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -16,31 +17,31 @@ import io.swagger.annotations.ApiModelProperty;
 public class Tag implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @TableId
+    private String authorId;
 
-    private Integer authorId;
+    private String tags;
 
-    private String name;
-
-    public Integer getAuthorId() {
+    public String getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(Integer authorId) {
+    public void setAuthorId(String authorId) {
         this.authorId = authorId;
     }
-    public String getName() {
-        return name;
+    public String getTags() {
+        return tags;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     @Override
     public String toString() {
         return "Tag{" +
             "authorId=" + authorId +
-            ", name=" + name +
+            ", tags=" + tags +
         "}";
     }
 }

@@ -1,10 +1,8 @@
 package blog.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
-
-import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  * <p>
@@ -15,17 +13,16 @@ import java.time.LocalDateTime;
  * @since 2022-11-06
  */
 @ApiModel(value = "Article对象", description = "")
-public class Article implements Serializable {
+public class Article{
 
-    private static final long serialVersionUID = 1L;
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     private String title;
 
-    private Integer authorId;
+    private String authorId;
 
-    private Integer categoryId;
+    private String category;
 
     private String tag;
 
@@ -35,9 +32,9 @@ public class Article implements Serializable {
 
     private String img;
 
-    private LocalDateTime creatTime;
+    private String createTime;
 
-    private LocalDateTime updataTime;
+    private String updateTime;
 
     public Integer getId() {
         return id;
@@ -53,19 +50,19 @@ public class Article implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-    public Integer getAuthorId() {
+    public String getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(Integer authorId) {
+    public void setAuthorId(String authorId) {
         this.authorId = authorId;
     }
-    public Integer getCategoryId() {
-        return categoryId;
+    public String getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(String category) {
+        this.category = category;
     }
     public String getTag() {
         return tag;
@@ -95,19 +92,19 @@ public class Article implements Serializable {
     public void setImg(String img) {
         this.img = img;
     }
-    public LocalDateTime getCreatTime() {
-        return creatTime;
+    public String getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatTime(LocalDateTime creatTime) {
-        this.creatTime = creatTime;
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
     }
-    public LocalDateTime getUpdataTime() {
-        return updataTime;
+    public String getUpdateTime() {
+        return updateTime;
     }
 
-    public void setUpdataTime(LocalDateTime updataTime) {
-        this.updataTime = updataTime;
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
     }
 
     @Override
@@ -116,13 +113,13 @@ public class Article implements Serializable {
             "id=" + id +
             ", title=" + title +
             ", authorId=" + authorId +
-            ", categoryId=" + categoryId +
+            ", category=" + category +
             ", tag=" + tag +
             ", content=" + content +
-            ", digest=" + digest +
+            ", digest=(" + digest + ")" +
             ", img=" + img +
-            ", creatTime=" + creatTime +
-            ", updataTime=" + updataTime +
+            ", creatTime=" + createTime +
+            ", updateTime=" + updateTime +
         "}";
     }
 }

@@ -13,13 +13,21 @@
 
         <el-col class="articleCol">
             <div class="article_card">
-                <div :class="{ illustration_l: (article.index % 2 == 0), illustration_r: (article.index % 2 != 0) }">
-                    <img :src=article.imgUrl alt="img" @click="articleDeail">
+                <div :class="{ illustration_l: (article.id % 2 == 0), illustration_r: (article.id % 2 != 0) }">
+                    <img :src=article.img alt="img" @click="articleDeail">
                 </div>
-                <div :class="{ content_r: (article.index % 2 == 0), content_l: (article.index % 2 != 0) }">
+                <div :class="{ content_r: (article.id % 2 == 0), content_l: (article.id % 2 != 0) }">
                     <h3 @click="articleDeail">{{ article.title }}</h3>
-                    <span style="font-size: 80%;color: #858585"> {{ article.category }} | {{ article.tag }}</span>
-                    <hr width="300px" align="left" />
+                    <span style="font-size: 80%;">
+                        分类: <span style="color: #d63a3a;">{{ article.category }}</span> |
+
+                        标签:
+                        <span style="color: #d63a3a;" v-for=" (item, index) in article.tag.tags" :key="index">
+                            {{ item }}&#160;
+                        </span>
+                    </span>
+
+                    <hr width="400px" align="left" />
                     <p>{{ article.digest }}</p>
                 </div>
             </div>
@@ -38,14 +46,14 @@ export default {
     },
     props: {
         article: {
-            index: Number,
+            id: Number,
             title: String,
             createTime: String,
             category: String, // 分类
             tag: String,  // 标签
             digest: String, //摘要
             url: String, //正文地址
-            imgUrl: String, //插图地址
+            img: String, //插图地址
         },
     },
     data() {
@@ -56,7 +64,7 @@ export default {
     methods: {
         articleDeail() {
             this.$router.push({
-                path: "ArticleDetail/" + this.article.index
+                path: "ArticleDetail/" + this.article.id
             })
         }
     },
@@ -67,7 +75,9 @@ export default {
 
     },
     mounted() {
-
+        this.article.img = "api/" + this.article.img
+        this.article.tag = JSON.parse(this.article.tag)
+        this.article.digest = this.article.digest.replace(/#*.*#/g, '').replace(/[^a-z0-9\u4e00-\u9fa5]/, '').substring(0, 200) // 除去标题部分，截取200个字用来显示
     },
 }
 

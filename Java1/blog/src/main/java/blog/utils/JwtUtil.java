@@ -1,6 +1,6 @@
 package blog.config;
 
-import blog.entity.UserInfo;
+import blog.entity.LoginInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtBuilder;
@@ -25,8 +25,8 @@ import java.util.UUID;
 public class JwtUtil {
 
 
-	private final String secret = "yg*G_f1#@0.,2Ka1.a";
-	private long expiration = 3600000;
+	private final static String secret = "yg*G_f1#@0.,2Ka1.a";
+	private static long  expiration = 3600000;
 
 	/**
 	 * @description: 根据用户信息生成token
@@ -34,12 +34,12 @@ public class JwtUtil {
 	 * @return: String token
 	 * @date: 2022/10/21 11:03
 	 */
-	public String generateToken(UserInfo userInfo) {
+	public static String generateToken(LoginInfo loginInfo) {
 		//创建payload的私有声明（根据特定的业务需要添加，如果要拿这个做验证，一般是需要和jwt的接收方提前沟通好验证方式的）
 		Map<String, Object> claims = new HashMap<>();
-		claims.put("token", userInfo);
+		claims.put("token", loginInfo);
 		//生成签发人
-		String subject = userInfo.getUsername();
+		String subject = loginInfo.getUsername();
 		JwtBuilder builder = Jwts.builder()
 				//如果有私有声明，一定要先设置这个自己创建的私有的声明，这个是给builder的claim赋值，一旦写在标准的声明赋值之后，就是覆盖了那些标准的声明的
 				.setClaims(claims)
@@ -59,7 +59,7 @@ public class JwtUtil {
 	/*
 	 * 解密Token
 	 * */
-	public UserInfo getUserFromToken(String token) {
+	public static LoginInfo getUserFromToken(String token) {
 		//得到DefaultJwtParser
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
@@ -68,7 +68,7 @@ public class JwtUtil {
 					.setSigningKey(secret)
 					//设置需要解析的jwt
 					.parseClaimsJws(token).getBody();
-			return objectMapper.convertValue(claims.get("token"), UserInfo.class);
+			return objectMapper.convertValue(claims.get("token"), LoginInfo.class);
 		} catch (Exception e) {
 //			e.printStackTrace();
 //			System.out.println(token);

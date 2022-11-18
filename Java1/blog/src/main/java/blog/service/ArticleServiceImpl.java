@@ -2,6 +2,7 @@ package blog.service;
 
 import blog.config.ComResult;
 import blog.config.LocalCatch;
+import blog.config.PathConfig;
 import blog.entity.Article;
 import blog.entity.ArticleDTO;
 import blog.entity.Category;
@@ -37,9 +38,6 @@ import java.util.Locale;
 @Slf4j
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 
-	private static final String dataPath = "blogData";
-	private static final String imgPath = "imgs";
-	private static final String articlePath = "articles";
 
 	@Resource
 	private CategoryMapper categoryMapper;
@@ -78,7 +76,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 			}
 		}
 		//  缓存命中
-		log.info("缓存命中article：" + key);
+		log.info("缓存命中articleList：" + key);
 		return ComResult.success("获取文章列表成功", articles);
 	}
 	public ComResult getArticleById(String articleId){
@@ -170,38 +168,95 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		String[] tags = getTag(authorId);
 		return ComResult.success("获取标签成功",tags);
 	}
+	public ComResult updateArticle(ArticleDTO articleDTO, String authorId) {
+		Article article = new Article();
+		// 图片
+//		System.out.println(articleDTO);
+		String imgPath = saveImg(articleDTO.getImg(),authorId);
+		if (imgPath.equals("")){
+			return ComResult.error("文章保存失败, 原因：插图");
+		}
+		article.setImg(imgPath);
+		// 文章
+		String articlePath = saveContent(articleDTO.getContent(),authorId);
+		if (articlePath.equals("")){
+			return ComResult.error("文章保存失败, 原因：文章内容");
+		}
+		article.setContent(articlePath);
+		// title
+		article.setTitle(articleDTO.getTitle());
+		// category
+		article.setCategory(articleDTO.getCategory());
+		// 刷新作者的 category 库
+		String[] rawCategory = getCategory(authorId);
+		String[] thisCategory = {articleDTO.getCategory()};
+		String[] newCategory = myUtil.union(rawCategory, thisCategory);
+		setCategory(authorId, newCategory);
 
+		// 刷新作者的 tag 库
+		String[] rawTag = getTag(authorId);
+		String[] thisTag = articleDTO.getTag();
+		String[] newTag = myUtil.union(rawTag, thisTag);
+		setTag(authorId, newTag);
+		// 设置 本文章的 tag
+		JSONObject thisTagJson = new JSONObject();
+		thisTagJson.put("tags", thisTag);
+		article.setTag(thisTagJson.toJSONString());
+		// authorId
+		article.setAuthorId(authorId);
+		//digest
+		if (articleDTO.getContent().length()>180){
+			article.setDigest(articleDTO.getContent().substring(0,180)+"...");
+		}else {
+			article.setDigest(articleDTO.getContent());
+		}
+		//CreatTime
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale.US); // 格式化时间
+		String date = dtf.format(LocalDateTime.now());
+		//updateTime
+		article.setUpdateTime(date);
+
+		article.setId(articleDTO.getArticleId());
+		articleMapper.updateById(article);
+		log.info("修改文章成功:"+article.getTitle());
+		LocalCatch.put("article-"+article.getId(),article);
+		LocalCatch.removeByPre("articleList-"+authorId);
+		return ComResult.success("添加成功");
+	}
 
 	/**
 	 * @description: 以下部分为内部封装的方法 方便操作  private
 	 */
 	//保存错误时返回空字符串,  成功返回相对路径
-	private String saveContent(String contentData,String authorId) {
-		String projectParentPath = myUtil.getProjectParentPath();
+	public String saveContent(String contentData,String authorId) {
+		String projectPath = System.getProperty("user.dir");
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSS", Locale.US); // 格式化时间
 		String date = dtf.format(LocalDateTime.now());
 		// 文件名
 		String fileName = date + "_" + authorId+".txt";
-		String storagePath = projectParentPath + dataPath + File.separator + articlePath + File.separator + fileName;
-		String relativePath = articlePath + File.separator + fileName;
-		if (myUtil.writeTxt(contentData, storagePath)){
-			log.info("文章保存成功");
-			return relativePath;
-		}else {
-			log.warn("文章保存失败");
-			return "";
-		}
+		String storagePath = projectPath + File.separator + PathConfig.dataPath + File.separator + PathConfig.articlePath + File.separator + fileName;
+		String relativePath = PathConfig.articlePath + File.separator + fileName;
+		System.out.println(storagePath);
+		System.out.println(relativePath);
+//		if (myUtil.writeTxt(contentData, storagePath)){
+//			log.info("文章保存成功");
+//			return relativePath;
+//		}else {
+//			log.warn("文章保存失败");
+//			return "";
+//		}
+		return null;
 	}
 
 	//读取错误时返回空字符串
 	private String getContent(String fileName) {
-		String projectParentPath = myUtil.getProjectParentPath();
-		String storagePath = projectParentPath + dataPath + File.separator + articlePath + File.separator + fileName;
+		String projectPath = System.getProperty("user.dir");
+		String storagePath = projectPath + File.separator+ PathConfig.dataPath + File.separator + PathConfig.articlePath + File.separator + fileName;
 		return myUtil.readTxt(storagePath);
 	}
 
 	private String saveImg(String imgData, String authorId){
-		String projectParentPath = myUtil.getProjectParentPath();
+		String projectPath = System.getProperty("user.dir");
 		// 截取图片信息
 		String[] info = imgData.split(";base64,");
 		// 截取图片文件后缀
@@ -212,9 +267,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		String date = dtf.format(LocalDateTime.now());
 		// 文件名
 		String fileName = date + "_" + authorId + "." + fileSuffix;
-		String storagePath = projectParentPath + dataPath + File.separator +imgPath + File.separator + fileName;
-		// relativePath src链接直接请求数据，需要加static资源映射
-		String relativePath = "static" + File.separator + imgPath + File.separator + fileName;
+		String storagePath = projectPath + PathConfig.dataPath + File.separator +PathConfig.imgPath + File.separator + fileName;
+		// relativePath src链接直接请求数据，需要加blogData资源映射
+		String relativePath = PathConfig.serverIP +File.separator+ "blogData" + File.separator + PathConfig.imgPath + File.separator + fileName;
 		if (myUtil.writeBase64Img(base64ImgData, storagePath)){
 			log.info("图片保存成功");
 			return relativePath;
@@ -262,5 +317,4 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		});
 		return list.toArray(new String[0]);
 	}
-
 }

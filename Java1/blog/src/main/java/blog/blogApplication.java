@@ -3,6 +3,7 @@ package blog;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 /**
  * @author ZGB
@@ -12,6 +13,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @MapperScan("blog.mapper")
+@EnableConfigurationProperties
 public class blogApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(blogApplication.class, args);

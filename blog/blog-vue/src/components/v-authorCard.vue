@@ -2,7 +2,7 @@
     <div class=authorStyle>
         <!-- 作者信息 -->
         <div class="author">
-            <img :src=author.img alt="">
+            <img :src=author.img alt="" onerror="javascript:this.src='src/img/imgslot.webp'">
 
             <p class="author-name">{{ author.blogName }}
             </p>
@@ -38,7 +38,7 @@ export default {
     computed: {
         author() {
             return this.$store.state.author
-        }
+        },
     }
 }
 </script>

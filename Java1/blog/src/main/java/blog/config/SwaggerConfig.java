@@ -1,6 +1,5 @@
 package blog.config;
 
-import blog.utils.myUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -13,7 +12,6 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.io.File;
 
@@ -25,7 +23,7 @@ import java.io.File;
  * @date 2022/10/21 16:44
  */
 @Configuration
-@EnableSwagger2
+//@EnableSwagger2
 public class SwaggerConfig extends WebMvcConfigurationSupport {
 
 
@@ -35,23 +33,18 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(tokenInterceptor)
-				.addPathPatterns("/**")
-				// swagger-ui
-				.excludePathPatterns("/swagger-resources/**", "/webjars/**",
-						"/v2/**", "/swagger-ui.html/**","/doc.html");
+				.addPathPatterns("/**");
 		super.addInterceptors(registry);
 	}
 	// 静态资源放行
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		// 文档名字和地址,
-		String projectParentPath = myUtil.getProjectParentPath();
-		registry.addResourceHandler("/doc.html") // 访问路径
-				.addResourceLocations("classpath:/META-INF/resources/"); //映射后的真实路径,结尾必须加/
-		registry.addResourceHandler("/webjars/**")
-				.addResourceLocations("classpath:/META-INF/resources/webjars/");
-		registry.addResourceHandler("/static/**")
-				.addResourceLocations("file:"+projectParentPath + "blogData" + File.separator);
+		String projectPath = System.getProperty("user.dir");
+		registry.addResourceHandler("/**") // 访问路径
+				.addResourceLocations("classpath:/static/"); //映射后的真实路径,结尾必须加/
+
+		registry.addResourceHandler("/blogData/**")
+				.addResourceLocations("file:///"+projectPath + File.separator+ "blogData" + File.separator);
 		super.addResourceHandlers(registry);
 	}
 

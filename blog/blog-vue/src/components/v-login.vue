@@ -32,7 +32,6 @@
 </template>
 
 <script>
-
 import API from '../utils/API'
 
 export default {
@@ -72,28 +71,38 @@ export default {
             loginForm: {
                 username: '2020',
                 password: '123',
-                code: ""
+                code: "",
+                timeStamp: ""
             }
         }
     },
     methods: {
         getCode() {
-            this.src = "api/getCode?" + Math.random()
+            this.loginForm.timeStamp = new Date().getTime()
+            let data = { timeStamp: this.loginForm.timeStamp }
+            API.get("getCode", data)
+                .then(res => {
+                    if (res.code == 200) {
+                        this.src = "data:image/jpg;base64," + res.data
+                    }
+                })
         },
         submitForm() {
             this.$refs['loginRef'].validate((valid) => {
                 if (valid) {
-                    API.post('api/login', this.loginForm)
+                    API.post('login', this.loginForm)
                         .then(res => {
                             if (res.code === 200) {
                                 // 同步vuex
                                 this.$store.commit("login", res.data)
                                 this.$store.state.loginDialog = false
+                            } else {
+                                this.loginForm.code = ""
                             }
                         })
                     // 刷新验证码
                     setTimeout(() => {
-                        this.src = "api/getCode?" + Math.random()
+                        this.getCode()
                     }, 100);
 
                 }

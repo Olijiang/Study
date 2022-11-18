@@ -32,25 +32,26 @@ function interrupt() {
 
 function toTop() {
     // 检测用户滚动则打断回到顶部
-    window.addEventListener('mousewheel', interrupt)
-    let y = document.documentElement.scrollTop || document.body.scrollTop
-    // 步长按二次函数变化
-    // 大致步数定位100步, 但实际中会少一些, 因为当前高度小于步长时会直接到顶部
-    let n = 100
-    let step = y / (n / 2)    //起始步长
-    let a = step / n        //步长变化率
-    let t = 0
-    step -= a / 2
-    myTimer.value = setInterval(() => {
-        // console.log(t++, "步长：", step);
-        y -= step
-        step -= a
-        if (y <= 0 || step < 0) {
-            y = 0
-            window.clearInterval(myTimer)
-        }
-        window.scrollTo(0, y) //这是值是指离开网页顶部的距离
-    }, 1);
+    // window.addEventListener('mousewheel', interrupt)
+    // let y = document.documentElement.scrollTop || document.body.scrollTop
+    // // 步长按二次函数变化
+    // // 大致步数定位100步, 但实际中会少一些, 因为当前高度小于步长时会直接到顶部
+    // let n = 100
+    // let step = y / (n / 2)    //起始步长
+    // let a = step / n        //步长变化率
+    // let t = 0
+    // step -= a / 2
+    // myTimer.value = setInterval(() => {
+    //     // console.log(t++, "步长：", step);
+    //     y -= step
+    //     step -= a
+    //     if (y <= 0 || step < 0) {
+    //         y = 0
+    //         window.clearInterval(myTimer)
+    //     }
+    //     window.scrollTo(0, y) //这是值是指离开网页顶部的距离
+    // }, 1);
+    document.querySelector("#app").scrollIntoView({ behavior: "smooth" });
 }
 
 </script>
@@ -61,7 +62,13 @@ function toTop() {
     bottom: 100px;
     right: 5px;
     z-index: 5;
+    opacity: 0.2;
     transition: all 0.5s;
+
+    &:hover {
+
+        opacity: 1;
+    }
 
     .box {
         background: linear-gradient(45deg, rgba(251, 255, 0, 0.6), rgba(51, 255, 0, 0.6), rgba(0, 251, 255, 0.6), rgba(0, 60, 255, 0.6), rgba(230, 0, 255, 0.6));
@@ -89,6 +96,7 @@ function toTop() {
 
         &:hover {
             box-shadow: 0px 0px 8px #efa228;
+            opacity: 1;
         }
     }
 }

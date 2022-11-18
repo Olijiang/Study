@@ -1,8 +1,9 @@
-package blog.entity;
+package blog.config;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
 
 /**
  * @author ZGB
@@ -11,50 +12,84 @@ import org.springframework.stereotype.Component;
  * @date 2022/11/17 9:49
  */
 @Component
-@ConfigurationProperties(prefix = "blogserver")
-public class Path {
-	@Value("blogserver.serverIP")
-	private static String serverIP;
-	@Value("blogserver.dataPath")
-	private static String dataPath;
-	@Value("blogserver.imgPath")
-	private static String imgPath;
-	@Value("blogserver.articlePath")
-	private static String articlePath;
+public class PathConfig {
 
-	public Path() {
+	public static String serverIP;
+	public static String dataPath;
+	public static String imgPath;
+	public static String articlePath;
+
+
+	@Value("${blogserver.serverIP}")
+	private String serverIPL;
+	@Value("${blogserver.dataPath}")
+	private String dataPathL;
+	@Value("${blogserver.imgPath}")
+	private String imgPathL;
+	@Value("${blogserver.articlePath}")
+	private String articlePathL;
+
+	@PostConstruct
+	private void setServerIP() {
+		serverIP = this.serverIPL;
+	}
+	@PostConstruct
+	private void setDataPath() {
+		dataPath = this.dataPathL;
+	}
+	@PostConstruct
+	private void setImgPath() {
+		imgPath = this.imgPathL;
+	}
+	@PostConstruct
+	private void setArticlePath() {
+		articlePath = this.articlePathL;
 	}
 
-	public static String getServerIP() {
-		return serverIP;
+
+	public PathConfig() {
 	}
 
-	public static void setServerIP(String serverIP) {
-		Path.serverIP = serverIP;
+	private String getServerIPL() {
+		return serverIPL;
 	}
 
-	public static String getDataPath() {
-		return dataPath;
+	private void setServerIPL(String serverIPL) {
+		this.serverIPL = serverIPL;
 	}
 
-	public static void setDataPath(String dataPath) {
-		Path.dataPath = dataPath;
+	private String getDataPathL() {
+		return dataPathL;
 	}
 
-	public static String getImgPath() {
-		return imgPath;
+	private void setDataPathL(String dataPathL) {
+		this.dataPathL = dataPathL;
 	}
 
-	public static void setImgPath(String imgPath) {
-		Path.imgPath = imgPath;
+	private String getImgPathL() {
+		return imgPathL;
 	}
 
-	public static String getArticlePath() {
-		return articlePath;
+	private void setImgPathL(String imgPathL) {
+		this.imgPathL = imgPathL;
 	}
 
-	public static void setArticlePath(String articlePath) {
-		Path.articlePath = articlePath;
+	private String getArticlePathL() {
+		return articlePathL;
+	}
+
+	private void setArticlePathL(String articlePathL) {
+		this.articlePathL = articlePathL;
+	}
+
+	@Override
+	public String toString() {
+		return "PathConfig{" +
+				"serverIP='" + serverIP + '\'' +
+				", dataPath='" + dataPath + '\'' +
+				", imgPath='" + imgPath + '\'' +
+				", articlePath='" + articlePath + '\'' +
+				'}';
 	}
 
 

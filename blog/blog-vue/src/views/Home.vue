@@ -2,7 +2,7 @@
     <div>
         <div class="home-page">
             <transition name="el-fade-in">
-                <img src="../img/P1.png" alt="">
+                <img :src=coverImg onerror="javascript:this.src='src/img/imgslot.webp'">
             </transition>
         </div>
 
@@ -20,8 +20,6 @@
             </el-col>
             <el-col class="space"></el-col>
         </el-row>
-
-
         <div class="endmsg">{{ endmsg }}</div>
     </div>
 </template>
@@ -52,7 +50,8 @@ export default {
                 authorId: "",
                 startPage: 0,
                 pageSize: 5
-            }
+            },
+            coverImg: "",
         }
     },
     methods: {
@@ -64,7 +63,7 @@ export default {
                 let scrollHeight = document.documentElement.scrollHeight;//内容高度
                 if (clientHeight + scrollTop - scrollHeight > -10) {
                     this.endmsg = "正在加载..."
-                    API.get('api/init/getArticleList', this.queryData)
+                    API.get('init/getArticleList', this.queryData)
                         .then(res => {
                             if (res.code == 200) {
                                 // console.log(res.data);
@@ -105,14 +104,16 @@ export default {
     mounted() {
         window.addEventListener('scroll', this.handleScroll)
         this.queryData.authorId = this.authorId
-        API.get('api/init/author', { authorId: this.authorId })
+        API.get('init/author', { authorId: this.authorId })
             .then(res => {
                 if (res.code == 200) {
+                    res.data.img = res.data.img
                     this.$store.commit("setAuthorInfo", res.data)
+                    this.coverImg = res.data.coverImg
                     this.ok++
                 }
             })
-        API.get('api/init/getArticleList', this.queryData)
+        API.get('init/getArticleList', this.queryData)
             .then(res => {
                 if (res.code == 200) {
                     // console.log(res.data);

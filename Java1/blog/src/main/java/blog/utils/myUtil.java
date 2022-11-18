@@ -3,16 +3,15 @@ package blog.utils;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.codec.binary.Base64;
-import org.apache.tomcat.util.http.fileupload.FileUploadException;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
-import java.io.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -25,21 +24,7 @@ import java.util.Set;
 @Component
 public class myUtil {
 
-	public static boolean writeBase64Img(String base64ImgData,String storagePath) {
-
-//		String projectParentPath = getProjectParentPath();
-//		// 截取图片信息
-//		String[] info = base64Data.split(";base64,");
-//		// 截取图片文件后缀
-//		String fileSuffix = info[0].substring(11);
-//		// 图片数据
-//		String base64ImgData = info[1];
-//		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSS", Locale.US); // 格式化时间
-//		String date = dtf.format(LocalDateTime.now());
-//		// 文件名
-//		String fileName = date + "_" + author;
-//		String storagePath = projectParentPath + dataPath + imgPath + fileName+"."+fileSuffix;
-//		String relativePath = imgPath + fileName+"."+fileSuffix;
+	public static boolean writeBase64Img(String base64ImgData, String storagePath) {
 		byte[] bs = Base64.decodeBase64(base64ImgData);
 		try (FileOutputStream fos = new FileOutputStream(storagePath)){
 			fos.write(bs);
@@ -52,23 +37,7 @@ public class myUtil {
 		}
 	}
 
-	public static void tmain(String[] args) {
-		String projectPath = System.getProperty("user.dir");
-		String[] temp = projectPath.split("\\"+File.separator);
-		String projectName = temp[temp.length-1];
-		projectPath = projectPath.substring(0,projectPath.length()-projectName.length());
-		System.out.println(projectPath);
-	}
-
 	public static boolean writeTxt(String content,String storagePath) {
-//		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSS", Locale.US); // 格式化时间
-//		String date = dtf.format(LocalDateTime.now());
-//		// 文件名
-//		String fileName = date + "_" + author;
-//		String projectParentPath = getProjectParentPath();
-//		String storagePath = projectParentPath  + articlePath  + fileName+".txt";
-//		String relativePath = articlePath + fileName+".txt";
-
 		File file=new File(storagePath);//定义操作文件
 		try (PrintWriter pw=new PrintWriter(new FileOutputStream(file))){
 			pw.write(content);
@@ -114,10 +83,13 @@ public class myUtil {
 		return set.toArray(new String[0]);
 	}
 
-	public static String getProjectParentPath(){
+
+	public static void tmain(String[] args) {
 		String projectPath = System.getProperty("user.dir");
 		String[] temp = projectPath.split("\\"+File.separator);
 		String projectName = temp[temp.length-1];
-		return projectPath.substring(0,projectPath.length()-projectName.length());
+		projectPath = projectPath.substring(0,projectPath.length()-projectName.length());
+		System.out.println(projectPath);
 	}
+
 }

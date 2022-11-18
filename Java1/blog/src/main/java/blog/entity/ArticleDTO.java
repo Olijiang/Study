@@ -12,6 +12,7 @@ import lombok.Data;
 @Data
 @ApiModel("接收前端的文章对象")
 public class ArticleDTO {
+	private Integer articleId;
 	private String img;
 	private String title;
 	private String content;

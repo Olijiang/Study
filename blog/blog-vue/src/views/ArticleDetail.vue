@@ -2,7 +2,7 @@
     <div>
         <transition name="el-fade-in">
             <div class="illustration">
-                <img :src=article.img alt="">
+                <img :src=article.img onerror="javascript:this.src='src/img/imgslot.webp'">
                 <div class="ArticleInfo">
                     <h1 style="margin: 20px;color:rgb(9, 214, 180);font-size: 50px;"> {{ article.title }} </h1>
                     <p style="margin: 10px;">
@@ -32,37 +32,40 @@
                 </div>
             </div>
         </transition>
+
         <el-row>
             <el-col class="vacancy"></el-col>
             <el-col class="space"></el-col>
             <el-col class="articleCol">
-                <div class="markdown-body" v-html='articleHtml'>
-                </div>
+                <transition name="el-zoom-in-top">
+                    <div class="markdown-body" v-html='articleHtml' v-show="ok">
+                    </div>
+                </transition>
             </el-col>
             <el-col class="space"></el-col>
             <el-col class="catelogCol">
                 <!-- 目录 -->
-                <div class="articleCatelog" :style="{ top: `calc(${tocTop}px)` }">
-                    <h3>目 录</h3>
-
-                    <ol>
-                        <li v-for="(item, index) in tocContent" :key="index">
-                            <span class="toc_item" :id="item.href.substring(1) + 'f'" @click="jump(item.href)">
-                                {{ item.level }}. {{ item.text }}
-                            </span>
-                            <ol v-if="item.children.length != 0">
-                                <li v-for="(c, ci) in item.children" :key="ci" style="padding-left: 20px;">
-                                    <span class="toc_item" @click="jump(c.href)" :id="c.href.substring(1) + 'f'">
-                                        {{ c.level }}. {{ c.text }}
-                                    </span>
-                                </li>
-                            </ol>
-                        </li>
-                    </ol>
-                </div>
+                <transition name="el-zoom-in-top">
+                    <div id="toc" class="articleCatelog" v-show="ok">
+                        <h3>目 录</h3>
+                        <ol>
+                            <li v-for="(item, index) in tocContent" :key="index">
+                                <span class="toc_item" :id="item.href.substring(1) + 'f'" @click="jump(item.href)">
+                                    {{ item.level }}. {{ item.text }}
+                                </span>
+                                <ol v-if="item.children.length != 0">
+                                    <li v-for="(c, ci) in item.children" :key="ci" style="padding-left: 20px;">
+                                        <span class="toc_item" @click="jump(c.href)" :id="c.href.substring(1) + 'f'">
+                                            {{ c.level }}. {{ c.text }}
+                                        </span>
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div>
+                </transition>
             </el-col>
         </el-row>
-
 
         <backToTop></backToTop>
     </div>
@@ -95,7 +98,9 @@ export default {
             tocId: [],
             tocTop: 20,
             timeout: null,
-            lastTag: null
+            lastTag: null,
+            scrollTag: false,
+            ok: false
         }
     },
     methods: {
@@ -105,14 +110,20 @@ export default {
                 let y = document.documentElement.scrollTop || document.body.scrollTop
                 this.tocId.forEach(e => {
                     let x = document.querySelector(e).offsetTop + 620
-                    if (x - y <= 10) this.lastTag = e
+                    if (x - y <= 10) {
+                        this.lastTag = e
+                        this.scrollTag = true
+                    }
                 })
+                // console.log(y);
                 if (y < 600) this.lastTag = this.tocId[0]
             }, 100);
         },
         jump(hool) {
             document.querySelector(hool).scrollIntoView({ behavior: "smooth" }); //这里的counter1是将要返回地方的id
             this.lastTag = hool
+            console.log("jump", hool);
+            this.scrollTag = false
         },
         // 生成目录, 只支持二级
         generateToc() {
@@ -162,13 +173,12 @@ export default {
     watch: {
         lastTag: {
             handler(newValue, oldValue) {
-                let tag = document.querySelector(newValue + "f")
-                let offsetTop = tag.offsetTop
-                let w = document.documentElement.clientHeight / 2;
-                if (offsetTop > w) {
-                    this.tocTop = w - offsetTop
-                } else {
-                    this.tocTop = 20
+                let toc = document.getElementById("toc")
+                let h = document.documentElement.scrollHeight;//总高度
+                let o = document.documentElement.scrollTop;//总高度
+                if (this.scrollTag) {
+                    // 单向传递
+                    toc.scrollTop = o / h * toc.scrollHeight - 200
                 }
                 this.tocId.forEach(e => {
                     let tag = document.querySelector(e + "f")
@@ -180,25 +190,24 @@ export default {
                         tag.style.color = ''
                     }
                 })
-
-
             }
         }
     },
     mounted() {
         let data = { "ArticleId": this.$route.path.split('/')[2] }
-        API.get("api/init/getArticle", data)
+        API.get("init/getArticle", data)
             .then(res => {
                 this.article = res.data
-                this.article.img = "api/" + this.article.img
+                this.article.img = this.article.img
                 this.article.tag = JSON.parse(this.article.tag).tags
                 let data = { "fileName": this.article.content.split('\\')[1] }
-                API.get("api/init/getContent", data)
+                API.get("init/getContent", data)
                     .then(res => {
                         if (res.code == 200) {
                             // console.log(res);
                             this.articleHtml = markdownToHtml(res.data)
                             this.generateToc()
+                            this.ok = true
                             setTimeout(() => {
                                 this.lastTag = this.tocId[0]
                                 window.addEventListener("scroll", this.detecator)
@@ -209,6 +218,9 @@ export default {
             })
 
     },
+    unmounted() {
+        window.removeEventListener("scroll", this.detecator)
+    }
 }
 
 </script>
@@ -228,7 +240,6 @@ export default {
         vertical-align: middle;
         transition: all 0.5s ease-in-out;
         border-radius: 0px 0px 10px 10px;
-        transition: all 0.3s ease;
     }
 
     .ArticleInfo {
@@ -262,12 +273,12 @@ export default {
         background-color: rgba(255, 255, 255, 0.6);
         box-shadow: 0 0 5px rgb(200, 200, 200);
         transition: all 0.5s;
+        min-height: 200px;
 
         &:hover {
             box-shadow: 0 0 10px rgb(200, 200, 200);
             transition: all 0.5s;
         }
-
     }
 }
 
@@ -279,9 +290,12 @@ export default {
         padding: 10px;
         margin: 0 0 30px 0;
         position: sticky;
+        top: 20px;
         width: 220px;
         height: auto;
         min-height: 200px;
+        max-height: 500px;
+        overflow-y: scroll;
         border-radius: 15px;
         background-color: rgba(255, 255, 255, 0.6);
         box-shadow: 0 0 10px rgb(200, 200, 200);
@@ -291,6 +305,12 @@ export default {
             box-shadow: 0 0 10px rgb(200, 200, 200);
             transition: all 0.5s;
         }
+    }
+
+    ::-webkit-scrollbar {
+        width: 4px;
+        /*高宽分别对应横竖·滚动条的尺寸*/
+        height: 4px;
     }
 }
 

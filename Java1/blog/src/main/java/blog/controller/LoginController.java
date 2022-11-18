@@ -1,14 +1,13 @@
 package blog.controller;
 
 import blog.config.ComResult;
+import blog.config.LocalCatch;
 import blog.entity.LoginInfo;
 import blog.service.LoginService;
 import blog.utils.JwtUtil;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpSession;
 
 
 /**
@@ -25,8 +24,8 @@ public class LoginController {
 
 	@ApiOperation("登录操作")
 	@PostMapping("/login")
-	public ComResult login(@RequestBody LoginInfo loginInfo, HttpSession session){
-		String code = (String) session.getAttribute("verifyCode");
+	public ComResult login(@RequestBody LoginInfo loginInfo){
+		String code = (String) LocalCatch.get(loginInfo.getTimeStamp());
 		if (loginInfo.getCode().equals(code)){
 			return loginService.login(loginInfo);
 		}else{

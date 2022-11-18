@@ -17,13 +17,9 @@ import java.io.PrintWriter;
 @Slf4j
 public class TokenInterceptor implements HandlerInterceptor {
 
-	// 忽略拦截的url
+	// 拦截的url
 	private final String[] urls = {
-			"/login",
-			"/getCode",
-			"/init/(.*)",
-			"/static/(.*)",
-//			".*"    //测试阶段。全部放行
+			"/article/.*"
 	};
 
 	// 进入controller层之前拦截请求
@@ -31,10 +27,15 @@ public class TokenInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object o) throws Exception {
 		String url = request.getRequestURI();
 		String token = request.getHeader("token");
-		// 遍历需要忽略拦截的路径
-//		System.out.println(url);
+
+		System.out.println(url);
+		if (url.equals("/")) {
+			response.sendRedirect(request.getContextPath()+"/index.html");
+			return false;
+		}
+
 		for (String item : this.urls) {
-			if (url.matches(item)) return true;
+			if (!url.matches(item)) return true;
 		}
 		if (url.equals("/error")){
 			try{

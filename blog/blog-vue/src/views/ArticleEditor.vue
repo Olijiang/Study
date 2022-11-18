@@ -1,6 +1,6 @@
 <template>
     <el-dialog style="border-radius: 10px; z-index: 2;margin-bottom: 100px;" v-model="editDialog" top="60px" width="90%"
-        :close-on-click-modal=false :close-on-press-escape=false>
+        :close-on-click-modal=false :close-on-press-escape=false @close="closeHandler">
         <el-form id="myform" :model="article" ref="articleRef" :rules="rules">
             <div class="header">
                 <el-row>
@@ -45,9 +45,8 @@
                                 </el-col>
                                 <el-col :span="1"></el-col>
                                 <el-col :span="8">
-                                    <el-upload ref="uploadRef" class="upload-demo" name="illustrate" action="#"
-                                        accept=".png, .jpg" :http-request="uploadHandler" :limit="1"
-                                        :on-remove="imgRemove">
+                                    <el-upload ref="uploadRef" class="upload-demo" name="illustrate" accept=".png, .jpg"
+                                        :http-request="uploadHandler" :limit="1">
                                         <template #trigger>
                                             <el-button type="primary">选择插图</el-button>
                                         </template>
@@ -60,9 +59,11 @@
                     <el-col :span="1"></el-col>
 
                     <el-col :span="6">
-                        <div v-if="imgOK" style="height:150px;width: 250px; translate:0 -30px ;">
-                            <img :src="article.img" alt="">
-                        </div>
+                        <transition name="el-zoom-in-top">
+                            <div style="height:150px;width: 250px; translate:0 -30px ;">
+                                <img :src="article.img" onerror="javascript:this.src='src/img/imgslot.webp'">
+                            </div>
+                        </transition>
                     </el-col>
                     <el-col :span="4">
                         <div>
@@ -79,12 +80,12 @@
                 </el-row>
             </div>
             <div class="content">
-                <div class="markdown-body">
+                <div class="input-body">
                     <el-input style="font-size: 18px;height: 100%;" type="textarea" v-model="article.content"
                         resize="none" placeholder="文章内容"></el-input>
                 </div>
                 <div class="resize" @mousedown="drapContent" @dblclick="resetSize"></div>
-                <div class="html" v-html="htmlContent"></div>
+                <div class="markdown-body" v-html="htmlContent"></div>
             </div>
         </el-form>
         <el-button type="primary" @click="saveToScript">保存到草稿</el-button>
@@ -93,7 +94,6 @@
         <el-button type="danger" @click="test">test</el-button>
 
         <backToTopVue></backToTopVue>
-        <el-backtop></el-backtop>
     </el-dialog>
 </template>
 
@@ -108,27 +108,16 @@ export default {
     props: {
         tags: Array,
         categories: Array,
-        propArticle: Object,
     },
     data() {
         return {
             newCategory: "",
             newTag: "",
-            imgOK: false,
-            editFlag: false,
-            article: {
-                title: "",
-                category: "",
-                tag: [],
-                content: "",
-                img: ""
-            },
             rules: {
                 title: { required: true, message: "请输入标题", trigger: 'blur' },
                 category: { required: true, message: "请选择分类", trigger: 'blur' },
                 tag: { required: true, message: "请选择标签", trigger: 'blur' }
             }
-            // textareaT: {}
         };
     },
     methods: {
@@ -138,16 +127,15 @@ export default {
         uploadHandler(file) {
             // console.log(file.file);
             let _file = file.file
+            console.log(_file);
             let reader = new FileReader()
             reader.readAsDataURL(_file)
+            console.log(reader);
             reader.onload = e => {
                 this.article.img = e.target.result
-                this.imgOK = true
             }
         },
-        imgRemove() {
-            this.imgOK = false
-        },
+
         addCategory() {
             console.log("add new category", this.newCategory);
             this.categories.push(this.newCategory)
@@ -218,7 +206,7 @@ export default {
                     }
                     if (this.editFlag) {
                         // 修改
-                        API.post("api/article/updata", this.article)
+                        API.post("article/update", this.article)
                             .then(res => {
                                 if (res.code == 200) {
                                     ElMessage({
@@ -229,7 +217,7 @@ export default {
                             })
                     } else {
                         // 新增
-                        API.post("api/article/add", this.article)
+                        API.post("article/add", this.article)
                             .then(res => {
                                 if (res.code == 200) {
                                     ElMessage({
@@ -240,7 +228,6 @@ export default {
                             })
                     }
                     this.editDialog = false
-
                 }
             })
 
@@ -250,6 +237,12 @@ export default {
         },
         closeAndSaveToScript() {
             this.editDialog = false
+        },
+        closeHandler() {
+            //清除验证结果
+            setTimeout(() => {
+                this.resetForm()
+            }, 100);
         }
     },
     computed: {
@@ -263,29 +256,13 @@ export default {
             set(value) {
                 this.$store.state.editDialog = value
             }
+        },
+        article() {
+            return this.$store.state.article
         }
     },
     watch: {
-        propArticle: {
-            deep: true,
-            handler() {
-                this.article.title = this.propArticle.title
-                this.article.content = this.propArticle.content
-                this.article.tag = JSON.parse(this.propArticle.tag).tags
-                this.article.category = this.propArticle.category
-                this.article.img = "api/" + this.propArticle.img
-                this.imgOK = true
-                this.editFlag = true
-            }
-        },
 
-        editDialog: {
-            handler() {
-                setTimeout(() => {
-                    this.resetForm()
-                }, 100);
-            }
-        }
     },
     mounted() {
 
@@ -322,7 +299,7 @@ export default {
     min-height: 500px;
     margin: 0 0 20px 0;
 
-    .markdown-body {
+    .input-body {
         font-size: 16px;
         width: 50%;
         min-width: 200px;
@@ -340,7 +317,7 @@ export default {
         border-radius: 5px;
     }
 
-    .html {
+    .markdown-body {
         overflow-y: auto;
         overflow-x: hidden;
         border-radius: 5px;

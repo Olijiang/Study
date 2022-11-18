@@ -1,41 +1,43 @@
 <template>
     <!-- 时间进度条 -->
-    <el-row>
-        <el-col class="timebarCol">
-            <div class="timebar">
-                <div class="time_line">
-                    <div class="time_node"></div>
-                    <div class="time_info">{{ article.createTime }}</div>
+    <transition name="el-zoom-in-top">
+        <el-row>
+            <el-col class="timebarCol">
+                <div class="timebar">
+                    <div class="time_line">
+                        <div class="time_node"></div>
+                        <div class="time_info">{{ article.createTime }}</div>
+                    </div>
                 </div>
-            </div>
-        </el-col>
-        <!-- <el-col :span="1"></el-col> -->
+            </el-col>
+            <!-- <el-col :span="1"></el-col> -->
 
-        <el-col class="articleCol">
-            <div class="article_card">
-                <div :class="{ illustration_l: (article.id % 2 == 0), illustration_r: (article.id % 2 != 0) }">
-                    <img :src=article.img alt="img" @click="articleDeail">
-                </div>
-                <div :class="{ content_r: (article.id % 2 == 0), content_l: (article.id % 2 != 0) }">
-                    <h3 @click="articleDeail">{{ article.title }}</h3>
-                    <span style="font-size: 80%;">
-                        分类: <span style="color: #d63a3a;">{{ article.category }}</span> |
+            <el-col class="articleCol">
+                <transition name="el-zoom-in-top">
+                    <div class="article_card" v-show="ok">
+                        <div :class="{ illustration_l: (article.id % 2 == 0), illustration_r: (article.id % 2 != 0) }">
+                            <img :src=article.img alt="img" @click="articleDeail"
+                                onerror="javascript:this.src='src/img/imgslot.webp'">
+                        </div>
+                        <div :class="{ content_r: (article.id % 2 == 0), content_l: (article.id % 2 != 0) }">
+                            <h3 @click="articleDeail">{{ article.title }}</h3>
+                            <span style="font-size: 80%;">
+                                分类: <span style="color: #d63a3a;">{{ article.category }}</span> |
 
-                        标签:
-                        <span style="color: #d63a3a;" v-for=" (item, index) in article.tag.tags" :key="index">
-                            {{ item }}&#160;
-                        </span>
-                    </span>
+                                标签:
+                                <span style="color: #d63a3a;" v-for=" (item, index) in article.tag.tags" :key="index">
+                                    {{ item }}&#160;
+                                </span>
+                            </span>
 
-                    <hr width="400px" align="left" />
-                    <p>{{ article.digest }}</p>
-                </div>
-            </div>
-        </el-col>
-    </el-row>
-
-
-
+                            <hr width="400px" align="left" />
+                            <p>{{ article.digest }}</p>
+                        </div>
+                    </div>
+                </transition>
+            </el-col>
+        </el-row>
+    </transition>
 </template>
 
 <script>
@@ -58,7 +60,7 @@ export default {
     },
     data() {
         return {
-
+            ok: false
         }
     },
     methods: {
@@ -75,9 +77,9 @@ export default {
 
     },
     mounted() {
-        this.article.img = "api/" + this.article.img
         this.article.tag = JSON.parse(this.article.tag)
         this.article.digest = this.article.digest.replace(/#*.*#/g, '').replace(/[^a-z0-9\u4e00-\u9fa5]/, '').substring(0, 200) // 除去标题部分，截取200个字用来显示
+        this.ok = true
     },
 }
 

@@ -92,7 +92,7 @@ export default {
             this.$store.state.loginDialog = true
         },
         routerHandler(value) {
-            this.$store.state.editDialog = false
+            // this.$store.state.editDialog = false
             this.$router.push({
                 name: value
             })

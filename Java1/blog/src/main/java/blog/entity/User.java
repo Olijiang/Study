@@ -34,6 +34,8 @@ public class User implements Serializable {
 
     private String img;
 
+    private String coverImg;
+
     public String getUsername() {
         return username;
     }
@@ -91,6 +93,14 @@ public class User implements Serializable {
         this.img = img;
     }
 
+    public String getCoverImg() {
+        return coverImg;
+    }
+
+    public void setCoverImg(String coverImg) {
+        this.coverImg = coverImg;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -102,6 +112,7 @@ public class User implements Serializable {
             ", categoryNum=" + categoryNum +
             ", visitNum=" + visitNum +
             ", img=" + img +
+                ", coverImg=" + coverImg +
         "}";
     }
 }

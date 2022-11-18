@@ -38,7 +38,7 @@ body {
   align-items: center
 }
 
-.markdown-body div>textarea {
+.input-body div>textarea {
   height: 100% !important;
 }
 

@@ -4,6 +4,7 @@ import net.jodah.expiringmap.ExpirationPolicy;
 import net.jodah.expiringmap.ExpiringMap;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -24,5 +25,15 @@ public class LocalCatch {
 
 	public static Object get(String key){
 	 	return map.get(key);
+	}
+
+	public static void remove(String key){
+		map.remove(key);
+	}
+
+	public static void removeByPre(String pre) {
+		Set<String > keys = map.keySet();
+		String regex = "^"+pre+".*";
+		keys.removeIf(key -> key.matches(regex));
 	}
 }

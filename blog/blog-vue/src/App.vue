@@ -89,4 +89,11 @@ export default {
     }
   }
 }
+
+@media (max-width: 1000px) {
+  .main {
+    min-height: 600px;
+  }
+
+}
 </style>

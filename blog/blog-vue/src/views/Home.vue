@@ -2,7 +2,7 @@
     <div>
         <div class="home-page">
             <transition name="el-fade-in">
-                <img :src=coverImg onerror="javascript:this.src='src/img/imgslot.webp'">
+                <img :src=coverImg v-show="show" onerror="javascript:this.src='src/img/imgslot.webp'">
             </transition>
         </div>
 
@@ -44,6 +44,7 @@ export default {
             endmsg: "下拉加载更多",
             hasover: false,
             articleList: [],
+            show: false,
             ok: 0,
             timeout: null,
             queryData: {
@@ -108,8 +109,8 @@ export default {
             .then(res => {
                 if (res.code == 200) {
                     res.data.img = res.data.img
-                    this.$store.commit("setAuthorInfo", res.data)
                     this.coverImg = res.data.coverImg
+                    this.$store.commit("setAuthorInfo", res.data)
                     this.ok++
                 }
             })
@@ -127,6 +128,9 @@ export default {
                     this.queryData.startPage = this.queryData.startPage + 5
                 }
             })
+        setTimeout(() => {
+            this.show = true
+        }, 200);
     },
 }
 

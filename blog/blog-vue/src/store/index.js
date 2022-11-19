@@ -37,17 +37,13 @@ const store = createStore({
       }, 50 * 60 * 1000);
     },
     logout(state) {
-      // 作者切换为默认
-      API.get('init/author', { authorId: state.defaultAuthorId })
-        .then(res => {
-          if (res.code == 200) {
-            state.author = res.data
-          }
-        })
       state.isLogin = false
       clearInterval(state.refresh)
     },
     setAuthorInfo(state, author) {
+      if (state.author) {
+        author.password = state.author.password
+      }
       state.author = author
     },
     setArticle(state, article) {

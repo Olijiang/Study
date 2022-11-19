@@ -41,7 +41,7 @@ const routes = [
 
 const router = createRouter({
     // 4. 内部提供了 history 模式的实现。为了简单起见，我们在这里使用 hash 模式。
-    history: createWebHashHistory(),
+    history: createWebHistory(),
 
     routes, // `routes: routes` 的缩写
     scrollBehavior(to, from, savedPosition) {
@@ -54,7 +54,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     // 处理token过期问题
     if (store.state.isLogin == true)
-        if (store.state.author == undefined) {
+        if (store.state.author.password == "") {
             ElMessage({
                 showClose: true,
                 message: "身份验证已失效, 请重新登录",
@@ -62,6 +62,7 @@ router.beforeEach((to, from, next) => {
             })
             next({ name: "Home" })
             store.commit("logout")
+            return
         }
 
     // let rou = ["Home", "/", "ArticleDetail"]

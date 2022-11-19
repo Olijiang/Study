@@ -1,6 +1,6 @@
 <template>
     <el-dialog style="border-radius: 10px; z-index: 2;margin-bottom: 100px;" v-model="editDialog" top="60px" width="90%"
-        :close-on-click-modal=false :close-on-press-escape=false @close="closeHandler">
+        :close-on-click-modal=false :close-on-press-escape=false @close="closeHandler" :append-to-body="true">
         <el-form id="myform" :model="article" ref="articleRef" :rules="rules">
             <div class="header">
                 <el-row>
@@ -81,7 +81,7 @@
             </div>
             <div class="content">
                 <div class="input-body">
-                    <el-input style="font-size: 18px;height: 100%;" type="textarea" v-model="article.content"
+                    <el-input style="font-size: 16px;height: 100%;" type="textarea" v-model="article.content"
                         resize="none" placeholder="文章内容"></el-input>
                 </div>
                 <div class="resize" @mousedown="drapContent" @dblclick="resetSize"></div>
@@ -300,10 +300,8 @@ export default {
     margin: 0 0 20px 0;
 
     .input-body {
-        font-size: 16px;
         width: 50%;
-        min-width: 200px;
-        height: auto;
+
     }
 
     .resize {

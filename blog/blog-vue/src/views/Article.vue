@@ -30,14 +30,14 @@
                     </span>
 
                 </div>
-                <div style="margin: 4px 0; text-indent: 2em;line-height: 20px;">{{ article.digest }}
+                <div style="margin: 10px 0; text-indent: 2em;line-height: 20px;">{{ article.digest }}
                 </div>
             </div>
-            <div class="but" v-if="isLogin">
-                <div class="buttom">
+            <div class="but">
+                <div class="buttom" v-if="isLogin">
                     <el-button type="primary" @click="editHandler(article.id)">编辑</el-button>
                 </div>
-                <div class="buttom">
+                <div class="buttom" v-if="isLogin">
                     <el-button type="danger" @click="deleteHandler(article.id)">删除</el-button>
                 </div>
 
@@ -139,7 +139,6 @@ export default {
                     element.tag = JSON.parse(element.tag).tags
                     element.digest = element.digest.replace(/#*.*#/g, '').replace(/[^a-z0-9\u4e00-\u9fa5]/, '').substring(0, 200) // 除去标题部分，截取200个字用来显示
                     this.articleList.push(element)
-
                 });
             })
 
@@ -166,6 +165,7 @@ export default {
 .article {
     display: flex;
     justify-content: space-between;
+
     border: 1px solid rgba(220, 220, 220, 0.6);
     // box-shadow: 0 0px 5px rgba(221, 221, 221, 0.6);
     border-radius: 10px;
@@ -213,10 +213,13 @@ export default {
 
 @media(max-width: 650px) {
     .article {
-        height: 160px !important;
+        padding-left: 20px;
+        height: 170px !important;
+        justify-content: flex-end;
 
         .title {
             display: block;
+            margin-top: 10px;
             margin-bottom: 10px;
         }
     }

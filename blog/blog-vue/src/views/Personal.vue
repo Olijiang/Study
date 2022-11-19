@@ -1,9 +1,12 @@
 <template>
-    <div>Personal</div>
+    <div>
+
+    </div>
+
 </template>
 
 <script>
-
+import API from '../utils/API';
 export default {
 
     components: {
@@ -12,6 +15,7 @@ export default {
     props: {},
     data() {
         return {
+
 
         }
     },

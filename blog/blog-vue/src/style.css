@@ -23,15 +23,15 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  font-family: "Lucida Calligraphy", cursive, serif, sans-serif !important;
+  font-family: cursive, Consolas, serif, sans-serif !important;
 }
 
 .el-input__inner::placeholder {
-  font-family: "Lucida Calligraphy", cursive, serif, sans-serif !important;
+  font-family: cursive, Consolas, serif, sans-serif !important;
 }
 
 .title input {
-  font-family: "Lucida Calligraphy", cursive, serif, sans-serif !important;
+  font-family: cursive, Consolas, serif, sans-serif !important;
 }
 
 .el-form-item {
@@ -40,6 +40,7 @@ body {
 
 .input-body div>textarea {
   height: 100% !important;
+  font-family: cursive, Consolas, serif, sans-serif !important;
 }
 
 /* 滑动条 */

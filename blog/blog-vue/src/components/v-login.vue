@@ -96,9 +96,8 @@ export default {
                                 // 同步vuex
                                 this.$store.commit("login", res.data)
                                 this.$store.state.loginDialog = false
-                            } else {
-                                this.loginForm.code = ""
                             }
+                            this.loginForm.code = ""
                         })
                     // 刷新验证码
                     setTimeout(() => {
@@ -123,12 +122,13 @@ export default {
         }
     },
     watch: {
-        loginDialog() {
-            this.getCode()
+        loginDialog(oldValue) {
+            if (oldValue) {
+                this.getCode()
+            }
         }
     },
     mounted() {
-        this.getCode()
     },
 }
 

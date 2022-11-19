@@ -36,15 +36,15 @@ export default {
 <style lang='less' scoped>
 footer {
     display: flex;
-    z-index: 1;
     height: 80px;
     text-align: center;
     vertical-align: middle;
     box-shadow: 0px 0px 1px #dadaad;
-    background: linear-gradient(45deg, hsla(0, 30%, 85%, 0.5), hsla(60, 30%, 85%, 0.5), hsla(120, 30%, 85%, 0.5), hsla(180, 30%, 85%, 0.5), hsla(240, 30%, 85%, 0.5), hsla(300, 30%, 85%, 0.5), hsla(360, 30%, 85%, 0.5));
-    background-size: 500% 500%;
+    background: linear-gradient(45deg, hsl(0, 30%, 90%, 0.8), hsl(60, 60%, 90%, 0.8), hsl(120, 60%, 90%, 0.8), hsl(180, 60%, 90%, 0.8), hsl(240, 60%, 90%, 0.8), hsl(320, 60%, 90%, 0.8), hsl(360, 60%, 90%, 0.8));
+    background-size: 400% 400%;
     animation: Gradient 15s ease infinite;
-    font-family: sans-serif;
+    font-family: Consolas;
+    // font-size: 20px;
     transition: all 0.5s;
 
     @keyframes Gradient {

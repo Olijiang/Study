@@ -1,9 +1,15 @@
 package blog.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import blog.config.ComResult;
+import blog.entity.ArticleDTO;
+import blog.service.AlbumServiceImpl;
+import blog.utils.JwtUtil;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.stereotype.Controller;
+import javax.annotation.Resource;
+import java.util.Objects;
 
 /**
  * <p>
@@ -13,8 +19,17 @@ import org.springframework.stereotype.Controller;
  * @author ZGB
  * @since 2022-11-18
  */
-@Controller
+@RestController
 @RequestMapping("/album")
 public class AlbumController {
 
+	@Resource
+	private AlbumServiceImpl albumService;
+
+	@ApiOperation("添加相片")
+	@PostMapping("/add")
+	public ComResult addPhoto(@RequestBody ArticleDTO articleDTO, @RequestHeader("token") String token) {
+		String authorId = Objects.requireNonNull(JwtUtil.getUserFromToken(token)).getUsername();
+		return albumService.addPhoto(articleDTO, authorId);
+	}
 }

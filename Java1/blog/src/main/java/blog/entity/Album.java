@@ -2,9 +2,9 @@ package blog.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.io.Serializable;
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+
+import java.io.Serializable;
 
 /**
  * <p>
@@ -17,8 +17,6 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(value = "Album对象", description = "")
 public class Album implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
@@ -28,7 +26,7 @@ public class Album implements Serializable {
 
     private String simplifyImg;
 
-    private String originnalImg;
+    private String originalImg;
 
     public Integer getId() {
         return id;
@@ -58,12 +56,12 @@ public class Album implements Serializable {
     public void setSimplifyImg(String simplifyImg) {
         this.simplifyImg = simplifyImg;
     }
-    public String getOriginnalImg() {
-        return originnalImg;
+    public String getOriginalImg() {
+        return originalImg;
     }
 
-    public void setOriginnalImg(String originnalImg) {
-        this.originnalImg = originnalImg;
+    public void setOriginalImg(String originnalImg) {
+        this.originalImg = originnalImg;
     }
 
     @Override
@@ -73,7 +71,7 @@ public class Album implements Serializable {
             ", authorId=" + authorId +
             ", albumName=" + albumName +
             ", simplifyImg=" + simplifyImg +
-            ", originnalImg=" + originnalImg +
+            ", originalImg=" + originalImg +
         "}";
     }
 }

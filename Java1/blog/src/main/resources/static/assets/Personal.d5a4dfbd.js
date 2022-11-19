@@ -1,1 +1,0 @@
-import{ba as e,K as o,W as t}from"./index.8b7c51ba.js";const n={components:{},props:{},data(){return{}},methods:{},computed:{},watch:{},mounted(){}};function r(s,a,c,p,d,l){return o(),t("div",null,"Personal")}const u=e(n,[["render",r]]);export{u as default};

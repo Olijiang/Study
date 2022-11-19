@@ -1,0 +1,1 @@
+import{_ as e,o,g as t}from"./index.8ad34794.js";const n={components:{},props:{},data(){return{}},methods:{},computed:{},watch:{},mounted(){}};function r(s,c,a,p,d,_){return o(),t("div")}const u=e(n,[["render",r]]);export{u as default};

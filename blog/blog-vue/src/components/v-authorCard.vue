@@ -29,6 +29,7 @@
 
 
 <script>
+
 // Object.keys(author).forEach(key => { this.author[key] = author[key] })
 export default {
     data() {

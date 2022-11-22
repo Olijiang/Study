@@ -14,7 +14,7 @@
                 <el-row class="header">
                     <router-link :to="'/AlbumDetail/' + authorId + '_' + item.albumName" class="item"
                         v-for="item in albums" :key="item.id">
-                        <img class="cover" :src="item.coverImg">
+                        <el-image fit="cover" class="cover" :src="item.coverImg" />
                         <span class="fenlei">分类</span>
                         <hr class="line" align="center" />
                         <span class="jutifenlei">{{ item.albumName }}</span>

@@ -4,9 +4,11 @@ import router from "@/router";
 
 // 创建对象
 const instance = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL,
+  baseURL: (import.meta.env.MODE == 'development') ? window.developmentUrl : window.productionUrl,
   timeout: 3000,
 });
+
+console.log(import.meta.env.MODE);
 
 // 添加请求拦截器
 instance.interceptors.request.use(

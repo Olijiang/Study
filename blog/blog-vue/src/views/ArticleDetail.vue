@@ -2,7 +2,7 @@
     <div>
         <transition name="el-fade-in">
             <div class="illustration">
-                <img :src=article.img onerror="javascript:this.src='src/img/imgslot.webp'">
+                <el-image fit="cover" class="img" :src=article.img alt="" />
                 <div class="ArticleInfo">
                     <h1 style="margin: 20px;color:rgb(9, 214, 180);font-size: 50px;"> {{ article.title }} </h1>
                     <p style="margin: 10px;">
@@ -232,10 +232,9 @@ export default {
     margin-bottom: 20px;
     transition: all 0.5s;
 
-    img {
+    .img {
         height: 100%;
         width: 100%;
-        object-fit: cover;
         vertical-align: middle;
         transition: all 0.5s ease-in-out;
         border-radius: 0px 0px 10px 10px;

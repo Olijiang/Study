@@ -2,7 +2,7 @@
     <div>
         <transition name="el-fade-in">
             <div class="illustration">
-                <img :src=coverImg alt="" onerror="javascript:this.src='src/img/imgslot.webp'">
+                <el-image fit="cover" class="img" :src=coverImg alt="" />
                 <div class="ArticleInfo">
                     <h1 style="margin: 20px;color:rgb(9, 214, 180);font-size: 100px;">{{ albumName }} </h1>
                     <router-link :to="'/Album/' + authorId">
@@ -32,7 +32,7 @@
 
                 <el-row class="body">
                     <div class="item" v-for=" (item, index) in images" :key="index">
-                        <div v-show="editFlag">
+                        <div v-show="editFlag" @click="selectImage(item)">
                             <el-icon class="selectIcon" v-show="!item.select">
                                 <CircleCheckFilled />
                             </el-icon>
@@ -277,7 +277,7 @@ export default {
     margin-bottom: 20px;
     transition: all 0.5s;
 
-    img {
+    .img {
         height: 100%;
         width: 100%;
         object-fit: cover;

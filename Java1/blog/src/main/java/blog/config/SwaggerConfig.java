@@ -40,6 +40,9 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		String projectPath = System.getProperty("user.dir");
+		registry.addResourceHandler("/blog") // 访问路径
+				.addResourceLocations("classpath:/static/index.html"); //映射后的真实路径,结尾必须加/
+
 		registry.addResourceHandler("/**") // 访问路径
 				.addResourceLocations("classpath:/static/"); //映射后的真实路径,结尾必须加/
 

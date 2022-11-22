@@ -2,7 +2,7 @@
     <div>
         <div class="home-page">
             <transition name="el-fade-in">
-                <img :src=coverImg v-show="show" onerror="javascript:this.src='src/img/imgslot.webp'">
+                <el-image class="img" fit="cover" :src=coverImg v-show="show" />
             </transition>
         </div>
 
@@ -146,7 +146,7 @@ export default {
     margin-bottom: 30px;
     transition: all 0.3s ease;
 
-    img {
+    .img {
         height: 100%;
         width: 100%;
         object-fit: cover;
@@ -178,8 +178,8 @@ export default {
 .AuthorCard {
     display: block;
     transition: all 0.5s ease;
-    max-width: 16%;
-    flex: 0 0 16%;
+    max-width: 20%;
+    flex: 0 0 20%;
 }
 
 .space {
@@ -187,7 +187,15 @@ export default {
     flex: 0 0 3%;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
+    .ArticleCard {
+        max-width: 65%;
+        flex: 0 0 65%;
+        transition: all 0.5s ease;
+    }
+}
+
+@media (max-width: 900px) {
     .ArticleCard {
         max-width: 95%;
         flex: 0 0 95%;

@@ -2,7 +2,7 @@
     <div class=authorStyle>
         <!-- 作者信息 -->
         <div class="author">
-            <img :src=author.img alt="" onerror="javascript:this.src='src/img/imgslot.webp'">
+            <el-image class="img" fit="cover" :src=author.img alt="" />
 
             <p class="author-name">{{ author.blogName }}
             </p>
@@ -68,7 +68,7 @@ export default {
 }
 
 .author {
-    width: 100%;
+    width: 250px;
     height: 300px;
     padding-bottom: 20px;
     .card();
@@ -91,7 +91,7 @@ export default {
         }
     }
 
-    img {
+    .img {
         margin-top: 20px;
         width: 150px;
         height: 150px;

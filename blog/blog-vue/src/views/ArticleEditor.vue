@@ -61,7 +61,7 @@
                     <el-col :span="6">
                         <transition name="el-zoom-in-top">
                             <div style="height:150px;width: 250px; translate:0 -30px ;">
-                                <img :src="article.img" onerror="javascript:this.src='src/img/imgslot.webp'">
+                                <el-image class="img" fit="cover" :src="article.img" />
                             </div>
                         </transition>
                     </el-col>
@@ -337,7 +337,7 @@ export default {
         margin: 0 0 20px 0;
     }
 
-    img {
+    .img {
         height: 100%;
         width: 100%;
         object-fit: cover;

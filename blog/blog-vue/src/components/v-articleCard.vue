@@ -16,8 +16,7 @@
                 <transition name="el-zoom-in-top">
                     <div class="article_card" v-show="ok">
                         <div :class="{ illustration_l: (article.id % 2 == 0), illustration_r: (article.id % 2 != 0) }">
-                            <img :src=article.img alt="img" @click="articleDeail"
-                                onerror="javascript:this.src='src/img/imgslot.webp'">
+                            <el-image class="img" fir="cover" :src=article.img alt="img" @click="articleDeail" />
                         </div>
                         <div :class="{ content_r: (article.id % 2 == 0), content_l: (article.id % 2 != 0) }">
                             <h3 @click="articleDeail">{{ article.title }}</h3>
@@ -132,7 +131,7 @@ export default {
     transition: all 0.2s ease-in-out;
     margin-bottom: 20px;
 
-    img {
+    .img {
         cursor: pointer;
         height: 100%;
         width: 100%;
@@ -226,7 +225,7 @@ p {
     transition: all 0.5s ease;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 1100px) {
     .timebarCol {
         max-width: 0%;
         transition: all 0.5s ease;

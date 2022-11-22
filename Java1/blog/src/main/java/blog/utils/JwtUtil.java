@@ -26,7 +26,7 @@ public class JwtUtil {
 
 
 	private final static String secret = "yg*G_f1#@0.,2Ka1.a";
-	private static long  expiration = 3600000;
+	private static long  expiration = 36000000;
 
 	/**
 	 * @description: 根据用户信息生成token

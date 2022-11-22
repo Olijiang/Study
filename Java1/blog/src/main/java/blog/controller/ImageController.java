@@ -2,7 +2,7 @@ package blog.controller;
 
 
 import blog.config.ComResult;
-import blog.entity.ArticleDTO;
+import blog.entity.ImageDTO;
 import blog.service.ImageServiceImpl;
 import blog.utils.JwtUtil;
 import io.swagger.annotations.ApiOperation;
@@ -20,16 +20,24 @@ import java.util.Objects;
  * @since 2022-11-18
  */
 @RestController
-@RequestMapping("/album")
-public class AlbumController {
+@RequestMapping("/image")
+public class ImageController {
 
 	@Resource
 	private ImageServiceImpl albumService;
 
-	@ApiOperation("添加相片")
+	@ApiOperation("添加图片")
 	@PostMapping("/add")
-	public ComResult addPhoto(@RequestBody ArticleDTO articleDTO, @RequestHeader("token") String token) {
+	public ComResult addImage(@RequestBody ImageDTO imageDTO, @RequestHeader("token") String token) {
 		String authorId = Objects.requireNonNull(JwtUtil.getUserFromToken(token)).getUsername();
-		return albumService.addPhoto(articleDTO, authorId);
+		return albumService.addImage(imageDTO, authorId);
 	}
+
+	@ApiOperation("删除图片")
+	@PostMapping("/delete")
+	public ComResult deleteImage(@RequestBody Integer[] idSet, @RequestHeader("token") String token) {
+		String authorId = Objects.requireNonNull(JwtUtil.getUserFromToken(token)).getUsername();
+		return albumService.deleteImage(idSet, authorId);
+	}
+
 }

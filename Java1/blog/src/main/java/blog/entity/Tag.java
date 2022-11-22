@@ -16,7 +16,6 @@ import java.io.Serializable;
 @ApiModel(value = "Tag对象", description = "")
 public class Tag implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @TableId
     private String authorId;
 

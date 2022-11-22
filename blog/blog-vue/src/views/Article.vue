@@ -10,7 +10,7 @@
                 </div>
             </div>
 
-            <div style="margin-left: 20px;opacity: 0.7;" v-if="isLogin">
+            <div style="margin-left: 20px;opacity: 0.7;" v-if="showFlag">
                 <el-button color="#ffae19" @click="addHandler">写文章</el-button>
             </div>
         </div>
@@ -34,17 +34,17 @@
                 </div>
             </div>
             <div class="but">
-                <div class="buttom" v-if="isLogin">
+                <div class="buttom" v-if="showFlag">
                     <el-button type="primary" @click="editHandler(article.id)">编辑</el-button>
                 </div>
-                <div class="buttom" v-if="isLogin">
+                <div class="buttom" v-if="showFlag">
                     <el-button type="danger" @click="deleteHandler(article.id)">删除</el-button>
                 </div>
 
             </div>
         </div>
 
-        <ArticleEditorVue :categories="categories" :tags="tags"></ArticleEditorVue>
+        <ArticleEditorVue :categories="categories" :tags="tags" :editFlag=editFlag></ArticleEditorVue>
     </div>
 
 </template>
@@ -58,9 +58,10 @@ export default {
         ArticleEditorVue,
 
     },
-    props: {},
+    props: ["authorId"],
     data() {
         return {
+            editFlag: false,
             query: "",
             articleList: [],
             queryData: {
@@ -81,6 +82,7 @@ export default {
             //清除arcticle
             this.$store.commit("clearArticle")
             this.editDialog = true
+            this.editFlag = false
         },
         editHandler(aricleId) {
             // 文章信息
@@ -88,11 +90,12 @@ export default {
             API.get('init/getArticle', data)
                 .then(res => {
                     if (res.code == 200) {
+                        res.data.img = import.meta.env.VITE_BASE_URL + res.data.img
                         this.$store.commit("setArticle", res.data)
                         setTimeout(() => {
+                            this.editFlag = true
                             this.editDialog = true
                         }, 100);
-
                     }
                 })
         },
@@ -101,7 +104,7 @@ export default {
         },
         articleDeail(value) {
             this.$router.push({
-                path: "ArticleDetail/" + value
+                path: "/ArticleDetail/" + value
             })
         }
     },
@@ -114,18 +117,12 @@ export default {
                 this.$store.state.editDialog = value
             }
         },
-        isLogin: {
-            set(value) {
-                this.$store.state.isLogin = value;
-            },
-            get() {
-                return this.$store.state.isLogin;
-            }
-        },
-        authorId() {
-            if (this.$store.isLogin)
-                return this.$store.state.authorId
-            return this.$store.state.defaultAuthorId
+        showFlag() {
+            // 登录并且当前访问的authorId 等于登录 Id
+            if (this.$store.state.isLogin && this.authorId == this.$store.state.author.username)
+                return true
+            else
+                return false
         }
     },
     watch: {
@@ -133,7 +130,7 @@ export default {
     },
     mounted() {
         this.queryData.authorId = this.authorId
-        API.get('init/getArticleList', this.queryData)
+        API.get('init/getArticles', this.queryData)
             .then(res => {
                 res.data.forEach(element => {
                     element.tag = JSON.parse(element.tag).tags
@@ -143,11 +140,11 @@ export default {
             })
 
         let data = { "authorId": this.authorId }
-        API.get('init/tags/', data)
+        API.get('init/getTags', data)
             .then(res => {
                 this.tags = res.data
             })
-        API.get('init/category/', data)
+        API.get('init/getCategories', data)
             .then(res => {
                 this.categories = res.data
             })

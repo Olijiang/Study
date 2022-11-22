@@ -1,60 +1,55 @@
 <template>
     <div>
-        <el-row style="margin-top: 50px;">
+        <el-row style="margin-top: 60px;">
             <el-col class="space"></el-col>
             <el-col class="container">
-                <el-row>
+                <el-row style="display: flex;justify-content: space-between;">
                     <div style="margin:0 0 1% 2.5%;height: 30px; opacity: 0.7;">
-                        <el-button v-if="isLogin" type="primary" @click="uploadDialog = true">上传</el-button>
+                        <el-button v-if="showFlag" type="primary" @click="uploadDialog = true">上传</el-button>
+                    </div>
+                    <div style="margin:0 2.5% 1% 0;height: 30px; opacity: 0.7;">
+                        <el-button v-if="showFlag" type="warning" @click="editAlbumDialog = true">管理相册</el-button>
                     </div>
                 </el-row>
                 <el-row class="header">
-                    <el-col class="item" v-for="item in album" :key="item.id">
+                    <router-link :to="'/AlbumDetail/' + authorId + '_' + item.albumName" class="item"
+                        v-for="item in albums" :key="item.id">
                         <img class="cover" :src="item.coverImg">
                         <span class="fenlei">分类</span>
                         <hr class="line" align="center" />
-                        <span class="jutifenlei">{{ item.name }}</span>
-                    </el-col>
+                        <span class="jutifenlei">{{ item.albumName }}</span>
+                    </router-link>
                 </el-row>
                 <el-row class="fengexian">
                     <el-col :span="1"></el-col>
-                    <el-col :span="10" style="margin:1% 0;">
+                    <el-col :span="10">
                         <hr width="100%" align="left" />
                     </el-col>
-                    <el-col :span="2" style="color: deeppink;margin:1% 0">
+                    <el-col :span="2" style="color: deeppink;">
                         <span>精选</span>
                     </el-col>
-                    <el-col :span="10" style="margin:1% 0;">
+                    <el-col :span="10">
                         <hr width="100%" align="right" />
                     </el-col>
                     <el-col :span="1"></el-col>
                 </el-row>
 
                 <el-row class="body">
-
-                    <el-col class="item" v-for=" (item, index) in photos1" :key="index">
-                        <el-image class="photo" :src="item.img" :preview-src-list="realImg" fit="cover"
+                    <div class="item" v-for=" (item, index) in simplifyImg" :key="index">
+                        <el-image class="photo" :src="item" :preview-src-list="originalImg" fit="cover"
                             :initial-index="index" :preview-teleported="true" :hide-on-click-modal=true />
-
-                        <!-- <img :src="item.img" alt=""> -->
-                    </el-col>
+                    </div>
                 </el-row>
-                <!-- <el-row class="body1">
-
-                    <el-col class="item" v-for=" (item, index) in photos2" :key="index">
-                        <img :src="item.img" alt="">
-                    </el-col>
-
-                </el-row> -->
             </el-col>
             <el-col class="space"></el-col>
         </el-row>
+        <!-- 上传dialog -->
         <el-dialog v-model="uploadDialog" top="60px" width="64%" style="min-width: 820px;border-radius: 20px;"
             :close-on-click-modal="false" :close-on-press-escape=false :append-to-body="true">
             <div style="margin-left: 2%;">
                 <el-upload v-model:file-list="fileList" ref="uploadRef" list-type="picture-card"
                     :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :http-request="uploadHandler"
-                    :on-exceed="exceedHandler" multiple :limit="50">
+                    :on-exceed="exceedHandler" multiple :limit="50" accept=".png, .jpg">
                     <el-icon>
                         <Plus />
                     </el-icon>
@@ -67,15 +62,11 @@
                 <el-button type="primary" @click="upload">上传</el-button>
                 <el-button type="primary" @click="clearAll">清空全部</el-button>
                 <el-button type="primary" @click="clearUpload">清空已上传</el-button>
-                <el-button type="danger" @click="close">关闭</el-button>
+                <el-button type="danger" @click="closeUpload">关闭</el-button>
                 <div style="display: inline-block;margin-left: 2%;max-width: 150px;">
                     <el-select v-model="albumName" placeholder="选择相册">
-                        <el-option v-for="(c, index) in albums" :key="index" :label="c" :value="c">
+                        <el-option v-for="(item, index) in albumsB" :key="index" :label="item" :value="item">
                         </el-option>
-                        <div style="margin: 0 15px;">
-                            <el-input v-model="newAlbum" placeholder="新建相册" type="text" @keyup.enter="addAlbum">
-                            </el-input>
-                        </div>
                     </el-select>
                 </div>
                 <div style="margin-top: 2%;">
@@ -83,14 +74,56 @@
                 </div>
 
             </div>
-
-
-            <el-dialog v-model="dialogVisible" width="70%" top="60px" style="background-color: transparent;">
+            <!-- 上传文件中的预览Dialog -->
+            <el-dialog v-model="previewDialog" width="70%" top="60px" style="background-color: transparent;">
                 <div class="previewDialog">
-                    <img :src="dialogImageUrl" />
+                    <el-image fit="cover" :src="dialogImageUrl" />
                 </div>
             </el-dialog>
         </el-dialog>
+        <!-- 相册编辑Dialog -->
+        <el-dialog v-model="editAlbumDialog" top="60px" width="50%" style="min-width: 500px;border-radius: 20px;"
+            :close-on-click-modal="false" :close-on-press-escape=false :append-to-body="true" @open="albumDialogOpen">
+            <div class="albumItem" v-for="(item, index) in albumsA" :key="index">
+                <el-row>
+                    <el-col class="albumCover">
+                        <el-image class="albumCoverImg" fit="cover" :src="item.coverImg" alt="" />
+                    </el-col>
+                    <el-col class="albumInfo">
+                        <div style="width: 200px;margin-top: 10px;">
+                            <el-form ref="albumRef" :model="albumsA[index]" :rules="rules">
+                                <el-form-item label="相册名" prop="albumName">
+                                    <el-input v-model="albumsA[index].albumName" placeholder=""
+                                        :disabled="item.albumName == '全部'">
+                                    </el-input>
+                                </el-form-item>
+                            </el-form>
+                        </div>
+                        <div style="display: inline-block;width: 150px;margin-top: 10px;">
+                            <el-upload ref="editAlbumUploadRef" class="upload-demo" accept=".png, .jpg"
+                                :http-request="(file) => { editAlbumUploadHandler(file, index) }" :limit="1"
+                                :on-exceed="(files) => { editAlbumHandleExceed(files, index) }">
+                                <template #trigger>
+                                    <el-button type="primary">选择封面</el-button>
+                                </template>
+                            </el-upload>
+                        </div>
+                        <div style="display: inline-block;width: 100px;margin-top: 10px;vertical-align: top;">
+                            <el-button type="danger" @click="deleteAlbum(index)" :disabled="item.albumName == '全部'">删除
+                            </el-button>
+                        </div>
+                    </el-col>
+                </el-row>
+            </div>
+            <div style="margin: 2% 0 0 2%;">
+                <el-button type="primary" @click="saveEditAlbum">保存</el-button>
+                <el-button type="danger" @click="closeEditAlbum">关闭</el-button>
+                <el-button type="warning" @click="addAlbum">新增相册</el-button>
+            </div>
+        </el-dialog>
+
+
+
 
     </div>
 </template>
@@ -100,39 +133,24 @@
 import { Plus } from '@element-plus/icons-vue'
 import API from '../utils/API';
 
+const baseUrl = import.meta.env.VITE_BASE_URL
+
 export default {
     components: {
         Plus
     },
-    props: {},
+    props: ["authorId"],
     data() {
         return {
-            album: [
-                { id: 1, name: "全部", coverImg: "src/img/1.png" },
-                { id: 2, name: "人物", coverImg: "src/img/2.png" },
-                { id: 3, name: "风景", coverImg: "src/img/3.png" },
-                { id: 4, name: "科幻", coverImg: "src/img/5.jpg" },
-            ],
-            photos1: [
-                { img: "src/img/p1.png", realImg: "src/img/1.png" },
-                { img: "src/img/p2.jpg", realImg: "src/img/1.png" },
-                { img: "src/img/p3.jpg", realImg: "src/img/1.png" },
-                { img: "src/img/p4.jpg", realImg: "src/img/1.png" },
-                { img: "src/img/p1.png", realImg: "src/img/1.png" },
-                { img: "src/img/p2.jpg", realImg: "src/img/1.png" },
-                { img: "src/img/p3.jpg", realImg: "src/img/1.png" },
-                { img: "src/img/p4.jpg", realImg: "src/img/1.png" },
-            ],
-            realImg: [
-                "src/img/p1.png",
-                "src/img/p2.jpg",
-                "src/img/p3.jpg",
-                "src/img/p4.jpg",
-                "src/img/p1.png",
-                "src/img/p2.jpg",
-                "src/img/p3.jpg",
-                "src/img/p4.jpg",
-            ],
+            baseUrl: baseUrl,
+            //去除全部的相册名称数组
+            albumsB: [],
+            // 请求得到的相册数组
+            albums: [],
+            // 用于暂存相册编辑数据
+            albumsA: [],
+            originalImg: [],
+            simplifyImg: [],
             // dialog
             progress: {
                 percentage: 0,
@@ -140,27 +158,27 @@ export default {
                 status: ""
             },
             albumName: "",
-            newAlbum: "",
-            albums: ["人物", "风景", "科幻"],
-            isfull: false,
-            uploadDialog: false,
             fileList: [],
             dialogImageUrl: "",
-            dialogVisible: false
+            uploadDialog: false,
+            previewDialog: false,
+            editAlbumDialog: false,
+            rules: {
+                albumName: { required: true, message: "请输入相册名", trigger: 'blur' }
+            },
+            // 验证相册编辑的表单
+            OKFlag: true
+
         }
     },
     methods: {
-        addAlbum() {
-            this.albums.push(this.newAlbum);
-            this.albumName = this.newAlbum
-            this.newAlbum = ""
-        },
+        // 上传图片部分
         handleRemove(uploadFile, uploadFiles) {
-            console.log(uploadFile, uploadFiles)
+            // console.log(uploadFile, uploadFiles)
         },
         handlePictureCardPreview(uploadFile) {
             this.dialogImageUrl = uploadFile.url
-            this.dialogVisible = true
+            this.previewDialog = true
         },
         dealImage(rawbase64) {
             var newImage = new Image();
@@ -192,7 +210,7 @@ export default {
                     ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
                     var base64 = canvas.toDataURL("image/jpeg", quality); //压缩语句
                     // 如想确保图片压缩到自己想要的尺寸
-                    while (base64.length / 1024 > 500) {
+                    while (base64.length / 1024 > 1000) {
                         quality -= 0.05;
                         base64 = canvas.toDataURL("image/jpeg", quality);
                     }
@@ -204,18 +222,9 @@ export default {
                     resolve(base64)
                 }
             })
-
         },
+        uploadHandler() {
 
-        uploadHandler(file) {
-            let _file = file.file
-            // console.log(_file);
-            // let reader = new FileReader()
-            // reader.readAsDataURL(_file)
-            // reader.onload = async e => {
-            //     // let base64 = await this.dealImage(e.target.result)
-            //     // console.log(base64);
-            // }
         },
         exceedHandler() {
             ElMessage({
@@ -242,35 +251,35 @@ export default {
                     e.percentage = Math.round(20 * Math.random())
                     let data = {
                         albumName: this.albumName,
+                        originalImg: "",
                         simplifyImg: "",
-                        originalImg: ""
                     }
                     let reader = new FileReader()
                     reader.readAsDataURL(e.raw)
-                    reader.onload = async e => {
-                        data.originalImg = e.target.result
-                        data.simplifyImg = await this.dealImage(e.target.result)
-                    }
-                    console.log(data);
-                    API.post("album/add", data)
-                        .then(res => {
-                            if (res.code == 200) {
-                                e.status = "success"
-                                if (this.progress.percentage + unit > 95) {
-                                    this.progress.percentage = 100
-                                    this.progress.status = "success"
+                    reader.onload = async re => {
+                        data.originalImg = re.target.result
+                        data.simplifyImg = await this.dealImage(re.target.result)
+                        // console.log(data);
+                        API.post("image/add", data)
+                            .then(res => {
+                                if (res.code == 200) {
+                                    e.status = "success"
+                                    if (this.progress.percentage + unit > 95) {
+                                        this.progress.percentage = 100
+                                        this.progress.status = "success"
+                                    }
+                                    else {
+                                        this.progress.percentage += unit
+                                    }
+                                } else {
+                                    e.status = "fail"
+                                    this.progress.status = "warning"
                                 }
-                                else {
-                                    this.progress.percentage += unit
-                                }
-                            } else {
+                            }).catch(err => {
                                 e.status = "fail"
-                                this.progress.status = "warning"
-                            }
-                        }).catch(err => {
-                            e.status = "fail"
-                            this.progress.status = "exception"
-                        })
+                                this.progress.status = "exception"
+                            })
+                    }
                 }
             })
         },
@@ -287,28 +296,152 @@ export default {
                 }
             }
         },
-        close() {
+        closeUpload() {
             this.uploadDialog = false
             this.progress.show = false
             this.progress.status = ""
             this.progress.percentage = 0
-
+        },
+        // 以下为 相册部分功能函数
+        saveEditAlbum() {
+            let data = []
+            this.albumsA.forEach(e => {
+                let a = {};
+                a.id = e.id
+                a.author = ""
+                a.albumName = e.albumName
+                if (!e.imgChange) a.coverImg = ""
+                else a.coverImg = e.coverImg
+                data.push(a)
+            })
+            this.OKFlag = true
+            this.$refs.albumRef.forEach(e => {
+                e.validate(valid => {
+                    if (!valid) this.OKFlag = false
+                });
+            })
+            setTimeout(() => {
+                if (this.OKFlag) {
+                    API.post('album/update', data)
+                        .then(res => {
+                            if (res.code == 200) {
+                                ElMessage({
+                                    showClose: true,
+                                    message: "编辑成功",
+                                    type: 'success',
+                                })
+                                console.log(res.data);
+                                this.editAlbumDialog = false
+                                // 添加到本地数据，就不刷新页面了
+                                this.albums = this.albumsA
+                            }
+                        })
+                }
+            }, 100);
+        },
+        closeEditAlbum() {
+            this.editAlbumDialog = false
+        },
+        editAlbumUploadHandler(file, index) {
+            let reader = new FileReader()
+            reader.readAsDataURL(file.file)
+            reader.onload = async e => {
+                this.albumsA[index].coverImg = await this.dealImage(e.target.result)
+                this.albumsA[index].imgChange = true
+            }
+        },
+        editAlbumHandleExceed(files, index) {
+            this.$refs.editAlbumUploadRef[index].clearFiles()
+            this.$refs.editAlbumUploadRef[index].handleStart(files[0])
+            let reader = new FileReader()
+            reader.readAsDataURL(files[0])
+            reader.onload = async e => {
+                this.albumsA[index].coverImg = await this.dealImage(e.target.result)
+            }
+        },
+        deleteAlbum(index) {
+            ElMessageBox.confirm('确认删除?', '提示框',
+                {
+                    distinguishCancelAndClose: true,
+                    confirmButtonText: '是',
+                    cancelButtonText: '否',
+                    type: 'warning',
+                    customStyle: { top: "-20% !important", position: "relative" },
+                }).then(() => {
+                    this.albumsA.splice(index, 1)
+                }).catch((action) => {
+                    if (action == 'cancel') {
+                        // 点击关闭 关闭弹窗回到主页面
+                    } else {
+                        // 按ESC 啥也不干
+                    }
+                })
+        },
+        addAlbum() {
+            let album = {
+                id: -1,
+                authorId: 0,
+                albumName: "新增分类",
+                coverImg: ""
+            }
+            this.albumsA.push(album)
+        },
+        albumDialogOpen() {
+            this.albumsA = []
+            this.albums.forEach(e => {
+                // 深度复制一份
+                e.imgChange = false
+                this.albumsA.push(JSON.parse(JSON.stringify(e)))
+            })
         }
     },
     computed: {
-        isLogin: {
-            set(value) {
-                this.$store.state.isLogin = value;
-            },
-            get() {
-                return this.$store.state.isLogin;
-            }
+        showFlag() {
+            // 登录并且当前访问的authorId 等于登录 Id
+            if (this.$store.state.isLogin && this.authorId == this.$store.state.author.username)
+                return true
+            else
+                return false
         }
     },
     watch: {
 
     },
     mounted() {
+        // 获取相册信息
+        let data = {
+            authorId: this.authorId,
+        }
+        API.get("init/getAlbums", data)
+            .then(res => {
+                if (res.code == 200) {
+                    // 扔到 store
+                    res.data.forEach(e => {
+                        e.coverImg = baseUrl + e.coverImg
+                        if (e.albumName != "全部") {
+                            this.albumsB.push(e.albumName)
+                        }
+                        this.albums.push(e)
+
+                    })
+                    this.$store.commit("setAlbums", res.data)
+                }
+            })
+
+        data = {
+            authorId: this.authorId,
+            startPage: 0,
+            pageSize: 8
+        }
+        API.get("init/getImages", data)
+            .then(res => {
+                if (res.code == 200) {
+                    res.data.forEach(e => {
+                        this.originalImg.push(baseUrl + e.originalImg)
+                        this.simplifyImg.push(baseUrl + e.simplifyImg)
+                    })
+                }
+            })
 
     },
 }
@@ -323,7 +456,6 @@ export default {
 }
 
 .header {
-    height: 200px;
     transition: @transition;
 }
 
@@ -339,6 +471,7 @@ export default {
 }
 
 .item {
+    display: inline-block;
     position: relative;
     cursor: pointer;
     border-radius: 5px;
@@ -346,7 +479,7 @@ export default {
     max-width: 20%;
     flex: 0 0 20%;
     min-width: 200px !important;
-    margin: 0 2.5% 2%;
+    margin: 1% 2.5% 1% 2.5%;
     // border: 1px solid skyblue;
     transition: @transition;
 
@@ -378,6 +511,9 @@ export default {
     }
 
     .line {
+        border-color: antiquewhite;
+        background-color: antiquewhite;
+        color: antiquewhite;
         width: 100px;
         transition: @transition;
     }
@@ -392,7 +528,7 @@ export default {
     .jutifenlei {
         color: rgb(0, 255, 170);
         display: block;
-        font-size: 25px;
+        font-size: 30px;
         transition: @transition;
     }
 
@@ -418,42 +554,15 @@ export default {
 }
 
 @media (max-width: 1060px) {
-    .header {
-        height: 150px;
-    }
-
-    .body {
-        margin-top: 20px;
-    }
-
-
     .item {
         height: 150px;
         max-width: 20%;
         flex: 0 0 20%;
         min-width: 150px !important;
     }
-
-    .fengexian {
-        margin-top: 20px;
-    }
 }
 
 @media (max-width: 800px) {
-    .header {
-        height: 350px;
-        flex-wrap: wrap;
-    }
-
-    .body {
-        margin-top: 10px;
-        flex-wrap: wrap;
-    }
-
-    .fengexian {
-        margin-top: 0px;
-    }
-
     .item {
         height: 150px;
         max-width: 45%;
@@ -472,5 +581,32 @@ export default {
         width: 100%;
         object-fit: cover;
     }
+}
+
+.albumItem {
+    margin: 2%;
+    height: 150px;
+}
+
+.albumCover {
+    border-radius: 10px;
+    flex: 0 0 40%;
+    display: inline-block;
+    height: 150px;
+    max-width: 400px;
+    min-width: 200px;
+}
+
+.albumCoverImg {
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.albumInfo {
+    margin-left: 8%;
+    max-width: 40%;
+    flex: 0 0 40%;
 }
 </style>

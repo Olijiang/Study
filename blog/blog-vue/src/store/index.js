@@ -6,7 +6,7 @@ import API from "../utils/API";
 const store = createStore({
   state() {
     return {
-      defaultAuthorId: "2020",
+      albums: [],
       author: undefined,
       loginDialog: false, //控制登录窗口
       editDialog: false, //控制文章编辑窗口
@@ -26,15 +26,17 @@ const store = createStore({
     login(state, author) {
       state.author = author
       state.isLogin = true
-      // token 过期时间为一小时, 50分钟刷新一次
+      // token 过期时间为一小时, 45分钟刷新一次 2700000
+      // 页面刷新就失效了, 可能是刷新时序列化造成的
       state.refresh = setInterval(() => {
         API.get('refreshToken')
           .then(res => {
             if (res.code === 200) {
+              console.log(res.data);
               state.author.password = res.data
             }
           })
-      }, 50 * 60 * 1000);
+      }, 2700000);
     },
     logout(state) {
       state.isLogin = false
@@ -51,7 +53,7 @@ const store = createStore({
       // 解析tag
       state.article.tag = JSON.parse(article.tag).tags
       // 请求文章内容
-      let data = { "fileName": article.content.split('\\')[1] }
+      let data = { "filePath": article.content }
       API.get('init/getContent', data)
         .then(res => {
           if (res.code == 200) {
@@ -65,6 +67,9 @@ const store = createStore({
         state.article[key] = ""
       }
       console.log("clearArticle", state.article);
+    },
+    setAlbums(state, albums) {
+      state.albums = albums
     }
   }
 })

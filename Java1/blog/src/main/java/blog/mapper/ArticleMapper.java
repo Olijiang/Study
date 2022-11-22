@@ -15,5 +15,5 @@ import java.util.List;
  */
 public interface ArticleMapper extends BaseMapper<Article> {
 
-	List<Article> getArticleList(String authorId, int startPage, int pageSize);
+	List<Article> getArticles(String authorId, int startPage, int pageSize);
 }

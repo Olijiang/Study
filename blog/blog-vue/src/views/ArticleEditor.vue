@@ -46,7 +46,7 @@
                                 <el-col :span="1"></el-col>
                                 <el-col :span="8">
                                     <el-upload ref="uploadRef" class="upload-demo" name="illustrate" accept=".png, .jpg"
-                                        :http-request="uploadHandler" :limit="1">
+                                        :http-request="uploadHandler" :limit="1" :on-exceed="handleExceed">
                                         <template #trigger>
                                             <el-button type="primary">选择插图</el-button>
                                         </template>
@@ -91,26 +91,26 @@
         <el-button type="primary" @click="saveToScript">保存到草稿</el-button>
         <el-button type="primary" @click="saveAndIssue">发表</el-button>
         <el-button type="danger" @click="closeAndSaveToScript">关闭</el-button>
-        <el-button type="danger" @click="test">test</el-button>
 
-        <backToTopVue></backToTopVue>
     </el-dialog>
 </template>
 
 <script>
-import backToTopVue from '@/components/backToTop.vue';
+
 import markdownToHtml from '@/utils/markdown'
+import { Bottom } from '@element-plus/icons-vue';
 import API from '../utils/API';
 export default {
     components: {
-        backToTopVue
     },
     props: {
         tags: Array,
         categories: Array,
+        editFlag: Bottom,
     },
     data() {
         return {
+            imgChange: false,
             newCategory: "",
             newTag: "",
             rules: {
@@ -124,18 +124,66 @@ export default {
         test() {
 
         },
+        dealImage(rawbase64) {
+            var newImage = new Image();
+            var quality = 0.9;    //压缩系数0-1之间
+            newImage.src = rawbase64;
+            newImage.setAttribute("crossOrigin", 'Anonymous');	//url为外域时需要
+            var imgWidth, imgHeight;
+            return new Promise(resolve => {
+                newImage.onload = async function () {
+                    imgWidth = this.width;
+                    imgHeight = this.height;
+                    var canvas = document.createElement("canvas");
+                    var ctx = canvas.getContext("2d");
+                    let size = 1920 // 设置压缩尺寸大小
+                    if (Math.max(imgWidth, imgHeight) > size) {
+                        if (imgWidth > imgHeight) {
+                            canvas.width = size;
+                            canvas.height = size * imgHeight / imgWidth;
+                        } else {
+                            canvas.height = size;
+                            canvas.width = size * imgWidth / imgHeight;
+                        }
+                    } else {
+                        canvas.width = imgWidth;
+                        canvas.height = imgHeight;
+                        quality = 1;
+                    }
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
+                    var base64 = canvas.toDataURL("image/jpeg", quality); //压缩语句
+                    // 如想确保图片压缩到自己想要的尺寸
+                    while (base64.length / 1024 > 1000) {
+                        quality -= 0.05;
+                        base64 = canvas.toDataURL("image/jpeg", quality);
+                    }
+                    // 防止最后一次压缩低于最低尺寸，只要quality递减合理，无需考虑
+                    // while (base64.length / 1024 < 5) {
+                    //     quality += 0.01;
+                    //     base64 = canvas.toDataURL("image/jpeg", quality);
+                    // }
+                    resolve(base64)
+                }
+            })
+        },
         uploadHandler(file) {
-            // console.log(file.file);
-            let _file = file.file
-            console.log(_file);
             let reader = new FileReader()
-            reader.readAsDataURL(_file)
-            console.log(reader);
-            reader.onload = e => {
-                this.article.img = e.target.result
+            reader.readAsDataURL(file.file)
+            reader.onload = async e => {
+                this.article.img = await this.dealImage(e.target.result)
+            }
+            this.imgChange = true
+        },
+        handleExceed(files) {
+            this.$refs.uploadRef.clearFiles()
+            this.$refs.uploadRef.handleStart(files[0])
+            let reader = new FileReader()
+            reader.readAsDataURL(files[0])
+            reader.onload = async e => {
+                this.article.img = await this.dealImage(e.target.result)
             }
         },
-
         addCategory() {
             console.log("add new category", this.newCategory);
             this.categories.push(this.newCategory)
@@ -149,8 +197,8 @@ export default {
             this.newTag = ""
         },
         drapContent(e) {
-            let left = document.getElementsByClassName("markdown-body")[0];
-            let right = document.getElementsByClassName('html')[0];
+            let left = document.getElementsByClassName("input-body")[0];
+            let right = document.getElementsByClassName('markdown-body')[0];
 
             let leftWid = window.getComputedStyle(left).getPropertyValue('width')
             let rightWid = window.getComputedStyle(right).getPropertyValue('width')
@@ -206,7 +254,13 @@ export default {
                     }
                     if (this.editFlag) {
                         // 修改
-                        API.post("article/update", this.article)
+                        let article = this.article
+                        if (!this.imgChange) {
+                            // 图片未改动
+                            article.img = ""
+                        }
+                        console.log(article);
+                        API.post("article/update", article)
                             .then(res => {
                                 if (res.code == 200) {
                                     ElMessage({
@@ -239,6 +293,7 @@ export default {
             this.editDialog = false
         },
         closeHandler() {
+            this.$refs.uploadRef.clearFiles()
             //清除验证结果
             setTimeout(() => {
                 this.resetForm()

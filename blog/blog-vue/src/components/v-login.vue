@@ -80,6 +80,7 @@ export default {
         getCode() {
             this.loginForm.timeStamp = new Date().getTime()
             let data = { timeStamp: this.loginForm.timeStamp }
+            this.loginForm.code = ""
             API.get("getCode", data)
                 .then(res => {
                     if (res.code == 200) {
@@ -94,10 +95,14 @@ export default {
                         .then(res => {
                             if (res.code === 200) {
                                 // 同步vuex
+                                res.data.img = import.meta.env.VITE_BASE_URL + res.data.img
+                                res.data.coverImg = import.meta.env.VITE_BASE_URL + res.data.coverImg
                                 this.$store.commit("login", res.data)
                                 this.$store.state.loginDialog = false
+                                // this.$router.push({
+                                //     path: '/' + res.data.username
+                                // })
                             }
-                            this.loginForm.code = ""
                         })
                     // 刷新验证码
                     setTimeout(() => {
@@ -122,9 +127,12 @@ export default {
         }
     },
     watch: {
-        loginDialog(oldValue) {
-            if (oldValue) {
+        loginDialog(newValue) {
+            console.log(newValue);
+            if (newValue) {
                 this.getCode()
+            } else {
+                this.resetForm()
             }
         }
     },

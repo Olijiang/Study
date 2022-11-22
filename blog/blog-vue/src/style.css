@@ -17,6 +17,16 @@ body {
   color: rgb(255, 48, 158);
 }
 
+a {
+  text-decoration: none;
+  /* 去除默认的下划线 */
+  outline: none;
+  /* 去除旧版浏览器的点击后的外虚线框 */
+  color: rgb(47, 45, 45);
+  /* 去除默认的颜色和点击后变化的颜色 */
+}
+
+
 #app {
   position: relative;
   text-align: center;

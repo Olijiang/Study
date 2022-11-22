@@ -1,18 +1,18 @@
 <template>
     <header @mousemove="onMousemove" :class="headerStyle">
 
-        <div class="author" @click="routerHandler('Home')">
+        <div class="author" @click="routerHandler('/')">
             <!-- {{ authorInfo.name }} -->
             神华里绫
         </div>
         <div class="nav">
 
-            <div v-for="(item, index) in navItems" :key="index" class="nav_item" @click="routerHandler(item.name)">
+            <div v-for="(item, index) in navItems" :key="index" class="nav_item" @click="routerHandler(item.path)">
                 <span>{{ item.label }}</span>
                 <div class="item_line"></div>
             </div>
             <template v-if="isLogin">
-                <div class="nav_item" @click="routerHandler('Personal')">
+                <div class="nav_item" @click="routerHandler('/Personal/')">
                     个人中心
                     <div class="item_line"></div>
                 </div>
@@ -46,15 +46,18 @@ export default {
             navItems: [
                 {
                     label: "首页",
-                    name: "Home"
+                    name: "Home",
+                    path: "/"
                 },
                 {
                     label: "相册",
-                    name: "Album"
+                    name: "Album",
+                    path: "/Album/"
                 },
                 {
                     label: "文章",
-                    name: "Article"
+                    name: "Article",
+                    path: "/Article/"
                 },
             ],
             headerStyle: "header-on",
@@ -76,7 +79,7 @@ export default {
                         message: '退出成功',
                     })
                     this.$router.push({
-                        name: "Home"
+                        path: "/2020"
                     })
                 }).catch((action) => {
                     if (action == 'cancel') {
@@ -92,9 +95,8 @@ export default {
             this.$store.state.loginDialog = true
         },
         routerHandler(value) {
-            // this.$store.state.editDialog = false
             this.$router.push({
-                name: value
+                path: value + this.authorId
             })
         },
         onMousemove(event) {
@@ -104,6 +106,9 @@ export default {
     computed: {
         isLogin() {
             return this.$store.state.isLogin;
+        },
+        authorId() {
+            return this.$store.state.author.username;
         }
     },
     watch: {

@@ -6,13 +6,6 @@ spring:
     username: root
     password: 123456
     url: jdbc:mysql:///blog?serverTimezone=Asia/Shanghai
-#  mvc:
-#    static-path-pattern: /static/**
-#  web:
-#    resources:
-#      static-locations: classpath:/static/
-
-
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
@@ -24,8 +17,8 @@ mybatis-plus:
 
 
 blogserver:
-  #请求图片使用 完整url地址前缀  http://localhost:8888
-  serverIP: "http://localhost:8888"
+  #请求图片使用 完整url地址前缀  http://localhost:8888 ！！#弃用，功能在前端完成
+  serverIP: "http://localhost:8888/"
   #文件结构   项目文件夹/blogData/imgs/图片     项目文件夹/blogData/articles/文章
   dataPath: "blogData"
   imgPath: "imgs"

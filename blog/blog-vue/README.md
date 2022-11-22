@@ -1,7 +1,19 @@
-# Vue 3 + Vite
+---
+页面跳转备忘录
+---
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## article
 
-## Recommended IDE Setup
+## article --> articleEditor
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+直接传递参数
+
+- tags：作者的全部标签
+- categories: 作者的全部分类
+- editFlag: 区分编辑文字和新增文章的标志, 用于选择 API 地址
+
+间接传递参数
+
+- article 信息由 article 页面请求放入 store 中, 文章的主题 content 由 store 自动请求
+
+## article --> articleDetail

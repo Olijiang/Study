@@ -1,6 +1,7 @@
 package blog.utils;
 
 
+import blog.config.PathConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Component;
@@ -10,8 +11,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
 
 /**
@@ -57,7 +61,7 @@ public class myUtil {
 		File file=new File(path);
 		if(!file.exists()) {
 			log.warn("文件不存在："+path);
-			return "";
+			return null;
 		}
 		try(FileReader fileReader = new FileReader(ResourceUtils.getFile(path))) {
 			int ch = 0;
@@ -69,7 +73,7 @@ public class myUtil {
 		}catch (Exception e){
 			log.warn("读取文件失败"+path);
 			log.warn(""+e);
-			return "";
+			return null;
 		}
 	}
 	/**
@@ -92,4 +96,38 @@ public class myUtil {
 		System.out.println(projectPath);
 	}
 
+	public static String saveImg(String imgData, String authorId){
+		String projectPath = System.getProperty("user.dir");
+		// 截取图片信息
+//		System.out.println(imgData);
+		String[] info = imgData.split(";base64,");
+		// 截取图片文件后缀
+		String fileSuffix = info[0].substring(11);
+		// 图片数据
+		String base64ImgData = info[1];
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSS", Locale.US); // 格式化时间
+		String date = dtf.format(LocalDateTime.now());
+		// 文件名
+		String fileName = date + "_" + authorId + "." + fileSuffix;
+		String storagePath = projectPath + File.separator + PathConfig.dataPath + File.separator +PathConfig.imgPath + File.separator + fileName;
+		// relativePath src链接直接请求数据，需要加 dataPath 资源映射
+		String relativePath = PathConfig.dataPath + "/" + PathConfig.imgPath + "/" + fileName;
+		if (myUtil.writeBase64Img(base64ImgData, storagePath)){
+			log.info("图片保存成功");
+			return relativePath;
+		}else {
+			log.warn("图片保存失败");
+			return null;
+		}
+	}
+
+	public static void deleteFile(String filePath){
+		String projectPath = System.getProperty("user.dir");
+		try {
+			File file = new File(projectPath+File.separator+filePath);
+			if(file.delete()) log.info("成功删除文件 "+filePath);
+		} catch(Exception e) {
+			log.warn("删除文件失败 "+ filePath + e);
+		}
+	}
 }

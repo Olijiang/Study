@@ -4,7 +4,6 @@ import router from "@/router";
 
 // 创建对象
 const instance = axios.create({
-  // 下面这个url加了会导致后端的seesion出现问题，获取不到验证码的值
   baseURL: import.meta.env.VITE_BASE_URL,
   timeout: 3000,
 });
@@ -38,7 +37,7 @@ instance.interceptors.response.use(
             type: 'warning',
           })
           store.commit("logout")
-          router.replace({ name: "Home" })
+          router.replace({ path: "/" + 2020 })
           break;
         default:
           ElMessage({

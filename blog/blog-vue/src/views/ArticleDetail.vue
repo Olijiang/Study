@@ -67,20 +67,19 @@
             </el-col>
         </el-row>
 
-        <backToTop></backToTop>
     </div>
 </template>
 
 <script>
-import backToTop from '@/components/backToTop.vue'
+
 import API from '../utils/API';
 import markdownToHtml from '@/utils/markdown'
 
 export default {
     components: {
-        backToTop
+
     },
-    props: {},
+    props: ["articleId"],
     data() {
         return {
             headings: [],   //存放全部标题
@@ -194,13 +193,13 @@ export default {
         }
     },
     mounted() {
-        let data = { "ArticleId": this.$route.path.split('/')[2] }
+        let data = { "ArticleId": this.articleId }
         API.get("init/getArticle", data)
             .then(res => {
                 this.article = res.data
-                this.article.img = this.article.img
+                this.article.img = import.meta.env.VITE_BASE_URL + this.article.img
                 this.article.tag = JSON.parse(this.article.tag).tags
-                let data = { "fileName": this.article.content.split('\\')[1] }
+                let data = { "filePath": this.article.content }
                 API.get("init/getContent", data)
                     .then(res => {
                         if (res.code == 200) {

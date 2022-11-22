@@ -3,10 +3,7 @@ package blog.service;
 import blog.config.ComResult;
 import blog.config.LocalCatch;
 import blog.config.PathConfig;
-import blog.entity.Article;
-import blog.entity.ArticleDTO;
-import blog.entity.Category;
-import blog.entity.Tag;
+import blog.entity.*;
 import blog.mapper.ArticleMapper;
 import blog.mapper.CategoryMapper;
 import blog.mapper.TagMapper;
@@ -25,6 +22,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * <p>
@@ -46,91 +44,56 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 	@Resource
 	private TagMapper tagMapper;
 
-	public ComResult getArticleContent(String fileName){
-		String article;
-		if ((article = (String) LocalCatch.get(fileName))==null){
-			log.info("缓存未命中content："+fileName);
-			article = getContent(fileName);
-			if (article.equals("")){
-				return ComResult.error("获取文章内容失败",article);
-			}
-			LocalCatch.put(fileName,article);
-			return ComResult.success("获取文章内容成功",article);
-		}
-		log.info("缓存命中content："+fileName);
+	public ComResult getArticleContent(String filePath){
+		String article= getContent(filePath);
+		if (article==null) return ComResult.error("获取文章内容失败");
 		return ComResult.success("获取文章内容成功",article);
 	}
 
-	public ComResult getArticleList(String articleId,int startPage, int pageSize) {
+	public ComResult getArticles(String authorId,int startPage, int pageSize) {
 		List<Article> articles;
-		String key = "articleList" + "-" + articleId + "-" + startPage + "-" + pageSize;
+		String key = "articleList" + authorId + "-" + startPage + "-" + (startPage+pageSize);
 		if ((articles = (List<Article>) LocalCatch.get(key)) == null) {
-			log.info("缓存未命中article：" + key);
-			try {
-				articles = articleMapper.getArticleList(articleId,startPage,pageSize);
-				LocalCatch.put(key, articles);
-				return ComResult.success("获取文章列表成功", articles);
-			} catch (Exception e) {
-				log.warn("获取文章列表失败" + e);
-				return ComResult.error("获取文章列表失败");
-			}
+			log.info("缓存未命中：" + key);
+			articles = articleMapper.getArticles(authorId,startPage,pageSize);
+			if (articles==null) return ComResult.error("获取文章列表失败，用户不存在");
+			LocalCatch.put(key, articles);
+			return ComResult.success("获取文章列表成功", articles);
 		}
 		//  缓存命中
-		log.info("缓存命中articleList：" + key);
+		log.info("缓存命中：" + key);
 		return ComResult.success("获取文章列表成功", articles);
 	}
-	public ComResult getArticleById(String articleId){
-		Article article;
-		String key = "article" + "-" + articleId;
-		if ((article = (Article) LocalCatch.get(key))==null){
-			log.info("缓存未命中article："+articleId);
-			try {
-				article = articleMapper.selectById(articleId);
-				LocalCatch.put(key,article);
-				return ComResult.success("获取文章成功",article);
-			}catch (Exception e){
-				log.warn("获取文章失败" + e);
-				return ComResult.success("获取文章失败");
-			}
-		}
-		log.info("缓存命中article：" + key);
+
+	public ComResult getArticleById(Integer articleId){
+		Article article = getArticle(articleId);
 		return ComResult.success("获取文章成功",article);
 	}
-
 
 	public ComResult addArticle(ArticleDTO articleDTO, String authorId) {
 		Article article = new Article();
 		// 图片
 //		System.out.println(articleDTO);
-		String imgPath = saveImg(articleDTO.getImg(),authorId);
-		if (imgPath.equals("")){
-			return ComResult.error("文章发表失败, 原因：插图");
-		}
+		String imgPath = myUtil.saveImg(articleDTO.getImg(),authorId);
+		if (imgPath==null) return ComResult.error("文章发表失败, 原因：插图");
+
 		article.setImg(imgPath);
 		// 文章
 		String articlePath = saveContent(articleDTO.getContent(),authorId);
-		if (articlePath.equals("")){
-			return ComResult.error("文章发表失败, 原因：文章内容");
-		}
+		if (articlePath==null) return ComResult.error("文章发表失败, 原因：文章内容");
+
 		article.setContent(articlePath);
 		// title
 		article.setTitle(articleDTO.getTitle());
 		// category
 		article.setCategory(articleDTO.getCategory());
 		// 刷新作者的 category 库
-		String[] rawCategory = getCategory(authorId);
-		String[] thisCategory = {articleDTO.getCategory()};
-		String[] newCategory = myUtil.union(rawCategory, thisCategory);
-		setCategory(authorId, newCategory);
-
+		updateCategories(authorId, articleDTO.getCategory());
 		// 刷新作者的 tag 库
-		String[] rawTag = getTag(authorId);
-		String[] thisTag = articleDTO.getTag();
-		String[] newTag = myUtil.union(rawTag, thisTag);
-		setTag(authorId, newTag);
+		updateTags(authorId, articleDTO.getTag());
 		// 设置 本文章的 tag
 		JSONObject thisTagJson = new JSONObject();
-		thisTagJson.put("tags", thisTag);
+		thisTagJson.put("tags", articleDTO.getTag());
 		article.setTag(thisTagJson.toJSONString());
 		// authorId
 		article.setAuthorId(authorId);
@@ -149,37 +112,33 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		article.setUpdateTime(date);
 		log.info("成功添加新文章:"+article.getTitle());
 		articleMapper.insert(article);
+		LocalCatch.removeByPre("articleList"+authorId);
 		return ComResult.success("添加成功");
 	}
 
-	public ComResult getCategoryById(String authorId){
-		String[] categories;
-		String key = "category"+authorId;
-		if ((categories = (String[]) LocalCatch.get(key))==null){
-			log.info("缓存未命中category："+key);
-			categories = getCategory(authorId);
-			LocalCatch.put(key,categories);
-		}
-		log.info("缓存命中category："+key);
-		return ComResult.success("获取分类成功",categories);
-	}
-
-	public ComResult getTagsById(String authorId){
-		String[] tags = getTag(authorId);
-		return ComResult.success("获取标签成功",tags);
-	}
 	public ComResult updateArticle(ArticleDTO articleDTO, String authorId) {
 		Article article = new Article();
-		// 图片
-//		System.out.println(articleDTO);
-		String imgPath = saveImg(articleDTO.getImg(),authorId);
-		if (imgPath.equals("")){
-			return ComResult.error("文章保存失败, 原因：插图");
+		// 验证作者
+		if (getArticle(articleDTO.getId())==null) return ComResult.error("文章不存在");
+		if (!getArticle(articleDTO.getId()).getAuthorId().equals(authorId))
+			return ComResult.error("非法操作");
+		// 保存图片
+		if (!articleDTO.getImg().equals("")){
+			// 若图片修改过 先删除原图片
+			String rawPath = Objects.requireNonNull(getArticle(articleDTO.getId())).getImg();
+			myUtil.deleteFile(rawPath);
+			String imgPath = myUtil.saveImg(articleDTO.getImg(),authorId);
+			if (imgPath==null){
+				return ComResult.error("文章保存失败, 原因：插图");
+			}
+			article.setImg(imgPath);
 		}
-		article.setImg(imgPath);
-		// 文章
+		// 删除原文章
+		String rawPath = Objects.requireNonNull(getArticle(articleDTO.getId())).getContent();
+		myUtil.deleteFile(rawPath);
+		// 保存文章
 		String articlePath = saveContent(articleDTO.getContent(),authorId);
-		if (articlePath.equals("")){
+		if (articlePath==null){
 			return ComResult.error("文章保存失败, 原因：文章内容");
 		}
 		article.setContent(articlePath);
@@ -188,19 +147,13 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		// category
 		article.setCategory(articleDTO.getCategory());
 		// 刷新作者的 category 库
-		String[] rawCategory = getCategory(authorId);
-		String[] thisCategory = {articleDTO.getCategory()};
-		String[] newCategory = myUtil.union(rawCategory, thisCategory);
-		setCategory(authorId, newCategory);
+		updateCategories(authorId, articleDTO.getCategory());
 
 		// 刷新作者的 tag 库
-		String[] rawTag = getTag(authorId);
-		String[] thisTag = articleDTO.getTag();
-		String[] newTag = myUtil.union(rawTag, thisTag);
-		setTag(authorId, newTag);
+		updateTags(authorId, articleDTO.getTag());
 		// 设置 本文章的 tag
 		JSONObject thisTagJson = new JSONObject();
-		thisTagJson.put("tags", thisTag);
+		thisTagJson.put("tags", articleDTO.getTag());
 		article.setTag(thisTagJson.toJSONString());
 		// authorId
 		article.setAuthorId(authorId);
@@ -210,24 +163,49 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		}else {
 			article.setDigest(articleDTO.getContent());
 		}
-		//CreatTime
+		//updateTime
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss", Locale.US); // 格式化时间
 		String date = dtf.format(LocalDateTime.now());
-		//updateTime
 		article.setUpdateTime(date);
 
-		article.setId(articleDTO.getArticleId());
+		article.setId(articleDTO.getId());
 		articleMapper.updateById(article);
 		log.info("修改文章成功:"+article.getTitle());
-		LocalCatch.put("article-"+article.getId(),article);
-		LocalCatch.removeByPre("articleList-"+authorId);
-		return ComResult.success("添加成功");
+		LocalCatch.put("article"+article.getId(),article);
+		LocalCatch.removeByPre("articleList"+authorId);
+		return ComResult.success("修改成功");
 	}
 
+	public ComResult getCategoryById(String authorId){
+		String[] categories= getCategories(authorId);
+		if (categories==null) return ComResult.error("用户不存在");
+		return ComResult.success("获取分类成功",categories);
+	}
+
+	public ComResult getTagsById(String authorId){
+		String[] tags= getTags(authorId);
+		if (tags==null) return ComResult.error("用户不存在");
+		return ComResult.success("获取标签成功",tags);
+	}
 	/**
 	 * @description: 以下部分为内部封装的方法 方便操作  private
 	 */
-	//保存错误时返回空字符串,  成功返回相对路径
+
+	private Article getArticle(Integer articleId){
+		Article article;
+		String key = "article" + articleId;
+		if ((article = (Article) LocalCatch.get(key))==null){
+			log.info("缓存未命中："+key);
+			article = articleMapper.selectById(articleId);
+			if (article==null) return null;
+			LocalCatch.put(key,article);
+			return article;
+		}
+		log.info("缓存命中：" + key);
+		return article;
+	}
+
+	//保存错误时返回null,  成功返回相对路径
 	public String saveContent(String contentData,String authorId) {
 		String projectPath = System.getProperty("user.dir");
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSS", Locale.US); // 格式化时间
@@ -235,79 +213,88 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		// 文件名
 		String fileName = date + "_" + authorId+".txt";
 		String storagePath = projectPath + File.separator + PathConfig.dataPath + File.separator + PathConfig.articlePath + File.separator + fileName;
-		String relativePath = PathConfig.articlePath + File.separator + fileName;
-		System.out.println(storagePath);
-		System.out.println(relativePath);
-//		if (myUtil.writeTxt(contentData, storagePath)){
-//			log.info("文章保存成功");
-//			return relativePath;
-//		}else {
-//			log.warn("文章保存失败");
-//			return "";
-//		}
-		return null;
-	}
-
-	//读取错误时返回空字符串
-	private String getContent(String fileName) {
-		String projectPath = System.getProperty("user.dir");
-		String storagePath = projectPath + File.separator+ PathConfig.dataPath + File.separator + PathConfig.articlePath + File.separator + fileName;
-		return myUtil.readTxt(storagePath);
-	}
-
-	private String saveImg(String imgData, String authorId){
-		String projectPath = System.getProperty("user.dir");
-		// 截取图片信息
-		String[] info = imgData.split(";base64,");
-		// 截取图片文件后缀
-		String fileSuffix = info[0].substring(11);
-		// 图片数据
-		String base64ImgData = info[1];
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyyMMddHHmmssSS", Locale.US); // 格式化时间
-		String date = dtf.format(LocalDateTime.now());
-		// 文件名
-		String fileName = date + "_" + authorId + "." + fileSuffix;
-		String storagePath = projectPath + PathConfig.dataPath + File.separator +PathConfig.imgPath + File.separator + fileName;
-		// relativePath src链接直接请求数据，需要加blogData资源映射
-		String relativePath = PathConfig.serverIP +File.separator+ "blogData" + File.separator + PathConfig.imgPath + File.separator + fileName;
-		if (myUtil.writeBase64Img(base64ImgData, storagePath)){
-			log.info("图片保存成功");
+		String relativePath = PathConfig.dataPath + File.separator + PathConfig.articlePath + File.separator + fileName;
+		if (myUtil.writeTxt(contentData, storagePath)){
+			log.info("文章保存成功");
 			return relativePath;
 		}else {
-			log.warn("图片保存失败");
-			return "";
+			log.warn("文章保存失败");
+			return null;
 		}
 	}
 
-	private String[] getCategory(String authorId) {
-		Category category = categoryMapper.selectById(authorId);
-		JSONArray jsonArray = (JSONArray) JSON.parseObject(category.getCategories()).get("categories");
-		return jsonToArray(jsonArray);
+	//读取错误时返回空字符串
+	private String getContent(String filePath) {
+		String articleContent;
+		String key = "articleContent"+filePath;
+		if ((articleContent = (String) LocalCatch.get(key))==null) {
+			log.info("缓存未命中：" + key);
+			String projectPath = System.getProperty("user.dir");
+			String storagePath = projectPath + File.separator+ filePath;
+			articleContent =  myUtil.readTxt(storagePath);
+			if (articleContent==null) return null;
+			LocalCatch.put(key, articleContent);
+			return articleContent;
+		}
+		log.info("缓存命中：" + key);
+		return articleContent;
 	}
 
-	private void setCategory(String authorId, String[] categories) {
+	private String[] getCategories(String authorId) {
+		String[] categories;
+		String key = "categories"+authorId;
+		if ((categories = (String[]) LocalCatch.get(key))==null) {
+			log.info("缓存未命中：" + key);
+			Category category = categoryMapper.selectById(authorId);
+			if (category==null) return null;
+			JSONArray jsonArray = (JSONArray) JSON.parseObject(category.getCategories()).get("categories");
+			categories = jsonToArray(jsonArray);
+			LocalCatch.put(key, categories);
+			return categories;
+		}
+		log.info("缓存命中：" + key);
+		return categories;
+	}
+
+	private void updateCategories(String authorId, String categoriy) {
+		String[] rawCategories = getCategories(authorId);
+		String[] newCategories = myUtil.union(rawCategories, new String[]{categoriy});
+		LocalCatch.put("categories"+authorId,newCategories);
 		Category category = new Category();
 		category.setAuthorId(authorId);
-		JSONObject newCategory = new JSONObject();
-		newCategory.put("categories", categories);
-		category.setCategories(newCategory.toJSONString());
+		JSONObject json = new JSONObject();
+		json.put("categories", newCategories);
+		category.setCategories(json.toJSONString());
 		categoryMapper.updateById(category);
 	}
 
 
 	// 根据author 获取 tag 数据
-	private String[] getTag(String authorId){
-		Tag tag = tagMapper.selectById(authorId);
-		JSONArray jsonArray = (JSONArray) JSON.parseObject(tag.getTags()).get("tags");
-		return jsonToArray(jsonArray);
+	private String[] getTags(String authorId){
+		String[] tags;
+		String key = "tags"+authorId;
+		if ((tags = (String[]) LocalCatch.get(key))==null) {
+			log.info("缓存未命中：" + key);
+			Tag tag = tagMapper.selectById(authorId);
+			if (tag==null) return null;
+			JSONArray jsonArray = (JSONArray) JSON.parseObject(tag.getTags()).get("tags");
+			tags = jsonToArray(jsonArray);
+			LocalCatch.put(key, tags);
+			return tags;
+		}
+		log.info("缓存命中：" + key);
+		return tags;
 	}
-	// 根据author 重写 tag 数据
-	private void setTag(String authorId, String[] tags){
+	// // tags, 根据authorId刷新用户的 tags 数据
+	private void updateTags(String authorId, String[] tags){
+		String[] rawTags = getTags(authorId);
+		String[] newTags = myUtil.union(rawTags, tags);
+		LocalCatch.put("tags"+authorId,newTags);
 		Tag tag = new Tag();
 		tag.setAuthorId(authorId);
-		JSONObject newTag = new JSONObject();
-		newTag.put("tags", tags);
-		tag.setTags(newTag.toJSONString());
+		JSONObject json = new JSONObject();
+		json.put("tags", newTags);
+		tag.setTags(json.toJSONString());
 		tagMapper.updateById(tag);
 	}
 	private String[] jsonToArray(JSONArray jsonArray){

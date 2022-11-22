@@ -1,5 +1,6 @@
 import blog.blogApplication;
 import blog.config.PathConfig;
+import blog.mapper.AlbumMapper;
 import blog.service.ArticleServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,12 +19,16 @@ public class demo {
 	@Resource
 	private ArticleServiceImpl articleService;
 	@Resource
-	private PathConfig pathConfig;
+	private PathConfig athConfig;
+	@Resource
+	private AlbumMapper albumMapper;
 
 	@Test
 	public void tag(){
-		System.out.println(PathConfig.serverIP);
+		System.out.println(albumMapper.getAlbums("123"));
 	}
+
+
 
 
 

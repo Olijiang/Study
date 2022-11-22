@@ -32,9 +32,11 @@ import vArticleCard from '@/components/v-articleCard.vue'
 import vAuthorCard from '@/components/v-authorCard.vue'
 import API from '../utils/API'
 
+const baseUrl = import.meta.env.VITE_BASE_URL
+
 export default {
     name: 'Home',
-    props: {},
+    props: ["authorId"],
     components: {
         vArticleCard,
         vAuthorCard
@@ -42,7 +44,6 @@ export default {
     data() {
         return {
             endmsg: "下拉加载更多",
-            hasover: false,
             articleList: [],
             show: false,
             ok: 0,
@@ -64,7 +65,7 @@ export default {
                 let scrollHeight = document.documentElement.scrollHeight;//内容高度
                 if (clientHeight + scrollTop - scrollHeight > -10) {
                     this.endmsg = "正在加载..."
-                    API.get('init/getArticleList', this.queryData)
+                    API.get('init/getArticles', this.queryData)
                         .then(res => {
                             if (res.code == 200) {
                                 // console.log(res.data);
@@ -80,9 +81,7 @@ export default {
                         })
                 }
             }, 100);
-
         }
-
     },
     computed: {
         isLogin: {
@@ -93,28 +92,25 @@ export default {
                 return this.$store.state.isLogin;
             }
         },
-        authorId() {
-            if (this.$store.isLogin)
-                return this.$store.state.authorId
-            return this.$store.state.defaultAuthorId
-        }
     },
     watch: {
 
     },
     mounted() {
         window.addEventListener('scroll', this.handleScroll)
-        this.queryData.authorId = this.authorId
-        API.get('init/author', { authorId: this.authorId })
+        // 查询作者信息
+        API.get('init/getAuthor', { authorId: this.authorId })
             .then(res => {
                 if (res.code == 200) {
-                    res.data.img = res.data.img
-                    this.coverImg = res.data.coverImg
+                    res.data.img = baseUrl + res.data.img
+                    this.coverImg = baseUrl + res.data.coverImg
                     this.$store.commit("setAuthorInfo", res.data)
                     this.ok++
                 }
             })
-        API.get('init/getArticleList', this.queryData)
+        // 查询作者文章 5篇
+        this.queryData.authorId = this.authorId
+        API.get('init/getArticles', this.queryData)
             .then(res => {
                 if (res.code == 200) {
                     // console.log(res.data);
@@ -122,16 +118,21 @@ export default {
                         this.articleList.push(element)
                     });
                     if (res.data.length < this.queryData.pageSize) {
-                        this.hasover = true
+                        this.endmsg = "没有更多了..."
+                        window.removeEventListener('scroll', this.handleScroll)
                     }
                     this.ok++
                     this.queryData.startPage = this.queryData.startPage + 5
                 }
             })
+        // 等待请求, 200ms 后显示
         setTimeout(() => {
             this.show = true
         }, 200);
     },
+    unmounted() {
+        window.removeEventListener('scroll', this.handleScroll)
+    }
 }
 
 

@@ -19,7 +19,9 @@ public class TokenInterceptor implements HandlerInterceptor {
 
 	// 拦截的url
 	private final String[] urls = {
-			"/article/.*"
+			"/article/.*",
+			"/image/.*",
+			"album/.*"
 	};
 
 	// 进入controller层之前拦截请求
@@ -28,7 +30,7 @@ public class TokenInterceptor implements HandlerInterceptor {
 		String url = request.getRequestURI();
 		String token = request.getHeader("token");
 
-		System.out.println(url);
+//		System.out.println(url);
 		if (url.equals("/")) {
 			response.sendRedirect(request.getContextPath()+"/index.html");
 			return false;

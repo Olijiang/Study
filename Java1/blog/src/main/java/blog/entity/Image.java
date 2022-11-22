@@ -8,21 +8,28 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
- * </p>
- *
+ * id: 自增id
+ * <p>
+ * authorId: 作者id
+ * <p>
+ * albumName: 相册name
+ * <p>
+ * simplifyImg: 缩略图地址
+ * <p>
+ * originalImg: 原图地址
+ * <p>
  * @author ZGB
  * @since 2022-11-18
  */
-@ApiModel(value = "Album对象", description = "")
-public class Album implements Serializable {
+@ApiModel(value = "Image对象", description = "")
+public class Image implements Serializable {
 
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    private Integer authorId;
+    private String authorId;
 
-    private String albumName;
+    private Integer albumId;
 
     private String simplifyImg;
 
@@ -35,19 +42,19 @@ public class Album implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    public Integer getAuthorId() {
+    public String getAuthorId() {
         return authorId;
     }
 
-    public void setAuthorId(Integer authorId) {
+    public void setAuthorId(String authorId) {
         this.authorId = authorId;
     }
-    public String getAlbumName() {
-        return albumName;
+    public Integer getAlbumId() {
+        return albumId;
     }
 
-    public void setAlbumName(String albumName) {
-        this.albumName = albumName;
+    public void setAlbumId(Integer albumId) {
+        this.albumId = albumId;
     }
     public String getSimplifyImg() {
         return simplifyImg;
@@ -69,7 +76,7 @@ public class Album implements Serializable {
         return "Album{" +
             "id=" + id +
             ", authorId=" + authorId +
-            ", albumName=" + albumName +
+            ", albumName=" + albumId +
             ", simplifyImg=" + simplifyImg +
             ", originalImg=" + originalImg +
         "}";

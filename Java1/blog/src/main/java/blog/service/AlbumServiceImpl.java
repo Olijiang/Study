@@ -1,24 +1,11 @@
 package blog.service;
 
-import blog.config.ComResult;
-import blog.entity.Album;
-import blog.entity.ArticleDTO;
-import blog.mapper.AlbumMapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
-
 /**
- * <p>
- *  服务实现类
- * </p>
- *
  * @author ZGB
- * @since 2022-11-18
+ * @version 1.0
+ * @description: TODO
+ * @date 2022/11/21 14:14
  */
-@Service
-public class AlbumServiceImpl extends ServiceImpl<AlbumMapper, Album> {
+public class AlbumServiceImpl {
 
-	public ComResult addPhoto(ArticleDTO articleDTO, String authorId) {
-		return ComResult.success();
-	}
 }

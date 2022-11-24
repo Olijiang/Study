@@ -90,7 +90,7 @@ export default {
             API.get('init/getArticle', data)
                 .then(res => {
                     if (res.code == 200) {
-                        res.data.img = import.meta.env.VITE_BASE_URL + res.data.img
+                        res.data.img = this.baseUrl + res.data.img
                         this.$store.commit("setArticle", res.data)
                         setTimeout(() => {
                             this.editFlag = true

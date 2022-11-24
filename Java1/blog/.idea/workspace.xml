@@ -20,22 +20,64 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f20556cc-ae9e-4d85-982c-d6d124e32eb6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/blog/controller/BeginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/blogData.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/Album.9455e009.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/Album.9d182322.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/Album.9d182322.js.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/AlbumDetail.06e4abea.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/AlbumDetail.805df372.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/AlbumDetail.805df372.js.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/Article.78373efb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/Article.78373efb.js.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/ArticleDetail.5fe1cd20.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/ArticleDetail.5fe1cd20.js.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/ArticleDetail.cefb9850.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/Home.b38ae0fb.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/Home.b38ae0fb.js.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/Home.bf96d7e8.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/Personal.b0432cc5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/index.7f3d917a.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/index.7f3d917a.js.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/index.cdaf6d60.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/markdown.fab8dcaa.js.gz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/blog/config/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/blog/config/SwaggerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/Album.aaabc2fa.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/Album.ba2e48a1.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/AlbumDetail.ae032835.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/AlbumDetail.aecfaa28.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/Article.26be5b30.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/Article.35aa4a87.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/assets/Article.259ca9a5.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/ArticleDetail.163a1c26.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/ArticleDetail.fe37aeb7.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/Home.0805f091.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/Home.47633688.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/Personal.d5dbbc59.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/el-icon.b1770749.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/el-image-viewer.041a35b8.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/el-image-viewer.257572cc.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/el-select.bdc4dbf5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/el-select.eb622460.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/el-tag.5dc68ec4.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/el-tag.66f612cb.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/index.49362792.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/index.f39f917a.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/components/layout/TopNavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/components/layout/TopNavBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/components/v-articleCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/components/v-articleCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/components/v-authorCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/components/v-authorCard.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/img/imgslot.webp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/components/v-login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/components/v-login.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/utils/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/utils/API.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/views/Album.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/views/Album.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/views/AlbumDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/views/AlbumDetail.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/views/Article.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/views/Article.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/views/ArticleDetail.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/views/ArticleDetail.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/views/ArticleEditor.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/views/ArticleEditor.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/src/views/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/src/views/Home.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../blog/blog-vue/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../blog/blog-vue/vite.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -239,7 +281,13 @@
       <workItem from="1668913960501" duration="18081000" />
       <workItem from="1668949422132" duration="8171000" />
       <workItem from="1668999064365" duration="13146000" />
-      <workItem from="1669037613109" duration="10712000" />
+      <workItem from="1669037613109" duration="12603000" />
+      <workItem from="1669115505815" duration="498000" />
+      <workItem from="1669116896727" duration="3074000" />
+      <workItem from="1669125146332" duration="5304000" />
+      <workItem from="1669182373835" duration="3789000" />
+      <workItem from="1669210784873" duration="475000" />
+      <workItem from="1669268195650" duration="616000" />
     </task>
     <servers />
   </component>
@@ -300,54 +348,54 @@
     </state>
     <state x="581" y="240" key="FileChooserDialogImpl/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1667783355806" />
     <state x="581" y="240" key="FileChooserDialogImpl/0.0.1600.970@0.0.1600.970" timestamp="1668007491355" />
-    <state width="1558" height="318" key="GridCell.Tab.0.bottom" timestamp="1669107769555">
+    <state width="1558" height="318" key="GridCell.Tab.0.bottom" timestamp="1669270732948">
       <screen x="0" y="0" width="1600" height="970" />
     </state>
-    <state width="1558" height="318" key="GridCell.Tab.0.bottom/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669107769555" />
+    <state width="1558" height="318" key="GridCell.Tab.0.bottom/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669270732948" />
     <state width="1877" height="300" key="GridCell.Tab.0.bottom/0.0.1600.970/3200.-1.1920.1050@3200.-1.1920.1050" timestamp="1668078500728" />
-    <state width="1558" height="318" key="GridCell.Tab.0.bottom/0.0.1600.970@0.0.1600.970" timestamp="1669040495814" />
-    <state width="1558" height="318" key="GridCell.Tab.0.center" timestamp="1669107769555">
+    <state width="1558" height="318" key="GridCell.Tab.0.bottom/0.0.1600.970@0.0.1600.970" timestamp="1669211263018" />
+    <state width="1558" height="318" key="GridCell.Tab.0.center" timestamp="1669270732948">
       <screen x="0" y="0" width="1600" height="970" />
     </state>
-    <state width="1558" height="318" key="GridCell.Tab.0.center/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669107769555" />
+    <state width="1558" height="318" key="GridCell.Tab.0.center/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669270732948" />
     <state width="1877" height="300" key="GridCell.Tab.0.center/0.0.1600.970/3200.-1.1920.1050@3200.-1.1920.1050" timestamp="1668078500728" />
-    <state width="1558" height="318" key="GridCell.Tab.0.center/0.0.1600.970@0.0.1600.970" timestamp="1669040495813" />
-    <state width="1558" height="318" key="GridCell.Tab.0.left" timestamp="1669107769555">
+    <state width="1558" height="318" key="GridCell.Tab.0.center/0.0.1600.970@0.0.1600.970" timestamp="1669211263018" />
+    <state width="1558" height="318" key="GridCell.Tab.0.left" timestamp="1669270732948">
       <screen x="0" y="0" width="1600" height="970" />
     </state>
-    <state width="1558" height="318" key="GridCell.Tab.0.left/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669107769555" />
+    <state width="1558" height="318" key="GridCell.Tab.0.left/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669270732948" />
     <state width="1877" height="300" key="GridCell.Tab.0.left/0.0.1600.970/3200.-1.1920.1050@3200.-1.1920.1050" timestamp="1668078500728" />
-    <state width="1558" height="318" key="GridCell.Tab.0.left/0.0.1600.970@0.0.1600.970" timestamp="1669040495813" />
-    <state width="1558" height="318" key="GridCell.Tab.0.right" timestamp="1669107769555">
+    <state width="1558" height="318" key="GridCell.Tab.0.left/0.0.1600.970@0.0.1600.970" timestamp="1669211263018" />
+    <state width="1558" height="318" key="GridCell.Tab.0.right" timestamp="1669270732948">
       <screen x="0" y="0" width="1600" height="970" />
     </state>
-    <state width="1558" height="318" key="GridCell.Tab.0.right/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669107769555" />
+    <state width="1558" height="318" key="GridCell.Tab.0.right/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669270732948" />
     <state width="1877" height="300" key="GridCell.Tab.0.right/0.0.1600.970/3200.-1.1920.1050@3200.-1.1920.1050" timestamp="1668078500728" />
-    <state width="1558" height="318" key="GridCell.Tab.0.right/0.0.1600.970@0.0.1600.970" timestamp="1669040495814" />
-    <state width="1558" height="318" key="GridCell.Tab.1.bottom" timestamp="1669107769555">
+    <state width="1558" height="318" key="GridCell.Tab.0.right/0.0.1600.970@0.0.1600.970" timestamp="1669211263018" />
+    <state width="1558" height="318" key="GridCell.Tab.1.bottom" timestamp="1669270732949">
       <screen x="0" y="0" width="1600" height="970" />
     </state>
-    <state width="1558" height="318" key="GridCell.Tab.1.bottom/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669107769555" />
+    <state width="1558" height="318" key="GridCell.Tab.1.bottom/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669270732949" />
     <state width="1877" height="300" key="GridCell.Tab.1.bottom/0.0.1600.970/3200.-1.1920.1050@3200.-1.1920.1050" timestamp="1668078500728" />
-    <state width="1558" height="318" key="GridCell.Tab.1.bottom/0.0.1600.970@0.0.1600.970" timestamp="1669040495814" />
-    <state width="1558" height="318" key="GridCell.Tab.1.center" timestamp="1669107769555">
+    <state width="1558" height="318" key="GridCell.Tab.1.bottom/0.0.1600.970@0.0.1600.970" timestamp="1669211263018" />
+    <state width="1558" height="318" key="GridCell.Tab.1.center" timestamp="1669270732948">
       <screen x="0" y="0" width="1600" height="970" />
     </state>
-    <state width="1558" height="318" key="GridCell.Tab.1.center/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669107769555" />
+    <state width="1558" height="318" key="GridCell.Tab.1.center/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669270732948" />
     <state width="1877" height="300" key="GridCell.Tab.1.center/0.0.1600.970/3200.-1.1920.1050@3200.-1.1920.1050" timestamp="1668078500728" />
-    <state width="1558" height="318" key="GridCell.Tab.1.center/0.0.1600.970@0.0.1600.970" timestamp="1669040495814" />
-    <state width="1558" height="318" key="GridCell.Tab.1.left" timestamp="1669107769555">
+    <state width="1558" height="318" key="GridCell.Tab.1.center/0.0.1600.970@0.0.1600.970" timestamp="1669211263018" />
+    <state width="1558" height="318" key="GridCell.Tab.1.left" timestamp="1669270732948">
       <screen x="0" y="0" width="1600" height="970" />
     </state>
-    <state width="1558" height="318" key="GridCell.Tab.1.left/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669107769555" />
+    <state width="1558" height="318" key="GridCell.Tab.1.left/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669270732948" />
     <state width="1877" height="300" key="GridCell.Tab.1.left/0.0.1600.970/3200.-1.1920.1050@3200.-1.1920.1050" timestamp="1668078500728" />
-    <state width="1558" height="318" key="GridCell.Tab.1.left/0.0.1600.970@0.0.1600.970" timestamp="1669040495814" />
-    <state width="1558" height="318" key="GridCell.Tab.1.right" timestamp="1669107769555">
+    <state width="1558" height="318" key="GridCell.Tab.1.left/0.0.1600.970@0.0.1600.970" timestamp="1669211263018" />
+    <state width="1558" height="318" key="GridCell.Tab.1.right" timestamp="1669270732949">
       <screen x="0" y="0" width="1600" height="970" />
     </state>
-    <state width="1558" height="318" key="GridCell.Tab.1.right/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669107769555" />
+    <state width="1558" height="318" key="GridCell.Tab.1.right/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669270732949" />
     <state width="1877" height="300" key="GridCell.Tab.1.right/0.0.1600.970/3200.-1.1920.1050@3200.-1.1920.1050" timestamp="1668078500728" />
-    <state width="1558" height="318" key="GridCell.Tab.1.right/0.0.1600.970@0.0.1600.970" timestamp="1669040495814" />
+    <state width="1558" height="318" key="GridCell.Tab.1.right/0.0.1600.970@0.0.1600.970" timestamp="1669211263018" />
     <state width="1558" height="320" key="GridCell.Tab.2.bottom" timestamp="1668590910060">
       <screen x="0" y="0" width="1600" height="970" />
     </state>
@@ -384,10 +432,10 @@
       <screen x="0" y="0" width="1600" height="970" />
     </state>
     <state x="462" y="228" key="run.anything.popup/0.0.1600.970@0.0.1600.970" timestamp="1668953581988" />
-    <state x="465" y="210" width="672" height="678" key="search.everywhere.popup" timestamp="1668954073585">
+    <state x="464" y="209" width="672" height="678" key="search.everywhere.popup" timestamp="1669113132559">
       <screen x="0" y="0" width="1600" height="970" />
     </state>
-    <state x="463" y="208" width="672" height="678" key="search.everywhere.popup/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1667898248120" />
+    <state x="464" y="209" width="672" height="678" key="search.everywhere.popup/0.0.1600.970/3200.-1.1920.1050@0.0.1600.970" timestamp="1669113132559" />
     <state x="465" y="210" width="672" height="678" key="search.everywhere.popup/0.0.1600.970@0.0.1600.970" timestamp="1668954073585" />
   </component>
 </project>

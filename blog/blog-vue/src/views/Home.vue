@@ -32,8 +32,6 @@ import vArticleCard from '@/components/v-articleCard.vue'
 import vAuthorCard from '@/components/v-authorCard.vue'
 import API from '../utils/API'
 
-const baseUrl = import.meta.env.VITE_BASE_URL
-
 export default {
     name: 'Home',
     props: ["authorId"],
@@ -97,13 +95,14 @@ export default {
 
     },
     mounted() {
+        console.log();
         window.addEventListener('scroll', this.handleScroll)
         // 查询作者信息
         API.get('init/getAuthor', { authorId: this.authorId })
             .then(res => {
                 if (res.code == 200) {
-                    res.data.img = baseUrl + res.data.img
-                    this.coverImg = baseUrl + res.data.coverImg
+                    res.data.img = this.baseUrl + res.data.img
+                    this.coverImg = this.baseUrl + res.data.coverImg
                     this.$store.commit("setAuthorInfo", res.data)
                     this.ok++
                 }

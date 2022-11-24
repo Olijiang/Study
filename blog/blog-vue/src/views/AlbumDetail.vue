@@ -2,7 +2,7 @@
     <div>
         <transition name="el-fade-in">
             <div class="illustration">
-                <el-image fit="cover" class="img" :src=coverImg alt="" />
+                <el-image fit="cover" class="img" :src=coverImg alt="" lazy />
                 <div class="ArticleInfo">
                     <h1 style="margin: 20px;color:rgb(9, 214, 180);font-size: 100px;">{{ albumName }} </h1>
                     <router-link :to="'/Album/' + authorId">
@@ -45,9 +45,8 @@
                             </div>
                         </transition>
                         <transition name="el-zoom-in-top">
-                            <el-image class="photo" :src="item.simplifyImg" :preview-src-list="originalImg" fit="cover"
-                                :initial-index="index" :preview-teleported="true" :hide-on-click-modal=true
-                                v-show="item.ok" />
+                            <el-image class="photo" :src="item.simplifyImg" fit="cover" v-show="item.ok"
+                                @click="previewImage(item.originalImg)" />
                         </transition>
                     </div>
                 </el-row>
@@ -55,6 +54,13 @@
             <el-col class="space"></el-col>
         </el-row>
         <div class="endmsg">{{ endmsg }}</div>
+        <!-- 预览Dialog -->
+        <el-dialog v-model="previewDialog" width="70%" top="60px" :append-to-body="true"
+            style="background-color: aliceblue    ;">
+            <div class="previewbox">
+                <img class="img" :src="dialogImageUrl" />
+            </div>
+        </el-dialog>
     </div>
 </template>
 
@@ -62,7 +68,6 @@
 import { CircleCheckFilled } from '@element-plus/icons-vue'
 import API from '../utils/API'
 
-const baseUrl = import.meta.env.VITE_BASE_URL
 
 export default {
     components: {
@@ -71,6 +76,8 @@ export default {
     props: ["data"],
     data() {
         return {
+            previewDialog: false,
+            dialogImageUrl: "",
             editFlag: false,
             authorId: "",
             albumName: "",
@@ -89,6 +96,10 @@ export default {
         }
     },
     methods: {
+        previewImage(src) {
+            this.dialogImageUrl = src
+            this.previewDialog = true
+        },
         handleScroll() {
             clearTimeout(this.timeout)
             this.timeout = setTimeout(() => {
@@ -102,9 +113,10 @@ export default {
                             if (res.code == 200) {
                                 res.data.forEach(e => {
                                     e.ok = false
-                                    e.simplifyImg = baseUrl + e.simplifyImg
+                                    e.simplifyImg = this.baseUrl + e.simplifyImg
+                                    e.originalImg = this.baseUrl + e.originalImg
                                     this.images.push(e)
-                                    this.originalImg.push(baseUrl + e.originalImg)
+                                    this.originalImg.push(e.originalImg)
                                 })
                                 setTimeout(() => {
                                     let len = this.images.length
@@ -240,9 +252,10 @@ export default {
                 if (res.code == 200) {
                     res.data.forEach(e => {
                         e.ok = false
-                        e.simplifyImg = baseUrl + e.simplifyImg
+                        e.simplifyImg = this.baseUrl + e.simplifyImg
+                        e.originalImg = this.baseUrl + e.originalImg
                         this.images.push(e)
-                        this.originalImg.push(baseUrl + e.originalImg)
+                        this.originalImg.push(e.originalImg)
                     })
                     setTimeout(() => {
                         let len = this.images.length
@@ -370,7 +383,17 @@ export default {
     }
 }
 
+.previewbox {
+    z-index: 10;
+    width: 100%;
+    min-height: 60vh;
 
+    .img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
+}
 
 .photoCloak {
     opacity: 0.5;

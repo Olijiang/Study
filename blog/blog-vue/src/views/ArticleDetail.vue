@@ -197,7 +197,7 @@ export default {
         API.get("init/getArticle", data)
             .then(res => {
                 this.article = res.data
-                this.article.img = import.meta.env.VITE_BASE_URL + this.article.img
+                this.article.img = this.baseUrl + this.article.img
                 this.article.tag = JSON.parse(this.article.tag).tags
                 let data = { "filePath": this.article.content }
                 API.get("init/getContent", data)

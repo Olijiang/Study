@@ -6,8 +6,12 @@ import store from './store';
 import '@/assets/css/hight.css'
 import '@/assets/css/markdown.css'
 
-createApp(App)
-    .use(router)
+const app = createApp(App)
+
+
+app.config.globalProperties.baseUrl = (import.meta.env.MODE == 'development') ? window.developmentUrl : window.productionUrl
+
+app.use(router)
     .use(store)
     .mount('#app')
 

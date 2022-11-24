@@ -76,7 +76,7 @@ export default {
 
     },
     mounted() {
-        this.article.img = import.meta.env.VITE_BASE_URL + this.article.img
+        this.article.img = this.baseUrl + this.article.img
         this.article.tag = JSON.parse(this.article.tag)
         this.article.digest = this.article.digest.replace(/#*.*#/g, '').replace(/[^a-z0-9\u4e00-\u9fa5]/, '').substring(0, 200) // 除去标题部分，截取200个字用来显示
         this.ok = true

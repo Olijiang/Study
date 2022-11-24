@@ -14,7 +14,7 @@
                 <el-row class="header">
                     <router-link :to="'/AlbumDetail/' + authorId + '_' + item.albumName" class="item"
                         v-for="item in albums" :key="item.id">
-                        <el-image fit="cover" class="cover" :src="item.coverImg" />
+                        <el-image fit="cover" class="cover" :src="item.coverImg" lazy />
                         <span class="fenlei">分类</span>
                         <hr class="line" align="center" />
                         <span class="jutifenlei">{{ item.albumName }}</span>
@@ -36,16 +36,16 @@
 
                 <el-row class="body">
                     <div class="item" v-for=" (item, index) in simplifyImg" :key="index">
-                        <el-image class="photo" :src="item" :preview-src-list="originalImg" fit="cover"
-                            :initial-index="index" :preview-teleported="true" :hide-on-click-modal=true />
+                        <el-image class="photo" :src="item" fit="cover" @click="previewImage(index)" />
                     </div>
                 </el-row>
             </el-col>
             <el-col class="space"></el-col>
         </el-row>
         <!-- 上传dialog -->
-        <el-dialog v-model="uploadDialog" top="60px" width="64%" style="min-width: 820px;border-radius: 20px;"
-            :close-on-click-modal="false" :close-on-press-escape=false :append-to-body="true">
+        <el-dialog ref="uploadRef" v-model="uploadDialog" top="60px" width="64%"
+            style="min-width: 820px;border-radius: 20px;" :close-on-click-modal="false" :close-on-press-escape=false
+            :append-to-body="true">
             <div style="margin-left: 2%;">
                 <el-upload v-model:file-list="fileList" ref="uploadRef" list-type="picture-card"
                     :on-preview="handlePictureCardPreview" :on-remove="handleRemove" :http-request="uploadHandler"
@@ -60,8 +60,9 @@
             </div> -->
             <div style="margin: 2% 0 0 2%;">
                 <el-button type="primary" @click="upload">上传</el-button>
-                <el-button type="primary" @click="clearAll">清空全部</el-button>
-                <el-button type="primary" @click="clearUpload">清空已上传</el-button>
+                <el-button type="info" @click="clearAll">清空全部</el-button>
+                <el-button type="success" @click="clearUpload">清空已上传</el-button>
+                <el-button type="warning" @click="stopUpload">停止</el-button>
                 <el-button type="danger" @click="closeUpload">关闭</el-button>
                 <div style="display: inline-block;margin-left: 2%;max-width: 150px;">
                     <el-select v-model="albumName" placeholder="选择相册">
@@ -72,22 +73,15 @@
                 <div style="margin-top: 2%;">
                     <el-progress :percentage="progress.percentage" v-show="progress.show" :status="progress.status" />
                 </div>
-
             </div>
-            <!-- 上传文件中的预览Dialog -->
-            <el-dialog v-model="previewDialog" width="70%" top="60px" style="background-color: transparent;">
-                <div class="previewDialog">
-                    <el-image fit="cover" :src="dialogImageUrl" />
-                </div>
-            </el-dialog>
         </el-dialog>
         <!-- 相册编辑Dialog -->
         <el-dialog v-model="editAlbumDialog" top="60px" width="50%" style="min-width: 500px;border-radius: 20px;"
-            :close-on-click-modal="false" :close-on-press-escape=false :append-to-body="true" @open="albumDialogOpen">
+            :close-on-click-modal="false" :close-on-press-escape='false' :append-to-body="true" @open="albumDialogOpen">
             <div class="albumItem" v-for="(item, index) in albumsA" :key="index">
                 <el-row>
                     <el-col class="albumCover">
-                        <el-image class="albumCoverImg" fit="cover" :src="item.coverImg" alt="" />
+                        <el-image class="albumCoverImg" fit="cover" :src="item.coverImg" alt="" lazy />
                     </el-col>
                     <el-col class="albumInfo">
                         <div style="width: 200px;margin-top: 10px;">
@@ -121,8 +115,13 @@
                 <el-button type="warning" @click="addAlbum">新增相册</el-button>
             </div>
         </el-dialog>
-
-
+        <!-- 预览 -->
+        <el-dialog v-model="previewDialog" width="70%" top="60px" :append-to-body="true"
+            style="background-color: aliceblue;">
+            <div class="previewbox">
+                <img class="img" :src="dialogImageUrl" alt="" />
+            </div>
+        </el-dialog>
 
 
     </div>
@@ -133,7 +132,7 @@
 import { Plus } from '@element-plus/icons-vue'
 import API from '../utils/API';
 
-const baseUrl = import.meta.env.VITE_BASE_URL
+
 
 export default {
     components: {
@@ -142,7 +141,6 @@ export default {
     props: ["authorId"],
     data() {
         return {
-            baseUrl: baseUrl,
             //去除全部的相册名称数组
             albumsB: [],
             // 请求得到的相册数组
@@ -159,9 +157,11 @@ export default {
             },
             albumName: "",
             fileList: [],
+
+            previewDialog: false,
             dialogImageUrl: "",
             uploadDialog: false,
-            previewDialog: false,
+
             editAlbumDialog: false,
             rules: {
                 albumName: { required: true, message: "请输入相册名", trigger: 'blur' }
@@ -172,6 +172,10 @@ export default {
         }
     },
     methods: {
+        previewImage(index) {
+            this.dialogImageUrl = this.originalImg[index]
+            this.previewDialog = true
+        },
         // 上传图片部分
         handleRemove(uploadFile, uploadFiles) {
             // console.log(uploadFile, uploadFiles)
@@ -180,26 +184,27 @@ export default {
             this.dialogImageUrl = uploadFile.url
             this.previewDialog = true
         },
-        dealImage(rawbase64) {
+        dealImage(rawbase64, size) {
+            // size 单位KB
             var newImage = new Image();
-            var quality = 0.9;    //压缩系数0-1之间
+            var quality = 0.8;    //压缩系数0-1之间
             newImage.src = rawbase64;
             newImage.setAttribute("crossOrigin", 'Anonymous');	//url为外域时需要
             var imgWidth, imgHeight;
             return new Promise(resolve => {
-                newImage.onload = async function () {
+                newImage.onload = function () {
                     imgWidth = this.width;
                     imgHeight = this.height;
                     var canvas = document.createElement("canvas");
                     var ctx = canvas.getContext("2d");
-                    let size = 1920 // 设置压缩尺寸大小
-                    if (Math.max(imgWidth, imgHeight) > size) {
+                    let MAXsize = 3200 * (size / 1000) // 设置压缩尺寸大小
+                    if (Math.max(imgWidth, imgHeight) > MAXsize) {
                         if (imgWidth > imgHeight) {
-                            canvas.width = size;
-                            canvas.height = size * imgHeight / imgWidth;
+                            canvas.width = MAXsize;
+                            canvas.height = MAXsize * imgHeight / imgWidth;
                         } else {
-                            canvas.height = size;
-                            canvas.width = size * imgWidth / imgHeight;
+                            canvas.height = MAXsize;
+                            canvas.width = MAXsize * imgWidth / imgHeight;
                         }
                     } else {
                         canvas.width = imgWidth;
@@ -208,23 +213,29 @@ export default {
                     }
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
-                    var base64 = canvas.toDataURL("image/jpeg", quality); //压缩语句
-                    // 如想确保图片压缩到自己想要的尺寸
-                    while (base64.length / 1024 > 1000) {
-                        quality -= 0.05;
-                        base64 = canvas.toDataURL("image/jpeg", quality);
+                    var base64 = canvas.toDataURL("image/webp", quality); //压缩语句
+                    // 如想确保图片压缩 size 尺寸
+                    let newSize = base64.length * 0.75 / 1024
+                    while (newSize > size) {
+                        quality -= 0.1;
+                        base64 = canvas.toDataURL("image/webp", quality);
+                        newSize = base64.length * 0.75 / 1024
                     }
-                    // 防止最后一次压缩低于最低尺寸，只要quality递减合理，无需考虑
-                    // while (base64.length / 1024 < 5) {
-                    //     quality += 0.01;
-                    //     base64 = canvas.toDataURL("image/jpeg", quality);
+                    // 压缩过度 适当提高一点 性能权衡 
+                    // while (newSize < size - 100) {
+                    //     quality += 0.05
+                    //     if (quality > 0.9) break
+                    //     base64 = canvas.toDataURL("image/webp", quality);
+                    //     newSize = base64.length * 0.75 / 1024
+                    //     // console.log("size:", base64.length * 0.75 / 1024, " targetSize:", size, " base64Size:", base64.length);
                     // }
+                    // console.log(base64);
                     resolve(base64)
                 }
             })
         },
         uploadHandler() {
-
+            this.progress.unit = Math.round((1 / this.fileList.length) * 100)
         },
         exceedHandler() {
             ElMessage({
@@ -233,7 +244,12 @@ export default {
                 type: 'warning',
             })
         },
-        upload() {
+        stopUpload() {
+            this.fileList.forEach(e => {
+                this.$refs.uploadRef.abort(e.raw)
+            })
+        },
+        async upload() {
             if (this.albumName == "") {
                 ElMessage({
                     showClose: true,
@@ -242,46 +258,74 @@ export default {
                 })
                 return
             }
-            this.progress.show = true
-            this.progress.percentage = 0
-            let unit = Math.round((1 / this.fileList.length) * 100)
+
+            let n = 0
             this.fileList.forEach(e => {
                 if (e.status == "ready") {
                     e.status = "uploading"
-                    e.percentage = Math.round(20 * Math.random())
-                    let data = {
-                        albumName: this.albumName,
-                        originalImg: "",
-                        simplifyImg: "",
-                    }
-                    let reader = new FileReader()
-                    reader.readAsDataURL(e.raw)
-                    reader.onload = async re => {
-                        data.originalImg = re.target.result
-                        data.simplifyImg = await this.dealImage(re.target.result)
-                        // console.log(data);
-                        API.post("image/add", data)
-                            .then(res => {
-                                if (res.code == 200) {
-                                    e.status = "success"
-                                    if (this.progress.percentage + unit > 95) {
-                                        this.progress.percentage = 100
-                                        this.progress.status = "success"
-                                    }
-                                    else {
-                                        this.progress.percentage += unit
-                                    }
-                                } else {
-                                    e.status = "fail"
-                                    this.progress.status = "warning"
-                                }
-                            }).catch(err => {
-                                e.status = "fail"
-                                this.progress.status = "exception"
-                            })
-                    }
+                    e.percentage = 0
+                    n++
                 }
             })
+            this.progress.status = ""
+            this.progress.show = true
+            this.progress.percentage = 0
+            this.progress.unit = Math.round((1 / n) * 100)
+            let time = new Date().getTime()
+            n = 1
+            for (let e of this.fileList) {
+                if (e.status == "uploading") {
+                    e.id = n++
+                    await this.uploadFunc(e)
+                    // this.uploadFunc(e)
+                }
+            }
+            console.log("total time:", new Date().getTime() - time);
+        },
+        async uploadFunc(e) {
+            return new Promise(resolve => {
+                let data = {
+                    albumName: this.albumName,
+                    originalImg: "",
+                    simplifyImg: "",
+                }
+                let time = new Date().getTime()
+                var reader = new FileReader()
+                reader.readAsDataURL(e.raw)
+                reader.onload = async re => {
+                    console.log("任务", e.id, "  begin time:", time, "  load time", new Date().getTime() - time);
+                    time = new Date().getTime()
+                    data.originalImg = await this.dealImage(re.target.result, 1000)
+                    data.simplifyImg = await this.dealImage(data.originalImg, 200)
+                    console.log("canvas time", new Date().getTime() - time);
+                    await API.post("image/add", data,
+                        (progressEvent) => {
+                            e.percentage = (progressEvent.loaded / progressEvent.total * 100 | 0)
+                        })
+                        .then(res => {
+                            if (res.code == 200) {
+                                e.status = "success"
+                                if (this.progress.percentage + this.progress.unit > 95) {
+                                    this.progress.percentage = 100
+                                    this.progress.status = "success"
+                                }
+                                else {
+                                    this.progress.percentage += this.progress.unit
+                                }
+                            } else {
+                                e.status = "ready"
+                                this.progress.status = "warning"
+                            }
+                            resolve()
+                        }).catch(err => {
+                            e.status = "ready"
+                            this.progress.status = "exception"
+                            resolve()
+                        })
+                    resolve()
+                }
+            })
+
         },
         clearAll() {
             this.fileList = []
@@ -346,7 +390,7 @@ export default {
             let reader = new FileReader()
             reader.readAsDataURL(file.file)
             reader.onload = async e => {
-                this.albumsA[index].coverImg = await this.dealImage(e.target.result)
+                this.albumsA[index].coverImg = await this.dealImage(e.target.result, 200)
                 this.albumsA[index].imgChange = true
             }
         },
@@ -356,7 +400,7 @@ export default {
             let reader = new FileReader()
             reader.readAsDataURL(files[0])
             reader.onload = async e => {
-                this.albumsA[index].coverImg = await this.dealImage(e.target.result)
+                this.albumsA[index].coverImg = await this.dealImage(e.target.result, 200)
             }
         },
         deleteAlbum(index) {
@@ -398,10 +442,7 @@ export default {
     computed: {
         showFlag() {
             // 登录并且当前访问的authorId 等于登录 Id
-            if (this.$store.state.isLogin && this.authorId == this.$store.state.author.username)
-                return true
-            else
-                return false
+            return (this.$store.state.isLogin && this.authorId == this.$store.state.author.username)
         }
     },
     watch: {
@@ -417,7 +458,7 @@ export default {
                 if (res.code == 200) {
                     // 扔到 store
                     res.data.forEach(e => {
-                        e.coverImg = baseUrl + e.coverImg
+                        e.coverImg = this.baseUrl + e.coverImg
                         if (e.albumName != "全部") {
                             this.albumsB.push(e.albumName)
                         }
@@ -437,8 +478,8 @@ export default {
             .then(res => {
                 if (res.code == 200) {
                     res.data.forEach(e => {
-                        this.originalImg.push(baseUrl + e.originalImg)
-                        this.simplifyImg.push(baseUrl + e.simplifyImg)
+                        this.originalImg.push(this.baseUrl + e.originalImg)
+                        this.simplifyImg.push(this.baseUrl + e.simplifyImg)
                     })
                 }
             })
@@ -571,15 +612,13 @@ export default {
     }
 }
 
-.previewDialog {
-    z-index: 2;
+.previewbox {
     width: 100%;
-    height: 80%;
 
-    img {
-        z-index: 10;
-        width: 100%;
+    .img {
         object-fit: cover;
+        width: 100%;
+        height: 100%;
     }
 }
 

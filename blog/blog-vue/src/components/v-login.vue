@@ -69,8 +69,8 @@ export default {
                 code: { required: true, message: "请输入验证码", trigger: 'blur' }
             },
             loginForm: {
-                username: '2020',
-                password: '123',
+                username: '',
+                password: '',
                 code: "",
                 timeStamp: ""
             }
@@ -99,16 +99,17 @@ export default {
                                 res.data.coverImg = import.meta.env.VITE_BASE_URL + res.data.coverImg
                                 this.$store.commit("login", res.data)
                                 this.$store.state.loginDialog = false
-                                // this.$router.push({
-                                //     path: '/' + res.data.username
-                                // })
+                                if (this.$route.path == "/") {
+                                    this.$router.push({
+                                        path: '/' + res.data.username
+                                    })
+                                }
                             }
                         })
                     // 刷新验证码
                     setTimeout(() => {
                         this.getCode()
                     }, 100);
-
                 }
             })
         },
@@ -128,7 +129,6 @@ export default {
     },
     watch: {
         loginDialog(newValue) {
-            console.log(newValue);
             if (newValue) {
                 this.getCode()
             } else {
@@ -138,6 +138,9 @@ export default {
     },
     mounted() {
     },
+    unmounted() {
+        this.resetForm()
+    }
 }
 
 </script>

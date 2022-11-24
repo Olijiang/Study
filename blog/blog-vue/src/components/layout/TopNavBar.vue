@@ -3,7 +3,7 @@
 
         <div class="author" @click="routerHandler('/')">
             <!-- {{ authorInfo.name }} -->
-            神华里绫
+            {{ blogName }}
         </div>
         <div class="nav">
 
@@ -109,6 +109,9 @@ export default {
         },
         authorId() {
             return this.$store.state.author.username;
+        },
+        blogName() {
+            return this.$store.state?.author?.blogName ?? ""
         }
     },
     watch: {

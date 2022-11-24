@@ -5,10 +5,9 @@ import router from "@/router";
 // 创建对象
 const instance = axios.create({
   baseURL: (import.meta.env.MODE == 'development') ? window.developmentUrl : window.productionUrl,
-  timeout: 3000,
+  timeout: 10000,
 });
 
-console.log(import.meta.env.MODE);
 
 // 添加请求拦截器
 instance.interceptors.request.use(
@@ -56,54 +55,30 @@ instance.interceptors.response.use(
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
     console.log(error);
-    switch (error.response.status) {
-      case 500:
-        ElMessage({
-          showClose: true,
-          message: "服务器未连接(500)",
-          type: 'warning',
-        })
-        break
-      case 404:
-        ElMessage({
-          showClose: true,
-          message: "请求地址错误(404)",
-          type: 'warning',
-        })
-        break
-      default:
-        ElMessage({
-          showClose: true,
-          message: error.message,
-          type: 'warning',
-        })
-    }
+    ElMessage({
+      showClose: true,
+      message: error.message,
+      type: 'warning',
+    })
     return Promise.reject(error);
   }
 );
 
 
 const ComAPI = class {
-  get(url, params) {
-    return instance({ url, params }).then((res) => {
-      return res;
-    }).catch((err) => {
-      return err;
-    });
+  async get(url, params) {
+    return instance({ url, params });
   }
 
-  post(url, data) {
+  async post(url, data, onUploadProgress) {
     return instance({
       url,
       data,
       method: "post",
-    }).then((res) => {
-      return res;
-    }).catch((err) => {
-      return err;
-    });
-  }
-};
+      onUploadProgress
+    })
+  };
+}
 
 
 export default new ComAPI;

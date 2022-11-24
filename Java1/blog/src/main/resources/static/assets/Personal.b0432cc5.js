@@ -1,0 +1,1 @@
+import{_ as e}from"./index.7f3d917a.js";import"vue";const t={components:{},props:{},data(){return{}},methods:{},computed:{},watch:{},mounted(){}};function o(r,n,c,s,p,a){return Vue.openBlock(),Vue.createElementBlock("div")}const u=e(t,[["render",o]]);export{u as default};

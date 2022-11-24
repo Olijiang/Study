@@ -1,1 +1,0 @@
-import{_ as e,o,e as t}from"./index.f39f917a.js";const n={components:{},props:{},data(){return{}},methods:{},computed:{},watch:{},mounted(){}};function r(s,c,a,p,d,_){return o(),t("div")}const u=e(n,[["render",r]]);export{u as default};

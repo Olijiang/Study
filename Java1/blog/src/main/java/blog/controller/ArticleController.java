@@ -43,6 +43,13 @@ public class ArticleController {
 		return articleService.updateArticle(articleDTO,authorId);
 	}
 
+	@ApiOperation("删除文章")
+	@GetMapping("/delete")
+	public ComResult deleteArticle( Integer articleId,@RequestHeader("token") String token) {
+		String authorId = Objects.requireNonNull(JwtUtil.getUserFromToken(token)).getUsername();
+		return articleService.deleteArticle(articleId,authorId);
+	}
+
 
 
 }

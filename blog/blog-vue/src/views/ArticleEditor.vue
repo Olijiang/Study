@@ -259,7 +259,6 @@ export default {
                             // 图片未改动
                             article.img = ""
                         }
-                        console.log(article);
                         API.post("article/update", article)
                             .then(res => {
                                 if (res.code == 200) {
@@ -282,6 +281,9 @@ export default {
                             })
                     }
                     this.editDialog = false
+                    setTimeout(() => {
+                        location.reload()
+                    }, 500);
                 }
             })
 

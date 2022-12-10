@@ -11,6 +11,7 @@ const app = createApp(App)
 
 app.config.globalProperties.baseUrl = (import.meta.env.MODE == 'development') ? window.developmentUrl : window.productionUrl
 
+
 app.use(router)
     .use(store)
     .mount('#app')

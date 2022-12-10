@@ -128,6 +128,7 @@ export default {
         generateToc() {
             let patt = /<h[1-3]>(.{0,50})<\/h[1-3]>/g;
             let result = this.articleHtml.match(patt)
+            if (result == null) return
             let toc = []
             let n = 0
             for (let i = 0; i < result.length; i++) {
@@ -243,10 +244,10 @@ export default {
     .ArticleInfo {
         position: absolute;
         width: 100%;
-        // height: 100%;
-        // color: white;
         top: 300px;
         margin: 0 auto;
+        transition: all 0.3s ease-in-out;
+        user-select: none;
     }
 }
 
@@ -283,6 +284,7 @@ export default {
 .catelogCol {
     max-width: 15%;
     flex: 0 0 15%;
+    user-select: none;
 
     .articleCatelog {
         padding: 10px;

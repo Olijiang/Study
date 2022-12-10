@@ -38,7 +38,7 @@ export default {
     },
     computed: {
         author() {
-            return this.$store.state.author
+            return this.$store.state.visitAuthor
         },
     }
 }

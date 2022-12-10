@@ -73,7 +73,7 @@ public class Image implements Serializable {
 
     @Override
     public String toString() {
-        return "Album{" +
+        return "Image{" +
             "id=" + id +
             ", authorId=" + authorId +
             ", albumName=" + albumId +

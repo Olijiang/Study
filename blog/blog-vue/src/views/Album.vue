@@ -187,40 +187,42 @@ export default {
         dealImage(rawbase64, size) {
             // size 单位KB
             var newImage = new Image();
-            var quality = 0.8;    //压缩系数0-1之间
             newImage.src = rawbase64;
-            newImage.setAttribute("crossOrigin", 'Anonymous');	//url为外域时需要
-            var imgWidth, imgHeight;
             return new Promise(resolve => {
                 newImage.onload = function () {
-                    imgWidth = this.width;
-                    imgHeight = this.height;
-                    var canvas = document.createElement("canvas");
-                    var ctx = canvas.getContext("2d");
-                    let MAXsize = 3200 * (size / 1000) // 设置压缩尺寸大小
-                    if (Math.max(imgWidth, imgHeight) > MAXsize) {
-                        if (imgWidth > imgHeight) {
-                            canvas.width = MAXsize;
-                            canvas.height = MAXsize * imgHeight / imgWidth;
-                        } else {
-                            canvas.height = MAXsize;
-                            canvas.width = MAXsize * imgWidth / imgHeight;
-                        }
+                    let imgWidth = this.width;
+                    let imgHeight = this.height;
+                    let canvas = document.createElement("canvas");
+                    let ctx = canvas.getContext("2d");
+                    let maxLenth = imgWidth > imgHeight ? imgWidth : imgHeight
+                    // 小于 1920 的图片不压缩 压缩系数0-1之间
+                    let quality = 1;
+                    quality = quality < 0.7 ? 0.7 : quality // 最小定到0.7
+                    // 设置画布大小 
+                    if (maxLenth > size * 2) {
+                        let rate = imgWidth / imgHeight
+                        canvas.width = size * 2;
+                        canvas.height = size * 2 / rate;
+                        // quality = 1 / (maxLenth / (size * 2));
                     } else {
-                        canvas.width = imgWidth;
-                        canvas.height = imgHeight;
-                        quality = 1;
+                        canvas.width = imgWidth
+                        canvas.height = imgHeight
+                        quality = 1
                     }
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
                     ctx.drawImage(this, 0, 0, canvas.width, canvas.height);
-                    var base64 = canvas.toDataURL("image/webp", quality); //压缩语句
+                    var base64 = canvas.toDataURL("image/webp", quality);
                     // 如想确保图片压缩 size 尺寸
+                    console.log("size:", base64.length * 0.75 / 1024, " targetSize:", size, " base64Size:", base64.length, " quality:", quality);
+
                     let newSize = base64.length * 0.75 / 1024
                     while (newSize > size) {
-                        quality -= 0.1;
+                        quality -= 0.02;
                         base64 = canvas.toDataURL("image/webp", quality);
                         newSize = base64.length * 0.75 / 1024
+                        console.log("size:", base64.length * 0.75 / 1024, " targetSize:", size, " base64Size:", base64.length, " quality:", quality);
                     }
+
                     // 压缩过度 适当提高一点 性能权衡 
                     // while (newSize < size - 100) {
                     //     quality += 0.05
@@ -249,6 +251,7 @@ export default {
                 this.$refs.uploadRef.abort(e.raw)
             })
         },
+        // 上传图片操作
         async upload() {
             if (this.albumName == "") {
                 ElMessage({
@@ -280,7 +283,7 @@ export default {
                     // this.uploadFunc(e)
                 }
             }
-            console.log("total time:", new Date().getTime() - time);
+            // console.log("total time:", new Date().getTime() - time);
         },
         async uploadFunc(e) {
             return new Promise(resolve => {
@@ -390,7 +393,7 @@ export default {
             let reader = new FileReader()
             reader.readAsDataURL(file.file)
             reader.onload = async e => {
-                this.albumsA[index].coverImg = await this.dealImage(e.target.result, 200)
+                this.albumsA[index].coverImg = await this.dealImage(e.target.result, 1000)
                 this.albumsA[index].imgChange = true
             }
         },
@@ -400,7 +403,7 @@ export default {
             let reader = new FileReader()
             reader.readAsDataURL(files[0])
             reader.onload = async e => {
-                this.albumsA[index].coverImg = await this.dealImage(e.target.result, 200)
+                this.albumsA[index].coverImg = await this.dealImage(e.target.result, 1000)
             }
         },
         deleteAlbum(index) {

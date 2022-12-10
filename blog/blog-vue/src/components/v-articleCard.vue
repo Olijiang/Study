@@ -20,7 +20,7 @@
                         </div>
                         <div :class="{ content_r: (article.id % 2 == 0), content_l: (article.id % 2 != 0) }">
                             <h3 @click="articleDeail">{{ article.title }}</h3>
-                            <span style="font-size: 80%;">
+                            <span style="font-size: 80%;user-select: none;">
                                 分类: <span style="color: #d63a3a;">{{ article.category }}</span> |
 
                                 标签:
@@ -30,7 +30,7 @@
                             </span>
 
                             <hr width="400px" align="left" />
-                            <p>{{ article.digest }}</p>
+                            <p style="user-select: none;">{{ article.digest }}</p>
                         </div>
                     </div>
                 </transition>
@@ -90,6 +90,7 @@ export default {
 .timebar {
     min-width: 150px;
     height: 270px;
+    user-select: none;
 }
 
 .time_node {
@@ -269,6 +270,7 @@ p {
         height: 50%;
         margin: 0 5% 0;
         overflow: hidden;
+
     }
 
     .content_l {

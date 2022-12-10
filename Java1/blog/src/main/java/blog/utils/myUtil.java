@@ -33,7 +33,6 @@ public class myUtil {
 		try (FileOutputStream fos = new FileOutputStream(storagePath)){
 			fos.write(bs);
 			fos.flush();
-			log.info("base64文件保存成功"+storagePath);
 			return true;
 		} catch (Exception e) {
 			log.warn("base64文件保存异常"+e);
@@ -113,10 +112,10 @@ public class myUtil {
 		// relativePath src链接直接请求数据，需要加 dataPath 资源映射
 		String relativePath = PathConfig.dataPath + "/" + PathConfig.imgPath + "/" + fileName;
 		if (myUtil.writeBase64Img(base64ImgData, storagePath)){
-			log.info("图片保存成功");
+			log.info("图片保存成功: " + relativePath);
 			return relativePath;
 		}else {
-			log.warn("图片保存失败");
+			log.warn("图片保存失败: " + relativePath);
 			return null;
 		}
 	}
@@ -126,6 +125,7 @@ public class myUtil {
 		try {
 			File file = new File(projectPath+File.separator+filePath);
 			if(file.delete()) log.info("成功删除文件 "+filePath);
+			else log.warn("删除文件失败 "+ filePath );
 		} catch(Exception e) {
 			log.warn("删除文件失败 "+ filePath + e);
 		}

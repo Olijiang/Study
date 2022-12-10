@@ -36,7 +36,7 @@ mybatis-plus:
 
 blogserver:
   #请求图片使用 完整url地址前缀  http://localhost:8888 ！！#弃用，功能在前端完成
-  serverIP: "http://localhost:8888/"
+  serverIP: "http://"
   #文件结构   项目文件夹/blogData/imgs/图片     项目文件夹/blogData/articles/文章
   dataPath: "blogData"
   imgPath: "imgs"

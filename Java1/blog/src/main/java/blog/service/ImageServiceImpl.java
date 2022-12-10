@@ -57,6 +57,7 @@ public class ImageServiceImpl extends ServiceImpl<ImageMapper, Image> {
 		image.setOriginalImg(path);
 		LocalCatch.removeByPre("imageList" + authorId);
 		imageMapper.insert(image);
+		log.info("添加图片成功："+image);
 		return ComResult.success("图片保存成功");
 	}
 
@@ -64,14 +65,11 @@ public class ImageServiceImpl extends ServiceImpl<ImageMapper, Image> {
 		List<ImageDTO> images;
 		String key = "imageList" + authorId + "-" + startPage + "-" + (startPage+pageSize);
 		if ((images = (List<ImageDTO>) LocalCatch.get(key)) == null) {
-			log.info("缓存未命中：" + key);
 			images = imageMapper.getImages(authorId,startPage,pageSize);
 			if (images==null) return ComResult.error("获取图片列表失败，用户不存在");
 			LocalCatch.put(key, images);
 			return ComResult.success("获取图片列表成功", images);
 		}
-		//  缓存命中
-		log.info("缓存命中：" + key);
 		return ComResult.success("获取图片列表成功", images);
 	}
 
@@ -82,14 +80,19 @@ public class ImageServiceImpl extends ServiceImpl<ImageMapper, Image> {
 			image = getImageById(id);
 			if (!image.getAuthorId().equals(authorId))
 				return ComResult.error("非法操作");
-			// 删数据库记录
-			imageMapper.deleteById(id);
-			// 删除本地文件
-			myUtil.deleteFile(image.getSimplifyImg());
-			myUtil.deleteFile(image.getOriginalImg());
-			// 清除缓存
-			LocalCatch.removeByPre("imageList" + authorId);
+			try {
+				// 删数据库记录
+				imageMapper.deleteById(id);
+				// 删除本地文件
+				myUtil.deleteFile(image.getSimplifyImg());
+				myUtil.deleteFile(image.getOriginalImg());
+				log.info("删除图片成功："+image);
+			}catch (Exception e){
+				return ComResult.error("删除失败");
+			}
 		}
+		// 清除缓存
+		LocalCatch.removeByPre("imageList" + authorId);
 		return ComResult.success("删除成功");
 	}
 
@@ -101,14 +104,11 @@ public class ImageServiceImpl extends ServiceImpl<ImageMapper, Image> {
 		List<ImageDTO> images;
 		String key = "imageList" + authorId + "-" + albumName + startPage + "-" + (startPage+pageSize);
 		if ((images = (List<ImageDTO>) LocalCatch.get(key)) == null) {
-			log.info("缓存未命中：" + key);
 			images = imageMapper.getImagesByAlbum(authorId,albumName,startPage,pageSize);
 			if (images==null) return ComResult.error("获取相册图片列表失败，用户不存在");
 			LocalCatch.put(key, images);
 			return ComResult.success("获取相册图片列表成功", images);
 		}
-		//  缓存命中
-		log.info("缓存命中：" + key);
 		return ComResult.success("获取相册图片列表成功", images);
 	}
 
@@ -130,10 +130,10 @@ public class ImageServiceImpl extends ServiceImpl<ImageMapper, Image> {
 		// relativePath src链接直接请求数据，需要加 dataPath 资源映射.
 		String relativePath = PathConfig.dataPath + "/" + PathConfig.imgPath + "/" + fileName;
 		if (myUtil.writeBase64Img(base64ImgData, storagePath)){
-			log.info("图片保存成功");
+			log.info("图片保存成功:"+relativePath);
 			return relativePath;
 		}else {
-			log.warn("图片保存失败");
+			log.warn("图片保存失败:"+relativePath);
 			return null;
 		}
 	}

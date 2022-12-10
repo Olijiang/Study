@@ -300,12 +300,14 @@ export default {
     }
 
     .ArticleInfo {
+        user-select: none;
         position: absolute;
         width: 100%;
         // height: 100%;
         // color: white;
         top: 250px;
         margin: 0 auto;
+        transition: all 0.3s ease-in-out;
     }
 }
 
@@ -359,6 +361,7 @@ export default {
 }
 
 .endmsg {
+    user-select: none;
     position: relative;
     margin: 0 0 10px;
     width: 100%;

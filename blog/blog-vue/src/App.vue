@@ -13,23 +13,20 @@
 
   <FooterVue></FooterVue>
   <backToTopVue />
-  <vLoginVue></vLoginVue>
 
 </template>
 
 <script>
 
 import backToTopVue from './components/backToTop.vue';
-import FooterVue from './components/layout/Footer.vue';
-import TopNavBarVue from './components/layout/TopNavBar.vue';
-import vLoginVue from './components/v-login.vue';
+import FooterVue from './components/Footer.vue';
+import TopNavBarVue from './components/TopNavBar.vue';
 
 export default {
   components: {
     backToTopVue,
     FooterVue,
     TopNavBarVue,
-    vLoginVue
   },
   data() {
     return {

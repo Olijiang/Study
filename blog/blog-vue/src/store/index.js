@@ -8,7 +8,7 @@ const store = createStore({
     return {
       albums: [],
       author: undefined,
-      loginDialog: false, //控制登录窗口
+      visitAuthor: undefined,
       editDialog: false, //控制文章编辑窗口
       isLogin: false,  //控制是否登录
       refresh: null,
@@ -28,25 +28,22 @@ const store = createStore({
       state.isLogin = true
       // token 过期时间为一小时, 45分钟刷新一次 2700000
       // 页面刷新就失效了, 可能是刷新时序列化造成的
-      state.refresh = setInterval(() => {
-        API.get('refreshToken')
-          .then(res => {
-            if (res.code === 200) {
-              console.log(res.data);
-              state.author.password = res.data
-            }
-          })
-      }, 2700000);
+      // state.refresh = setInterval(() => {
+      //   API.get('refreshToken')
+      //     .then(res => {
+      //       if (res.code === 200) {
+      //         console.log(res.data);
+      //         state.author.password = res.data
+      //       }
+      //     })
+      // }, 2700000);
     },
     logout(state) {
       state.isLogin = false
-      clearInterval(state.refresh)
+      // clearInterval(state.refresh)
     },
-    setAuthorInfo(state, author) {
-      if (state.author) {
-        author.password = state.author.password
-      }
-      state.author = author
+    setVisitAuthor(state, author) {
+      state.visitAuthor = author
     },
     setArticle(state, article) {
       state.article = article
@@ -66,7 +63,6 @@ const store = createStore({
         if (key == "tag") state.article[key] = []
         state.article[key] = ""
       }
-      console.log("clearArticle", state.article);
     },
     setAlbums(state, albums) {
       state.albums = albums

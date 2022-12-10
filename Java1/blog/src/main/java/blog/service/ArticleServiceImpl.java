@@ -69,6 +69,21 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		Article article = getArticle(articleId);
 		return ComResult.success("获取文章成功",article);
 	}
+	public ComResult deleteArticle(Integer articleId, String authorId) {
+		Article article = getArticle(articleId);
+		if (!article.getAuthorId().equals(authorId)) return ComResult.error("非法操作");
+		// 删除文章
+		myUtil.deleteFile(article.getContent());
+		// 删除图片
+		myUtil.deleteFile(article.getImg());
+		// 删除记录
+		articleMapper.deleteById(articleId);
+		// 清除缓存
+		LocalCatch.removeByPre("articleList"+authorId);
+		LocalCatch.remove("article"+articleId);
+		log.info("删除文章成功 id"+ article.getAuthorId() + article.getTitle());
+		return ComResult.success();
+	}
 
 	public ComResult addArticle(ArticleDTO articleDTO, String authorId) {
 		Article article = new Article();
@@ -113,13 +128,15 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		log.info("成功添加新文章:"+article.getTitle());
 		articleMapper.insert(article);
 		LocalCatch.removeByPre("articleList"+authorId);
+		log.info("添加文章成功 id："+ article.getAuthorId()+" title:" + article.getTitle());
 		return ComResult.success("添加成功");
 	}
 
 	public ComResult updateArticle(ArticleDTO articleDTO, String authorId) {
-		Article article = new Article();
+		Article article = getArticle(articleDTO.getId());
 		// 验证作者
-		if (getArticle(articleDTO.getId())==null) return ComResult.error("文章不存在");
+
+		if (article==null) return ComResult.error("文章不存在");
 		if (!getArticle(articleDTO.getId()).getAuthorId().equals(authorId))
 			return ComResult.error("非法操作");
 		// 保存图片
@@ -170,9 +187,9 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 
 		article.setId(articleDTO.getId());
 		articleMapper.updateById(article);
-		log.info("修改文章成功:"+article.getTitle());
 		LocalCatch.put("article"+article.getId(),article);
 		LocalCatch.removeByPre("articleList"+authorId);
+		log.info("修改文章成功 id："+ article.getAuthorId()+" title:" + article.getTitle());
 		return ComResult.success("修改成功");
 	}
 
@@ -304,4 +321,6 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		});
 		return list.toArray(new String[0]);
 	}
+
+
 }

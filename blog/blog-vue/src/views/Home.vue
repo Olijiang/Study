@@ -2,7 +2,7 @@
     <div>
         <div class="home-page">
             <transition name="el-fade-in">
-                <el-image class="img" fit="cover" :src=coverImg v-show="show" />
+                <el-image class="img" fit="cover" :src=coverImg />
             </transition>
         </div>
 
@@ -95,7 +95,6 @@ export default {
 
     },
     mounted() {
-        console.log();
         window.addEventListener('scroll', this.handleScroll)
         // 查询作者信息
         API.get('init/getAuthor', { authorId: this.authorId })
@@ -103,7 +102,7 @@ export default {
                 if (res.code == 200) {
                     res.data.img = this.baseUrl + res.data.img
                     this.coverImg = this.baseUrl + res.data.coverImg
-                    this.$store.commit("setAuthorInfo", res.data)
+                    this.$store.commit("setVisitAuthor", res.data)
                     this.ok++
                 }
             })
@@ -141,7 +140,7 @@ export default {
 <style lang="less" scoped>
 .home-page {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     margin-bottom: 30px;
     transition: all 0.3s ease;
 
@@ -157,6 +156,7 @@ export default {
 }
 
 .endmsg {
+    user-select: none;
     position: relative;
     margin: 0 0 10px;
     width: 100%;

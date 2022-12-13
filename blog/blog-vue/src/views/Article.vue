@@ -47,6 +47,7 @@
                 </div>
             </transition>
         </div>
+
         <div class="endmsg">{{ endmsg }}</div>
         <ArticleEditorVue :categories="categories" :tags="tags" :editFlag=editFlag></ArticleEditorVue>
     </div>

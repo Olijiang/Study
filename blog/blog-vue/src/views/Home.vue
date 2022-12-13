@@ -1,10 +1,14 @@
 <template>
     <div>
-        <div class="home-page">
-            <transition name="el-fade-in">
-                <el-image class="img" fit="cover" :src=coverImg />
-            </transition>
-        </div>
+        <transition name="el-fade-in">
+            <div class="illustration">
+                <el-image fit="cover" class="img" :src=author.coverImg alt="" />
+                <div class="authorInfo">
+                    <h1 style="margin: 20px;color:rgb(9, 214, 180);font-size: 50px;"> {{ author.blogName }} </h1>
+                    <p style="margin: 10px;">{{ author.blogInfo }}</p>
+                </div>
+            </div>
+        </transition>
 
         <el-row v-if="ok > 1">
             <el-col class="space"></el-col>
@@ -51,6 +55,7 @@ export default {
                 startPage: 0,
                 pageSize: 5
             },
+            author: {},
             coverImg: "",
         }
     },
@@ -101,7 +106,8 @@ export default {
             .then(res => {
                 if (res.code == 200) {
                     res.data.img = this.baseUrl + res.data.img
-                    this.coverImg = this.baseUrl + res.data.coverImg
+                    res.data.coverImg = this.baseUrl + res.data.coverImg
+                    this.author = res.data
                     this.$store.commit("setVisitAuthor", res.data)
                     this.ok++
                 }
@@ -138,22 +144,31 @@ export default {
 
 
 <style lang="less" scoped>
-.home-page {
+.illustration {
+    position: relative;
     width: 100%;
-    height: 100%;
-    margin-bottom: 30px;
-    transition: all 0.3s ease;
+    height: 500px;
+    margin-bottom: 20px;
+    transition: all 0.5s;
 
     .img {
         height: 100%;
         width: 100%;
-        object-fit: cover;
         vertical-align: middle;
         transition: all 0.5s ease-in-out;
-        border-radius: 0px 0px 20px 20px;
-        transition: all 0.3s ease;
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    .authorInfo {
+        position: absolute;
+        width: 100%;
+        top: 200px;
+        margin: 0 auto;
+        transition: all 0.3s ease-in-out;
+        user-select: none;
     }
 }
+
 
 .endmsg {
     user-select: none;
@@ -195,6 +210,7 @@ export default {
 }
 
 @media (max-width: 900px) {
+
     .ArticleCard {
         max-width: 95%;
         flex: 0 0 95%;

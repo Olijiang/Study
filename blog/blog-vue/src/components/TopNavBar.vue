@@ -15,7 +15,7 @@
             </div>
             <template v-if="isLogin">
                 <div class="nav_item">
-                    <span v-if="isAuthor" @click="routerHandler('/Personal/')">个人中心</span>
+                    <span v-if="isAuthor" @click="routerHandler('/Personal')">个人中心</span>
                     <span v-else @click.prevent="goHome()">回家</span>
                     <div class="item_line"></div>
                 </div>
@@ -26,7 +26,7 @@
             </template>
 
             <template v-else>
-                <div class="nav_item" @click="loginHandler">
+                <div class="nav_item" @click="loginDialog = true">
                     <span>登录</span>
                     <div class="item_line"></div>
                 </div>
@@ -41,7 +41,7 @@
         </template>
         <div style="width: 300px;">
             <el-form ref="loginRef" :model="loginForm" :rules="rules" label-width="80px" class="demo-ruleForm"
-                @keyup.enter="submitForm">
+                @keyup.enter="loginHandler">
                 <el-form-item label="用户名" prop="username">
                     <el-input v-model="loginForm.username" type="text" autocomplete="off" placeholder="请输入账户" />
                 </el-form-item>
@@ -58,7 +58,7 @@
 
                 </el-form-item>
                 <el-form-item style="margin-top:30px">
-                    <el-button type="primary" @click="submitForm">登录</el-button>
+                    <el-button type="primary" @click="loginHandler">登录</el-button>
                     <el-button @click="resetForm">清空</el-button>
                     <div class="regtxt" @click="toRegister">注册账号</div>
                 </el-form-item>
@@ -73,8 +73,8 @@
                 注&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;册</div>
         </template>
         <div style="width: 300px;">
-            <el-form ref="loginRef" :model="loginForm" :rules="rules" label-width="80px" class="demo-ruleForm"
-                @keyup.enter="submitForm">
+            <el-form ref="rigisterRef" :model="loginForm" :rules="rules" label-width="80px" class="demo-ruleForm"
+                @keyup.enter="registerHanlder">
                 <el-form-item label="用户名" prop="username">
                     <el-input v-model="loginForm.username" type="text" autocomplete="off" placeholder="请输入账户" />
                 </el-form-item>
@@ -91,7 +91,7 @@
 
                 </el-form-item>
                 <el-form-item style="margin-top:30px">
-                    <el-button type="primary" @click="register">注册</el-button>
+                    <el-button type="primary" @click="registerHanlder">注册</el-button>
                     <el-button @click="toLogin">返回</el-button>
                 </el-form-item>
             </el-form>
@@ -170,14 +170,39 @@ export default {
     methods: {
         toRegister() {
             this.loginDialog = false
-            this.registDialog = true
+            setTimeout(() => {
+                this.registDialog = true
+            }, 500);
+
         },
         toLogin() {
-            this.loginDialog = true
             this.registDialog = false
+            setTimeout(() => {
+                this.loginDialog = true
+            }, 500);
         },
-        register() {
+        registerHanlder() {
             // 注册
+            this.$refs['rigisterRef'].validate((valid) => {
+                if (valid) {
+                    API.post('register', this.loginForm)
+                        .then(res => {
+                            if (res.code === 200) {
+                                ElMessage({
+                                    showClose: true,
+                                    message: response.data.message,
+                                    type: 'success',
+                                })
+                                this.toLogin()
+                                this.resetForm()
+                            }
+                            // 刷新验证码
+                            setTimeout(() => {
+                                this.getCode()
+                            }, 100);
+                        })
+                }
+            })
         },
         getCode() {
             this.loginForm.timeStamp = new Date().getTime()
@@ -190,7 +215,8 @@ export default {
                     }
                 })
         },
-        submitForm() {
+        loginHandler() {
+            console.log(this.loginForm);
             this.$refs['loginRef'].validate((valid) => {
                 if (valid) {
                     API.post('login', this.loginForm)
@@ -235,7 +261,7 @@ export default {
                         message: '退出成功',
                     })
                     this.$router.push({
-                        path: "/2020"
+                        path: "/"
                     })
                 }).catch((action) => {
                     if (action == 'cancel') {
@@ -246,10 +272,13 @@ export default {
                     }
                 })
         },
-        loginHandler() {
-            this.loginDialog = true
-        },
         routerHandler(value) {
+            if (value === '/Personal') {
+                this.$router.push({
+                    path: value
+                })
+                return
+            }
             if (this.visitAuthorId != undefined) {
                 this.$router.push({
                     path: value + this.visitAuthorId
@@ -271,7 +300,7 @@ export default {
         },
         // 
         isAuthor() {
-            return (this.$store.state.visitAuthor.username == this.$store.state.author.username)
+            return (this.$store.state.visitAuthor?.username == this.$store.state.author.username)
         },
         // 正在访问的博客的 username
         authorId() {
@@ -359,7 +388,7 @@ export default {
     margin: 0 8px;
     cursor: pointer;
     transition: 0.3s all ease-in-out;
-    color: rgb(9, 214, 180);
+    color: #278b63;
     user-select: none;
 
     .item_line {

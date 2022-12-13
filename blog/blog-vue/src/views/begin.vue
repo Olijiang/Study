@@ -21,10 +21,13 @@ export default {
     margin: 10% auto;
     text-align: center;
     width: 900px;
-    background-image: linear-gradient(45deg, hsl(0, 60%, 90%, 1), hsl(60, 60%, 90%, 1), hsl(120, 60%, 90%, 1), hsl(180, 60%, 90%, 1), hsl(240, 60%, 90%, 1), hsl(320, 60%, 90%, 1), hsl(360, 60%, 90%, 1));
+    // background-image: linear-gradient(45deg, hsl(0, 70%, 70%, 1), hsl(60, 60%, 90%, 1), hsl(120, 60%, 90%, 1), hsl(180, 60%, 90%, 1), hsl(240, 60%, 90%, 1), hsl(320, 60%, 90%, 1), hsl(360, 60%, 90%, 1));
+    background-image: linear-gradient(45deg, hsl(0, 70%, 80%, 1), hsl(60, 70%, 80%, 1), hsl(120, 70%, 80%, 1), hsl(180, 70%, 80%, 1), hsl(240, 70%, 80%, 1), hsl(320, 70%, 80%, 1), hsl(360, 70%, 80%, 1));
+
     color: transparent;
     background-size: 200% 200%;
     -webkit-background-clip: text;
+    background-clip: text;
     font-size: 300px;
     font-family: 'Times New Roman', Times, serif;
     user-select: none;

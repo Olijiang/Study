@@ -4,9 +4,9 @@
         <div class="author">
             <el-image class="img" fit="cover" :src=author.img alt="" />
 
-            <p class="author-name">{{ author.blogName }}
+            <p class="author-name">{{ author.authorName }}
             </p>
-            <p style="font-size: 90%;color: #858585;"> {{ author.blogInfo }}</p>
+            <p style="font-size: 90%;color: #858585;"> {{ author.authorInfo }}</p>
 
             <div>
                 <span class="tag1">文章</span>
@@ -56,7 +56,7 @@ export default {
 
 .card {
     background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid rgba(235, 235, 235);
+    border: 1px solid #278b63;
     border-radius: 20px;
     transition: all 0.2s ease-in-out;
     // position: absolute;

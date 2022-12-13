@@ -54,14 +54,10 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		List<Article> articles;
 		String key = "articleList" + authorId + "-" + startPage + "-" + (startPage+pageSize);
 		if ((articles = (List<Article>) LocalCatch.get(key)) == null) {
-			log.info("缓存未命中：" + key);
 			articles = articleMapper.getArticles(authorId,startPage,pageSize);
-			if (articles==null) return ComResult.error("获取文章列表失败，用户不存在");
 			LocalCatch.put(key, articles);
 			return ComResult.success("获取文章列表成功", articles);
 		}
-		//  缓存命中
-		log.info("缓存命中：" + key);
 		return ComResult.success("获取文章列表成功", articles);
 	}
 
@@ -195,13 +191,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 
 	public ComResult getCategoryById(String authorId){
 		String[] categories= getCategories(authorId);
-		if (categories==null) return ComResult.error("用户不存在");
 		return ComResult.success("获取分类成功",categories);
 	}
 
 	public ComResult getTagsById(String authorId){
 		String[] tags= getTags(authorId);
-		if (tags==null) return ComResult.error("用户不存在");
 		return ComResult.success("获取标签成功",tags);
 	}
 	/**
@@ -212,13 +206,11 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		Article article;
 		String key = "article" + articleId;
 		if ((article = (Article) LocalCatch.get(key))==null){
-			log.info("缓存未命中："+key);
 			article = articleMapper.selectById(articleId);
 			if (article==null) return null;
 			LocalCatch.put(key,article);
 			return article;
 		}
-		log.info("缓存命中：" + key);
 		return article;
 	}
 
@@ -245,7 +237,6 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		String articleContent;
 		String key = "articleContent"+filePath;
 		if ((articleContent = (String) LocalCatch.get(key))==null) {
-			log.info("缓存未命中：" + key);
 			String projectPath = System.getProperty("user.dir");
 			String storagePath = projectPath + File.separator+ filePath;
 			articleContent =  myUtil.readTxt(storagePath);
@@ -253,7 +244,6 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 			LocalCatch.put(key, articleContent);
 			return articleContent;
 		}
-		log.info("缓存命中：" + key);
 		return articleContent;
 	}
 
@@ -261,21 +251,19 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		String[] categories;
 		String key = "categories"+authorId;
 		if ((categories = (String[]) LocalCatch.get(key))==null) {
-			log.info("缓存未命中：" + key);
 			Category category = categoryMapper.selectById(authorId);
-			if (category==null) return null;
+			if (category==null) return new String[] {};
 			JSONArray jsonArray = (JSONArray) JSON.parseObject(category.getCategories()).get("categories");
 			categories = jsonToArray(jsonArray);
 			LocalCatch.put(key, categories);
 			return categories;
 		}
-		log.info("缓存命中：" + key);
 		return categories;
 	}
 
-	private void updateCategories(String authorId, String categoriy) {
+	private void updateCategories(String authorId, String newCategory) {
 		String[] rawCategories = getCategories(authorId);
-		String[] newCategories = myUtil.union(rawCategories, new String[]{categoriy});
+		String[] newCategories = myUtil.union(rawCategories, new String[]{newCategory});
 		LocalCatch.put("categories"+authorId,newCategories);
 		Category category = new Category();
 		category.setAuthorId(authorId);
@@ -291,18 +279,16 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		String[] tags;
 		String key = "tags"+authorId;
 		if ((tags = (String[]) LocalCatch.get(key))==null) {
-			log.info("缓存未命中：" + key);
 			Tag tag = tagMapper.selectById(authorId);
-			if (tag==null) return null;
+			if (tag==null) return new String[] {};
 			JSONArray jsonArray = (JSONArray) JSON.parseObject(tag.getTags()).get("tags");
 			tags = jsonToArray(jsonArray);
 			LocalCatch.put(key, tags);
 			return tags;
 		}
-		log.info("缓存命中：" + key);
 		return tags;
 	}
-	// // tags, 根据authorId刷新用户的 tags 数据
+	// tags, 根据authorId刷新用户的 tags 数据
 	private void updateTags(String authorId, String[] tags){
 		String[] rawTags = getTags(authorId);
 		String[] newTags = myUtil.union(rawTags, tags);
@@ -314,6 +300,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article>{
 		tag.setTags(json.toJSONString());
 		tagMapper.updateById(tag);
 	}
+
 	private String[] jsonToArray(JSONArray jsonArray){
 		ArrayList<String > list = new ArrayList<>();
 		jsonArray.forEach((object)->{

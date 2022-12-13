@@ -2,7 +2,9 @@ package blog.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * @author ZGB
@@ -11,6 +13,8 @@ import lombok.Data;
  * @date 2022/11/19 19:27
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Album {
 
 	@TableId(type = IdType.AUTO)

@@ -95,7 +95,7 @@ export default {
 
 .time_node {
     position: absolute;
-    background-color: rgba(186, 214, 215, 0.8);
+    background-color: #3f00ff;
     position: absolute;
     top: 100px;
     left: -6px;
@@ -107,7 +107,7 @@ export default {
 .time_line {
     position: relative;
     display: inline-block;
-    border-left: 1px solid #cfcbcb;
+    border-left: 1px solid #3f00ff;
     height: 100%;
     text-align: center;
     width: 50%;
@@ -117,18 +117,18 @@ export default {
     margin-top: 100px;
     margin-left: 5%;
     font-size: 80%;
-    color: #858585;
+    color: #3f00ff;
 }
 
 .article_card {
 
     width: 100%;
     min-width: 600px;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.5);
     text-align: left;
     height: 250px;
     border-radius: 20px;
-    border: 1px solid rgba(235, 235, 235);
+    border: 1px solid #278b63;
     transition: all 0.2s ease-in-out;
     margin-bottom: 20px;
 
@@ -147,8 +147,8 @@ export default {
     }
 
     &:hover {
-        border: 1px solid #5dfaff;
-        box-shadow: 0 0 10px #5dfaff;
+        border: 1px solid #2dcf8e;
+        box-shadow: 0 0 10px #5ae7af;
         transition: all 0.2s ease-in-out;
     }
 }
@@ -247,13 +247,14 @@ p {
     .article_card {
         min-width: 400px;
         height: 380px;
+        overflow: hidden;
     }
 
     .illustration {
-        height: 40%;
+        height: 61%;
         width: 100%;
         overflow: hidden;
-        border-radius: 10px 10px 10px 10px;
+        border-radius: 19px 19px 10px 10px;
     }
 
     .illustration_l {
@@ -270,7 +271,6 @@ p {
         height: 50%;
         margin: 0 5% 0;
         overflow: hidden;
-
     }
 
     .content_l {

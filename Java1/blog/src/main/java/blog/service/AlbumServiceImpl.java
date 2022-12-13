@@ -3,8 +3,11 @@ package blog.service;
 import blog.config.ComResult;
 import blog.config.LocalCatch;
 import blog.entity.Album;
+import blog.entity.Image;
 import blog.mapper.AlbumMapper;
+import blog.mapper.ImageMapper;
 import blog.utils.myUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +26,8 @@ public class AlbumServiceImpl {
 
 	@Resource
 	private AlbumMapper albumMapper;
+	@Resource
+	private ImageMapper imageMapper;
 
 	public ComResult update(String authorId, Album[] albums) {
 		// 获取 全部 的 id
@@ -71,6 +76,17 @@ public class AlbumServiceImpl {
 		}
 		// 删除 rawAlbums 剩余的相册
 		for (Album album : rawAlbums) {
+			QueryWrapper<Image> wrapper = new QueryWrapper<>();
+			wrapper.eq("author_id",authorId);
+			wrapper.eq("album_id",albumMapper.getIdByName(authorId, album.getAlbumName()));
+			List<Image> images = imageMapper.selectList(wrapper);
+			for (Image image : images) {
+				myUtil.deleteFile(image.getOriginalImg());
+				myUtil.deleteFile(image.getSimplifyImg());
+				imageMapper.deleteById(image);
+			}
+			// 清除缓存
+			LocalCatch.removeByPre("imageList" + authorId);
 			albumMapper.deleteById(album);
 			log.info("删除相册："+album.getAlbumName());
 		}

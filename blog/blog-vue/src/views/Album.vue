@@ -116,9 +116,9 @@
             </div>
         </el-dialog>
         <!-- 预览 -->
-        <el-dialog v-model="previewDialog" width="70%" top="60px" :append-to-body="true"
-            style="background-color: aliceblue;">
-            <div class="previewbox">
+        <el-dialog v-model="previewDialog" top="60px" :append-to-body="true" style="background-color: transparent;"
+            width="60%">
+            <div class="imgPreviewBox">
                 <img class="img" :src="dialogImageUrl" alt="" />
             </div>
         </el-dialog>
@@ -283,6 +283,7 @@ export default {
                     // this.uploadFunc(e)
                 }
             }
+            this.initImages()
             // console.log("total time:", new Date().getTime() - time);
         },
         async uploadFunc(e) {
@@ -380,7 +381,8 @@ export default {
                                 console.log(res.data);
                                 this.editAlbumDialog = false
                                 // 添加到本地数据，就不刷新页面了
-                                this.albums = this.albumsA
+                                this.initAlbums()
+                                this.initImages()
                             }
                         })
                 }
@@ -407,7 +409,8 @@ export default {
             }
         },
         deleteAlbum(index) {
-            ElMessageBox.confirm('确认删除?', '提示框',
+            // 本地删除，点击保存提交更改
+            ElMessageBox.confirm('删除相册会删除相册全部相片，是否确认?', '提示框',
                 {
                     distinguishCancelAndClose: true,
                     confirmButtonText: '是',
@@ -440,6 +443,48 @@ export default {
                 e.imgChange = false
                 this.albumsA.push(JSON.parse(JSON.stringify(e)))
             })
+        },
+        initAlbums() {
+            // 获取相册信息
+            let data = {
+                authorId: this.authorId,
+            }
+            API.get("init/getAlbums", data)
+                .then(res => {
+                    if (res.code == 200) {
+                        // 刷新信息有关信息
+                        this.albums = []
+                        this.albumsB = []
+                        res.data.forEach(e => {
+                            e.coverImg = this.baseUrl + e.coverImg
+                            if (e.albumName != "全部") {
+                                this.albumsB.push(e.albumName)
+                            }
+                            this.albums.push(e)
+                        })
+                        // 扔到 store
+                        this.$store.commit("setAlbums", res.data)
+                    }
+                })
+        },
+        initImages() {
+            // 获取初始图片
+            let data = {
+                authorId: this.authorId,
+                startPage: 0,
+                pageSize: 8
+            }
+            this.originalImg = []
+            this.simplifyImg = []
+            API.get("init/getImages", data)
+                .then(res => {
+                    if (res.code == 200) {
+                        res.data.forEach(e => {
+                            this.originalImg.push(this.baseUrl + e.originalImg)
+                            this.simplifyImg.push(this.baseUrl + e.simplifyImg)
+                        })
+                    }
+                })
         }
     },
     computed: {
@@ -452,41 +497,8 @@ export default {
 
     },
     mounted() {
-        // 获取相册信息
-        let data = {
-            authorId: this.authorId,
-        }
-        API.get("init/getAlbums", data)
-            .then(res => {
-                if (res.code == 200) {
-                    // 扔到 store
-                    res.data.forEach(e => {
-                        e.coverImg = this.baseUrl + e.coverImg
-                        if (e.albumName != "全部") {
-                            this.albumsB.push(e.albumName)
-                        }
-                        this.albums.push(e)
-
-                    })
-                    this.$store.commit("setAlbums", res.data)
-                }
-            })
-
-        data = {
-            authorId: this.authorId,
-            startPage: 0,
-            pageSize: 8
-        }
-        API.get("init/getImages", data)
-            .then(res => {
-                if (res.code == 200) {
-                    res.data.forEach(e => {
-                        this.originalImg.push(this.baseUrl + e.originalImg)
-                        this.simplifyImg.push(this.baseUrl + e.simplifyImg)
-                    })
-                }
-            })
-
+        this.initAlbums()
+        this.initImages()
     },
 }
 </script>
@@ -570,7 +582,7 @@ export default {
     }
 
     .jutifenlei {
-        color: rgb(0, 255, 170);
+        color: #17ed97;
         display: block;
         font-size: 30px;
         transition: @transition;
@@ -615,15 +627,6 @@ export default {
     }
 }
 
-.previewbox {
-    width: 100%;
-
-    .img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
-}
 
 .albumItem {
     margin: 2%;

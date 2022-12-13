@@ -47,7 +47,7 @@ public class ComResult {
 	}
 
 	public static ComResult error(String msg) {
-		return new ComResult(416, msg, null);
+		return new ComResult(400, msg, null);
 	}
 
 	public static ComResult success() {

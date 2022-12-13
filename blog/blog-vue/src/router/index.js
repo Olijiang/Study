@@ -46,7 +46,7 @@ const routes = [
         props: true
     },
     {
-        path: '/Personal/:authorId',
+        path: '/Personal/',
         name: 'Personal',
         component: () => import('../views/Personal.vue'),
         props: true

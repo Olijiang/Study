@@ -55,9 +55,9 @@
         </el-row>
         <div class="endmsg">{{ endmsg }}</div>
         <!-- 预览Dialog -->
-        <el-dialog v-model="previewDialog" width="70%" top="60px" :append-to-body="true"
-            style="background-color: aliceblue    ;">
-            <div class="previewbox">
+        <el-dialog v-model="previewDialog" top="60px" :append-to-body="true" style="background-color: transparent;"
+            width="60%">
+            <div class="imgPreviewBox">
                 <img class="img" :src="dialogImageUrl" />
             </div>
         </el-dialog>
@@ -247,6 +247,7 @@ export default {
 
         this.queryData.authorId = this.authorId
         this.queryData.albumName = this.albumName
+        console.log(this.queryData);
         API.get("init/getImagesByAlbum", this.queryData)
             .then(res => {
                 if (res.code == 200) {
@@ -386,17 +387,7 @@ export default {
     }
 }
 
-.previewbox {
-    z-index: 10;
-    width: 100%;
-    min-height: 60vh;
 
-    .img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-    }
-}
 
 .photoCloak {
     opacity: 0.5;

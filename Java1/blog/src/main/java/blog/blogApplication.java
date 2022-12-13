@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author ZGB
@@ -14,6 +15,7 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @SpringBootApplication
 @MapperScan("blog.mapper")
 @EnableConfigurationProperties
+@EnableTransactionManagement
 public class blogApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(blogApplication.class, args);

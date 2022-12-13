@@ -21,7 +21,8 @@ public class TokenInterceptor implements HandlerInterceptor {
 	private final String[] urls = {
 			"/article/.*",
 			"/image/.*",
-			"album/.*"
+			"/album/.*",
+			"/user/.*"
 	};
 
 	// 进入controller层之前拦截请求

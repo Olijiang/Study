@@ -43,4 +43,15 @@ public class LoginController {
 		}
 		return ComResult.error("非法访问!");
 	}
+
+	@ApiOperation("注册操作")
+	@PostMapping("/register")
+	public ComResult register(@RequestBody LoginInfo loginInfo){
+		String code = (String) LocalCatch.get(loginInfo.getTimeStamp());
+		if (loginInfo.getCode().equals(code)){
+			return loginService.register(loginInfo);
+		}else{
+			return ComResult.error("验证码错误");
+		}
+	}
 }
